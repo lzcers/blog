@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --content-base ./dist/ --config ./build --mode development",
-    "build": "cross-env NODE_ENV=production webpack -p --progress --hide-modules --config ./build --mode production"
+    "build": "webpack -p --progress --hide-modules --config ./build --mode production"
   },
   "dependencies": {
     "normalize.css": "^8.0.0",
