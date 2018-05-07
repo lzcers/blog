@@ -1,0 +1,28 @@
+.nav {
+    height: 80px;
+    width: 100%;
+    max-width: inherit;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: fixed;
+    background: #fff;
+    z-index: 999;
+}
+.nav::after {
+    clear: both;
+}
+
+.nav-header {
+    float: left;
+}
+.nav-menu {
+    float: right;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li {
+        line-height: 80px;
+        display: inline-block;
+        margin: 0 10px;
+    }
+}
