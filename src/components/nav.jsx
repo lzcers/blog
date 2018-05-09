@@ -6,7 +6,7 @@ export default class Nav extends React.PureComponent {
         return (
             <nav className="nav">
                 <div className="nav-header">
-                    <h1>KSANA</h1>
+                    <h1 className="nav-sitename">ksana</h1>
                 </div>
                 <ul className="nav-menu">
                     <li className="nav-item"><a>HOME</a></li>

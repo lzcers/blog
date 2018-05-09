@@ -3,7 +3,7 @@
     width: 100%;
     max-width: inherit;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
     position: fixed;
     background: #fff;
     z-index: 999;
@@ -14,15 +14,26 @@
 
 .nav-header {
     float: left;
+    .nav-sitename {
+        color: #424243;
+        text-transform: uppercase;
+        font-family: 'Oswald', sans-serif, 'Microsoft YaHei', STHeiti;
+    }
 }
 .nav-menu {
     float: right;
     list-style-type: none;
     padding: 0;
     margin: 0;
-    li {
+    .nav-item {
+        cursor: pointer;
+        color: #808080;
         line-height: 80px;
         display: inline-block;
         margin: 0 10px;
+        font-family: 'Oswald', sans-serif, 'Microsoft YaHei', STHeiti;
+    }
+    .nav-item:hover {
+        color: #000;
     }
 }

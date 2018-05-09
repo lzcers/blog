@@ -1,4 +1,43 @@
-.articles {
-    padding: 80px 20px;
+.article {
     width: 100%;
+    &-title {
+        font-size: 1.2rem;
+        text-align: center;
+        font-weight: 500;
+        color: #000;        
+        a:hover, a:link, a:visited {
+            text-decoration: none;
+            color: #000;
+        }
+    }
+    &-date {
+        color: #797979;
+        text-align: center;
+    }
+    &-more {
+        float: left;
+        color: #808080;
+        text-decoration: none;
+    }
+    &-more:hover {
+        color: #000;
+    }
+    &-tags {
+        float: right;
+        &-link {
+            color: #808080;
+            text-decoration: none;            
+        }
+        &-link:hover {
+            color:  #000;
+        }
+    }
+    &-tags::after {
+        clear: both;
+    }
+    &-info {
+        height: 24px;
+        margin: 20px 0;
+        border-bottom: 1px solid #eee;
+    }
 }

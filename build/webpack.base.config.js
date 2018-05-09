@@ -29,7 +29,7 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -37,10 +37,16 @@ module.exports = {
         }
       },
       {
+        test: /\.(eot|ttf|woff)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          name:'/assets/fonts/[name].[hash:7].[ext]'
+        }
+      },
+      {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
           name: '/assets/media/[name].[hash:7].[ext]'
         }
       }

@@ -10,7 +10,9 @@ export default class App extends React.Component {
         return (
             <div className="wrap">
                 <Nav />
-                <Article />
+                <div className="articles">
+                    <Article />
+                </div>
             </div>
         )
     }
