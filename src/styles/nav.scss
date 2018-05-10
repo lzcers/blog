@@ -32,8 +32,12 @@
         display: inline-block;
         margin: 0 10px;
         font-family: 'Oswald', sans-serif, 'Microsoft YaHei', STHeiti;
-    }
-    .nav-item:hover {
-        color: #000;
+        
+        & a:visited {
+            color: #808080;
+        }
+        & a:hover {
+            color: #000;
+        }
     }
 }

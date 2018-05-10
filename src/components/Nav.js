@@ -1,5 +1,6 @@
 import React from 'react'
 import '@/styles/nav.scss'
+import { Link } from 'react-router-dom'
 
 export default class Nav extends React.PureComponent {
     render() {
@@ -9,9 +10,9 @@ export default class Nav extends React.PureComponent {
                     <h1 className="nav-sitename">ksana</h1>
                 </div>
                 <ul className="nav-menu">
-                    <li className="nav-item"><a>HOME</a></li>
-                    <li className="nav-item"><a>ARCHIVER</a></li>
-                    <li className="nav-item"><a>ABOUT</a></li>
+                    <li className="nav-item"><Link to="/home">HOME</Link></li>
+                    <li className="nav-item"><Link to="/archiver">ARCHIVER</Link></li>
+                    <li className="nav-item"><Link to="/about">ABOUT</Link></li>
                 </ul>
             </nav>
         )

@@ -1,6 +1,7 @@
 import React from 'react'
-import Nav from '@/components/nav.jsx'
-import Article from '@/components/article.jsx'
+import Nav from '@/components/Nav.js'
+
+import Router from '@/router'
 
 import 'normalize.css'
 import '@/styles/base.scss'
@@ -10,9 +11,7 @@ export default class App extends React.Component {
         return (
             <div className="wrap">
                 <Nav />
-                <div className="articles">
-                    <Article />
-                </div>
+                <Router />
             </div>
         )
     }

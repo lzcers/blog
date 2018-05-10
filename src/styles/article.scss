@@ -1,7 +1,7 @@
 .article {
     width: 100%;
     &-title {
-        font-size: 1.2rem;
+        font-size: 18px;
         text-align: center;
         font-weight: 500;
         color: #000;        
@@ -24,6 +24,7 @@
     }
     &-tags {
         float: right;
+        font-size: 12px;
         &-link {
             color: #808080;
             text-decoration: none;            
@@ -39,5 +40,8 @@
         height: 24px;
         margin: 20px 0;
         border-bottom: 1px solid #eee;
+    }
+    &-tags-pic {
+        margin-right: 5px;
     }
 }

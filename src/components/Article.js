@@ -1,7 +1,10 @@
 import React from 'react'
+import FIcon from '@fortawesome/react-fontawesome'
+import tags from '@fortawesome/fontawesome-free-solid/faTags'
+
 import '@/styles/article.scss'
 
-export default class article extends React.PureComponent {
+export default class Article extends React.PureComponent {
     render() {
         return (
             <article className="article">
@@ -25,8 +28,9 @@ export default class article extends React.PureComponent {
                 <div className="article-info">
                     <a className="article-more" href="">CONTINUE READING</a>
                     <div className="article-tags">
+                        <FIcon icon={tags} className="article-tags-pic" />
                         <a href="" className="article-tags-link">JAVASCRIPT</a>
-                        ,
+                        <span>, </span> 
                         <a href="" className="article-tags-link">FED</a>
                     </div>
                 </div>

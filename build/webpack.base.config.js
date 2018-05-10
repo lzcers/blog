@@ -12,6 +12,7 @@ module.exports = {
     main: './src/main.js'
   },
   resolve: {
+    extensions: ['.js', 'jsx'],
     alias: {
       '@': resolve('../src')
     }
