@@ -6,6 +6,12 @@ export default class Home extends React.PureComponent {
         return (
             <div className="articles">
                 <Article />
+                <Article />
+                <Article />
+                <Article />
+                <Article />
+                <Article />
+                <Article />
             </div>
         )
     }

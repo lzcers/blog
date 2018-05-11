@@ -1,5 +1,6 @@
 import React from 'react'
 import Nav from '@/components/Nav.js'
+import Footer from '@/components/Footer.js'
 
 import Router from '@/router'
 
@@ -11,7 +12,10 @@ export default class App extends React.Component {
         return (
             <div className="wrap">
                 <Nav />
-                <Router />
+                <div className="content">
+                    <Router />
+                </div>
+                <Footer />
             </div>
         )
     }

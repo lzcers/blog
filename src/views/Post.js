@@ -1,15 +1,17 @@
 import React from 'react'
 import FIcon from '@fortawesome/react-fontawesome'
 import tags from '@fortawesome/fontawesome-free-solid/faTags'
+import angleLeft from '@fortawesome/fontawesome-free-solid/faAngleDoubleLeft'
+import angleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
 
 import '@/styles/article.scss'
 
-export default class Article extends React.PureComponent {
+export default class Post extends React.PureComponent {
     render() {
         return (
-            <article className="article">
+            <article className="post">
                 <h1 className="article-title">
-                    <a href="#/post">写作是一个学习过程</a>
+                    写作是一个学习过程
                 </h1>
                 <div className="article-date">MAR 18TH 2018</div>
                 <div className="article-content">
@@ -20,7 +22,6 @@ export default class Article extends React.PureComponent {
                     </div>
                 </div>
                 <div className="article-info">
-                    <a className="article-more" href="">CONTINUE READING</a>
                     <div className="article-tags">
                         <FIcon icon={tags} className="article-tags-pic" />
                         <a href="" className="article-tags-link">JAVASCRIPT</a>
@@ -28,7 +29,17 @@ export default class Article extends React.PureComponent {
                         <a href="" className="article-tags-link">FED</a>
                     </div>
                 </div>
-            </article>
+                <div className="post-nav">
+                    <div className="post-left">
+                        <FIcon icon={angleLeft} />
+                        <a href="">写作是一个学习过程</a>
+                    </div>
+                    <div className="post-right">
+                        <a href="">用JS 实现 Lisp 里的流</a>
+                        <FIcon icon={angleRight} />
+                    </div>
+                </div>
+            </article>      
         )
     }
 }
