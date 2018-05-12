@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
-import Router from '@/router'
+import Routes from '@/routes'
 
 import 'normalize.css'
 import '@/styles/base.scss'
@@ -13,7 +13,7 @@ export default class App extends React.Component {
             <div className="wrap">
                 <Nav />
                 <div className="content">
-                    <Router />
+                    <Routes />
                 </div>
                 <Footer />
             </div>

@@ -8,12 +8,12 @@ export default class About extends React.PureComponent {
         return (
             <div className="about">
                 <blockquote>
-                    <Lifegame size={300} /> 
+                    <Lifegame size={ 300 } /> 
                     <p>
                     如果说艺术解释了我们的梦想，那么计算机就是以程序的名义执行着它们。<br />
                     </p>
                     <p>带着崇敬和赞美，将本书献给活在计算机中的神灵。</p>
-                    <p style={{textAlign: 'right'}}>——Alan J.Perlis，《计算机程序的结构和解释》序</p>
+                    <p style={{ textAlign: 'right' }}>——Alan J.Perlis，《计算机程序的结构和解释》序</p>
                 </blockquote>
                 <p>
                 以为人生是连续的，从时光这头到那头，从出生到死亡，像条在时光里蠕动的虫子，

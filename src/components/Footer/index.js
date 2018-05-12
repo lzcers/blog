@@ -4,12 +4,9 @@ import './footer.scss'
 import FIcon from '@fortawesome/react-fontawesome'
 import heart from '@fortawesome/fontawesome-free-solid/faHeart'
 
-export default class Footer extends React.PureComponent {
-    render() {
-        return (
-            <footer>
-                <p>Copyright © KSANA 2017 - 2018 <FIcon icon={heart} /> Powered by React</p>
-            </footer>            
-        )
-    }
-}
+const Footer = props => (
+    <footer>
+        <p>Copyright © KSANA 2017 - 2018 <FIcon icon={ heart } /> Powered by React</p>
+    </footer>            
+)
+export default Footer

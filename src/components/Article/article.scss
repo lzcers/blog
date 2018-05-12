@@ -28,7 +28,8 @@
         font-size: 12px;
         &-link {
             color: #808080;
-            text-decoration: none;            
+            text-decoration: none;
+            margin-left: 3px;            
         }
         &-link:hover {
             color:  #000;
@@ -44,5 +45,19 @@
     }
     &-tags-pic {
         margin-right: 5px;
+    }
+}
+
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@media (max-width: 767px) {
+    .markdown-body {
+        padding: 15px;
     }
 }

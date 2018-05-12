@@ -22,25 +22,25 @@ axios.interceptors.response.use(res => res, err => {
   return Promise.reject(err)
 })
 
-function getPosts() {
+export function getPosts() {
   if (cache.has('postList')) {
     return Promise.resolve(cache.get('postList'))
   } else {
     return axios.get(postsUrl)
     .then(res => res.data)
     .then(arr => {
-    cache.set('postList', arr)
-    return arr
+      cache.set('postList', arr)
+      return arr
     })
   }
 }
 
-function getPostByID(id) {
+export function getPostByID(id) {
   return axios.get(postsUrl + id)
   .then(res => res.data[0])
 }
 
-function getPostsByTag(tag) {
+export function getPostsByTag(tag) {
   if (cache.has("postByTag" + tag)) {
     return Promise.resolve(cache.get("postByTag" + tag))
   }
@@ -51,14 +51,14 @@ function getPostsByTag(tag) {
     return raw
   })
 }
-function login(userinfo) {
+export function login(userinfo) {
   return axios.post(loginUrl, userinfo)
 }
-function authorizationCheck() {
+export function authorizationCheck() {
   return axios.get(authorizationCheckUrl)
 }
 
-function getTags() {
+export function getTags() {
   if (cache.has("tags")) {
     return Promise.resolve(cache.get("tags"))
   }
@@ -70,11 +70,11 @@ function getTags() {
   })
 }
 
-function addPost(p) {
+export function addPost(p) {
   return axios.post('/api/post/add', p)
 }
 
-function updatePostByID(id, p) {
+export function updatePostByID(id, p) {
   return axios.post(updatePostByIDUrl + id, p)
 } 
 
