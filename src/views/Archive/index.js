@@ -1,4 +1,5 @@
 import React from 'react'
+import './archive.scss'
 
 export default class Archiver extends React.Component {
     render() {

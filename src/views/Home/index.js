@@ -1,5 +1,7 @@
 import React from 'react'
-import Article from '@/components/Article.js'
+import Article from '@/components/Article'
+
+import './home.scss'
 
 export default class Home extends React.PureComponent {
     render() {

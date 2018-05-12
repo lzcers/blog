@@ -1,10 +1,10 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import Home from '@/views/Home.js'
-import Post from '@/views/Post.js'
-import About from '@/views/About.js'
-import Archiver from '@/views/Archiver.js'
+import Home from '@/views/Home'
+import Post from '@/views/Post'
+import About from '@/views/About'
+import Archiver from '@/views/Archive'
 
 export default _ => (
     <Switch>

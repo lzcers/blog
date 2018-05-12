@@ -1,5 +1,7 @@
 import React from 'react'
-import Lifegame from '@/components/Lifegame.js'
+import Lifegame from '@/components/Lifegame'
+
+import './about.scss'
 
 export default class About extends React.PureComponent {
     render() {

@@ -4,7 +4,8 @@ import tags from '@fortawesome/fontawesome-free-solid/faTags'
 import angleLeft from '@fortawesome/fontawesome-free-solid/faAngleDoubleLeft'
 import angleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
 
-import '@/styles/article.scss'
+import '@/components/Article/article.scss'
+import './post.scss'
 
 export default class Post extends React.PureComponent {
     render() {

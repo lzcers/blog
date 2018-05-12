@@ -1,6 +1,7 @@
 import React from 'react'
-import '@/styles/nav.scss'
 import { Link } from 'react-router-dom'
+
+import './nav.scss'
 
 export default class Nav extends React.PureComponent {
     render() {

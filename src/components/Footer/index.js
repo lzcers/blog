@@ -1,7 +1,9 @@
 import React from 'react'
-import '@/styles/footer.scss'
+
+import './footer.scss'
 import FIcon from '@fortawesome/react-fontawesome'
 import heart from '@fortawesome/fontawesome-free-solid/faHeart'
+
 export default class Footer extends React.PureComponent {
     render() {
         return (
