@@ -1,0 +1,22 @@
+{
+    "extends": [
+      "airbnb" // 使用 airbnb 规范
+    ],
+    "rules": {
+      "linebreak-style": [
+        "error",
+        "windows"
+      ],
+      "semi": [
+        "error",
+        "never"
+      ]
+    },
+    "parser": "babel-eslint", // 采用 balbel-eslint 来做解析器，支持新的语法
+    "parserOptions": {
+      "sourceType": "module", // 指定源码格式，支持 export 和 import 来导出并引用文件
+      "ecmaFeatures": { // 添加ES特性支持，使之能够识别ES6语法
+        "jsx": true
+      }
+    }
+  }
