@@ -1,47 +1,47 @@
 // Archiver 页面
 .Archiver {
-    cursor: pointer;
-    h3 {
-        height: 22px;
-        line-height: 22px;
-    }
-    ul {
-        list-style: none;
-        padding: 0;
-        overflow: hidden;
-    }
-    li {
-        margin: 0 5px;
-        line-height: 30px;
-    }
+  cursor: pointer;
+  h3 {
+    height: 22px;
+    line-height: 22px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+  }
+  li {
+    margin: 0 5px;
+    line-height: 30px;
+  }
 }
 
 .archiver-tag-items {
-    li {
-        padding: 0 10px;
-        background: #f2f2f2;
-        color: #666;
-        float: left;
-    }
-    li:hover {
-        background: #333;
-        color: #fff;
-        text-decoration: none;
-    }
+  li {
+    padding: 0 10px;
+    background: #f2f2f2;
+    color: #666;
+    float: left;
+  }
+  li:hover {
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+  }
 }
 
 .archiver-list-items {
-    li:hover {
-        opacity: .60;
-    }
-    .item-name {
-        display: inline-block;
-        text-overflow: ellipsis;    
-        width: 75%;
-    }
-    .item-date {
-        display: inline-block;
-        width: 25%;
-        text-align: right;
-    }
+  li:hover {
+    opacity: 0.6;
+  }
+  .item-name {
+    display: inline-block;
+    text-overflow: ellipsis;
+    width: 75%;
+  }
+  .item-date {
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+  }
 }

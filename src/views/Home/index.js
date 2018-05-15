@@ -3,7 +3,5 @@ import Articles from '@/containers/Articles'
 
 import './home.scss'
 
-const Home = props => (
-    <Articles />
-)
+const Home = _ => <Articles />
 export default Home

@@ -26,9 +26,8 @@ axios.interceptors.response.use(
 )
 
 export function getPosts() {
-  if (cache.has('postList')) {
-    return Promise.resolve(cache.get('postList'))
-  }
+  if (cache.has('postList')) return Promise.resolve(cache.get('postList'))
+
   return axios
     .get(postsUrl)
     .then(res => res.data)
@@ -43,9 +42,8 @@ export function getPostByID(id) {
 }
 
 export function getPostsByTag(tag) {
-  if (cache.has('postByTag' + tag)) {
-    return Promise.resolve(cache.get('postByTag' + tag))
-  }
+  if (cache.has('postByTag' + tag)) return Promise.resolve(cache.get('postByTag' + tag))
+
   return axios
     .get(postsByTagUrl + tag)
     .then(res => res.data)
@@ -62,9 +60,7 @@ export function authorizationCheck() {
 }
 
 export function getTags() {
-  if (cache.has('tags')) {
-    return Promise.resolve(cache.get('tags'))
-  }
+  if (cache.has('tags')) return Promise.resolve(cache.get('tags'))
   return axios
     .get(tagsUrl)
     .then(res => res.data)

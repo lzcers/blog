@@ -6,7 +6,7 @@ import Post from '@/views/Post'
 import About from '@/views/About'
 import Archiver from '@/views/Archive'
 
-const Routes = () => (
+const Routes = _ => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/home" component={Home} />
