@@ -1,11 +1,13 @@
+const merge = require('webpack-merge')
+const baseConfig = require('./webpack.base.config')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
-module.exports = {
+module.exports = merge(baseConfig, {
   module: {
     rules: [
       {
         test: /\.(css|scss|sass)$/,
-        loader: "style-loader!css-loader!sass-loader"
+        loader: 'style-loader!css-loader!sass-loader'
       }
     ]
   },
@@ -23,8 +25,6 @@ module.exports = {
     }
   },
   // 开发环境用这个 source-map 据说会更快
-  devtool: "#cheap-module-eval-source-map",
-  plugins: [
-    new FriendlyErrorsPlugin()
-  ]
-}
+  devtool: '#cheap-module-eval-source-map',
+  plugins: [new FriendlyErrorsPlugin()]
+})

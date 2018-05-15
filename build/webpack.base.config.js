@@ -2,9 +2,9 @@
   webpack 打包的基础配置
 */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const path = require('path')
+
 const resolve = (...dir) => path.resolve(__dirname, ...dir)
 
 module.exports = {
@@ -34,14 +34,15 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name:'/assets/img/[name].[hash:7].[ext]'
+          name: '/assets/img/[name].[hash:7].[ext]'
         }
       },
       {
         test: /\.(eot|ttf|woff)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          name:'/assets/fonts/[name].[hash:7].[ext]'
+          limit: 8192,
+          name: '/assets/fonts/[name].[hash:7].[ext]'
         }
       },
       {
@@ -57,20 +58,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: resolve('../', 'index.html'),
       filename: 'index.html',
-      // favicon: require('./src/config').favicon || false,
+      favicon: './src/assets/favicon.ico' || false,
       minify: {
-        // https://github.com/kangax/html-minifier#options-quick-reference
         removeComments: true,
         collapseWhitespace: true
       },
       chunksSortMode: 'dependency'
-    }),
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: resolve('../src/static'),
-    //     to: resolve('../dist/static'),
-    //     ignore: ['.*']
-    //   }
-    // ])
+    })
   ]
 }
