@@ -19,9 +19,7 @@ function parseTokensGenTOC(tokens) {
       if (node.nodeLevel > i.nodeLevel) nextNode = i
     })
 
-    nextNode === undefined
-      ? root.childrenNode.push(node)
-      : createTOCTree(nextNode, node)
+    nextNode === undefined ? root.childrenNode.push(node) : createTOCTree(nextNode, node)
   }
   tocNodes.forEach(n => createTOCTree(rootNode, n))
   return rootNode

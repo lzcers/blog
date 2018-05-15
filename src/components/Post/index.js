@@ -2,6 +2,7 @@ import React from 'react'
 import FIcon from '@fortawesome/react-fontawesome'
 import angleLeft from '@fortawesome/fontawesome-free-solid/faAngleDoubleLeft'
 import angleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
+import tagsIcon from '@fortawesome/fontawesome-free-solid/faTags'
 import '@/components/Article/article.scss'
 import metaMarked from '@/utils/mdRender'
 import './post.scss'
@@ -13,20 +14,18 @@ const Post = ({ title, tags, publishDate, content }) => {
   return (
     <article className="post">
       <h1 className="article-title">{title}</h1>
-      <div className="article-date">{`${month} ${day} ${year}`}</div>
+      <div className="article-date">{`${month || ''} ${day} ${year || ''}`}</div>
       <div className="article-content">
         <div className="post-body markdown-body" dangerouslySetInnerHTML={{ __html: metaMarked(content).html }} />
       </div>
       <div className="article-info">
         <div className="article-tags">
-          <FIcon icon={tags} className="article-tags-pic" />
-          <a href="" className="article-tags-link">
-            JAVASCRIPT
-          </a>
-          <span>, </span>
-          <a href="" className="article-tags-link">
-            FED
-          </a>
+          <FIcon icon={tagsIcon} className="article-tags-pic" />
+          {tags.map(e => (
+            <a href="" key={e} className="article-tags-link">
+              {e}
+            </a>
+          ))}
         </div>
       </div>
       <div className="post-nav">

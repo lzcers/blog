@@ -12,6 +12,7 @@
     }
   },
   "rules": {
+    "no-debugger": [0], // debugger 还是要的
     "curly": [2, "multi"],
     "max-len": [1, { "code": 150 }],
     "no-restricted-syntax": [0], // for 语句还是要用的
@@ -67,7 +68,7 @@
     ], // 这条规则主要是让锚点有效, 组件为Link
     "prefer-template": [0], // 允许使用 + 拼接字符串
     "no-unused-vars": ["error", { "argsIgnorePattern": "_" }],
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": ["error", "windows"],
     "semi": ["error", "never"],
     "consistent-return": [0],
     "no-prototype-builtins": [0], // 不禁止使用原型内置的方法

@@ -3,7 +3,7 @@ import { getPosts } from '@/api'
 
 import Article from '@/components/Article'
 
-export default class Articles extends React.PureComponent {
+export default class ArticlesContainer extends React.PureComponent {
   state = {
     posts: []
   }
@@ -30,7 +30,6 @@ export default class Articles extends React.PureComponent {
               title={p.Title}
               tags={p.Tags}
               publishDate={p.PublishDate}
-              lastUpdate={p.LastUpdate}
               content={this.sliceContent(p.Content)}
             />
           ))}

@@ -12,7 +12,7 @@ const Nav = _ => (
         <Link to="/home">HOME</Link>
       </li>
       <li className="nav-item">
-        <Link to="/archiver">ARCHIVER</Link>
+        <Link to="/archive">ARCHIVE</Link>
       </li>
       <li className="nav-item">
         <Link to="/about">ABOUT</Link>

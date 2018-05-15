@@ -1,7 +1,7 @@
 import React from 'react'
-import Articles from '@/containers/Articles'
+import ArticlesContainer from '@/containers/ArticlesContainer'
 
 import './home.scss'
 
-const Home = _ => <Articles />
+const Home = _ => <ArticlesContainer />
 export default Home

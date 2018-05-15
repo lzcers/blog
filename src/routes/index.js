@@ -4,15 +4,15 @@ import { Switch, Route } from 'react-router-dom'
 import Home from '@/views/Home'
 import Post from '@/views/Post'
 import About from '@/views/About'
-import Archiver from '@/views/Archive'
+import Archive from '@/views/Archive'
 
 const Routes = _ => (
   <Switch>
     <Route exact path="/" component={Home} />
-    <Route exact path="/home" component={Home} />
-    <Route exact path="/post" component={Post} />
-    <Route exact path="/about" component={About} />
-    <Route exact path="/archiver" component={Archiver} />
+    <Route path="/home" component={Home} />
+    <Route path="/post/:id" component={Post} />
+    <Route path="/about" component={About} />
+    <Route path="/archive" component={Archive} />
   </Switch>
 )
 export default Routes
