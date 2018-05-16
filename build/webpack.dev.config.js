@@ -7,7 +7,7 @@ module.exports = merge(baseConfig, {
     rules: [
       {
         test: /\.(css|scss|sass)$/,
-        use: 'style-loader!css-loader!sass-loader'
+        loader: 'style-loader!css-loader!sass-loader'
       }
     ]
   },
