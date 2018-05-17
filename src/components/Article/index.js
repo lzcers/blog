@@ -21,9 +21,7 @@ const Article = ({ id, title, tags, publishDate, content }) => {
         <div className="post-body markdown-body" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
       <div className="article-info">
-        <a className="article-more" href="">
-          CONTINUE READING
-        </a>
+        <Link to={'/post/' + id}>CONTINUE READING</Link>
         <div className="article-tags">
           <FIcon icon={tagsIcon} className="article-tags-pic" />
           {tags.map(e => (
