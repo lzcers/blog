@@ -14,7 +14,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', 'jsx'],
     alias: {
-      '@': resolve('../src')
+      '@': resolve('../src'),
+      '#': resolve('../articles')
     }
   },
   output: {
@@ -51,6 +52,10 @@ module.exports = {
         options: {
           name: '/assets/media/[name].[hash:7].[ext]'
         }
+      },
+      {
+        test: /\.(md)$/,
+        loader: 'raw-loader'
       }
     ]
   },

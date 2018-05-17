@@ -12,6 +12,8 @@
     }
   },
   "rules": {
+    "no-return-assign": [0],
+    "no-param-reassign": [0], // 为什么不能重新给参数赋值啊
     "no-debugger": [0], // debugger 还是要的
     "curly": [2, "multi"],
     "max-len": [1, { "code": 150 }],

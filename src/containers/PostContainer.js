@@ -9,7 +9,8 @@ export default class PostContainer extends React.PureComponent {
   }
   constructor(props) {
     super(props)
-    getPostByID(props.id).then(data => this.setState({ post: data, loading: false }))
+    // getPostByID(props.id).then(data => this.setState({ post: data, loading: false }))
+    // import('#/tags.json')
   }
   render() {
     const p = this.state.post

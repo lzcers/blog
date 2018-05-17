@@ -8,7 +8,10 @@ export default class ArchiveContainer extends React.PureComponent {
   }
   constructor(props) {
     super(props)
-    getPosts().then(data => this.setState({ posts: data }))
+    // getPosts().then(data => this.setState({ posts: data }))
+    import('#/tags.json').then(postList => {
+      this.setState({ posts: postList.default })
+    })
   }
   dateTransform(publishDate) {
     const date = new Date(publishDate)

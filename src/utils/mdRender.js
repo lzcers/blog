@@ -1,6 +1,6 @@
 import marked from 'marked'
 import highlight from 'highlight.js'
-import yaml from 'js-yaml'
+import fm from 'front-matter'
 
 // 解析 Tokens 生成 TOC Tree
 function parseTokensGenTOC(tokens) {
@@ -46,19 +46,13 @@ marked.setOptions({
 })
 
 // 添加元数据支持
-function splitInput(str) {
-  if (str.slice(0, 3) !== '---') return
-  const matcher = /\n(\.{3}|-{3})/g
-  const metaEnd = matcher.exec(str)
-  return metaEnd && [str.slice(0, metaEnd.index), str.slice(matcher.lastIndex)]
-}
 
 function metaMarked(src) {
-  const mySplitInput = splitInput(src)
-  const markdown = mySplitInput ? mySplitInput[1] : src
+  const { attributes, body } = fm(src)
+  const markdown = body
+  const meta = attributes
   const tokens = marked.lexer(markdown)
   const tocTree = parseTokensGenTOC(tokens)
-  const meta = mySplitInput ? yaml.safeLoad(mySplitInput[0]) : null
   const html = marked.parser(tokens)
   return { meta, html, markdown, tocTree }
 }

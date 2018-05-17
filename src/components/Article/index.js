@@ -2,7 +2,7 @@ import React from 'react'
 import FIcon from '@fortawesome/react-fontawesome'
 import tagsIcon from '@fortawesome/fontawesome-free-solid/faTags'
 import { Link } from 'react-router-dom'
-import metaMarked from '@/utils/mdRender.js'
+// import metaMarked from '@/utils/mdRender.js'
 import 'highlight.js/styles/tomorrow.css'
 import 'github-markdown-css'
 import './article.scss'
@@ -18,7 +18,7 @@ const Article = ({ id, title, tags, publishDate, content }) => {
       </h1>
       <div className="article-date">{`${month} ${day} ${year}`}</div>
       <div className="article-content">
-        <div className="post-body markdown-body" dangerouslySetInnerHTML={{ __html: metaMarked(content).html }} />
+        <div className="post-body markdown-body" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
       <div className="article-info">
         <a className="article-more" href="">
