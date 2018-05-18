@@ -12,6 +12,8 @@
     }
   },
   "rules": {
+    "jsx-a11y/no-noninteractive-element-interactions": [0], // 我就是想给 li 绑定事件啊
+    "jsx-a11y/click-events-have-key-events": [0], // 为什么一定要给 Click 事件绑定 key event 事件
     "no-return-assign": [0],
     "no-param-reassign": [0], // 为什么不能重新给参数赋值啊
     "no-debugger": [0], // debugger 还是要的

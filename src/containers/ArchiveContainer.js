@@ -20,13 +20,16 @@ export default class ArchiveContainer extends React.PureComponent {
     return `${month} ${day} ${year}`
   }
   render() {
-    return this.state.posts.sort((a, b) => (new Date(a.PublishDate) < new Date(b.PublishDate) ? 1 : -1)).map(i => (
-      <li key={i.ID}>
-        <Link to={'/post/' + i.ID}>
-          <span className="item-name">{i.Title}</span>
-          <span className="item-date">{this.dateTransform(i.PublishDate)}</span>
-        </Link>
-      </li>
-    ))
+    return this.state.posts
+      .sort((a, b) => (new Date(a.PublishDate) < new Date(b.PublishDate) ? 1 : -1))
+      .filter(p => (this.props.tag ? !!p.Tags.match(this.props.tag) : true))
+      .map(i => (
+        <li key={i.ID}>
+          <Link to={'/post/' + i.ID}>
+            <span className="item-name">{i.Title}</span>
+            <span className="item-date">{this.dateTransform(i.PublishDate)}</span>
+          </Link>
+        </li>
+      ))
   }
 }

@@ -12,6 +12,7 @@ const Routes = _ => (
     <Route path="/home" component={Home} />
     <Route path="/post/:id" component={Post} />
     <Route path="/about" component={About} />
+    <Route path="/archive/tag/:tag" component={Archive} />
     <Route path="/archive" component={Archive} />
   </Switch>
 )
