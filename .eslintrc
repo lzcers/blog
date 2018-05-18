@@ -70,7 +70,8 @@
     ], // 这条规则主要是让锚点有效, 组件为Link
     "prefer-template": [0], // 允许使用 + 拼接字符串
     "no-unused-vars": ["error", { "argsIgnorePattern": "_" }],
-    "linebreak-style": ["error", "windows"],
+    // "linebreak-style": ["error", "windows"],
+    "linebreak-style": [0], // 断行风格就随意了吧
     "semi": ["error", "never"],
     "consistent-return": [0],
     "no-prototype-builtins": [0], // 不禁止使用原型内置的方法

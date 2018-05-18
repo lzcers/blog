@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getPosts } from '@/api'
+// import { getPosts } from '@/api'
 
 export default class ArchiveContainer extends React.PureComponent {
   state = {

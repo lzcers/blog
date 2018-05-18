@@ -14,8 +14,8 @@ export default class PostContainer extends React.PureComponent {
     // getPostByID(props.id).then(data => this.setState({ post: data, loading: false }))
     import('#/tags.json').then(data => {
       const p = data.default.filter(e => e.ID !== props.ID)[0]
-      import('#/' + p.fileName).then(data => {
-        const res = metaMarked(data.default)
+      import('#/' + p.fileName).then(postData => {
+        const res = metaMarked(postData.default)
         const post = {
           Title: res.meta.Title,
           Tags: res.meta.Tags.split('|').map(i => i.trim()),
