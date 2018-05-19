@@ -1,34 +1,19 @@
 import React from 'react'
 import Post from '@/components/Post'
-import metaMarked from '@/utils/mdRender.js'
-
-// import { getPostByID } from '@/api'
+import { getPostByID } from '@/api/githubAPI'
 
 export default class PostContainer extends React.PureComponent {
   state = {
     post: {},
-    loading: true
+    loadingFlag: true
   }
   constructor(props) {
     super(props)
-    // getPostByID(props.id).then(data => this.setState({ post: data, loading: false }))
-    import('#/tags.json').then(data => {
-      const p = data.default.filter(e => e.ID !== props.ID)[0]
-      import('#/' + p.fileName).then(postData => {
-        const res = metaMarked(postData.default)
-        const post = {
-          Title: res.meta.Title,
-          Tags: res.meta.Tags.split('|').map(i => i.trim()),
-          PublishDate: res.meta.PublishDate,
-          Content: res.html
-        }
-        this.setState({ post, loading: false })
-      })
-    })
+    getPostByID(props.id).then(data => this.setState({ post: data, loadingFlag: false }))
   }
   render() {
     const p = this.state.post
-    if (!this.state.loading)
+    if (!this.state.loadingFlag)
       return <Post id={p.ID} title={p.Title} tags={p.Tags} publishDate={p.PublishDate} content={p.Content} />
     return <h3>Loading...</h3>
   }

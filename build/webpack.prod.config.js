@@ -17,20 +17,10 @@ module.exports = merge(baseConfig, {
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
-        // 把 react 全家桶单独打包出来
-        reactFramework: {
-          test: /(react|react-dom|react-router|react-router-dom)/,
-          chunks: 'all'
-        },
-        // 把 highlight 也单独打包出来
+        // 把 highlight 单独打包出来
         highlight: {
-          test: 'highlight.js',
+          test: /highlight.js/,
           chunks: 'initial'
-        },
-        // 除此外其它放 vendors 里
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
         }
       }
     }

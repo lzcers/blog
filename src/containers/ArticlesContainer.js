@@ -1,7 +1,5 @@
 import React from 'react'
-// import { getPosts } from '@/api'
-import metaMarked from '@/utils/mdRender.js'
-
+import { getPosts } from '@/api/githubAPI'
 import Article from '@/components/Article'
 
 export default class ArticlesContainer extends React.PureComponent {
@@ -11,27 +9,7 @@ export default class ArticlesContainer extends React.PureComponent {
   }
   constructor(props) {
     super(props)
-    import('#/tags.json').then(postList => {
-      const articles = postList.default
-      Promise.all(
-        articles.map((e, index) =>
-          import('#/' + e.fileName).then(data => {
-            const res = metaMarked(data.default)
-            const post = {
-              ID: index,
-              Title: res.meta.Title,
-              Tags: res.meta.Tags.split('|').map(i => i.trim()),
-              PublishDate: res.meta.PublishDate,
-              Content: res.html
-            }
-            this.state.posts.push(post)
-            this.setState({ posts: [...this.state.posts] })
-            return Promise.resolve()
-          })
-        )
-      ).then(_ => this.setState({ loadingFlag: false }))
-    })
-    // getPosts().then(data => this.setState({ posts: data }))
+    getPosts().then(data => this.setState({ loadingFlag: false, posts: data }))
   }
 
   sliceContent(content) {

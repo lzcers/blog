@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import { getPosts } from '@/api'
+import { getPosts } from '@/api/githubAPI'
 
 export default class ArchiveContainer extends React.PureComponent {
   state = {
@@ -8,10 +8,7 @@ export default class ArchiveContainer extends React.PureComponent {
   }
   constructor(props) {
     super(props)
-    // getPosts().then(data => this.setState({ posts: data }))
-    import('#/tags.json').then(postList => {
-      this.setState({ posts: postList.default })
-    })
+    getPosts().then(data => this.setState({ posts: data }))
   }
   dateTransform(publishDate) {
     const date = new Date(publishDate)
@@ -22,7 +19,7 @@ export default class ArchiveContainer extends React.PureComponent {
   render() {
     return this.state.posts
       .sort((a, b) => (new Date(a.PublishDate) < new Date(b.PublishDate) ? 1 : -1))
-      .filter(p => (this.props.tag ? !!p.Tags.match(this.props.tag) : true))
+      .filter(p => (this.props.tag ? !!p.Tags.includes(this.props.tag) : true))
       .map(i => (
         <li key={i.ID}>
           <Link to={'/post/' + i.ID}>

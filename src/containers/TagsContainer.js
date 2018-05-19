@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import { getTags } from '@/api'
+import { getTags } from '@/api/githubAPI'
 
 export default class TagsContainer extends React.PureComponent {
   state = {
@@ -9,14 +9,7 @@ export default class TagsContainer extends React.PureComponent {
   }
   constructor(props) {
     super(props)
-    // getTags().then(data => this.setState({ tags: data }))
-    import('#/tags.json').then(res => {
-      const data = res.default
-      this.setState({
-        selected: this.props.tag || 'ALL',
-        tags: [...new Set(data.map(i => i.Tags.split('|').map(e => e.trim())).reduce((pre, cur) => pre.concat(cur)))]
-      })
-    })
+    getTags().then(data => this.setState({ tags: data }))
   }
   render() {
     return [
