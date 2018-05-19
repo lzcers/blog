@@ -27,7 +27,7 @@ const Post = ({ title, tags, publishDate, content }) => {
           ))}
         </div>
       </div>
-      <div className="post-nav">
+      {/* <div className="post-nav">
         <div className="post-left">
           <FIcon icon={angleLeft} />
           <a href="">写作是一个学习过程</a>
@@ -36,7 +36,7 @@ const Post = ({ title, tags, publishDate, content }) => {
           <a href="">用JS 实现 Lisp 里的流</a>
           <FIcon icon={angleRight} />
         </div>
-      </div>
+      </div> */}
     </article>
   )
 }

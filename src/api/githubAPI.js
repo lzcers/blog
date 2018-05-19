@@ -97,6 +97,8 @@ async function getPosts() {
         for (const i of posts)
           if (p.fileName == i.name) {
             p.ID = i.sha
+            p.Tags = p.Tags.split('|').map(i => i.trim())
+            p.Content = marked(p.Content).html
             break
           }
         return p
