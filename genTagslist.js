@@ -19,8 +19,13 @@ Promise.all(
       new Promise((resolve, reject) => {
         fs.readFile(path.format({ dir: postsDir, base: i }), 'utf8', (err, data) => {
           if (err) reject(err)
-          const { attributes } = fm(data)
-          resolve({ fileName: i, ID: index, ...attributes })
+          const { attributes, body } = fm(data)
+          resolve({
+            fileName: i,
+            ID: index,
+            ...attributes,
+            Content: body.split(/(。)/g, 10).join('') + '<strong>……</strong>'
+          })
         })
       })
   )

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import fm from 'front-matter'
 import cache from '@/utils/cache.js'
 import marked from '@/utils/mdRender.js'
 import 'core-js/shim'
@@ -52,7 +51,7 @@ function getFileBySHA(sha) {
       return raw
     })
 }
-function getPostBySHA(sha) {
+function getPostByID(sha) {
   return getFileBySHA(sha)
     .then(raw => marked(raw))
     .then(p => ({
@@ -88,14 +87,22 @@ function getPostListFromIssues() {
     })
 }
 
-function getPosts() {
-  return getPostListFromFiles()
-    .then(data => data.filter(i => !i.name.match('.json')).map(p => getPostBySHA(p.sha)))
-    .then(posts => Promise.all(posts))
-}
-
-function getPostByID(id) {
-  return getPostBySHA(id)
+async function getPosts() {
+  const list = await getPostListFromFiles()
+  const posts = list.filter(i => !i.name.match('.json'))
+  const tags = list.find(i => i.name === 'tags.json')
+  if (tags)
+    return getFileBySHA(tags.sha).then(res =>
+      res.map(p => {
+        for (const i of posts)
+          if (p.fileName == i.name) {
+            p.ID = i.sha
+            break
+          }
+        return p
+      })
+    )
+  return []
 }
 
 function getTags() {

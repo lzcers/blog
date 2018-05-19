@@ -12,12 +12,6 @@ export default class ArticlesContainer extends React.PureComponent {
     getPosts().then(data => this.setState({ loadingFlag: false, posts: data }))
   }
 
-  sliceContent(content) {
-    // 把内容按句号分段，取前10段
-    return content.split(/(。)/g, 10).join('') + '<strong>……</strong>'
-    // return marked(content).html.replace(/(<[^>]+>)|(\n)/g,"").slice(0, 250).trim()
-  }
-
   render() {
     return (
       <div className="articles">
@@ -30,7 +24,7 @@ export default class ArticlesContainer extends React.PureComponent {
               title={p.Title}
               tags={p.Tags}
               publishDate={p.PublishDate}
-              content={this.sliceContent(p.Content)}
+              content={p.Content}
             />
           ))}
         {!this.state.loadingFlag || <h3>Loading...</h3>}

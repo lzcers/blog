@@ -4,13 +4,15 @@
     "ID": 0,
     "Title": "用JS 实现 Lisp 里的流",
     "Tags": "编程 | JS",
-    "PublishDate": "2018/3/10 21:24:59"
+    "PublishDate": "2018/3/10 21:24:59",
+    "Content": "\r\n> 在 Lisp 我们这样实现\r\n\r\n```\r\n(define-syntax-rule (delay exp)\r\n    (memo-proc (lambda () exp)))\r\n(define-syntax-rule (cons-stream a b)\r\n  (cons a (delay b)))\r\n(define (stream-car stream) (car stream))\r\n(define (stream-cdr stream) (force (cdr stream)))\r\n(define the-empty-stream '())\r\n(define-syntax-rule (force delayed-object)\r\n  (delayed-object))\r\n(define (stream-null? stream)\r\n  (if (equal? stream the-empty-stream)\r\n      #t\r\n      #f))\r\n(define (stream-ref s n)\r\n  (if (= n 0)\r\n      (stream-car s)\r\n      (stream-ref (stream-cdr s) (- n 1))))\r\n```\r\n\r\n> 在 JavaScript 这样子\r\n\r\n```\r\nconst cons = (x, y) => [x, y]\r\nconst car = p => p[0]\r\nconst cdr = p => p[1]\r\nconst delay = (f, args) => _ => f.apply(this, args)\r\nconst force = f => f()\r\nconst consStream = (x, y, args) => cons(x, delay(y, args))\r\nconst streamCar = s => car(s)\r\nconst streamCdr = s => (force((cdr(s))))\r\nconst streamRef = (s, n) => n == 0 ? streamCar(s) : streamRef(streamCdr(s), --n)\r\n// 定义自然数组成的流\r\nconst interStaringFrom = n => consStream(n, interStaringFrom, [++n])\r\nconst intNumber = interStaringFrom(1)\r\n// 定义斐波拉契数列流\r\nconst fibgn = (a, b) => consStream(a, fibgn, [b, a + b])\r\nconst fibs = fibgn(0, 1)\r\n// 取费波拉契数列 100项\r\nstreamRef(fibs, 100)\r\n```\r\n\r\nScheme 使用的求值顺序是应用序，意味着函数的参数在调用时就会求值，所以 delay 是一个特殊形式，需要用宏来实现，否则就会陷入死循环。其中大部分代码都可以简单转写成 JS 的代码。但是在 JS 中没有宏这样的玩意咋办？ 简单点，我们可以曲线救国，对 consStream 的构造方法做一些修改，利用 `f.apply(this, args)` 来实现 delay，JavaScript 中的迭代器和生成器也是一种类似思维的实现。\r\n\r\n流能做啥？如果我们需要对真实世界的各种对象进行模拟该如何办，从计算机的角度考虑，理所当然就是考虑引入赋值，通过变量的修改来模拟对象状态随时间变化，引进赋值可以增强系统的模块化，把一个系统的某些状态封装到不同的对象中去，那是否有不采用赋值的方式，从而模拟对象状态变化的方法呢？流就是这样一种方法，它能提供相同的模块化能力，而且不必引入赋值，从函数的思路来看，我们可以将状态看作是时间的函数，s(t)，如果将注意力集中在状态身上，那么它就一个不断变化的值，但是从状态的变化的整个历史上来看，可将其视为一个整体，所以从整体上来看是不变的。\r\n\r\n现在前端流行的 React 框架采用了函数式的思路，即 Render(State) => View，将视图看作是状态的计算结果，既然采用函数式范式，那么就要尽可能的使用不可变量，于是理所当然的使用了单向数据流的模式。<strong>……</strong>"
   },
   {
     "fileName": "写作是一个学习过程.md",
     "ID": 1,
     "Title": "写作是一个学习过程",
     "Tags": "碎念",
-    "PublishDate": "2018/3/6 00:59:23"
+    "PublishDate": "2018/3/6 00:59:23",
+    "Content": "\r\n旅行的意义不在于终点，而是走过的路。\r\n\r\n文章不是目的，写作过程中的思考才是，多数时候我将写作当作一件梳理思考的方法，将思想的过程书写下来，与其说是在写文章，倒不如说是在做记录以方便自己回溯。作为书写者，日后从自己记录的内容中能还原思考的路径是容易的，但他人就未必了，因此也从未考虑过写的东西与他人看。但书写的时候假设读者的存在是有意义，而且考虑的读者层次越低越好，如果未曾考虑过读者的写作仅是记录和梳理思考，那么考虑读者的写作就意味还需要做某种程度的解释，有一个学习的著名方法叫做费曼方法。\r\n\r\n```\r\n费曼技巧有四个简单的步骤：\r\n1. 选择一个概念\r\n2. 把它教给完全不懂的另外一个人\r\n3. 如果卡壳，回到原始材料\r\n4. 回顾后简化语言表达（可选择）\r\n```\r\n\r\n通常情况下我们难以找到一个合适的倾听者，但这个方法的核心是表达，因而用语言也好，文字也罢，效果应该是相同的，再考虑方法的第二个步骤，”教给一个完全不懂得另外一个人“，我们可以将文章读者的预设为外行人，这样一来，整个方法都可以用写作来实践，因此，写作即是学习。<strong>……</strong>"
   }
 ]
