@@ -1,6 +1,6 @@
 import React from 'react'
-import { getPosts } from '@/api/githubAPI'
 import Article from '@/components/Article'
+import { getPosts } from '@/api/githubAPI'
 
 export default class ArticlesContainer extends React.PureComponent {
   state = {
