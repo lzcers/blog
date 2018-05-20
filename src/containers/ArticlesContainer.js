@@ -7,7 +7,6 @@ import angleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
 import Article from '@/components/Article'
 
 import { getPosts } from '@/api/githubAPI'
-import { FaSymbol } from '@fortawesome/fontawesome'
 
 export default class ArticlesContainer extends React.PureComponent {
   state = {
@@ -41,14 +40,21 @@ export default class ArticlesContainer extends React.PureComponent {
           {pageNumber > 1 ? (
             <div className="post-left">
               <FIcon icon={angleLeft} />
-              <Link to={'/home/page/' + (parseInt(pageNumber, 10) - 1)}>PREVIOUS</Link>
+              <Link onClick={_ => window.scrollTo(0, 0)} to={'/home/page/' + (parseInt(pageNumber, 10) - 1)}>
+                PREVIOUS
+              </Link>
             </div>
           ) : (
             false
           )}
           {pageNumber < this.state.posts.length / 10 ? (
             <div className="post-right">
-              <Link to={'/home/page/' + (pageNumber ? parseInt(pageNumber, 10) + 1 : 2)}>NEXT</Link>
+              <Link
+                onClick={_ => window.scrollTo(0, 0)}
+                to={'/home/page/' + (pageNumber ? parseInt(pageNumber, 10) + 1 : 2)}
+              >
+                NEXT
+              </Link>
               <FIcon icon={angleRight} />
             </div>
           ) : (
