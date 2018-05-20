@@ -95,9 +95,9 @@ async function getPosts() {
     return getFileBySHA(tags.sha).then(res =>
       res.map(p => {
         for (const i of posts)
-          if (p.fileName == i.name) {
+          if (p.fileName === i.name) {
             p.ID = i.sha
-            p.Tags = p.Tags.split('|').map(i => i.trim())
+            p.Tags = p.Tags.split('|').map(t => t.trim())
             p.Content = marked(p.Content).html
             break
           }

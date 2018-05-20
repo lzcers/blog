@@ -9,6 +9,7 @@ import Archive from '@/views/Archive'
 const Routes = _ => (
   <Switch>
     <Route exact path="/" component={Home} />
+    <Route exact path="/home/page/:pageNumber" component={Home} />
     <Route path="/home" component={Home} />
     <Route path="/post/:id" component={Post} />
     <Route path="/about" component={About} />
