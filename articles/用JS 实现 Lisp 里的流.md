@@ -3,8 +3,8 @@ Title: 用JS 实现 Lisp 里的流
 Tags: 编程 
 PublishDate: 2018/3/10 21:24:59 
 ---
-> 在 Lisp 我们这样实现
-```
+在 Lisp 我们这样实现
+``` lisp
 (define-syntax-rule (delay exp) 
     (memo-proc (lambda () exp)))
 (define-syntax-rule (cons-stream a b) 
@@ -24,8 +24,8 @@ PublishDate: 2018/3/10 21:24:59
       (stream-ref (stream-cdr s) (- n 1))))
 ```
 
-> 在 JavaScript  这样子
-```
+在 JavaScript  这样子
+``` javascript
 const cons = (x, y) => [x, y]
 const car = p => p[0]
 const cdr = p => p[1]
@@ -57,5 +57,3 @@ Scheme 使用的求值顺序是应用序，意味着函数的参数在调用时�
 
 那究竟该如何恰当的选择编程模型呢？
 > 对象模型对世界的近似在于将其分割为独立的片段，函数式模型则不是沿着对象间的边界去做模块化，当“对象”之间不共享的状态远大于他们所共享的状态时，对象模型就特别好用。这种对象观点失效的地方就是量子力学，在那里，将物体看作地理的例子就会导致悖论和混乱，将对象观点与函数式观点合并可能与程序设计的关系不大，而是与基本的认识论有关的论题。 --- 《SICP》
-
-    

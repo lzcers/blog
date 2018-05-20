@@ -25,9 +25,9 @@ const Article = ({ id, title, tags, publishDate, content }) => {
         <div className="article-tags">
           <FIcon icon={tagsIcon} className="article-tags-pic" />
           {tags.map(e => (
-            <a href="" key={e} className="article-tags-link">
+            <Link to={'archive/tag/' + e} key={e} className="article-tags-link">
               {e}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
