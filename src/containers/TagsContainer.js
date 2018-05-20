@@ -9,7 +9,7 @@ export default class TagsContainer extends React.PureComponent {
   }
   constructor(props) {
     super(props)
-    getTags().then(data => this.setState({ tags: data }))
+    getTags().then(data => this.setState({ tags: data, selected: this.props.tag }))
   }
   render() {
     return [
