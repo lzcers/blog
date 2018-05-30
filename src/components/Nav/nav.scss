@@ -3,7 +3,6 @@
   width: 100%;
   max-width: inherit;
   margin: 0 auto;
-  padding: 0 40px;
   position: fixed;
   background: #fff;
   z-index: 999;
@@ -39,5 +38,17 @@
     & a:hover {
       color: #000;
     }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .nav {
+    padding: 0 10px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .nav {
+    padding: 0 40px;
   }
 }

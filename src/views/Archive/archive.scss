@@ -11,7 +11,7 @@
   }
   li {
     cursor: pointer;
-    margin: 0 5px;
+    margin: 5px 5px;
     line-height: 30px;
   }
 }
@@ -41,12 +41,32 @@
   }
   .item-name {
     display: inline-block;
+    overflow: hidden;
     text-overflow: ellipsis;
-    width: 75%;
+    white-space: nowrap;
   }
   .item-date {
     display: inline-block;
-    width: 25%;
     text-align: right;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .item-name {
+    padding-right: 5px;
+    width: 60%;
+  }
+  .item-date {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .item-name {
+    width: 75%;
+  }
+  .item-date {
+    width: 25%;
   }
 }
