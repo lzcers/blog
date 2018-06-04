@@ -38,7 +38,10 @@ Tags: 编程 | JS | 坑
 
 ```
 <Program> -> <Expression>+
-<Expression> -> <Number> | (<Operator> <Expression> <Expression>)
+<Expression> -> <Number> 
+| (<Operator> <Number> <Number> <Number>*) 
+| <Expression>
+
 <Operator> -> + | - | * | /
 <Digit> -> 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0
 <Number> -> <Digit>+
@@ -140,13 +143,20 @@ const REP = (parser, max) => tokens => {
   return [result, rest]
 }
 
-// OK，有了这些文法我们就来解析 <Expression> -> <Number> | (<Operator> <Numbers> <Numbers>+) 试试
-const Numbers = tokens => /\d/g.test(tokens[0]) ? [[tokens[0]], tokens.slice(1)] : null
+const Num = tokens => /\d/g.test(tokens[0]) ? [[tokens[0]], tokens.slice(1)] : null
 const Opreator = OR(ID('+'), ID('-'), ID('*'), ID('/'))
-const Expression = tokens => (OR(Numbers, SEQ(ID('('), Opreator, Numbers, Numbers, REP(Numbers, -1), ID(')'))))(tokens)
 
-Expression(tokenizer('(+ 1 2 3 4 5)'))
-// (8) ["(", "+", "1", "2", "3", "4", "5", ")"] 没毛病
+// OK，有了这些文法我们就来解析 <Expression> -> <Number> | (<Operator> <Expression> <Expression>*) 试试
+const Expression = tokens => {
+  const r = OR(
+    Num,
+    SEQ(ID('('), Opreator, Num, REP(Num, -1), ID(')'))
+  )(tokens)
+  if (r) return [r[0], r[1]]
+  return null
+}
+
+console.log(Expression(tokenizer('(+ 1 2 3 (+ 2 3))'))[0])
 ```
 
 // 先挖坑，后面接着写
