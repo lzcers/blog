@@ -38,10 +38,7 @@ Tags: 编程 | JS | 坑
 
 ```
 <Program> -> <Expression>+
-<Expression> -> <Number> 
-| (<Operator> <Number> <Number> <Number>*) 
-| <Expression>
-
+<Expression> -> <Number> | (<Operator> <Expression> <Expression>)
 <Operator> -> + | - | * | /
 <Digit> -> 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0
 <Number> -> <Digit>+
@@ -99,6 +96,14 @@ Parser Combinator 是啥，parser combinator 就是一个高阶函数。
 // 然后我们来定义第一个 parser
 // 这个 parser 对任何一个 token 都解析成功，并吃掉它，相当于 G -> ε
 const Successed = tokens => [[tokens[0]], tokens.slice(1)]
+// 只要有一个解析器解析成功就是解析成功, 相当文法中的 | 符号
+const OR = (...parsers) => tokens => {
+  for (const p of parsers) {
+    const result = p(tokens)
+    if (result) return result
+  }
+  return null
+}
 
 // 一个高阶函数，用于创建标识符解析器， 比如说 Ｇ　-> s 解析 s 终结符
 const ID = id => tokens => tokens[0] === id ? [[tokens[0]], tokens.slice(1)] : null
@@ -143,20 +148,13 @@ const REP = (parser, max) => tokens => {
   return [result, rest]
 }
 
-const Num = tokens => /\d/g.test(tokens[0]) ? [[tokens[0]], tokens.slice(1)] : null
+// OK，有了这些文法我们就来解析 <Expression> -> <Number> | (<Operator> <Numbers> <Numbers>+) 试试
+const Numbers = tokens => /\d/g.test(tokens[0]) ? [[tokens[0]], tokens.slice(1)] : null
 const Opreator = OR(ID('+'), ID('-'), ID('*'), ID('/'))
+const Expression = tokens => (OR(Numbers, SEQ(ID('('), Opreator, Numbers, Numbers, REP(Numbers, -1), ID(')'))))(tokens)
 
-// OK，有了这些文法我们就来解析 <Expression> -> <Number> | (<Operator> <Expression> <Expression>*) 试试
-const Expression = tokens => {
-  const r = OR(
-    Num,
-    SEQ(ID('('), Opreator, Num, REP(Num, -1), ID(')'))
-  )(tokens)
-  if (r) return [r[0], r[1]]
-  return null
-}
-
-console.log(Expression(tokenizer('(+ 1 2 3 (+ 2 3))'))[0])
+Expression(tokenizer('(+ 1 2 3 4 5)'))
+// (8) ["(", "+", "1", "2", "3", "4", "5", ")"] 没毛病
 ```
 
 // 先挖坑，后面接着写
