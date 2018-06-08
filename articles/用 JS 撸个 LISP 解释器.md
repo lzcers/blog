@@ -96,14 +96,6 @@ Parser Combinator 是啥，parser combinator 就是一个高阶函数。
 // 然后我们来定义第一个 parser
 // 这个 parser 对任何一个 token 都解析成功，并吃掉它，相当于 G -> ε
 const Successed = tokens => [[tokens[0]], tokens.slice(1)]
-// 只要有一个解析器解析成功就是解析成功, 相当文法中的 | 符号
-const OR = (...parsers) => tokens => {
-  for (const p of parsers) {
-    const result = p(tokens)
-    if (result) return result
-  }
-  return null
-}
 
 // 一个高阶函数，用于创建标识符解析器， 比如说 Ｇ　-> s 解析 s 终结符
 const ID = id => tokens => tokens[0] === id ? [[tokens[0]], tokens.slice(1)] : null
