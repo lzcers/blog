@@ -39,10 +39,6 @@ const env = [
 
 **那么 let 绑定变量值意味着什么呢？**
 
-```lisp
-
-```
-
 实际上 let 创造了一个新的环境，并将在该环境下对 body 部分进行求值。
 
 ```javascript
@@ -140,7 +136,7 @@ repl(`(let ((x 2))
     (f 3))))`)
 // 6
 // define 测试
-repl('((lambda (x) (define f (lambda (x) (+ x 1))) (+ (f 3) x 1)) 3)')
+repl('((lambda (x) (define y 1) (+ y 1)) 3)')
 // 8
 ```
 
