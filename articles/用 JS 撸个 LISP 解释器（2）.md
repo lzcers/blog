@@ -113,7 +113,7 @@ const baseProcedure = {
   '+': args => args.reduce((pre, cur) => cur + pre),
   '-': args => args.reduce((pre, cur) => cur - pre),
   '*': args => args.reduce((pre, cur) => cur * pre),
-  '/': args => args.reduce((pre, cur) => cur / pre),  
+  '/': args => args.reduce((pre, cur) => pre / cur),  
 }
 const env = {
   ...baseProcedure

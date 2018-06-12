@@ -30,7 +30,7 @@ const baseProcedure = {
   '+': args => args.reduce((pre, cur) => cur + pre),
   '-': args => args.reduce((pre, cur) => cur - pre),
   '*': args => args.reduce((pre, cur) => cur * pre),
-  '/': args => args.reduce((pre, cur) => cur / pre),
+  '/': args => args.reduce((pre, cur) => pre / cur),
 }
 const env = [
   baseProcedure
@@ -142,9 +142,15 @@ repl('((lambda (x) (define y 1) (+ y 1)) 3)')
 
 至此，一个玩具级别的 lisp 解释器就实现了，当然，他还有很多缺陷，比如
 
-1. 语法错误提示 （需要在 AST 里存行列信息）
+1. 语法错误提示
 2. 一些必要的语法 if 、for、macor 等
 3. 一些基础的数据结构，序对、列表、向量等
 
-如果时间允许的话可以参照 scheme R5RS  来实现，这份规范中文翻译版总共就 48 页，因而是最好参考了。
+关于语法错误提示，我希望解释器能够报告出错的位置，因而我们的 tokenizer 因该在扫描文本的时候应该保存行列信息，但是问题又来了，因为文法解析采用了 Parser Combinator 实现，在解析过程中肯定会存在很多规则匹配失败，那么到底哪条规则匹配失败后应该报告错误呢？换句话说，如果解析过程中所有分支都报错了该汇报哪个分支的错误？
+
+关于这个玩具解释器的代码看这里 [klisp](https://github.com/lzcers/klisp)，如标签所示这是个坑，写这些仅为了实践关于解释器的一些相关知识，我也不知道啥时候会填上这个坑...也许永远坑了。
+
+如果时间允许的话可以参照 scheme R5RS  来实现，这份规范中文翻译版总共就 48 页，简洁而不简单。
+
+
 
