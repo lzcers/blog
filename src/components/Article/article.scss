@@ -1,65 +1,65 @@
 .article {
-  margin-bottom: 60px;
-  width: 100%;
-  &-title {
-    font-size: 18px;
-    text-align: center;
-    font-weight: 500;
-    color: #000;
-    a:hover,
-    a:link,
-    a:visited {
-      text-decoration: none;
-      color: #000;
+    margin-bottom: 60px;
+    width: 100%;
+    &-title {
+        font-size: 18px;
+        text-align: center;
+        font-weight: 500;
+        color: #000;
+        a:hover,
+        a:link,
+        a:visited {
+            text-decoration: none;
+            color: #000;
+        }
     }
-  }
-  &-date {
-    color: #797979;
-    text-align: center;
-  }
-  &-more {
-    float: left;
-    color: #808080;
-    text-decoration: none;
-  }
-  &-more:hover {
-    color: #000;
-  }
-  &-tags {
-    float: right;
-    font-size: 12px;
-    &-link {
-      color: #808080;
-      text-decoration: none;
-      margin-left: 3px;
+    &-date {
+        color: #797979;
+        text-align: center;
     }
-    &-link:hover {
-      color: #000;
+    &-more {
+        float: left;
+        color: #808080;
+        text-decoration: none;
     }
-  }
-  &-tags::after {
-    clear: both;
-  }
-  &-info {
-    height: 24px;
-    margin: 20px 0;
-    border-bottom: 1px solid #eee;
-  }
-  &-tags-pic {
-    margin-right: 5px;
-  }
+    &-more:hover {
+        color: #000;
+    }
+    &-tags {
+        float: right;
+        font-size: 12px;
+        &-link {
+            color: #808080;
+            text-decoration: none;
+            margin-left: 3px;
+        }
+        &-link:hover {
+            color: #000;
+        }
+    }
+    &-tags::after {
+        clear: both;
+    }
+    &-info {
+        height: 24px;
+        margin: 20px 0;
+        border-bottom: 1px solid #eee;
+    }
+    &-tags-pic {
+        margin-right: 5px;
+    }
 }
 
 .markdown-body {
-  box-sizing: border-box;
-  min-width: 200px;
-  max-width: 840px;
-  margin: 0 auto;
-  padding: 20px;
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 @media (max-width: 767px) {
-  .markdown-body {
-    padding: 0;
-  }
+    .markdown-body {
+        padding: 0;
+    }
 }
