@@ -20,7 +20,8 @@ export default class ArchiveContainer extends React.PureComponent {
     }
 
     render() {
-        const { posts, tag } = this.state
+        const { posts } = this.state
+        const { tag } = this.props
         return posts
             .sort((a, b) => (new Date(a.PublishDate) < new Date(b.PublishDate) ? 1 : -1))
             .filter(p => (tag ? !!p.Tags.includes(tag) : true))

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import FIcon from '@fortawesome/react-fontawesome'
 // import angleLeft from '@fortawesome/fontawesome-free-solid/faAngleDoubleLeft'
 // import angleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
@@ -21,9 +22,9 @@ const Post = ({ title, tags, publishDate, content }) => {
                 <div className="article-tags">
                     <FIcon icon={tagsIcon} className="article-tags-pic" />
                     {tags.map(e => (
-                        <a href="" key={e} className="article-tags-link">
+                        <Link key={e} className="article-tags-link" to={'/archive/tag/' + e}>
                             {e}
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>
