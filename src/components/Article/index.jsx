@@ -4,7 +4,7 @@ import tagsIcon from '@fortawesome/fontawesome-free-solid/faTags'
 import { Link } from 'react-router-dom'
 // import metaMarked from '@/utils/mdRender.js'
 import 'highlight.js/styles/tomorrow.css'
-import 'github-markdown-css'
+import './markdown.scss'
 import './article.scss'
 
 const Article = ({ id, title, tags, publishDate, content }) => {
