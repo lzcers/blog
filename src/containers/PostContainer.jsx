@@ -23,6 +23,7 @@ export default class PostContainer extends PureComponent {
                     tags={post.Tags}
                     publishDate={post.PublishDate}
                     content={post.Content}
+                    toc={post.TOC}
                 />
             )
         return <h3>Loading...</h3>

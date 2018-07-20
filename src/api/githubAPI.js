@@ -59,7 +59,8 @@ function getPostByID(sha) {
             Title: p.meta.Title,
             Tags: p.meta.Tags.split('|').map(i => i.trim()),
             PublishDate: p.meta.PublishDate,
-            Content: p.html
+            Content: p.html,
+            TOC: p.tocTree
         }))
 }
 

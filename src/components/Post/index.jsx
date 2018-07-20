@@ -6,13 +6,14 @@ import FIcon from '@fortawesome/react-fontawesome'
 import tagsIcon from '@fortawesome/fontawesome-free-solid/faTags'
 import '@/components/Article/article.scss'
 import './post.scss'
-
-const Post = ({ title, tags, publishDate, content }) => {
+// import Toc from '@/components/Toc'
+const Post = ({ title, tags, publishDate, content, toc }) => {
     const date = new Date(publishDate)
     const enMonth = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
     const [month, day, year] = [enMonth[date.getMonth()], date.getDate() + 'TH', date.getFullYear()]
     return (
         <article className="post">
+            {/* <Toc toc={toc} /> */}
             <h1 className="article-title">{title}</h1>
             <div className="article-date">{`${month || ''} ${day} ${year || ''}`}</div>
             <div className="article-content">

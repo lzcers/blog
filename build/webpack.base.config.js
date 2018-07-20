@@ -10,10 +10,10 @@ const resolve = (...dir) => path.resolve(__dirname, ...dir)
 
 module.exports = {
     entry: {
-        main: './src/main.js'
+        main: './src/main.jsx'
     },
     resolve: {
-        extensions: ['.js', 'jsx'],
+        extensions: ['.js', '.jsx'],
         alias: {
             '@': resolve('../src'),
             '#': resolve('../articles')

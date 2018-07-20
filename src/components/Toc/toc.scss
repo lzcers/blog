@@ -1,0 +1,16 @@
+.toc {
+    padding-left: 20px;
+    top: 100px;
+    color: #797979;
+    ol {
+        padding-left: 25px;
+    }
+    li {
+        margin: 10px 0;
+        list-style: disc;
+    }
+    a:hover {
+        cursor: pointer;
+        color: #000;
+    }
+}
