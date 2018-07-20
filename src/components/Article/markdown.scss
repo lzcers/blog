@@ -645,6 +645,7 @@
 .markdown-body pre code {
     display: inline;
     max-width: auto;
+    white-space: pre-wrap;
     padding: 0;
     margin: 0;
     overflow: visible;
