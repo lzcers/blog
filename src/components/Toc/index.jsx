@@ -36,9 +36,10 @@ function li(toc, index) {
         </li>
     )
 }
-export default ({ toc }) => (
-    <div className="toc">
-        {toc.childrenNode.length > 3 ? <h3>目录</h3> : null}
-        <ol>{toc.childrenNode.map((e, i) => li(e, e.nodeID + i))}</ol>
-    </div>
-)
+export default ({ toc }) =>
+    toc ? (
+        <div className="toc">
+            {toc.childrenNode.length > 3 ? <h3>目录</h3> : null}
+            <ol>{toc.childrenNode.map((e, i) => li(e, e.nodeID + i))}</ol>
+        </div>
+    ) : null

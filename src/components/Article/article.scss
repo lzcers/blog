@@ -58,8 +58,40 @@
     padding: 20px;
 }
 
+.markdown-body a {
+    color: #0366d6 !important;
+}
+
 @media (max-width: 767px) {
     .markdown-body {
         padding: 0;
     }
+}
+
+// Post 页面
+.post-nav {
+    height: 40px;
+}
+.post-left,
+.post-right {
+    font-size: 14px;
+    line-height: 40px;
+    height: 40px;
+    a,
+    a:visited {
+        color: #797979;
+        margin: 0 5px;
+    }
+    a:hover {
+        color: #000;
+        text-decoration: underline;
+    }
+}
+
+.post-left {
+    float: left;
+}
+
+.post-right {
+    float: right;
 }

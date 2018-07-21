@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Post from '@/components/Post'
+import Article from '@/components/Article'
 import { getPostByID } from '@/api/githubAPI'
 
 export default class PostContainer extends PureComponent {
@@ -17,13 +17,14 @@ export default class PostContainer extends PureComponent {
         const { post, loadingFlag } = this.state
         if (!loadingFlag)
             return (
-                <Post
+                <Article
                     id={post.ID}
                     title={post.Title}
                     tags={post.Tags}
                     publishDate={post.PublishDate}
                     content={post.Content}
                     toc={post.TOC}
+                    mode={true}
                 />
             )
         return <h3>Loading...</h3>

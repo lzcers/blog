@@ -8,6 +8,18 @@ import Article from '@/components/Article'
 
 import { getPosts } from '@/api/githubAPI'
 
+const pageButton = (pageNumber, dir) => {
+    const number = dir ? parseInt(pageNumber, 10) - 1 : parseInt(pageNumber, 10) + 1
+    return (
+        <div className={dir ? 'post-left' : 'post-right'}>
+            {dir && <FIcon icon={angleLeft} />}
+            <Link onClick={_ => window.scrollTo(0, 0)} to={'/home/page/' + number}>
+                {dir ? 'PREVIOUS' : 'NEXT'}
+            </Link>
+            {!dir && <FIcon icon={angleRight} />}
+        </div>
+    )
+}
 export default class ArticlesContainer extends PureComponent {
     state = {
         loadingFlag: true,
@@ -36,35 +48,13 @@ export default class ArticlesContainer extends PureComponent {
                             tags={p.Tags}
                             publishDate={p.PublishDate}
                             content={p.Content}
+                            toc={null}
+                            mode={false}
                         />
                     ))}
                 <div className="post-nav">
-                    {pageNumber > 1 ? (
-                        <div className="post-left">
-                            <FIcon icon={angleLeft} />
-                            <Link
-                                onClick={_ => window.scrollTo(0, 0)}
-                                to={'/home/page/' + (parseInt(pageNumber, 10) - 1)}
-                            >
-                                PREVIOUS
-                            </Link>
-                        </div>
-                    ) : (
-                        false
-                    )}
-                    {pageNumber < posts.length / 10 ? (
-                        <div className="post-right">
-                            <Link
-                                onClick={_ => window.scrollTo(0, 0)}
-                                to={'/home/page/' + (pageNumber ? parseInt(pageNumber, 10) + 1 : 2)}
-                            >
-                                NEXT
-                            </Link>
-                            <FIcon icon={angleRight} />
-                        </div>
-                    ) : (
-                        false
-                    )}
+                    {pageNumber > 1 && pageButton(pageNumber, true)}
+                    {pageNumber < posts.length / 10 && pageButton(pageNumber, false)}
                 </div>
                 {!loadingFlag || <h3>Loading...</h3>}
             </div>
