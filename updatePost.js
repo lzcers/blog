@@ -23,7 +23,7 @@ Promise.all(
     // 生成 tags
     exec('node ./genTagslist.js', (error, stdout, stderr) => {
         if (stdout.length > 0) {
-            console.log('------------')
+            console.log('----------------------------------------')
             console.log(stdout)
             console.log('开始推送文章至 Github ...')
             console.log('git add .')
