@@ -26,11 +26,11 @@ Promise.all(
             console.log(stdout)
             console.log('开始推送文章至 Github ...')
             console.log('git add .')
-            console.log(execSync('git add .'))
+            execSync('git add .')
             console.log('git commit -m "update posts..."')
-            console.log(execSync('git commit -m "update posts..."'))
+            execSync('git commit -m "update posts..."')
             console.log('git push')
-            console.log(execSync('git push'))
+            execSync('git push')
         }
         if (error) {
             console.info('stderr : ' + stderr)
