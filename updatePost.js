@@ -12,7 +12,7 @@ Promise.all(
             new Promise((resolve, reject) =>
                 fs.copyFile(sourcePath + file, path.join(destPath, file), err => {
                     if (err) {
-                        console.log(`copy ${file} faild...`)
+                        console.log(`拷贝 ${file} 失败...`)
                         reject()
                     }
                     resolve(file)
@@ -24,9 +24,10 @@ Promise.all(
     exec('node ./genTagslist.js', (error, stdout, stderr) => {
         if (stdout.length > 0) {
             console.log(stdout)
-            execSync('git add .')
-            execSync('git commit -m "update posts..."')
-            execSync('git push')
+            console.log('开始推送文章至 Github ...')
+            console.log(execSync('git add .'))
+            console.log(execSync('git commit -m "update posts..."'))
+            console.log(execSync('git push'))
         }
         if (error) {
             console.info('stderr : ' + stderr)
