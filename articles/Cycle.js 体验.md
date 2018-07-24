@@ -5,7 +5,7 @@ PublishDate: 2018/3/25 20:38:26
 ---
 
 之前学习了流的概念，那么理所当然的会想到其应用，特别是在前端领域大规模应用函数式编程范式的情况下，果不其然，我发现了Cycle.js 这个框架，相比于 React ，Cycle.js 可谓是更加彻底的函数式了。
-```
+```javascript
 function main(sources) {
   const sinks = {
     DOM: sources.DOM.select('input').events('click')
@@ -25,6 +25,8 @@ const drivers = {
 };
 run(main, drivers);
 ```
+
+
 
 <img src="http://cyclejs.cn/img/hci-inputs-outputs.svg" alt="HCI 输入 输出" width="500px">  
 
