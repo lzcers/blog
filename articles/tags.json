@@ -72,8 +72,16 @@
     "Content": "\r\n关于语言，首先要正确区分语法和语义\r\n\r\n# 语法的形式\r\n\r\n语法的形式一般用一集规则描述，而这个语言的表达能力也跟选取的规则不同。\r\n\r\n通常，基于最简单的三个规则，*拼接*、*选择*，*任意次数重复*即可构成一种一种**正则语言**，为了使表达能力更为强大，我们可以加入递归，从定义一种**上下文无关语言**。\r\n\r\n仅使用*拼接*、*选择*、*重复*三个规则我们就能定义所有的单词。\r\n```\r\ndigit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9\r\nunsigned_integer -> digit digit*\r\n```\r\n上面是一个关于数字的定义，其中 | 意思是选择，* 代表任意次重复，这样一条规则称之为一个产生式，箭头左边的字符串称之为非终结符，由这样一个产生式导出来的字符串称之为终结符。\r\n\r\n对于描述一个程序设计语言而言，仅仅是这三条规则是远远不够的，我们还要加入**递归**。<strong>……</strong>"
   },
   {
-    "fileName": "用JS 实现 Lisp 里的流.md",
+    "fileName": "程序员技能思考.md",
     "ID": 9,
+    "Title": "程序员技能思考",
+    "Tags": "编程 | 随想",
+    "PublishDate": "2018/7/9 16:06:33",
+    "Content": "\r\n## 程序员的两条腿\r\n\r\n- 数学\r\n\r\n- 英语\r\n\r\n  这两项能力决定上限，很遗憾我都不好，想学习机器学习相关的知识这两块就是最大的障碍，理论性的知识也是英文材料居多，如果工作不仅满足于写写业务逻辑，那这两块短板是一定要补齐的。\r\n\r\n## 通用能力\r\n\r\n- 学习能力\r\n\r\n  通过多途径的方式**快速**习得必要知识，这些途径包括搜索引擎，实体书籍，电子文档，论坛提问等。\r\n\r\n- 编码能力\r\n\r\n  - 编程语言的掌握\r\n\r\n    * 理解语言的特性编写**清晰高效**的代码，命名直观，注释准确。\r\n\r\n    * 理解语言的实现，能供透过语言的形式了解其背后的原理，从而优化代码，或是触类旁通学习其它语言。\r\n    * 理解不同编程范式并在合适的场景下应用，命令式，声明式两大类，前者向计算机描述问题的求解过程 how ，后者向计算机描述问题是什么 what，函数式编程归属于声明式。<strong>……</strong>"
+  },
+  {
+    "fileName": "用JS 实现 Lisp 里的流.md",
+    "ID": 10,
     "Title": "用JS 实现 Lisp 里的流",
     "Tags": "编程",
     "PublishDate": "2018/3/10 21:24:59",
@@ -81,7 +89,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（3）.md",
-    "ID": 10,
+    "ID": 11,
     "Title": "用 JS 撸个 LISP 解释器（3）",
     "Tags": "编程 | 坑",
     "PublishDate": "2018/6/10 23:58",
@@ -89,7 +97,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（2）.md",
-    "ID": 11,
+    "ID": 12,
     "Title": "用 JS 撸个 LISP 解释器（2）",
     "Tags": "编程 | 坑",
     "PublishDate": "2018/6/8 19:53",
@@ -97,7 +105,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器.md",
-    "ID": 12,
+    "ID": 13,
     "Title": "用 JS 撸个 LISP 解释器",
     "PublishDate": "2018/6/3 21:45",
     "Tags": "编程 | JS | 坑",
@@ -105,7 +113,7 @@
   },
   {
     "fileName": "用 CSS 实现网页追踪与分析.md",
-    "ID": 13,
+    "ID": 14,
     "Title": "用 CSS 实现网页追踪与分析",
     "Tags": "前端",
     "PublishDate": "2018/1/20 22:15:05",
@@ -113,7 +121,7 @@
   },
   {
     "fileName": "熵与人生.md",
-    "ID": 14,
+    "ID": 15,
     "Title": "熵与人生",
     "Tags": "随想",
     "PublishDate": "2015/3/27 21:15",
@@ -121,7 +129,7 @@
   },
   {
     "fileName": "滚动条导致计算值元素跳动的处理.md",
-    "ID": 15,
+    "ID": 16,
     "Title": "滚动条导致计算值元素跳动的处理",
     "Tags": "前端 | 编码",
     "PublishDate": "2017/12/14 18:29:43",
@@ -129,7 +137,7 @@
   },
   {
     "fileName": "浅谈对架构的理解.md",
-    "ID": 16,
+    "ID": 17,
     "Title": "浅谈对架构的理解",
     "Tags": "编程 | 随想",
     "PublishDate": "2018/7/22 23:57:51",
@@ -137,7 +145,7 @@
   },
   {
     "fileName": "新的计划.md",
-    "ID": 17,
+    "ID": 18,
     "Title": "新的计划",
     "Tags": "碎念",
     "PublishDate": "2018/1/20 17:19:52",
@@ -145,7 +153,7 @@
   },
   {
     "fileName": "数据抽象.md",
-    "ID": 18,
+    "ID": 19,
     "Title": "数据抽象",
     "Tags": "编码 | 哲思",
     "PublishDate": "2017/8/22 23:30:48",
@@ -153,7 +161,7 @@
   },
   {
     "fileName": "攀登抽象的阶梯.md",
-    "ID": 19,
+    "ID": 20,
     "Title": "攀登抽象的阶梯",
     "Tags": "编码 | 哲思",
     "PublishDate": "2017/8/9 23:00:41",
@@ -161,7 +169,7 @@
   },
   {
     "fileName": "对自我的思考.md",
-    "ID": 20,
+    "ID": 21,
     "Title": "对自我的思考",
     "Tags": "哲思",
     "PublishDate": "2017/8/6 17:52:40",
@@ -169,7 +177,7 @@
   },
   {
     "fileName": "如何打印 Web 页面上指定区域的内容.md",
-    "ID": 21,
+    "ID": 22,
     "Title": "如何打印 Web 页面上指定区域的内容",
     "Tags": "编码 | 前端",
     "PublishDate": "2017/12/11 13:24:52",
@@ -177,7 +185,7 @@
   },
   {
     "fileName": "央视纪录片《极地》.md",
-    "ID": 22,
+    "ID": 23,
     "Title": "央视纪录片《极地》",
     "Tags": "碎念",
     "PublishDate": "2018/1/22 21:56:11",
@@ -185,7 +193,7 @@
   },
   {
     "fileName": "国庆云南游记.md",
-    "ID": 23,
+    "ID": 24,
     "Title": "国庆云南游记",
     "Tags": "碎念",
     "PublishDate": "2017/10/15 19:17",
@@ -193,7 +201,7 @@
   },
   {
     "fileName": "又一篇什么是Monad.md",
-    "ID": 24,
+    "ID": 25,
     "Title": "又一篇什么是Monad",
     "Tags": "编码",
     "PublishDate": "2017/9/1 21:48:38",
@@ -201,7 +209,7 @@
   },
   {
     "fileName": "博弈论带来的启示-信任的进化.md",
-    "ID": 25,
+    "ID": 26,
     "Title": "博弈论带来的启示-信任的进化",
     "Tags": "随想",
     "PublishDate": "2017/12/15 00:04:47",
@@ -209,7 +217,7 @@
   },
   {
     "fileName": "博客文章获取接口修改.md",
-    "ID": 26,
+    "ID": 27,
     "Title": "博客文章获取接口修改",
     "Tags": "编码",
     "PublishDate": "2017/7/25 22:43:00",
@@ -217,7 +225,7 @@
   },
   {
     "fileName": "博客搬家.md",
-    "ID": 27,
+    "ID": 28,
     "Title": "博客搬家",
     "Tags": "编码",
     "PublishDate": "2017/10/28",
@@ -225,7 +233,7 @@
   },
   {
     "fileName": "前端监控.md",
-    "ID": 28,
+    "ID": 29,
     "Title": "前端监控",
     "Tags": "前端",
     "PublishDate": "2018/7/10 18:09:14",
@@ -233,7 +241,7 @@
   },
   {
     "fileName": "利用 serviceWorker 快速把网站变成 PWA 应用.md",
-    "ID": 29,
+    "ID": 30,
     "Title": "利用 serviceWorker 快速把网站变成 PWA 应用",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/17 20:16:06",
@@ -241,7 +249,7 @@
   },
   {
     "fileName": "写作是一个学习过程.md",
-    "ID": 30,
+    "ID": 31,
     "Title": "写作是一个学习过程",
     "Tags": "碎念",
     "PublishDate": "2018/3/6 00:59:23",
@@ -249,7 +257,7 @@
   },
   {
     "fileName": "写一个简单的 Markdown 编辑器.md",
-    "ID": 31,
+    "ID": 32,
     "Title": "写一个简单的 Markdown 编辑器",
     "Tags": "编码",
     "PublishDate": "2017/12/7 00:28:49",
@@ -257,7 +265,7 @@
   },
   {
     "fileName": "关于沟通.md",
-    "ID": 32,
+    "ID": 33,
     "Title": "关于沟通",
     "Tags": "随想",
     "PublishDate": "2015/9/18 22:29",
@@ -265,7 +273,7 @@
   },
   {
     "fileName": "关于并发的理解.md",
-    "ID": 33,
+    "ID": 34,
     "Title": "关于并发的理解",
     "Tags": "编程",
     "PublishDate": "2018/3/4 13:41:37",
@@ -273,7 +281,7 @@
   },
   {
     "fileName": "关于可视化页面构建工具的思考.md",
-    "ID": 34,
+    "ID": 35,
     "Title": "关于可视化页面构建工具的思考",
     "Tags": "编程 | 前端 | 随想",
     "PublishDate": "2018/06/05 21:30",
@@ -281,7 +289,7 @@
   },
   {
     "fileName": "使用 Systemd 设置 Linux 应用自启动.md",
-    "ID": 35,
+    "ID": 36,
     "Title": "使用 Systemd 设置 Linux 应用自启动",
     "Tags": "编码 | Linux",
     "PublishDate": "2017/12/11 17:27:03",
@@ -289,7 +297,7 @@
   },
   {
     "fileName": "从静态博客转到Golang + MongoDB后端.md",
-    "ID": 36,
+    "ID": 37,
     "Title": "从静态博客转到Golang + MongoDB后端",
     "Tags": "编码",
     "PublishDate": "2017/11/29 23:39:47",
@@ -297,7 +305,7 @@
   },
   {
     "fileName": "从浏览器工作机制看性能优化.md",
-    "ID": 37,
+    "ID": 38,
     "Title": "从浏览器工作机制看性能优化",
     "PublishDate": "2018/7/9 15:31",
     "Tags": "前端",
@@ -305,7 +313,7 @@
   },
   {
     "fileName": "书写以及文字.md",
-    "ID": 38,
+    "ID": 39,
     "Title": "书写以及文字",
     "Tags": "随想",
     "PublishDate": "2015/1/31 23:06",
@@ -313,7 +321,7 @@
   },
   {
     "fileName": "不求甚解与刨根问底.md",
-    "ID": 39,
+    "ID": 40,
     "Title": "不求甚解与刨根问底",
     "Tags": "随想",
     "PublishDate": "2017/9/5 23:28",
@@ -321,7 +329,7 @@
   },
   {
     "fileName": "不念过去，不畏将来，珍惜现在，再见 2017.md",
-    "ID": 40,
+    "ID": 41,
     "Title": "不念过去，不畏将来，珍惜现在，再见 2017",
     "Tags": "碎念",
     "PublishDate": "2017/12/31 17:02:01",
@@ -329,7 +337,7 @@
   },
   {
     "fileName": "七夕.md",
-    "ID": 41,
+    "ID": 42,
     "Title": "七夕",
     "Tags": "碎念",
     "PublishDate": "2017/8/29 21:59:29",
@@ -337,7 +345,7 @@
   },
   {
     "fileName": "《逻辑的引擎》读后感.md",
-    "ID": 42,
+    "ID": 43,
     "Title": "《逻辑的引擎》读后感",
     "Tags": "碎念 | 读书",
     "PublishDate": "2018/2/26 00:56:10",
@@ -345,7 +353,7 @@
   },
   {
     "fileName": "《寻梦环游记》观后感 - 终极的死亡.md",
-    "ID": 43,
+    "ID": 44,
     "Title": "《寻梦环游记》观后感 - 终极的死亡",
     "Tags": "碎念",
     "PublishDate": "2017/12/6 20:40:50",
@@ -353,7 +361,7 @@
   },
   {
     "fileName": "Webpack 4 升级.md",
-    "ID": 44,
+    "ID": 45,
     "Title": "Webpack 4 升级",
     "Tags": "前端",
     "PublishDate": "2018/3/14 01:12:51",
@@ -361,7 +369,7 @@
   },
   {
     "fileName": "Web Worker 与 Service Worker.md",
-    "ID": 45,
+    "ID": 46,
     "Title": "Web Worker 与 Service Worker",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/16 21:09:35",
@@ -369,15 +377,31 @@
   },
   {
     "fileName": "ukulele.md",
-    "ID": 46,
+    "ID": 47,
     "Title": "ukulele",
     "Tags": "碎念",
     "PublishDate": "2017/7/22",
     "Content": "![](http://imglf.nosdn.127.net/img/UUcvQWZBZk9URHlpWHl5UmRMQkRPRU5aRHB5cVl6RnhNZWlaTnJLOXVjN1B0MUUxdTNXY0lnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)\r\n\r\n![](http://imglf.nosdn.127.net/img/UUcvQWZBZk9URHlpWHl5UmRMQkRPTUo3WjFUMWxYNUdNUG15MWw0QUZtdURYNnFoQXg3QVR3PT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)\r\n\r\n一直想学个乐器来挑战下，在吉他和Ukulele之间犹豫了很久，直到看了jake shimabukuro的视频，卧槽？！这还能这么玩？于是便被种草了。  \r\n 当晚就在狗东下单买了kaka KUC-MAD，即便明知道可能是吃灰的命运，但依旧毫无犹豫。  \r\n 管他呢，再不济也能当做摄影道具，摆件，或者墙饰之类的。（我这样安慰自己=。=）\r\n\r\n    <strong>……</strong>"
   },
   {
+    "fileName": "rem、vhvw 学习笔记.md",
+    "ID": 48,
+    "Title": "rem、vh/vw 学习笔记",
+    "Tags": "前端",
+    "PublishDate": "2018/7/27 18:03:30",
+    "Content": "\r\n一直以来工作多是以 PC 端业务居多，很少涉及移动端，最近在一家互联网公司的工作内容却恰好相反，移动端居多，PC 端业务较少，适配这块用的是 flexible ，不满足于黑箱的便利性，适当整理了下这块的知识做了些笔记。\r\n\r\n### rem\r\n\r\nrem 是指相对根元素的 font-size，这个根元素通常是指 `<html>` 元素。根元素可以通过 `:root`伪类选择器来表示。\r\n\r\n### vh/vw\r\n\r\n`vh/vw` 是相对**视窗**的大小（视窗包括滚动条宽度），与 `%` 不同，百分比是相对宽高，相对谁是不确定的，通常是父元素，对于 `font-size` 属性，`%` 相对的是 `em`，`1vw ＝ 1/100th viewport width`等于 `window.innerWidth`的`1%`。\r\n\r\n### rem 适配原理\r\n\r\n移动端响应适配主要是通过查询设备宽度自动调整根元素大小来实现的，查询设备宽度可以使用 CSS 的媒体查询，但是不同分辨率的转换较为复杂，所以通常使用 JS 来做。<strong>……</strong>"
+  },
+  {
+    "fileName": "koa-compose 浅析.md",
+    "ID": 49,
+    "Title": "koa-compose 浅析",
+    "Tags": "前端",
+    "PublishDate": "2018/8/1 22:07",
+    "Content": "\r\n## Koa 洋葱模型\r\n\r\nKoa 中间件使用洋葱模型的优势是可以非常方便的实现前置与后置处理逻辑，比如最简单的请求时间计算中间件，在 Koa 模型中就非常容易实现。\r\n\r\n![](https://camo.githubusercontent.com/d80cf3b511ef4898bcde9a464de491fa15a50d06/68747470733a2f2f7261772e6769746875622e636f6d2f66656e676d6b322f6b6f612d67756964652f6d61737465722f6f6e696f6e2e706e67)\r\n\r\n## compose 实现\r\n\r\n在 Koa 中最重要的概念应该是中间件的洋葱模型，这个模型是通过 compose 函数来实现的，我们知道 Koa 中间件是一个函数（可以是异步函数）它接受 `context、next`两个参数，在 `context`里封装了`Request、Response`，并通过`next`来调用下一级中间件。\r\n\r\nKoa 会根据中间的注册顺序依次调用，并将这个控制流通过 `next` 参数暴露给程序员，因而中间件的编写相当于手写 CPS 风格的代码，每当 next 被调用时就将控制传递给下一层中间件，当没有下一层中间件时再展开整个函数栈（如果中间件特别多，那应该会有问题，不过哪有那么多中间件啊），Koa 这种控制的传递很容易让人联想到 `generator`，实际上早期的 koa 就是这样实现的。\r\n\r\n我们来实现一个简单的 compose 函数原型（实际上 Koa 源码的实现本来就很简单）：\r\n\r\n```javascript\r\nfunction compose(middlewares) {\r\n    return function(context, next) {\r\n        let index = -1\r\n        function exec(i) {\r\n            if (i == middlewares.length) return\r\n            // 将 index 作为判断 next 重复调用的判断条件\r\n            if (i <= index) throw 'next() 被多次调用!'\r\n            index = i\r\n            return middlewares[i](context, exec.bind(null, i + 1))\r\n        }\r\n        return exec(0)\r\n    }\r\n}\r\n```\r\n\r\n`compose` 接收一个中间件组成的数组，当有请求时依次按注册顺序调用这些中间件，并维持 `context` 的传递即可，但是这里按注册顺序依次调用的控制流是由程序员通过 `next` 控制的，`next` 就是**下一个中间件函数的抽象**，因而我们用一个闭包函数 `exec` 来实现，每次调用时传递下一个中间件函数的 index 即可。\r\n\r\n```javascript\r\nfunction f1(ctx, next) {\r\n    console.log('1')\r\n    next()\r\n    console.log('xxx1')\r\n}\r\n\r\nfunction f2(ctx, next) {\r\n    console.log('2')\r\n    next()\r\n    console.log('xxx2')\r\n}\r\n\r\nfunction f3(ctx, next) {\r\n    console.log('3')\r\n    next()\r\n    console.log('xxx3')\r\n}\r\n\r\ncompose([f1, f2, f3])({ name: 'ctx' })\r\n// 1\r\n// 2\r\n// 3\r\n// xxx3\r\n// xxx2\r\n// xxx1\r\n```\r\n\r\n但是这个实现有一个问题，如果考虑我们的中间件是一个异步函数(async function)，我需要支持 `await next()`这样的操作并且统一处理所有中间件的错误，为此我们要把所有的中间件执行结果用 `Promise` 包起来。<strong>……</strong>"
+  },
+  {
     "fileName": "JS任督二脉-原型.md",
-    "ID": 47,
+    "ID": 50,
     "Title": "JS任督二脉-原型",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/24 23:43",
@@ -385,7 +409,7 @@
   },
   {
     "fileName": "JS任督二脉-作用域.md",
-    "ID": 48,
+    "ID": 51,
     "Title": "JS任督二脉-作用域",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/8 22:40",
@@ -393,7 +417,7 @@
   },
   {
     "fileName": "Cycle.js 体验.md",
-    "ID": 49,
+    "ID": 52,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -401,7 +425,7 @@
   },
   {
     "fileName": "CSS3动画学习.md",
-    "ID": 50,
+    "ID": 53,
     "Title": "CSS3动画学习",
     "Tags": "编码",
     "PublishDate": "2017/11/12 15:29:49",
@@ -409,7 +433,7 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 51,
+    "ID": 54,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
