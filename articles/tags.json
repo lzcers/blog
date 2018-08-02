@@ -392,8 +392,16 @@
     "Content": "\r\n一直以来工作多是以 PC 端业务居多，很少涉及移动端，最近在一家互联网公司的工作内容却恰好相反，移动端居多，PC 端业务较少，适配这块用的是 flexible ，不满足于黑箱的便利性，适当整理了下这块的知识做了些笔记。\r\n\r\n### rem\r\n\r\nrem 是指相对根元素的 font-size，这个根元素通常是指 `<html>` 元素。根元素可以通过 `:root`伪类选择器来表示。\r\n\r\n### vh/vw\r\n\r\n`vh/vw` 是相对**视窗**的大小（视窗包括滚动条宽度），与 `%` 不同，百分比是相对宽高，相对谁是不确定的，通常是父元素，对于 `font-size` 属性，`%` 相对的是 `em`，`1vw ＝ 1/100th viewport width`等于 `window.innerWidth`的`1%`。\r\n\r\n### rem 适配原理\r\n\r\n移动端响应适配主要是通过查询设备宽度自动调整根元素大小来实现的，查询设备宽度可以使用 CSS 的媒体查询，但是不同分辨率的转换较为复杂，所以通常使用 JS 来做。<strong>……</strong>"
   },
   {
-    "fileName": "JS任督二脉-原型.md",
+    "fileName": "koa-compose 浅析.md",
     "ID": 49,
+    "Title": "koa-compose 浅析",
+    "Tags": "前端",
+    "PublishDate": "2018/8/1 22:07",
+    "Content": "\r\n## Koa 洋葱模型\r\n\r\nKoa 中间件使用洋葱模型的优势是可以非常方便的实现前置与后置处理逻辑，比如最简单的请求时间计算中间件，在 Koa 模型中就非常容易实现。\r\n\r\n![](https://camo.githubusercontent.com/d80cf3b511ef4898bcde9a464de491fa15a50d06/68747470733a2f2f7261772e6769746875622e636f6d2f66656e676d6b322f6b6f612d67756964652f6d61737465722f6f6e696f6e2e706e67)\r\n\r\n## compose 实现\r\n\r\n在 Koa 中最重要的概念应该是中间件的洋葱模型，这个模型是通过 compose 函数来实现的，我们知道 Koa 中间件是一个函数（可以是异步函数）它接受 `context、next`两个参数，在 `context`里封装了`Request、Response`，并通过`next`来调用下一级中间件。\r\n\r\nKoa 会根据中间的注册顺序依次调用，并将这个控制流通过 `next` 参数暴露给程序员，因而中间件的编写相当于手写 CPS 风格的代码，每当 next 被调用时就将控制传递给下一层中间件，当没有下一层中间件时再展开整个函数栈（如果中间件特别多，那应该会有问题，不过哪有那么多中间件啊），Koa 这种控制的传递很容易让人联想到 `generator`，实际上早期的 koa 就是这样实现的。\r\n\r\n我们来实现一个简单的 compose 函数原型（实际上 Koa 源码的实现本来就很简单）：\r\n\r\n```javascript\r\nfunction compose(middlewares) {\r\n    return function(context, next) {\r\n        let index = -1\r\n        function exec(i) {\r\n            if (i == middlewares.length) return\r\n            // 将 index 作为判断 next 重复调用的判断条件\r\n            if (i <= index) throw 'next() 被多次调用!'\r\n            index = i\r\n            return middlewares[i](context, exec.bind(null, i + 1))\r\n        }\r\n        return exec(0)\r\n    }\r\n}\r\n```\r\n\r\n`compose` 接收一个中间件组成的数组，当有请求时依次按注册顺序调用这些中间件，并维持 `context` 的传递即可，但是这里按注册顺序依次调用的控制流是由程序员通过 `next` 控制的，`next` 就是**下一个中间件函数的抽象**，因而我们用一个闭包函数 `exec` 来实现，每次调用时传递下一个中间件函数的 index 即可。\r\n\r\n```javascript\r\nfunction f1(ctx, next) {\r\n    console.log('1')\r\n    next()\r\n    console.log('xxx1')\r\n}\r\n\r\nfunction f2(ctx, next) {\r\n    console.log('2')\r\n    next()\r\n    console.log('xxx2')\r\n}\r\n\r\nfunction f3(ctx, next) {\r\n    console.log('3')\r\n    next()\r\n    console.log('xxx3')\r\n}\r\n\r\ncompose([f1, f2, f3])({ name: 'ctx' })\r\n// 1\r\n// 2\r\n// 3\r\n// xxx3\r\n// xxx2\r\n// xxx1\r\n```\r\n\r\n但是这个实现有一个问题，如果考虑我们的中间件是一个异步函数(async function)，我需要支持 `await next()`这样的操作并且统一处理所有中间件的错误，为此我们要把所有的中间件执行结果用 `Promise` 包起来。<strong>……</strong>"
+  },
+  {
+    "fileName": "JS任督二脉-原型.md",
+    "ID": 50,
     "Title": "JS任督二脉-原型",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/24 23:43",
@@ -401,7 +409,7 @@
   },
   {
     "fileName": "JS任督二脉-作用域.md",
-    "ID": 50,
+    "ID": 51,
     "Title": "JS任督二脉-作用域",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/8 22:40",
@@ -409,7 +417,7 @@
   },
   {
     "fileName": "Cycle.js 体验.md",
-    "ID": 51,
+    "ID": 52,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -417,7 +425,7 @@
   },
   {
     "fileName": "CSS3动画学习.md",
-    "ID": 52,
+    "ID": 53,
     "Title": "CSS3动画学习",
     "Tags": "编码",
     "PublishDate": "2017/11/12 15:29:49",
@@ -425,7 +433,7 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 53,
+    "ID": 54,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
