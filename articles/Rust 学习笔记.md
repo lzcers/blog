@@ -4,8 +4,6 @@ Tags: 编程
 PublishDate: 2018/8/6 19:25:28
 ---
 
-
-
 ### 为什么学习 Rust ？
 
 * 宏
@@ -24,9 +22,9 @@ PublishDate: 2018/8/6 19:25:28
 
 ### 声明
 
-`let` 声明绑定，所有值默认是不可变的，需要通过 `let mut`来声明可变性。
+`let` 应该理解成 scheme 里的绑定，而非变量，所有值默认是不可变的，需要通过 `let mut`来声明可变性。
 
-也可以利用 `const` 声明常量，其作用更类似于 `define` 定义个大范围，多处使用的值。
+也可以利用 `const` 声明常量，其作用更类似于 `define` 定义一个大范围，多处使用的值。
 
 Rust 采用 snake case 风格声明变量和函数名，也就是小写字母加下划线分隔。
 
@@ -38,20 +36,36 @@ Rust 中将内建的类型分为两类：标量（scalar）和复合（compound�
 
 * 标量： 整型、浮点型、布尔型、字符型
 
-  整数默认是 i32，浮点数默认是 f64，`char` 字符类型，用单引号指定，不同于双引号指定的字符串，Rust 中的`char` 是一个 Unicode 标量值，这意味着比 ASCII 更大的表示范围。
+  整型：有符号整型`i8, i16, i32, i64`，无符号整型`u8, u16, u32, u64 `，整数默认是 i32，浮点数默认是 f64。
 
-  `isize` 和 `usize` 类型依赖运行程序的计算机架构，64 位架构上它们是 64 位的， 32 位架构上它们是 32 位的。
+  字符型：`char`用单引号指定，不同于双引号指定的字符串，Rust 中的`char` 是一个 Unicode 标量值，这意味着比 ASCII 更大的表示范围。
+
+  `isize` 和 `usize` ，前者是有符号整型，后者是无符号整型，类型依赖运行程序的计算机架构，64 位架构上它们是 64 位的， 32 位架构上它们是 32 位的。
 
 * 复合：元组（tuple）和数组（array）
 
   元组的元素可以是多类型，数组的元素类型必须是一样的，都是定长不可变的，可以使用模式匹配来解构。
 
+  `array: [T; N]` 数组，T 为元素类型，N 为长度。
+
+  `tuple: (T, U, G,....)` 元组
   ```rust
   let x: (i32, f64, u8) = (500, 6.4, 1); // 元组声明
   let five_hundred = x.0; // 索引访问
   let a = [1, 2, 3, 4, 5]; // 数组声明
   let first = a[0]; // 数组访问
   ```
+
+* silce: 一个没有所有权的数据类型，可类比于 go 的切片，字符串字面值就是 slice，其类型是`&str`，是不可变的，我们以可以对一个字符串进行切片操作，也可以对数组如此。
+
+  ```rust
+  let s = "hello world";
+  let len = s.len();
+  let word1 = &s[0..len];
+  let word2 = &s[..];
+  ```
+
+  切片的 statIndex 默认是0，endIndex 默认是最后一个位置，实际使用可以按需求省略 index 采用默认值。
 
 ### 函数
 
@@ -64,6 +78,98 @@ Rust 中的函数定义先后不影响调用（类比于 JS 的提升），main 
 * **for in** 遍历集合
 
 ## 组合
+
+### strcut
+
+ 通过结构体创建新的复合类型，Key: Value 形式
+
+```rust
+// 定义
+struct User {
+    username: String,
+    email: String,
+}
+// 创捷实例
+let mut user1 = User {
+    email: String::from("someone@example.com"),
+    username: String::from("someusername123"),
+};
+```
+
+通过点号访问实例属性，待绑定的变量名与属性名相同时可以简写，`{ email: email,}` 可以简写为 `{email,}`，也可以用其它结构体实例的值来创建实例，类比于 ES6 的解构赋值。
+
+```rust
+let user2 = User {
+    email: String::from("another@example.com"),
+    username: String::from("anotherusername567"),
+    ..user1
+};
+```
+
+其它的结构体的声明方式：
+
+**元祖结构体（tuple structs）**：不指明结构体属性的 key，只需要指明 value 的类型，这种就用点号加索引来访问。
+
+**类单元结构体（unit-like structs）**：不声明任何字段，只在上面定义行为。
+
+结构体上可以使用 `impl <StructName>{ ... }` 定义方法语句以及关联函数，二者区别在于方法语句函数第一个参数是否为 `&self`，使用`.`调用，而关联函数使用 `::`调用，一般用关联函数来定义构造函数，也可以类比于类的静态方法。
+
+```rust
+impl Rectangle {
+    // 方法语句
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+    // 关联函数
+    fn square(size: u32) -> Rectangle {
+        Rectangle { width: size, height: size }
+    }
+}
+```
+
+### enum
+
+Rust 里的枚举就有些强了，看官方案例，枚举成员与其命名空间用`::`分开，但都是`IpAddrKind`类型（这与结构体不一样的地方，使用枚举的时候它们是一个类型），这意味着可以实现**联合类型**，也可以直接声明枚举成员的类型，并附加数据。
+
+```rust
+enum IpAddrKind {
+    V4, // 没关联任何数据和类型
+    V6,
+}
+let four = IpAddrKind::V4;
+let six = IpAddrKind::V6;
+// 直接声明枚举成员的类型并将数据附加到成员上
+enum IpAddr {
+    V4(String),
+    V6(String),
+}
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 }, // 包含一个匿名结构体
+    Write(String),
+    ChangeColor(i32, i32, i32), // 一个匿名元祖
+}
+// 枚举也可以用 impl 来定义成员方法
+impl Message {
+    fn call(&self) {
+        // method body would be defined here
+    }
+}
+
+let home = IpAddr::V4(String::from("127.0.0.1"));
+let loopback = IpAddr::V6(String::from("::1"));
+```
+
+简单来说，枚举和结构体的差别在于枚举的成员它们都是一个类型的，而结构体不是。Rust 中没空值（Null），但它用一个特殊的枚举类型实现了空值或非空值的概念，`Option<T>`被包含在 prelude 中，可以不需要引入作用域，也不需要显式 `Option::` 调用。
+
+```rust
+enum Option<T> {
+    Some(T),
+    None,
+}
+```
+
+​	
 
 ## 抽象
 
