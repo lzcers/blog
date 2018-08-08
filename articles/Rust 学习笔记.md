@@ -74,8 +74,71 @@ Rust 中的函数定义先后不影响调用（类比于 JS 的提升），main 
 ### 控制流
 
 * **if** 表达式后跟一个条件，条件必须是 bool 值，if 表达式是有值的，因而可以放在 let 后面，但此时要注意两个分支的返回值类型是否一致，否则会报错。
-* **loop、while** 前者是无条件无限循环，后者是条件循环，`break` 中断。
+* **loop、while** 前者是无条件无限循环，后者是条件循环，提前退出循环可以用`continue 、break` 。
 * **for in** 遍历集合
+
+### match
+
+模式匹配，这是很多语言缺失的一个特性，但却异常强大。
+
+```rust
+fn main() {
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter(u32),
+    }
+    fn value_in_cents(coin: Coin) -> u32 {
+        // 与 if 不同，match 后接的表达式可以返回任何类型，不一定要布尔类型
+        // match 会以匹配到的分支代码执行结果作为返回值, 在分支用运行多段代码可以用大括号 {}
+        // 匹配条件中亦可以用 (<var>) 来绑定匹配的值，因而可以实现对结构的解构
+        // 也可以用 _ 来匹配任意值
+        match coin {
+            Coin::Penny => 1,
+            Coin::Nickel => 5,
+            // 假设我们忘记 enum 的一种情况，编译器就会报错  ^^^^ pattern `Dime` not covered
+            // 因为 match 必须是穷尽的，但是对于一个很大的集合，我们只在乎那些我们关注的值，穷尽就难做到了，
+            // 在这种情况下，我们就需要用到特殊的匹配模式 _， 类比于 switch 中的 default 分支
+            // 如果不能穷尽那就必须有 defalut 补全，在 JS 中 defalut 可以省略，但是某些规范检查会强制要求有 defalut 分支
+            // Rust 在语法层面上就包含了某些优秀的实践，约束程序员能写出正确的代码
+            // Coin::Dime => 10,
+            Coin::Quarter(value) => {
+                println!("value is {}!", value);
+                25
+            }
+            _ => 0,
+        }
+    }
+    // 理所当然的，我们也可以匹配 Option
+    fn match_option(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(i) => Some(i + 1),
+        }
+    }
+    // 如果我们只关注一个值，那就就有一个语法糖
+    let some_u8_value = Some(0u8);
+    match some_u8_value {
+        Some(3) => println!("three"),
+        _ => (),
+    }
+    // 上面代码等价于
+    if let Some(3) = some_u8_value {
+        println!("three");
+    }
+    // if let 也可以有 else 分支
+    else {
+        println!("other")
+    }
+
+    let v = value_in_cents(Coin::Quarter(25));
+    let m = match_option(Some(100));
+    println!("{}", v);
+}
+```
+
+
 
 ## 组合
 
@@ -166,10 +229,8 @@ let loopback = IpAddr::V6(String::from("::1"));
 enum Option<T> {
     Some(T),
     None,
-}
+};
 ```
-
-​	
 
 ## 抽象
 
@@ -215,6 +276,5 @@ let r3 = &mut s; // BIG PROBLEM
 `cargo build --release`  构建发布版本
 
 `cargo run` 编译、构建、执行
-
 
 
