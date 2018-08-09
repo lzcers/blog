@@ -4,15 +4,14 @@ const fm = require('front-matter')
 
 const postsDir = path.format({
     dir: path.resolve(),
-    base: 'articles'
+    base: 'docs/articles'
 })
 
 // 拿到所有的文章
 const arrPosts = fs
     .readdirSync(postsDir)
-    .filter(i => !i.match(/.json/))
+    .filter(i => !i.match(/(.json|imgs)/))
     .reverse()
-
 Promise.all(
     arrPosts.map(
         (i, index) =>
@@ -31,7 +30,7 @@ Promise.all(
     )
 ).then(tagsList => {
     fs.writeFile(
-        path.format({ dir: path.resolve(), base: 'articles/tags.json' }),
+        path.format({ dir: path.resolve(), base: 'docs/articles/tags.json' }),
         JSON.stringify(tagsList, null, '  '),
         'utf8',
         err => {

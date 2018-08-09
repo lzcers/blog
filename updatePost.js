@@ -3,23 +3,62 @@ const path = require('path')
 const exec = require('child_process').exec
 const execSync = require('child_process').execSync
 const sourcePath = path.format({ dir: 'C:\\articles\\blog' })
-const destPath = path.join(__dirname, 'articles')
+const destPath = path.join(__dirname, './docs/articles')
 
-// 复制文件
-Promise.all(
-    fs.readdirSync(sourcePath).map(
-        file =>
-            new Promise((resolve, reject) =>
-                fs.copyFile(sourcePath + file, path.join(destPath, file), err => {
-                    if (err) {
-                        console.log(`拷贝 ${file} 失败...`)
-                        reject()
-                    }
-                    resolve(file)
-                })
-            )
-    )
-).then(res => {
+function copyFile(srcPath, tarPath, cb) {
+    const rs = fs.createReadStream(srcPath)
+    rs.on('error', function(err) {
+        if (err) {
+            console.log('read error', srcPath)
+        }
+        cb && cb(err)
+    })
+    const ws = fs.createWriteStream(tarPath)
+    ws.on('error', function(err) {
+        if (err) {
+            console.log('write error', tarPath)
+        }
+        cb && cb(err)
+    })
+    ws.on('close', function(ex) {
+        cb && cb(ex)
+    })
+    rs.pipe(ws)
+}
+
+function copyFolder(srcDir, tarDir, cb) {
+    fs.readdir(srcDir, function(err, files) {
+        let count = 0
+        const checkEnd = function() {
+            ++count == files.length && cb && cb()
+        }
+
+        if (err) {
+            checkEnd()
+            return
+        }
+        files.forEach(function(file) {
+            const srcPath = path.join(srcDir, file)
+            const tarPath = path.join(tarDir, file)
+
+            fs.stat(srcPath, function(err, stats) {
+                if (stats.isDirectory()) {
+                    console.log('mkdir', tarPath)
+                    fs.mkdir(tarPath, function(err) {
+                        copyFolder(srcPath, tarPath, checkEnd)
+                    })
+                } else {
+                    copyFile(srcPath, tarPath, checkEnd)
+                }
+            })
+        })
+
+        //为空时直接回调
+        files.length === 0 && cb && cb()
+    })
+}
+
+function genTags() {
     // 生成 tags
     exec('node ./genTagslist.js', (error, stdout, stderr) => {
         if (stdout.length > 0) {
@@ -41,4 +80,6 @@ Promise.all(
             console.info('stderr : ' + stderr)
         }
     })
-})
+}
+
+copyFolder(sourcePath, destPath, genTags)
