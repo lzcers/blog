@@ -29,7 +29,11 @@ Promise.all(
                         fileName: i,
                         ID: index,
                         ...attributes,
-                        Content: body.split(/(。)/g, 10).join('') + '<strong>……</strong>'
+                        Content:
+                            body
+                                .replace(/\]\(\.\\imgs\\/g, '](\\articles\\imgs\\')
+                                .split(/(。)/g, 10)
+                                .join('') + '<strong>……</strong>'
                     })
                 })
             })
