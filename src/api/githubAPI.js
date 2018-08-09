@@ -5,8 +5,8 @@ import 'core-js/shim'
 
 const config = {
     repo: 'lzcers/KsanaBlog-React',
-    path: 'articles/',
-    tags: 'articles/',
+    path: 'docs/articles/',
+    tags: 'docs/articles/',
     branch: 'master',
     tk: 'WlRJM1lqTm1Zak0yTVRFd01qUXdOV05tTW1NMk1qQmtNekF5WW1ZMVlUVXlORGs1Wm1FMk9BPT0='
 }
