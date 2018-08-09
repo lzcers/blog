@@ -19,6 +19,12 @@ Promise.all(
                 fs.readFile(path.format({ dir: postsDir, base: i }), 'utf8', (err, data) => {
                     if (err) reject(err)
                     const { attributes, body } = fm(data)
+                    // 替换博文中的图片链接
+                    fs.writeFileSync(
+                        path.format({ dir: postsDir, base: i }),
+                        body.replace(/\]\(\.\\imgs\\/g, '](\\articlesx\\imgs\\'),
+                        'utf8'
+                    )
                     resolve({
                         fileName: i,
                         ID: index,

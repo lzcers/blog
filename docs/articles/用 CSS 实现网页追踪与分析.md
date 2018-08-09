@@ -1,8 +1,3 @@
----
-Title: 用 CSS 实现网页追踪与分析 
-Tags: 前端 
-PublishDate: 2018/1/20 22:15:05 
----
 用 CSS 实现网页追踪与分析 ？ are you kidding me？ 
 老实说刚看到 **[这篇文章](https://github.com/jbtronics/CrookedStyleSheets/blob/master/docs/README.zh.md)** 的时候我也有点吃惊，因为以前在的工作经历告诉我，要干这种事情得埋一堆 JS 代码，是一件苦差事。而用 CSS 来做确实是打破常规思维的想法，就像你从不会去想用面包当武器（然而确实有一种法式长棍面包风干后可以这么干），用 CSS 这样一门负责页面表现的语言去做追踪分析的事情着实要开很大脑洞了。
 

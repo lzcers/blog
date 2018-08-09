@@ -1,8 +1,3 @@
----
-Title: Web Worker 与 Service Worker 
-Tags: 前端 | 编程 
-PublishDate: 2017/12/16 21:09:35 
----
 
 ### Web Worker
 众所周知，浏览器的 JavaScript 是单线程的运行的，但随着 Web 应用的日趋复杂，越来越多的计算任务被分配给了前端，单线程运行的 JavaScript 早已不堪重负，因此就如何将 JavaScript 从单线程的地狱中解放出来就成问题了，因此诞生了 Web Worker， 它是脱离主线程之外的，因此一些复杂耗时的活可以交给它来干，但是有一点就是它不能操作 DOM，因此需要通过 postMessage 方法将执行结果告诉主线程，主线程通过 onMessage 方法获取返回结果。

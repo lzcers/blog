@@ -1,8 +1,3 @@
----
-Title: ukulele 
-Tags: 碎念 
-PublishDate: 2017/7/22 
----
 ![](http://imglf.nosdn.127.net/img/UUcvQWZBZk9URHlpWHl5UmRMQkRPRU5aRHB5cVl6RnhNZWlaTnJLOXVjN1B0MUUxdTNXY0lnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
 
 ![](http://imglf.nosdn.127.net/img/UUcvQWZBZk9URHlpWHl5UmRMQkRPTUo3WjFUMWxYNUdNUG15MWw0QUZtdURYNnFoQXg3QVR3PT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)

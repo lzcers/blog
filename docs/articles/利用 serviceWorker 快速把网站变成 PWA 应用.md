@@ -1,8 +1,3 @@
----
-Title: 利用 serviceWorker 快速把网站变成 PWA 应用 
-Tags: 前端 | 编程 
-PublishDate: 2017/12/17 20:16:06 
----
 
 ## 什么是 PWA ？
 PWA（Progressive Web Apps）是 Google 提出的用前沿的 Web 技术为网页提供 App 般使用体验的一系列方案。

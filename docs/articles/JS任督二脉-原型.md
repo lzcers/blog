@@ -1,8 +1,3 @@
----
-Title: JS任督二脉-原型 
-Tags: 编码 | 前端 
-PublishDate: 2015/12/24 23:43 
----
 
 JavaScrpit中的类型有如下几种，除去一般类型以外其余都是对象。
 1. Number
