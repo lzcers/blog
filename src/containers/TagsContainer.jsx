@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
-import { getTags } from '@/api/githubAPI'
+import { getTags } from '@/api'
 
 export default class TagsContainer extends PureComponent {
     state = {

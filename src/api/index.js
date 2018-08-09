@@ -1,90 +1,58 @@
 import axios from 'axios'
 import cache from '@/utils/cache.js'
+import marked from '@/utils/mdRender.js'
 import 'core-js/shim'
 
-const tagsUrl = '/api/tags/get'
-const postsUrl = '/api/post/get/'
-const postsByTagUrl = '/api/post/getByTag/'
-// const postAddUrl = '/api/post/add'
-const updatePostByIDUrl = '/api/post/update/'
-const loginUrl = '/api/login'
-const authorizationCheckUrl = '/api/authorizationCheck'
-
-axios.interceptors.response.use(
-    res => res,
-    err => {
-        const statusCode = err.response.status
-        // 根据返回的code值来做不同的处理（和后端约定）
-        switch (statusCode) {
-            case 401:
-                window.location.href = '/#/login'
-                break
-            default:
-                return Promise.reject(err)
-        }
-    }
-)
-
-export function getPosts() {
+const tagsUrl = 'https://ksana.net/articles/tags.json'
+const fileUrl = 'https://ksana.net/articles/'
+function getMetadata() {
     if (cache.has('postList')) return Promise.resolve(cache.get('postList'))
-
     return axios
-        .get(postsUrl)
+        .get(tagsUrl)
         .then(res => res.data)
         .then(arr => {
+            debugger
             cache.set('postList', arr)
             return arr
         })
 }
-
-export function getPostByID(id) {
-    return axios.get(postsUrl + id).then(res => res.data[0])
+function getTags() {
+    return getMetadata()
+        .then(res => [
+            ...new Set(res.map(p => p.Tags.split('|').map(e => e.trim())).reduce((pre, cur) => pre.concat(cur)))
+        ])
+        .then(arr => cache.set('postList', arr))
 }
 
-export function getPostsByTag(tag) {
-    if (cache.has('postByTag' + tag)) return Promise.resolve(cache.get('postByTag' + tag))
+async function getPosts() {
+    return getMetadata().then(res =>
+        res.map(p => {
+            p.ID = p.fileName
+            p.Tags = p.Tags.split('|').map(t => t.trim())
+            p.Content = marked(p.Content).html
+            return p
+        })
+    )
+}
 
+function getPostByID(fileName) {
+    if (cache.has(fileName)) return Promise.resolve(cache.get(fileName))
     return axios
-        .get(postsByTagUrl + tag)
+        .get(fileUrl + fileName)
         .then(res => res.data)
-        .then(raw => {
-            cache.set('postByTag' + tag, raw)
-            return raw
+        .then(raw => marked(raw))
+        .then(p => {
+            const post = {
+                ID: fileName,
+                Title: p.meta.Title,
+                Tags: p.meta.Tags.split('|').map(i => i.trim()),
+                PublishDate: p.meta.PublishDate,
+                Content: p.html,
+                TOC: p.tocTree
+            }
+            cache.set(fileName, post)
+            return post
         })
 }
-export function login(userinfo) {
-    return axios.post(loginUrl, userinfo)
-}
-export function authorizationCheck() {
-    return axios.get(authorizationCheckUrl)
-}
 
-export function getTags() {
-    if (cache.has('tags')) return Promise.resolve(cache.get('tags'))
-    return axios
-        .get(tagsUrl)
-        .then(res => res.data)
-        .then(data => {
-            cache.set('tags', data.Tags)
-            return data.Tags
-        })
-}
-
-export function addPost(p) {
-    return axios.post('/api/post/add', p)
-}
-
-export function updatePostByID(id, p) {
-    return axios.post(updatePostByIDUrl + id, p)
-}
-
-export default {
-    addPost,
-    updatePostByID,
-    getPosts,
-    getPostsByTag,
-    getPostByID,
-    getTags,
-    login,
-    authorizationCheck
-}
+export { getPosts, getTags, getPostByID }

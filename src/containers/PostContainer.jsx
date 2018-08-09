@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import Article from '@/components/Article'
-import { getPostByID } from '@/api/githubAPI'
+import { getPostByID } from '@/api'
 
 export default class PostContainer extends PureComponent {
     state = {

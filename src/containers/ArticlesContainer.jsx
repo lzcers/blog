@@ -6,7 +6,7 @@ import angleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
 
 import Article from '@/components/Article'
 
-import { getPosts } from '@/api/githubAPI'
+import { getPosts } from '@/api'
 
 const pageButton = (pageNumber, dir) => {
     const number = dir ? parseInt(pageNumber, 10) - 1 : parseInt(pageNumber, 10) + 1

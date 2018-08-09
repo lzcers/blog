@@ -1,3 +1,8 @@
+---
+Title: 用JS 实现 Lisp 里的流 
+Tags: 编程 
+PublishDate: 2018/3/10 21:24:59 
+---
 在 Lisp 我们这样实现
 ``` lisp
 (define-syntax-rule (delay exp) 
