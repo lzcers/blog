@@ -21,7 +21,7 @@ module.exports = {
     },
     output: {
         path: resolve('../docs'),
-        publicPath: '',
+        publicPath: '/',
         filename: '[name].build.js'
     },
     module: {
