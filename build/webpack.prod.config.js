@@ -27,7 +27,7 @@ module.exports = merge(baseConfig, {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '/assets/styles/styles.[chunkhash:5].css'
+            filename: 'assets/styles/styles.[chunkhash:5].css'
         }),
         new BundleAnalyzerPlugin() // 打包分析
     ]
