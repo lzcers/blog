@@ -20,7 +20,7 @@ module.exports = {
         }
     },
     output: {
-        path: resolve('../dist'),
+        path: resolve('../docs'),
         publicPath: '',
         filename: '[name].build.js'
     },
@@ -36,7 +36,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: '/assets/img/[name].[hash:7].[ext]'
+                    name: 'assets/img/[name].[hash:7].[ext]'
                 }
             },
             {
@@ -44,14 +44,14 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
-                    name: '/assets/fonts/[name].[hash:7].[ext]'
+                    name: 'assets/fonts/[name].[hash:7].[ext]'
                 }
             },
             {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
-                    name: '/assets/media/[name].[hash:7].[ext]'
+                    name: 'assets/media/[name].[hash:7].[ext]'
                 }
             },
             {
@@ -62,7 +62,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: resolve('../', 'index.html'),
+            template: resolve('../src/', 'index.html'),
             filename: 'index.html',
             favicon: './src/assets/favicon.ico' || false,
             minify: {
