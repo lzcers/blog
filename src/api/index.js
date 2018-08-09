@@ -3,25 +3,22 @@ import cache from '@/utils/cache.js'
 import marked from '@/utils/mdRender.js'
 import 'core-js/shim'
 
-const tagsUrl = 'https://ksana.net/articles/tags.json'
-const fileUrl = 'https://ksana.net/articles/'
+const tagsUrl = '/articles/tags.json'
+const fileUrl = '/articles/'
 function getMetadata() {
     if (cache.has('postList')) return Promise.resolve(cache.get('postList'))
     return axios
         .get(tagsUrl)
         .then(res => res.data)
         .then(arr => {
-            debugger
             cache.set('postList', arr)
             return arr
         })
 }
 function getTags() {
-    return getMetadata()
-        .then(res => [
-            ...new Set(res.map(p => p.Tags.split('|').map(e => e.trim())).reduce((pre, cur) => pre.concat(cur)))
-        ])
-        .then(arr => cache.set('postList', arr))
+    return getMetadata().then(res => [
+        ...new Set(res.map(p => p.Tags.split('|').map(e => e.trim())).reduce((pre, cur) => pre.concat(cur)))
+    ])
 }
 
 async function getPosts() {
