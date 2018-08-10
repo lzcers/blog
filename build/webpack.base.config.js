@@ -21,7 +21,7 @@ module.exports = {
     },
     output: {
         path: resolve('../docs'),
-        publicPath: '/',
+        publicPath: '',
         filename: '[name].build.js'
     },
     module: {
@@ -62,7 +62,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: resolve('../src/', 'index.html'),
+            template: resolve('../', 'index.html'),
             filename: 'index.html',
             favicon: './src/assets/favicon.ico' || false,
             minify: {
