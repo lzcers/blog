@@ -3,7 +3,7 @@ import cache from '@/utils/cache.js'
 import marked from '@/utils/mdRender.js'
 import 'core-js/shim'
 
-const tagsUrl = '/articles/tags.json'
+const tagsUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/tags.json'
 const fileUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/'
 function getMetadata() {
     if (cache.has('postList')) return Promise.resolve(cache.get('postList'))
