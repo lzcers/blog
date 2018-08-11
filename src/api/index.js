@@ -4,17 +4,21 @@ import marked from '@/utils/mdRender.js'
 import 'core-js/shim'
 
 const tagsUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/tags.json'
+const localTagsUrl = '/articles/tags.json'
 const fileUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/'
-function getMetadata() {
+const localfileUrl = '/articles/'
+function getTagsData(url) {
     if (cache.has('postList')) return Promise.resolve(cache.get('postList'))
     return axios
-        .get(tagsUrl)
+        .get(url)
         .then(res => res.data)
         .then(arr => {
             cache.set('postList', arr)
             return arr
         })
+        .catch(e => false)
 }
+
 function getTags() {
     return getMetadata().then(res => [
         ...new Set(res.map(p => p.Tags.split('|').map(e => e.trim())).reduce((pre, cur) => pre.concat(cur)))
@@ -32,7 +36,7 @@ async function getPosts() {
     )
 }
 
-function getPostByID(fileName) {
+function getFile(fileName, fileUrl) {
     if (cache.has(fileName)) return Promise.resolve(cache.get(fileName))
     return axios
         .get(fileUrl + fileName)
@@ -52,4 +56,10 @@ function getPostByID(fileName) {
         })
 }
 
+async function getMetadata() {
+    return (await getTagsData(tagsUrl)) || (await getTagsData(localTagsUrl))
+}
+async function getPostByID(fileName) {
+    return (await getFile(fileName, fileUrl)) || (await getFile(fileName, localfileUrl))
+}
 export { getPosts, getTags, getPostByID }
