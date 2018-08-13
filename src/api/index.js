@@ -54,6 +54,7 @@ function getFile(fileName, fileUrl) {
             cache.set(fileName, post)
             return post
         })
+        .catch(e => false)
 }
 
 async function getMetadata() {
