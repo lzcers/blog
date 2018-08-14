@@ -4,6 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = merge(baseConfig, {
+    output: {
+        publicPath: 'https://ksana.oss-cn-shenzhen.aliyuncs.com/'
+    },
     module: {
         rules: [
             {
