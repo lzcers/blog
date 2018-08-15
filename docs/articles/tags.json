@@ -440,16 +440,8 @@
     "Content": "\r\n之前学习了流的概念，那么理所当然的会想到其应用，特别是在前端领域大规模应用函数式编程范式的情况下，果不其然，我发现了Cycle.js 这个框架，相比于 React ，Cycle.js 可谓是更加彻底的函数式了。\r\n```javascript\r\nfunction main(sources) {\r\n  const sinks = {\r\n    DOM: sources.DOM.select('input').events('click')\r\n      .map(ev => ev.target.checked)\r\n      .startWith(false)\r\n      .map(toggled =>\r\n        <div>\r\n          <input type=\"checkbox\" /> Toggle me\r\n          <p>{toggled ? 'ON' : 'off'}</p>\r\n        </div>\r\n      )\r\n  };\r\n  return sinks;\r\n}\r\nconst drivers = {\r\n  DOM: makeDOMDriver('#app')\r\n};\r\nrun(main, drivers);\r\n```\r\n\r\n\r\n\r\n<img src=\"http://cyclejs.cn/img/hci-inputs-outputs.svg\" alt=\"HCI 输入 输出\" width=\"500px\">  \r\n\r\n\r\n\r\n整个框架的核心是一个不到两百行代码的 run 函数。让我们思考这样一种人机交互模型，计算机接受用户的操作作为输入，并输出一个新的视图，人的眼睛作为感知器将计算机输出的视图作为输入，输出一个操作。\r\n\r\n```javascript\r\ncomputer(Input) => Output\r\nHuman(senses) => Actuator\r\n```\r\n在这个模型里，人与计算机互为观察者，二者都可以抽象为一个函数，而 run 的作用就是将这两个函数连接起来，这也就是 cycle.js 的由来。\r\n\r\nrun 的第二个参数实际上是一个 driver，用来执行 JS 代码的副作用，即那些影响外部世界到操作，比如将 Virtual DOM 渲染到真实屏幕，捕捉各种事件等。<strong>……</strong>"
   },
   {
-    "fileName": "CSS3动画学习.md",
-    "ID": 55,
-    "Title": "CSS3动画学习",
-    "Tags": "编码",
-    "PublishDate": "2017/11/12 15:29:49",
-    "Content": "\r\n## 属性\r\nCSS3 中涉及动画的三个属性为 transitions, transforms, animation。\r\n\r\ntransition： 一般用于过渡动画处理\r\ntransform： 用于变换，旋转、拉伸、收缩等\r\nanimation： 用于动画\r\n\r\n### transition\r\ntransition-property：指定应用过渡属性的名称\r\ntransition-duration：指定过渡的持续时间\r\ntransition-delay：延迟过渡时间\r\ntransition-timing-function: 指定过渡类型\r\n\r\n    <strong>……</strong>"
-  },
-  {
     "fileName": "coding.md",
-    "ID": 56,
+    "ID": 55,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
