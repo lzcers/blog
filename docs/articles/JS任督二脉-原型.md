@@ -1,7 +1,7 @@
 ---
 Title: JS任督二脉-原型 
 Tags: 编码 | 前端 
-PublishDate: 2015](\articles\imgs\12](\articles\imgs\24 23:43 
+PublishDate: 2015/12/24 23:43 
 ---
 
 JavaScrpit中的类型有如下几种，除去一般类型以外其余都是对象。
@@ -44,9 +44,9 @@ JavaScrpit中的类型有如下几种，除去一般类型以外其余都是对�
 这样就得到了一个对象classa，看到new关键字，很多人都会觉得熟悉，但实际上这只是幻觉，它真真的机制并非如此。
 查看ClassA的属性，我们会发现一个ClassA.prototype对象，它有一个名为ClassA.prototype.constructor的属性，它是函数自身的引用，从字面上理解都以为是构造器，然后我们考虑下面代码：
 ```
-function Foo() {      ](\articles\imgs\](\articles\imgs\ ... }  
-Foo.prototype.constructor === Foo; ](\articles\imgs\](\articles\imgs\ true  
-var a = new Foo();  a.constructor === Foo; ](\articles\imgs\](\articles\imgs\ true
+function Foo() {      // ... }  
+Foo.prototype.constructor === Foo; // true  
+var a = new Foo();  a.constructor === Foo; // true
 ```
 我们猜测，当使用new Foo()创建对象a的时候，Foo.prototype.constructor作为构造函数创造了对象a，
 从 a.constructor === Foo可以看出。
@@ -60,9 +60,9 @@ cobj.prototype.constructor = function cobj2() {
   this.name = 'b';
   console.log('test b');
 };
-var ob = new cobj(); ](\articles\imgs\](\articles\imgs\ => 'test a'
-ob.name === 'a'; ](\articles\imgs\](\articles\imgs\ true
-ob.constructor === cobj.prototype.constructor; ](\articles\imgs\](\articles\imgs\ true
+var ob = new cobj(); // => 'test a'
+ob.name === 'a'; // true
+ob.constructor === cobj.prototype.constructor; // true
 ```
 尽管cobj.prototype.constructor被我们修改成了cobj2，然而new cobj() 得到的对象a.name却是a，从这里我们可以看出constructor属性仅仅是在new的时候作为引用被传入，实际上却并不承担构造函数这一角色，虽然一般情况下，consconstructor总是指向对象的构造函数，但是constructor属性是可以变更的，所以未必真的指向对象的构造函数，为了明确这个属性的字面意思，我们应该尽量让对象的constructor指向其构造函数，维持这个惯例。
 
@@ -72,15 +72,15 @@ ob.constructor === cobj.prototype.constructor; ](\articles\imgs\](\articles\imgs
 这个原型的顶端是Object.prototype;
 
 看上文MyObject对象的原型可知：
->typeof MyObject.\__proto__ == 'object'  ](\articles\imgs\](\articles\imgs\ true
-typeof MyObject.constructor == 'function'  ](\articles\imgs\](\articles\imgs\ true
-typeof MyObject.prototype == 'undefined'  ](\articles\imgs\](\articles\imgs\ true
+>typeof MyObject.\__proto__ == 'object'  // true
+typeof MyObject.constructor == 'function'  // true
+typeof MyObject.prototype == 'undefined'  // true
 
 同样的，函数也是一个对象，函数MyFunction的情况如下：  
->typeof MyFunction.\_\_proto\_\_ == 'function'  ](\articles\imgs\](\articles\imgs\ true
-typeof MyFunction.constructor == 'function'  ](\articles\imgs\](\articles\imgs\ true
-typeof MyFunction.prototype == 'object'  ](\articles\imgs\](\articles\imgs\ ture
-MyFunction.\__proto\__.\__proto\__ == MyObject.\__proto\__ ](\articles\imgs\](\articles\imgs\ true
+>typeof MyFunction.\_\_proto\_\_ == 'function'  // true
+typeof MyFunction.constructor == 'function'  // true
+typeof MyFunction.prototype == 'object'  // ture
+MyFunction.\__proto\__.\__proto\__ == MyObject.\__proto\__ // true
 
 对比可以发现，函数对象存在一个prototype的属性，这个属性是函数作为构造函数使用的关键 ，  
 我们使用classa = new ClaasA() 时，相当于  

@@ -1,7 +1,7 @@
 ---
 Title: 用 JS 撸个 LISP 解释器（3）
 Tags: 编程 | 坑
-PublishDate: 2018](\articles\imgs\6](\articles\imgs\10 23:58
+PublishDate: 2018/6/10 23:58
 ---
 
 
@@ -22,15 +22,15 @@ PublishDate: 2018](\articles\imgs\6](\articles\imgs\10 23:58
 <LET> -> (let (<BINDSPEC>) <BODY>) | (let <VAR> (<BINDSPEC>) <BODY>)  
 ```
 
-语法形式就从 Scheme R5RS 上抄好了，解析过程就不再另外写，基于 Parser Combinator ，在之前的例子上扩展就行，但是环境的定义有些改变，因为我们要实现词法作用域，现在我们的环境是由对象组成的数组。从下标 0 开始对应当前环境，1 对应外层环境，依次嵌套下去，就像 Express ](\articles\imgs\ KOA 的洋葱模型一样，从里到外。并实现了一个 lookup 方法用于在环境中寻找给定符号的值，这个查找过程可以类比于 javaScript 的作用域链查找。
+语法形式就从 Scheme R5RS 上抄好了，解析过程就不再另外写，基于 Parser Combinator ，在之前的例子上扩展就行，但是环境的定义有些改变，因为我们要实现词法作用域，现在我们的环境是由对象组成的数组。从下标 0 开始对应当前环境，1 对应外层环境，依次嵌套下去，就像 Express / KOA 的洋葱模型一样，从里到外。并实现了一个 lookup 方法用于在环境中寻找给定符号的值，这个查找过程可以类比于 javaScript 的作用域链查找。
 
 ```javascript
-](\articles\imgs\](\articles\imgs\ 定义环境
+// 定义环境
 const baseProcedure = {
   '+': args => args.reduce((pre, cur) => cur + pre),
   '-': args => args.reduce((pre, cur) => cur - pre),
   '*': args => args.reduce((pre, cur) => cur * pre),
-  '](\articles\imgs\': args => args.reduce((pre, cur) => pre ](\articles\imgs\ cur),
+  '/': args => args.reduce((pre, cur) => pre / cur),
 }
 const env = [
   baseProcedure
@@ -48,9 +48,9 @@ function letEval(exp, env) {
     pre[cur.value[0].value] = eval(cur.value[1], env)
     return pre
   },{})
-  ](\articles\imgs\](\articles\imgs\ 处理另一种形式的 <LET> -> (let <VAR> <BINDSPEC> <BODY>) 
-  ](\articles\imgs\](\articles\imgs\ if (value.var) frame[value] = value.body
-  ](\articles\imgs\](\articles\imgs\ 返回最后一个表达式的值
+  // 处理另一种形式的 <LET> -> (let <VAR> <BINDSPEC> <BODY>) 
+  // if (value.var) frame[value] = value.body
+  // 返回最后一个表达式的值
   return value.body.value.map(e => eval(e, extEnv(frame, env))).pop()
 }
 ```
@@ -82,7 +82,7 @@ lambda 实现这么简单？
 
 ```javascript
 function apply(procedurecall, args, env) {
-  ](\articles\imgs\](\articles\imgs\ 基本过程 
+  // 基本过程 
   if (typeof procedurecall == 'function') 
     return procedurecall(args)
   else if (procedurecall.type == 'lambdacall') {
@@ -91,9 +91,9 @@ function apply(procedurecall, args, env) {
       pre[cur] = args[i]
       return pre
     },{})
-    ](\articles\imgs\](\articles\imgs\ 动态作用域
-    ](\articles\imgs\](\articles\imgs\ return procedurecall.body.value.map(e => eval(e, [argments, ...env])).pop()
-    ](\articles\imgs\](\articles\imgs\ 词法作用域
+    // 动态作用域
+    // return procedurecall.body.value.map(e => eval(e, [argments, ...env])).pop()
+    // 词法作用域
     const lexEnv = [argments, ...procedurecall.env] 
     return procedurecall.body.value.map(e => eval(e, lexEnv)).pop()
   }
@@ -121,23 +121,23 @@ function apply(procedurecall, args, env) {
 
 这里我使用了词法作用域，而要实现词法作用域最重要的一点就是创建一个**闭包结构**保存定义时的环境，然后我们在该作用域下去求值。
 
-JavaScript 常见的问题就是，闭包是什么？**闭包就是函数体定义时的词法作用域，函数无论在什么位置运行都能访问它被定义时的作用域。**更多关于 JS 实现的书可以看《[*你不知道的JavaScript*](https:](\articles\imgs\](\articles\imgs\book.douban.com](\articles\imgs\subject](\articles\imgs\26351021](\articles\imgs\)》。
+JavaScript 常见的问题就是，闭包是什么？**闭包就是函数体定义时的词法作用域，函数无论在什么位置运行都能访问它被定义时的作用域。**更多关于 JS 实现的书可以看《[*你不知道的JavaScript*](https://book.douban.com/subject/26351021/)》。
 
 最后跑个简单的例子测试下
 
 ```lisp
-](\articles\imgs\](\articles\imgs\ 作用域测试
+// 作用域测试
 repl('(let ((y 2)) ((lambda (x) (+ x y)) 1))')
-](\articles\imgs\](\articles\imgs\ 3
-](\articles\imgs\](\articles\imgs\ 词法作用域测试
+// 3
+// 词法作用域测试
 repl(`(let ((x 2))
 (let ((f (lambda (y) (* x y))))
   (let ((x 4))
     (f 3))))`)
-](\articles\imgs\](\articles\imgs\ 6
-](\articles\imgs\](\articles\imgs\ define 测试
+// 6
+// define 测试
 repl('((lambda (x) (define y 1) (+ y 1)) 3)')
-](\articles\imgs\](\articles\imgs\ 8
+// 8
 ```
 
 至此，一个玩具级别的 lisp 解释器就实现了，当然，他还有很多缺陷，比如
@@ -148,7 +148,7 @@ repl('((lambda (x) (define y 1) (+ y 1)) 3)')
 
 关于语法错误提示，我希望解释器能够报告出错的位置，因而我们的 tokenizer 因该在扫描文本的时候应该保存行列信息，但是问题又来了，因为文法解析采用了 Parser Combinator 实现，在解析过程中肯定会存在很多规则匹配失败，那么到底哪条规则匹配失败后应该报告错误呢？换句话说，如果解析过程中所有分支都报错了该汇报哪个分支的错误？
 
-关于这个玩具解释器的代码看这里 [klisp](https:](\articles\imgs\](\articles\imgs\github.com](\articles\imgs\lzcers](\articles\imgs\klisp)，如标签所示这是个坑，写这些仅为了实践关于解释器的一些相关知识，我也不知道啥时候会填上这个坑...也许永远坑了。
+关于这个玩具解释器的代码看这里 [klisp](https://github.com/lzcers/klisp)，如标签所示这是个坑，写这些仅为了实践关于解释器的一些相关知识，我也不知道啥时候会填上这个坑...也许永远坑了。
 
 如果时间允许的话可以参照 scheme R5RS  来实现，这份规范中文翻译版总共就 48 页，简洁而不简单。
 

@@ -1,7 +1,7 @@
 ---
 Title: Cycle.js 体验 
 Tags: 前端 
-PublishDate: 2018](\articles\imgs\3](\articles\imgs\25 20:38:26 
+PublishDate: 2018/3/25 20:38:26 
 ---
 
 之前学习了流的概念，那么理所当然的会想到其应用，特别是在前端领域大规模应用函数式编程范式的情况下，果不其然，我发现了Cycle.js 这个框架，相比于 React ，Cycle.js 可谓是更加彻底的函数式了。
@@ -13,9 +13,9 @@ function main(sources) {
       .startWith(false)
       .map(toggled =>
         <div>
-          <input type="checkbox" ](\articles\imgs\> Toggle me
-          <p>{toggled ? 'ON' : 'off'}<](\articles\imgs\p>
-        <](\articles\imgs\div>
+          <input type="checkbox" /> Toggle me
+          <p>{toggled ? 'ON' : 'off'}</p>
+        </div>
       )
   };
   return sinks;
@@ -28,7 +28,7 @@ run(main, drivers);
 
 
 
-<img src="http:](\articles\imgs\](\articles\imgs\cyclejs.cn](\articles\imgs\img](\articles\imgs\hci-inputs-outputs.svg" alt="HCI 输入 输出" width="500px">  
+<img src="http://cyclejs.cn/img/hci-inputs-outputs.svg" alt="HCI 输入 输出" width="500px">  
 
 
 

@@ -1,13 +1,13 @@
 ---
 Title: 使用 Systemd 设置 Linux 应用自启动 
 Tags: 编码 | Linux 
-PublishDate: 2017](\articles\imgs\12](\articles\imgs\11 17:27:03 
+PublishDate: 2017/12/11 17:27:03 
 ---
-博客有时候莫名其妙挂掉，看后台访问日志发现一堆类似 ](\articles\imgs\myphpadmin 的路径请求，想来是批量扫描漏洞抓肉鸡的吧，我这小站纯当树洞和 Wiki 使用，价值又不大，随便攻击咯。只是每次重启服务器得把后端服务跑起来有点麻烦，于是稍微学习了下 Linux 下设置应用自启动的方法。
+博客有时候莫名其妙挂掉，看后台访问日志发现一堆类似 /myphpadmin 的路径请求，想来是批量扫描漏洞抓肉鸡的吧，我这小站纯当树洞和 Wiki 使用，价值又不大，随便攻击咯。只是每次重启服务器得把后端服务跑起来有点麻烦，于是稍微学习了下 Linux 下设置应用自启动的方法。
 
 **有几种方法实现目的**
-1. 配置 ](\articles\imgs\etc](\articles\imgs\rc.d](\articles\imgs\rc.local 脚本 ，该脚本在引导过程的最后一步被执行
-2. 添加脚本至 ](\articles\imgs\etc](\articles\imgs\rc.d](\articles\imgs\init.d 子目录，适用于需要细致控制的启动需求
+1. 配置 /etc/rc.d/rc.local 脚本 ，该脚本在引导过程的最后一步被执行
+2. 添加脚本至 /etc/rc.d/init.d 子目录，适用于需要细致控制的启动需求
 3. 设置 crontab 任务计划服务
 4. 使用 systemd 注册服务
 
@@ -16,14 +16,14 @@ PublishDate: 2017](\articles\imgs\12](\articles\imgs\11 17:27:03
 
 如何通过 Systemd 来注册一个服务呢？举个栗子
 ```
-# ](\articles\imgs\lib](\articles\imgs\systemd](\articles\imgs\system](\articles\imgs\supervisord.service
+# /lib/systemd/system/supervisord.service
 [Unit]
 Description=Process Monitoring and Control Daemon
 After=rc-local.service
 
 [Service]
 Type=forking
-ExecStart=](\articles\imgs\usr](\articles\imgs\bin](\articles\imgs\supervisord -c ](\articles\imgs\etc](\articles\imgs\supervisord](\articles\imgs\supervisord.conf
+ExecStart=/usr/bin/supervisord -c /etc/supervisord/supervisord.conf
 SysVStartPriority=99
 
 [Install]
@@ -37,7 +37,7 @@ Type 属性设置了启动进程的方式， 默认 Type=simple 执行 ExecStart
  Type=forking：以 fork 方式从父进程创建子进程，创建后父进程会立即退出。
 写好这样一份配置文件后，输入下面命令：
 > systemctl enable supervisord.service 
-> systemctl is-enabled supervisord.service ](\articles\imgs\](\articles\imgs\ 检查是否设置成功
+> systemctl is-enabled supervisord.service // 检查是否设置成功
 
 看到成功提示即可。
     

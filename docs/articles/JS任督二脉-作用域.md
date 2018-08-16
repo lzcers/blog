@@ -1,7 +1,7 @@
 ---
 Title: JS任督二脉-作用域 
 Tags: 编码 | 前端 
-PublishDate: 2015](\articles\imgs\12](\articles\imgs\8 22:40 
+PublishDate: 2015/12/8 22:40 
 ---
 
 # 引言  
@@ -19,7 +19,7 @@ PublishDate: 2015](\articles\imgs\12](\articles\imgs\8 22:40
 我们知道，变量的值存储在内存中，但在代码编译时，编译器又是根据什么规则去寻找相关变量的值呢？
 这里的规则就是*作用域*，这套规则用来确定在何处、如何查找标识符。
 作用域一般分两种模型，词法作用域与动态作用域两种，在JavaScript中采用的是词法作用域，这意味着代码中每个标识符的作用域是运行前就确定的，并且其作用域取决于你声明它们的位置，编译器在词法分析阶段就能基本能确定所有表示符的所在位置与声明方式，以及其作用域。
-![函数声明的局部作用域](http:](\articles\imgs\](\articles\imgs\upload-images.jianshu.io](\articles\imgs\upload_images](\articles\imgs\54452-f2d0c60a563d39ea.png?imageMogr2](\articles\imgs\auto-orient](\articles\imgs\strip%!CimageView2](\articles\imgs\2](\articles\imgs\w](\articles\imgs\1240)
+![函数声明的局部作用域](http://upload-images.jianshu.io/upload_images/54452-f2d0c60a563d39ea.png?imageMogr2/auto-orient/strip%!CimageView2/2/w/1240)
 图中我们通过声明函数创建了一个函数作用域，这个作用域分为三层嵌套：
 1. 包含foo这个函数名字的全局作用域
 2. a、b、bar组成的函数作用域
@@ -29,7 +29,7 @@ PublishDate: 2015](\articles\imgs\12](\articles\imgs\8 22:40
 
 在全局作用域中声明的变量，自动成为全局对象的属性，如果是在浏览器中，foo()就是windows的属性，可以通过windows.foo直接访问。
 
-在JavaScript中存在两类作用域，全局作用域和局部作用域，作用域的意义是显而易见的，典型如避免名字污染的问题，在ES6之前，函数是JavaScript中最一般的作用域单元，称之为函数作用域，但函数并不是唯一的作用域单元，在ES6中又新增了块级作用域，可以采用大括号的方式来创建，并使用let,const的方式声明块级作用域的变量，实际上还有一些特殊的作用域，如try](\articles\imgs\catch也会创建一个块级作用域。
+在JavaScript中存在两类作用域，全局作用域和局部作用域，作用域的意义是显而易见的，典型如避免名字污染的问题，在ES6之前，函数是JavaScript中最一般的作用域单元，称之为函数作用域，但函数并不是唯一的作用域单元，在ES6中又新增了块级作用域，可以采用大括号的方式来创建，并使用let,const的方式声明块级作用域的变量，实际上还有一些特殊的作用域，如try/catch也会创建一个块级作用域。
 
 虽然JavaScript采用的是词法作用域模型，但是却有在运行时修改作用域的方法，但并不推荐使用，会为编译器的分析带来困难，导致明显的性能下降。
 典型如** eval() **函数，它接受一个字符串为参数，并将其中内容视为在当前位置声明的JavaScript语句，并执行。
@@ -40,7 +40,7 @@ function foo(str, b) {
 }
 var a = 0;
 var str = 'var a = 1;';
-foo(str, 2); ](\articles\imgs\](\articles\imgs\ 1, 2;
+foo(str, 2); // 1, 2;
 ```
 我们可以很轻松的在程序运行时拼接字符串传入，达到修改eval处作用域的目的，但在严格模式下，eval函数无法修改所在位置的作用域。
 ### with 关键字
@@ -49,7 +49,7 @@ with通常作为重复使用同一对象属性时的快捷方式。
 var obj = { a: 1, b: 2};
 obj.a = 2;
 obj.b = 3;
-](\articles\imgs\](\articles\imgs\.... 这样太麻烦了， 简单版
+//.... 这样太麻烦了， 简单版
 with (obj) {
  a = 1;
  b = 2;
@@ -59,7 +59,7 @@ with (obj) {
 ```
 var obj2 = {};
 with (obj2) {
-  a = 1; ](\articles\imgs\](\articles\imgs\ obj2 对象没有a属性
+  a = 1; // obj2 对象没有a属性
 }
 ```
 这里a在非严格模式下被创建为全局属性，泄露出去了。
@@ -70,7 +70,7 @@ with (obj2) {
 ```
 a = 2;
 var a;
-console.log(a);  ](\articles\imgs\](\articles\imgs\ 2
+console.log(a);  // 2
 ```
 这段代码可以执行，但是有一点反直觉，因为 a 的赋值在声明之前，这应该会报ReferenceError，或者a输出为undefined才对。
 再看一个例子：
@@ -92,12 +92,12 @@ var a = 2;
 > 每个函数在被调用时都会创建自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECSMScript程序中的执行流正是由这个方便的机制控制着。
 
 也就是说，ECMAScript程序的运行时就是由执行上下文（EC）组成的栈，*栈顶*是当前*活跃*(active)上下文：
-![](http:](\articles\imgs\](\articles\imgs\s0-weizhifeng-net.b0.upaiyun.com](\articles\imgs\images](\articles\imgs\tech](\articles\imgs\ec-stack.png)
+![](http://s0-weizhifeng-net.b0.upaiyun.com/images/tech/ec-stack.png)
 
 ** Execution context **
 函数在执行的时候会创建一个执行环境（execution context）或称执行上下文， 执行环境定义了变量和函数的访问其他数据的权限。
 
-![](http:](\articles\imgs\](\articles\imgs\upload-images.jianshu.io](\articles\imgs\upload_images](\articles\imgs\54452-0d9dfa7d11533c0e.png)
+![](http://upload-images.jianshu.io/upload_images/54452-0d9dfa7d11533c0e.png)
 
 ** VO && AO **
 每个执行环境都有一个与之关联的变量对象，在全局执行环境中的是** VO **(Variable Object)，但是在函数的执行上下文中,变量对象是以活动对象**AO**（activation object）来表示的。（在ECMA-262-5中统一并入了*词法环境*模型 lexical environments model）
@@ -140,7 +140,7 @@ propertyName:
 ```
 var foo = 10;
 function bar() {}
-](\articles\imgs\](\articles\imgs\ 对应的引用类型的值如下所示：
+// 对应的引用类型的值如下所示：
 var fooReference = {
   base: global,
   propertyName: 'foo'
@@ -161,11 +161,11 @@ var barReference = {
 ```
 function foo() {
   function bar() {
-    alert(this); ](\articles\imgs\](\articles\imgs\ global
+    alert(this); // global
   }
-  bar(); ](\articles\imgs\](\articles\imgs\ 和AO.bar()是一样的
+  bar(); // 和AO.bar()是一样的
 }
 ```
 - - -
-文档参考 [ECMA-262JavaScript The Core](http:](\articles\imgs\](\articles\imgs\dmitrysoshnikov.com](\articles\imgs\ecmascript](\articles\imgs\javascript-the-core](\articles\imgs\)
+文档参考 [ECMA-262JavaScript The Core](http://dmitrysoshnikov.com/ecmascript/javascript-the-core/)
     

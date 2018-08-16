@@ -1,7 +1,7 @@
 ---
 Title: 用JS 实现 Lisp 里的流 
 Tags: 编程 
-PublishDate: 2018](\articles\imgs\3](\articles\imgs\10 21:24:59 
+PublishDate: 2018/3/10 21:24:59 
 ---
 在 Lisp 我们这样实现
 ``` lisp
@@ -35,13 +35,13 @@ const consStream = (x, y, args) => cons(x, delay(y, args))
 const streamCar = s => car(s)
 const streamCdr = s => (force((cdr(s))))
 const streamRef = (s, n) => n == 0 ? streamCar(s) : streamRef(streamCdr(s), --n)
-](\articles\imgs\](\articles\imgs\ 定义自然数组成的流
+// 定义自然数组成的流
 const interStaringFrom = n => consStream(n, interStaringFrom, [++n])
 const intNumber = interStaringFrom(1)
-](\articles\imgs\](\articles\imgs\ 定义斐波拉契数列流
+// 定义斐波拉契数列流
 const fibgn = (a, b) => consStream(a, fibgn, [b, a + b])
 const fibs = fibgn(0, 1)
-](\articles\imgs\](\articles\imgs\ 取费波拉契数列 100项
+// 取费波拉契数列 100项
 streamRef(fibs, 100)
 ```
 

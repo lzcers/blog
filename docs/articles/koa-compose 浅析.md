@@ -1,14 +1,14 @@
 ---
 Title: koa-compose 浅析
 Tags: 前端 
-PublishDate: 2018](\articles\imgs\8](\articles\imgs\1 22:07
+PublishDate: 2018/8/1 22:07
 ---
 
 ## Koa 洋葱模型
 
 Koa 中间件使用洋葱模型的优势是可以非常方便的实现前置与后置处理逻辑，比如最简单的请求时间计算中间件，在 Koa 模型中就非常容易实现。
 
-![](https:](\articles\imgs\](\articles\imgs\camo.githubusercontent.com](\articles\imgs\d80cf3b511ef4898bcde9a464de491fa15a50d06](\articles\imgs\68747470733a2f2f7261772e6769746875622e636f6d2f66656e676d6b322f6b6f612d67756964652f6d61737465722f6f6e696f6e2e706e67)
+![](https://camo.githubusercontent.com/d80cf3b511ef4898bcde9a464de491fa15a50d06/68747470733a2f2f7261772e6769746875622e636f6d2f66656e676d6b322f6b6f612d67756964652f6d61737465722f6f6e696f6e2e706e67)
 
 ## compose 实现
 
@@ -24,7 +24,7 @@ function compose(middlewares) {
         let index = -1
         function exec(i) {
             if (i == middlewares.length) return
-            ](\articles\imgs\](\articles\imgs\ 将 index 作为判断 next 重复调用的判断条件
+            // 将 index 作为判断 next 重复调用的判断条件
             if (i <= index) throw 'next() 被多次调用!'
             index = i
             return middlewares[i](context, exec.bind(null, i + 1))
@@ -56,12 +56,12 @@ function f3(ctx, next) {
 }
 
 compose([f1, f2, f3])({ name: 'ctx' })
-](\articles\imgs\](\articles\imgs\ 1
-](\articles\imgs\](\articles\imgs\ 2
-](\articles\imgs\](\articles\imgs\ 3
-](\articles\imgs\](\articles\imgs\ xxx3
-](\articles\imgs\](\articles\imgs\ xxx2
-](\articles\imgs\](\articles\imgs\ xxx1
+// 1
+// 2
+// 3
+// xxx3
+// xxx2
+// xxx1
 ```
 
 但是这个实现有一个问题，如果考虑我们的中间件是一个异步函数(async function)，我需要支持 `await next()`这样的操作并且统一处理所有中间件的错误，为此我们要把所有的中间件执行结果用 `Promise` 包起来。（如果参数是 Promise 实例，那么`Promise.resolve`将不做任何修改、原封不动地返回这个实例 ）
@@ -69,7 +69,7 @@ compose([f1, f2, f3])({ name: 'ctx' })
 ```javascript
 function exec(i) {
     if (i == middlewares.length) return Promise.resolve()
-    ](\articles\imgs\](\articles\imgs\ 将 index 作为判断 next 重复调用的判断条件
+    // 将 index 作为判断 next 重复调用的判断条件
     if (i <= index) return Promise.reject(new Error('next 被多次调用!'))
     index = i
     try {   
@@ -82,4 +82,4 @@ function exec(i) {
 
 这样一来我们就实现了对异步函数的支持，照着这个思路我们已经做的和官方源码的实现差不多了。
 
-参考：[koa-compose](https:](\articles\imgs\](\articles\imgs\github.com](\articles\imgs\koajs](\articles\imgs\compose](\articles\imgs\blob](\articles\imgs\master](\articles\imgs\index.js)
+参考：[koa-compose](https://github.com/koajs/compose/blob/master/index.js)
