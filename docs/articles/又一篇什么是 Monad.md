@@ -22,10 +22,9 @@ emmmm，确实不难理解，当然，首先你要能理解上面那句话里谈
 ### 什么是范畴？
 > "范畴就是使用箭头连接的物体。"（In mathematics, a category is an algebraic structure that comprises "objects" that are linked by "arrows". ）
 
-![范畴](\posts\assets\category.png)  
+![catmap](C:\articles\blog\imgs\catmap.png)
 这里的物体不是单个的对象，而是所指有这些箭头连接起来的对象的集合，也就是上图中圆圈包裹的整体，当然，除此之外还有一些约束，它的定义是这样的：
 
-![范畴](\posts\assets\category2.png)  
 1. 一系列的对象(object)；
 2. 一系列的态射(morphism)；
 3. 一个组合(composition)操作符，用点(.)表示，用于将态射进行组合；
@@ -67,9 +66,6 @@ var associative = compose(f, compose(g, h)) == compose(compose(f, g), h);
 假设我们有两个范畴 C，D，函子就是一个能把 C 范畴中任意对象 Ca 映射成 Da 的态射，而且保持映射后其原有结构不变，依旧满足关于范畴的相关定律。  
 另外一点，函子在态射组合上必须满足分配律，也就是说：F(f o g) = F(f) o F(g)；
 
-![范畴](\posts\assets\category3.png)
-![范畴](\posts\assets\category4.png)  
-
 直接来一个Maybe函子来介绍这种范畴映射带来的好处吧，下面代码只是函子概念在代码中的表达，为了描述这种映射，一般会将函子形象比喻成容器盒子之类的东西，但切记函子只不过是范畴间的映射而已。
 
 ```javascript
@@ -95,11 +91,10 @@ map(id) === id;
 // composition
 compose(map(f), map(g)) === map(compose(f, g));
 ```
-![范畴](\posts\assets\functormap.png)
-
 我们把一个东西丢给Maybe函子之后，就将原对象从其所在的范畴提升到了Maybe范畴中去，在这个范畴里的元素，所有态射（map）操作都会自动进行空值检测。无法体会这种抽象提升带来的好处？简单来讲，我们把低层次抽象中不方便处理，不能处理的一些玩意（状态，副作用，IO等）通过函子抽象提升到了更高维度，而在这个维度里我们就能来处理了，举个形象的比喻，就像三维空间里的人不能进行时间跳跃，如果有一个函子能把你映射到四维空间里，那么你就具备任意穿梭时间的能力了。是不是很酷炫？是不是很刺激？对，就是这么魔法！
 
 ### 自函子
+
 **自函子是一类比较特殊的函子，它是一种将范畴映射到自身的函子(A functor that maps a category to itself);**   
 这是一个很重要概念的，敲黑板，和上面那个单位态射一样，虽然感觉没啥用，但是和0的意义一样重要。
 
@@ -126,6 +121,8 @@ compose(map(f), map(g)) === map(compose(f, g));
 再次重复这句话，现在多少应该有点感觉了，自函子我们知道了，自函子范畴就是自函子组成的范畴，在这个范畴里，自函子就是范畴的对象，那么态射就是函子到函子之间的映射，称之为自然变换。
 
 对于一个函子 M，如果存在自然变换 μ：M(M(x)) -> M(X)、η：x -> M(x)，使得它们保持结合律和单位律，那我们就定义了一个 Monad。注意到μ、η、结合律、单位律形式和幺半群的很相似，所以我们说「自函子范畴上的一个幺半群」。
+
+![](./imgs/monad_associativity.png)
 
 上码
 ```javascript
@@ -169,7 +166,7 @@ mcompose(mcompose(f, g), h) == mcompose(f, mcompose(g, h))
 
 // so，因此Monad函子构成一个范畴
 ```
-![三角同一律](\posts\assets\triangle_identity.png)
+![三角同一律](./imgs/triangle_identity.png)
 
 我们知道函子总是把一个东西从一个范畴映射到另外一个范畴，那么 monad 函子范畴里有啥特殊的本领么？比如 Maybe 函子就能做空值检测，那么Monad能做啥？
 典型的，Promise 就是一个 Monad，Prmise().then().then().then().....catch() 其中每一个 then 都返回一个 Promise 对象。
