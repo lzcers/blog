@@ -20,9 +20,10 @@ emmmm，确实不难理解，当然，首先你要能理解上面那句话里谈
 （猫论）范畴论（category theory）是数学中的一个抽象分支，能够形式化诸如集合论（set theory）、类型论（type theory）、群论（group theory）以及逻辑学（logic）等数学分支中的一些概念。范畴学主要处理对象（object）、态射（morphism）和变化式（transformation），**而这些概念跟编程的联系非常紧密**。
 
 ### 什么是范畴？
+
 > "范畴就是使用箭头连接的物体。"（In mathematics, a category is an algebraic structure that comprises "objects" that are linked by "arrows". ）
 
-![catmap](C:\articles\blog\imgs\catmap.png)
+![catmap](\articles\imgs\catmap.png)
 这里的物体不是单个的对象，而是所指有这些箭头连接起来的对象的集合，也就是上图中圆圈包裹的整体，当然，除此之外还有一些约束，它的定义是这样的：
 
 1. 一系列的对象(object)；
