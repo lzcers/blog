@@ -100,6 +100,7 @@ function genTags() {
     })
 }
 
+// 先干掉文件夹
 delFolder(destPath)
 if (!fs.existsSync(destPath)) {
     fs.mkdir(destPath, function(err) {
