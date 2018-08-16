@@ -26,6 +26,24 @@ function copyFile(srcPath, tarPath, cb) {
     rs.pipe(ws)
 }
 
+function delFolder(path) {
+    let files = []
+    if (fs.existsSync(path)) {
+        files = fs.readdirSync(path)
+        files.forEach((file, index) => {
+            let curPath = path + '/' + file
+            if (fs.statSync(curPath).isDirectory()) {
+                // recurse
+                delFolder(curPath)
+            } else {
+                // delete file
+                fs.unlinkSync(curPath)
+            }
+        })
+        fs.rmdirSync(path)
+    }
+}
+
 function copyFolder(srcDir, tarDir, cb) {
     fs.readdir(srcDir, function(err, files) {
         let count = 0
@@ -82,4 +100,13 @@ function genTags() {
     })
 }
 
-copyFolder(sourcePath, destPath, genTags)
+delFolder(destPath)
+if (!fs.existsSync(destPath)) {
+    fs.mkdir(destPath, function(err) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        copyFolder(sourcePath, destPath, genTags)
+    })
+}

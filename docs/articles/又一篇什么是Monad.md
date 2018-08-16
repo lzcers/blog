@@ -1,5 +1,5 @@
 ---
-Title: 又一篇什么是Monad 
+Title: 又一篇什么是 Monad 
 Tags: 编码 
 PublishDate: 2017/9/1 21:48:38 
 ---
