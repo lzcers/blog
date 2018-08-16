@@ -1,10 +1,10 @@
 ---
 Title: 又一篇什么是 Monad 
 Tags: 编码 
-PublishDate: 2017/9/1 21:48:38 
+PublishDate: 2017](\articles\imgs\9](\articles\imgs\1 21:48:38 
 ---
 
-一开始抱着猎奇的心态学习各种编程语言，从汇编、C/C++、Python、直到LISP。工作后才幡然醒悟，学这么多编程语言而不去使用，那无异于“以有涯随无涯”，最后回首才发现遗忘是多么可怕的事情，学了这么多编程语言到如今也几乎忘得差不多了。当然，并不能因为遗忘而否定学习的意义，学习的意义正是那些遗忘之后留下的东西，学过这么多编程语言，了解了这么多编程范式，学起新的语言来也确实颇有一番一通百通的感觉，拿起文档就写，新语言的特性也能很快上手。真正停止追逐语言的脚步，是从SICP开始的，像是受到了启示，学语言这么久，感触最深的一点，那就是对于学习者而言，需要的不是一本规范，也不是一本操作手册，而是一本解释，SCIP正好回答了我的疑惑，正如其书名所言，讲的是计算机程序的构造与解释，理解到编程活动的本质是通过抽象手段控制复杂度这样道理后，对语言也就没有了追求，转而关注各类语言中所提供的“抽象方式”，对某门语言的学习，仅仅是学习如何在其中恰当的表达思想，不再去死扣规范和各种细节，当然，如果这门语言是工作用的，那才值得这样做。
+一开始抱着猎奇的心态学习各种编程语言，从汇编、C](\articles\imgs\C++、Python、直到LISP。工作后才幡然醒悟，学这么多编程语言而不去使用，那无异于“以有涯随无涯”，最后回首才发现遗忘是多么可怕的事情，学了这么多编程语言到如今也几乎忘得差不多了。当然，并不能因为遗忘而否定学习的意义，学习的意义正是那些遗忘之后留下的东西，学过这么多编程语言，了解了这么多编程范式，学起新的语言来也确实颇有一番一通百通的感觉，拿起文档就写，新语言的特性也能很快上手。真正停止追逐语言的脚步，是从SICP开始的，像是受到了启示，学语言这么久，感触最深的一点，那就是对于学习者而言，需要的不是一本规范，也不是一本操作手册，而是一本解释，SCIP正好回答了我的疑惑，正如其书名所言，讲的是计算机程序的构造与解释，理解到编程活动的本质是通过抽象手段控制复杂度这样道理后，对语言也就没有了追求，转而关注各类语言中所提供的“抽象方式”，对某门语言的学习，仅仅是学习如何在其中恰当的表达思想，不再去死扣规范和各种细节，当然，如果这门语言是工作用的，那才值得这样做。
 
 当见识到抽象的力量之后就一发不可收拾，在函数式编程里充斥着各种“黑魔法”，而自己工作用的JS语言恰好具备展示这些“黑魔法”的能力，尽管有些蹩脚，但也并非不能用，平日里经常用JS写一些函数式的代码，作为一个“魔法师”，总会对自己的能力和知识感到不满，便求精进，然后就理所当然的掉进了函数式的坑里，撞死在范畴论和Monad面前。
 
@@ -12,7 +12,7 @@ PublishDate: 2017/9/1 21:48:38
 
 > 一个单子（Monad）说白了不过就是自函子范畴上的一个幺半群而已，有什么难以理解的。
 
-emmmm，确实不难理解，当然，首先你要能理解上面那句话里谈到的名词，什么是范畴，什么是函子，什么自函子，什么是自函子范畴，什么是幺半群，要理解这些你首先就要面对范畴论，然后一看范畴论就会犯愁。所以直接从数学书起手而不借助例子肯定死的很惨，我对于Monad的学习来自于这里，[《JS 函数式编程指南》](https://github.com/llh911001/mostly-adequate-guide-chinese)，关于函数式编程的种种好处和例子我就不说了。
+emmmm，确实不难理解，当然，首先你要能理解上面那句话里谈到的名词，什么是范畴，什么是函子，什么自函子，什么是自函子范畴，什么是幺半群，要理解这些你首先就要面对范畴论，然后一看范畴论就会犯愁。所以直接从数学书起手而不借助例子肯定死的很惨，我对于Monad的学习来自于这里，[《JS 函数式编程指南》](https:](\articles\imgs\](\articles\imgs\github.com](\articles\imgs\llh911001](\articles\imgs\mostly-adequate-guide-chinese)，关于函数式编程的种种好处和例子我就不说了。
 
 借住编程例子来解释范畴论的概念是很直观的，我先丢概念，不要慌，稍后就解释这些概念如何跟实际编程对应起来的。
 
@@ -38,16 +38,16 @@ emmmm，确实不难理解，当然，首先你要能理解上面那句话里谈
 
 上码：
 ```javascript
-// 态射组合
+](\articles\imgs\](\articles\imgs\ 态射组合
 var compose = function(f,g) {
   return function(x) {
     return f(g(x));
   };
-// 单位态射
+](\articles\imgs\](\articles\imgs\ 单位态射
 var identity = function(x) {
   return x;
 }
-// 结合律
+](\articles\imgs\](\articles\imgs\ 结合律
 var associative = compose(f, compose(g, h)) == compose(compose(f, g), h);
 };
 ```
@@ -69,26 +69,26 @@ var associative = compose(f, compose(g, h)) == compose(compose(f, g), h);
 直接来一个Maybe函子来介绍这种范畴映射带来的好处吧，下面代码只是函子概念在代码中的表达，为了描述这种映射，一般会将函子形象比喻成容器盒子之类的东西，但切记函子只不过是范畴间的映射而已。
 
 ```javascript
-// 构造一个函子对象，一般会形象比喻为构造容器
+](\articles\imgs\](\articles\imgs\ 构造一个函子对象，一般会形象比喻为构造容器
 var Maybe = function(x) {
   this.__value = x;
 }
-// 1. 每个C中的对象 X 对应 D 中的一个对象 F(X)；
+](\articles\imgs\](\articles\imgs\ 1. 每个C中的对象 X 对应 D 中的一个对象 F(X)；
 Maybe.of = function(x) {
   return new Maybe(x);
 }
 Maybe.prototype.isNothing = function() {
   return (this.__value === null || this.__value === undefined);
 }
-// 每个C中的态射  f: X -> Y 对应 D 中的一个态射 F(f): F(X) -> F(Y)
+](\articles\imgs\](\articles\imgs\ 每个C中的态射  f: X -> Y 对应 D 中的一个态射 F(f): F(X) -> F(Y)
 Maybe.prototype.map = function(f) {
   return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.__value));
 }
 
-// identity
+](\articles\imgs\](\articles\imgs\ identity
 map(id) === id;
 
-// composition
+](\articles\imgs\](\articles\imgs\ composition
 compose(map(f), map(g)) === map(compose(f, g));
 ```
 我们把一个东西丢给Maybe函子之后，就将原对象从其所在的范畴提升到了Maybe范畴中去，在这个范畴里的元素，所有态射（map）操作都会自动进行空值检测。无法体会这种抽象提升带来的好处？简单来讲，我们把低层次抽象中不方便处理，不能处理的一些玩意（状态，副作用，IO等）通过函子抽象提升到了更高维度，而在这个维度里我们就能来处理了，举个形象的比喻，就像三维空间里的人不能进行时间跳跃，如果有一个函子能把你映射到四维空间里，那么你就具备任意穿梭时间的能力了。是不是很酷炫？是不是很刺激？对，就是这么魔法！
@@ -122,51 +122,51 @@ compose(map(f), map(g)) === map(compose(f, g));
 
 对于一个函子 M，如果存在自然变换 μ：M(M(x)) -> M(X)、η：x -> M(x)，使得它们保持结合律和单位律，那我们就定义了一个 Monad。注意到μ、η、结合律、单位律形式和幺半群的很相似，所以我们说「自函子范畴上的一个幺半群」。
 
-![](./imgs/monad_associativity.png)
+![](.](\articles\imgs\imgs](\articles\imgs\monad_associativity.png)
 
 上码
 ```javascript
-// 在当前上下文中，单位态射，恒等态射指的是同一个意思
-// 满足函子的定义
+](\articles\imgs\](\articles\imgs\ 在当前上下文中，单位态射，恒等态射指的是同一个意思
+](\articles\imgs\](\articles\imgs\ 满足函子的定义
 var Monad = function(x) {
   this.__value = x;
 }
-// 满足Monad自然变换的定义
+](\articles\imgs\](\articles\imgs\ 满足Monad自然变换的定义
 Monad.of = x => new Monad(x);
-// 满足Monad自然变换的定义
+](\articles\imgs\](\articles\imgs\ 满足Monad自然变换的定义
 Monad.prototype.join = () => this.__value;
-// 满足函子定义
+](\articles\imgs\](\articles\imgs\ 满足函子定义
 Monad.prototype.map = f => Monad.of(f(this.__value));
 
-//  chain :: Monad m => (a -> m b) -> m a -> m b
-// 嵌套的Monad经过chain操作合并一层后，依旧返回一个Monad
+](\articles\imgs\](\articles\imgs\  chain :: Monad m => (a -> m b) -> m a -> m b
+](\articles\imgs\](\articles\imgs\ 嵌套的Monad经过chain操作合并一层后，依旧返回一个Monad
 var chain = curry(function(f, m){
   return m.map(f).join(); 
 });
 
-// 结合律
+](\articles\imgs\](\articles\imgs\ 结合律
 compose(join, map(join)) == compose(join, join)
 
-// 同一律 (M a)，这玩意的交换图像一个三角形，所以又叫三角同一律
+](\articles\imgs\](\articles\imgs\ 同一律 (M a)，这玩意的交换图像一个三角形，所以又叫三角同一律
 compose(join, of) == compose(join, map(of)) == id
 
 
-// 定义Monad组合
+](\articles\imgs\](\articles\imgs\ 定义Monad组合
 var mcompose = function(f, g) {
   return compose(chain(f), chain(g));
 }
 
-//验证同一律
-// 左同一律
+](\articles\imgs\](\articles\imgs\验证同一律
+](\articles\imgs\](\articles\imgs\ 左同一律
 mcompose(M, f) == f
-// 右同一律
+](\articles\imgs\](\articles\imgs\ 右同一律
 mcompose(f, M) == f
-// 验证结合律
+](\articles\imgs\](\articles\imgs\ 验证结合律
 mcompose(mcompose(f, g), h) == mcompose(f, mcompose(g, h))
 
-// so，因此Monad函子构成一个范畴
+](\articles\imgs\](\articles\imgs\ so，因此Monad函子构成一个范畴
 ```
-![三角同一律](./imgs/triangle_identity.png)
+![三角同一律](.](\articles\imgs\imgs](\articles\imgs\triangle_identity.png)
 
 我们知道函子总是把一个东西从一个范畴映射到另外一个范畴，那么 monad 函子范畴里有啥特殊的本领么？比如 Maybe 函子就能做空值检测，那么Monad能做啥？
 典型的，Promise 就是一个 Monad，Prmise().then().then().then().....catch() 其中每一个 then 都返回一个 Promise 对象。

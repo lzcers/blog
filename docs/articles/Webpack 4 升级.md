@@ -1,7 +1,7 @@
 ---
 Title: Webpack 4 升级 
 Tags: 前端 
-PublishDate: 2018/3/14 01:12:51 
+PublishDate: 2018](\articles\imgs\3](\articles\imgs\14 01:12:51 
 ---
 
 因为依赖的关系，无法直接使用 npm up webpack 的方式更新，需要重新安装 webpack 4，除此之外还需要安装 webpack-cli ，然后一路跟着错误提示修改即可。
@@ -21,7 +21,7 @@ PublishDate: 2018/3/14 01:12:51
 3. >
   Error: webpack.optimize.CommonsChunkPlugin has been removed, please use config.optimization.splitChunks instead.
 
-CommonsChunkPlugin 已经再见，变为 optimization.splitChunks 和 optimization.runtimeChunk 两个配置，默认配置就会对异步请求的模块进行提取拆分，更多介绍看*[这里](https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366)*。
+CommonsChunkPlugin 已经再见，变为 optimization.splitChunks 和 optimization.runtimeChunk 两个配置，默认配置就会对异步请求的模块进行提取拆分，更多介绍看*[这里](https:](\articles\imgs\](\articles\imgs\medium.com](\articles\imgs\webpack](\articles\imgs\webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366)*。
 
 4. >
 Webpack 4: compilation.mainTemplate.applyPluginsWaterfall is not a function

@@ -22,7 +22,7 @@ Promise.all(
                     // 替换博文中的图片链接
                     fs.writeFileSync(
                         path.format({ dir: postsDir, base: i }),
-                        data.replace(/\]\(\.\\imgs\\/g, '](\\articles\\imgs\\'),
+                        data.replace(/\]\(\.\\|\/imgs\\|\//g, '](\\articles\\imgs\\'),
                         'utf8'
                     )
                     resolve({
@@ -31,7 +31,7 @@ Promise.all(
                         ...attributes,
                         Content:
                             body
-                                .replace(/\]\(\.\\imgs\\/g, '](\\articles\\imgs\\')
+                                .replace(/\]\(\.\\|\/imgs\\|\//g, '](\\articles\\imgs\\')
                                 .split(/(。)/g, 10)
                                 .join('') + '<strong>……</strong>'
                     })

@@ -1,7 +1,7 @@
 ---
 Title: 用 JS 撸个 LISP 解释器（2）
 Tags: 编程 | 坑
-PublishDate: 2018/6/8 19:53
+PublishDate: 2018](\articles\imgs\6](\articles\imgs\8 19:53
 ---
 
 
@@ -17,10 +17,10 @@ PublishDate: 2018/6/8 19:53
 上篇中实现一个一个 tokenizer，并简单介绍了 Parser Combinator 的概念，接下来我将在此之上进一步用 Parser Combinator 实现 AST（抽象语法树） 的生成。
 
 ```javascript
-// 一个高阶函数，用于创建标识符解析器， 比如说 Ｇ　-> s 解析 s 终结符
+](\articles\imgs\](\articles\imgs\ 一个高阶函数，用于创建标识符解析器， 比如说 Ｇ　-> s 解析 s 终结符
 const ID = id => tokens => tokens[0] === id ? [{type: 'identifier', value: tokens[0]}, tokens.slice(1)] : null
 
-// 只要有一个解析器解析成功就是解析成功, 相当文法中的 | 符号，比如 G -> A | B | C
+](\articles\imgs\](\articles\imgs\ 只要有一个解析器解析成功就是解析成功, 相当文法中的 | 符号，比如 G -> A | B | C
 const OR = (...parsers) => tokens => {
   for (const p of parsers) {
     const result = p(tokens)
@@ -29,9 +29,9 @@ const OR = (...parsers) => tokens => {
   return null
 }
 
-// 只有全部解析器都解析成功才成功， 相当于文法的连接
-// 比如对于文法 G -> A B C 
-// 只有 A B C 都解析成功, G 才解析成功
+](\articles\imgs\](\articles\imgs\ 只有全部解析器都解析成功才成功， 相当于文法的连接
+](\articles\imgs\](\articles\imgs\ 比如对于文法 G -> A B C 
+](\articles\imgs\](\articles\imgs\ 只有 A B C 都解析成功, G 才解析成功
 const SEQ = (...parsers) => tokens => {
   let result = []
   let rest = tokens
@@ -44,7 +44,7 @@ const SEQ = (...parsers) => tokens => {
   }
   return [result, rest]
 }
-// 对 tokens 使用一个 parser 解析任意次，直到解析失败，将结果返回，max 设置为 -1 相当于正则里的 *
+](\articles\imgs\](\articles\imgs\ 对 tokens 使用一个 parser 解析任意次，直到解析失败，将结果返回，max 设置为 -1 相当于正则里的 *
 const REP = (parser, max = -1) => tokens => {
   let count = 0;
   let result = []
@@ -66,54 +66,54 @@ const REP = (parser, max = -1) => tokens => {
 用上面定义的这些原子来定义更复杂语法，以实现一个表达式计算器为例
 
 ```javascript
-const NUM = tokens => /\d/g.test(tokens[0]) ? [{type: 'number', value: Number(tokens[0])}, tokens.slice(1)] : null
+const NUM = tokens => ](\articles\imgs\\d](\articles\imgs\g.test(tokens[0]) ? [{type: 'number', value: Number(tokens[0])}, tokens.slice(1)] : null
 const BOOL = tokens => {
   const t = ID('#t')(tokens)
   const f = ID('#f')(tokens)
   return t ? [{type: 'bool', value: true}, t[1]] : f ? [{type: 'bool', value: false}, f[1]] : null
 }
 const STR = tokens => {
-  const r = /^"(.*)"$/g.exec(tokens[0])
+  const r = ](\articles\imgs\^"(.*)"$](\articles\imgs\g.exec(tokens[0])
   if (r) return [{type: 'string', value: r[1]}, tokens.slice(1)]
   return null
 }
-// lisp 语法定义, 参考 R5RS
-// <SELFEVAL> -> <BOOL> | <STR> | <NUM>
+](\articles\imgs\](\articles\imgs\ lisp 语法定义, 参考 R5RS
+](\articles\imgs\](\articles\imgs\ <SELFEVAL> -> <BOOL> | <STR> | <NUM>
 const SELFEVAL = tokens => {
   const r = OR(BOOL, STR, NUM)(tokens)
   if (r) r[0].type = 'selfeval'
   return r
 }
-// <VAR> -> <any <identifier> that is not also a <syntactic keyword>>
+](\articles\imgs\](\articles\imgs\ <VAR> -> <any <identifier> that is not also a <syntactic keyword>>
 const VAR = tokens => { 
-  const OPERATOR = OR(ID('+'), ID('-'), ID('*'), ID('/'))
+  const OPERATOR = OR(ID('+'), ID('-'), ID('*'), ID('](\articles\imgs\'))
   const r = OR(OPERATOR)(tokens)
   if (r) r[0].type = 'var'
   return r
 }
-// <LITERAL> -> <SELFEVAL>
+](\articles\imgs\](\articles\imgs\ <LITERAL> -> <SELFEVAL>
 const LITERAL = SELFEVAL
-// <OPERATOR> -> EXP
+](\articles\imgs\](\articles\imgs\ <OPERATOR> -> EXP
 const OPERATOR = tokens => EXP(tokens)
-// <PRODCALL> -> (<OPERATOR> <EXP>*）
+](\articles\imgs\](\articles\imgs\ <PRODCALL> -> (<OPERATOR> <EXP>*）
 const PRODCALL = tokens => {
   const r = SEQ(ID('('), OPERATOR, REP(EXP), ID(')'))(tokens)
-  // 去掉 () 
+  ](\articles\imgs\](\articles\imgs\ 去掉 () 
   return r ? [{type: 'procedurecall', value: r[0].slice(1, -1)}, r[1]] : null
 }
-// <EXP> -> <VAR> | <LITERAL> | PRODCALL
+](\articles\imgs\](\articles\imgs\ <EXP> -> <VAR> | <LITERAL> | PRODCALL
 const EXP = tokens => OR(VAR, LITERAL, PRODCALL)(tokens)
 ```
 
 接下来是最重要的 eval 函数了
 
 ```javascript
-// 定义环境
+](\articles\imgs\](\articles\imgs\ 定义环境
 const baseProcedure = {
   '+': args => args.reduce((pre, cur) => cur + pre),
   '-': args => args.reduce((pre, cur) => cur - pre),
   '*': args => args.reduce((pre, cur) => cur * pre),
-  '/': args => args.reduce((pre, cur) => pre / cur),  
+  '](\articles\imgs\': args => args.reduce((pre, cur) => pre ](\articles\imgs\ cur),  
 }
 const env = {
   ...baseProcedure
@@ -154,24 +154,24 @@ function repl(str) {
 ```lisp
 ; 简单点的运算
 repl('(+ 1 2 3)')
-// 6
+](\articles\imgs\](\articles\imgs\ 6
 repl('(* 4 3 3)')
-// 36
+](\articles\imgs\](\articles\imgs\ 36
 repl('(- 4 2 1)')
-// 1
-repl('(/ 4 2)')
-// 2
-repl('(/ 8 2 2 2)')
-// 1
+](\articles\imgs\](\articles\imgs\ 1
+repl('(](\articles\imgs\ 4 2)')
+](\articles\imgs\](\articles\imgs\ 2
+repl('(](\articles\imgs\ 8 2 2 2)')
+](\articles\imgs\](\articles\imgs\ 1
 ; 嵌套表达式计算
 repl('(+ (+ 1 2) (+ 2 3))')
-// 8
+](\articles\imgs\](\articles\imgs\ 8
 repl('(+ 1 2 3 (+ 1 (+ 2 3)))')
-// 12
+](\articles\imgs\](\articles\imgs\ 12
 repl('(* 2 (+ 1 2 3 (+ 1 (+ 2 3))))')
-// 24
-repl('(/ 2 0)')
-// Infinity
+](\articles\imgs\](\articles\imgs\ 24
+repl('(](\articles\imgs\ 2 0)')
+](\articles\imgs\](\articles\imgs\ Infinity
 ```
 
 就这样，一个简单的S-表达式计算器就搞定了，但是离一个真正的编程语言还有一定距离。

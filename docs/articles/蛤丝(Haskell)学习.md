@@ -1,12 +1,12 @@
 ---
 Title: 蛤丝(Haskell)学习
 Tags: 编程
-PublishDate: 2018/6/19 23:42
+PublishDate: 2018](\articles\imgs\6](\articles\imgs\19 23:42
 ---
 
 知乎上关注的很多前端大佬都是函数式编程玩的贼 6 的那种，动不动就贴 Haskell 代码，就想学习下蛤丝（Haskell）语言，增长点姿势，尽管之前玩 Lisp 有一点点函数式编程的体验，但是 Haskell 的类型和惰性求值还是要感受下的。
 
-从 [Haskell 趣学指南](http://fleurer.github.io/lyah/) 开始，不得不说，语法糖真是好吃啊，代码还能这样写。
+从 [Haskell 趣学指南](http:](\articles\imgs\](\articles\imgs\fleurer.github.io](\articles\imgs\lyah](\articles\imgs\) 开始，不得不说，语法糖真是好吃啊，代码还能这样写。
 
 ```haskell
 quicksort :: (Ord a) => [a] -> [a]   

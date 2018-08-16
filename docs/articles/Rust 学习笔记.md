@@ -1,7 +1,7 @@
 ---
 Title: Rust 学习笔记
 Tags: 编程
-PublishDate: 2018/8/6 19:25:28
+PublishDate: 2018](\articles\imgs\8](\articles\imgs\6 19:25:28
 ---
 
 ### 为什么学习 Rust ？
@@ -16,7 +16,7 @@ PublishDate: 2018/8/6 19:25:28
 
 无论如何，不同编程范式的语言都有通用的编程概念，迅速找到这些**通用概念**在该语言中的表达方式就能快速上手写代码了，比如`变量声明、数据类型、控制流、函数`，然后再去学习这些语言里的独特概念并付诸实践。要把代码写好，还需要付出更多精力去学习这门语言的优秀实践。
 
-后续会持续学习 Rust，并补充笔记，然后写一个 Rust 编译到 [WwebAssembly](https://developer.mozilla.org/zh-CN/docs/WebAssembly) 的例子。
+后续会持续学习 Rust，并补充笔记，然后写一个 Rust 编译到 [WwebAssembly](https:](\articles\imgs\](\articles\imgs\developer.mozilla.org](\articles\imgs\zh-CN](\articles\imgs\docs](\articles\imgs\WebAssembly) 的例子。
 
 ## 基本的表达方式
 
@@ -28,7 +28,7 @@ PublishDate: 2018/8/6 19:25:28
 
 Rust 采用 snake case 风格声明变量和函数名，也就是小写字母加下划线分隔。
 
-`//` 声明代码注释，还有一种文档注释
+`](\articles\imgs\](\articles\imgs\` 声明代码注释，还有一种文档注释
 
 ### 数据类型
 
@@ -50,10 +50,10 @@ Rust 中将内建的类型分为两类：标量（scalar）和复合（compound�
 
   `tuple: (T, U, G,....)` 元组
   ```rust
-  let x: (i32, f64, u8) = (500, 6.4, 1); // 元组声明
-  let five_hundred = x.0; // 索引访问
-  let a = [1, 2, 3, 4, 5]; // 数组声明
-  let first = a[0]; // 数组访问
+  let x: (i32, f64, u8) = (500, 6.4, 1); ](\articles\imgs\](\articles\imgs\ 元组声明
+  let five_hundred = x.0; ](\articles\imgs\](\articles\imgs\ 索引访问
+  let a = [1, 2, 3, 4, 5]; ](\articles\imgs\](\articles\imgs\ 数组声明
+  let first = a[0]; ](\articles\imgs\](\articles\imgs\ 数组访问
   ```
 
 * silce: 一个没有所有权的数据类型，可类比于 go 的切片，字符串字面值就是 slice，其类型是`&str`，是不可变的，我们以可以对一个字符串进行切片操作，也可以对数组如此。
@@ -90,19 +90,19 @@ fn main() {
         Quarter(u32),
     }
     fn value_in_cents(coin: Coin) -> u32 {
-        // 与 if 不同，match 后接的表达式可以返回任何类型，不一定要布尔类型
-        // match 会以匹配到的分支代码执行结果作为返回值, 在分支用运行多段代码可以用大括号 {}
-        // 匹配条件中亦可以用 (<var>) 来绑定匹配的值，因而可以实现对结构的解构
-        // 也可以用 _ 来匹配任意值
+        ](\articles\imgs\](\articles\imgs\ 与 if 不同，match 后接的表达式可以返回任何类型，不一定要布尔类型
+        ](\articles\imgs\](\articles\imgs\ match 会以匹配到的分支代码执行结果作为返回值, 在分支用运行多段代码可以用大括号 {}
+        ](\articles\imgs\](\articles\imgs\ 匹配条件中亦可以用 (<var>) 来绑定匹配的值，因而可以实现对结构的解构
+        ](\articles\imgs\](\articles\imgs\ 也可以用 _ 来匹配任意值
         match coin {
             Coin::Penny => 1,
             Coin::Nickel => 5,
-            // 假设我们忘记 enum 的一种情况，编译器就会报错  ^^^^ pattern `Dime` not covered
-            // 因为 match 必须是穷尽的，但是对于一个很大的集合，我们只在乎那些我们关注的值，穷尽就难做到了，
-            // 在这种情况下，我们就需要用到特殊的匹配模式 _， 类比于 switch 中的 default 分支
-            // 如果不能穷尽那就必须有 defalut 补全，在 JS 中 defalut 可以省略，但是某些规范检查会强制要求有 defalut 分支
-            // Rust 在语法层面上就包含了某些优秀的实践，约束程序员能写出正确的代码
-            // Coin::Dime => 10,
+            ](\articles\imgs\](\articles\imgs\ 假设我们忘记 enum 的一种情况，编译器就会报错  ^^^^ pattern `Dime` not covered
+            ](\articles\imgs\](\articles\imgs\ 因为 match 必须是穷尽的，但是对于一个很大的集合，我们只在乎那些我们关注的值，穷尽就难做到了，
+            ](\articles\imgs\](\articles\imgs\ 在这种情况下，我们就需要用到特殊的匹配模式 _， 类比于 switch 中的 default 分支
+            ](\articles\imgs\](\articles\imgs\ 如果不能穷尽那就必须有 defalut 补全，在 JS 中 defalut 可以省略，但是某些规范检查会强制要求有 defalut 分支
+            ](\articles\imgs\](\articles\imgs\ Rust 在语法层面上就包含了某些优秀的实践，约束程序员能写出正确的代码
+            ](\articles\imgs\](\articles\imgs\ Coin::Dime => 10,
             Coin::Quarter(value) => {
                 println!("value is {}!", value);
                 25
@@ -110,24 +110,24 @@ fn main() {
             _ => 0,
         }
     }
-    // 理所当然的，我们也可以匹配 Option
+    ](\articles\imgs\](\articles\imgs\ 理所当然的，我们也可以匹配 Option
     fn match_option(x: Option<i32>) -> Option<i32> {
         match x {
             None => None,
             Some(i) => Some(i + 1),
         }
     }
-    // 如果我们只关注一个值，那就就有一个语法糖
+    ](\articles\imgs\](\articles\imgs\ 如果我们只关注一个值，那就就有一个语法糖
     let some_u8_value = Some(0u8);
     match some_u8_value {
         Some(3) => println!("three"),
         _ => (),
     }
-    // 上面代码等价于
+    ](\articles\imgs\](\articles\imgs\ 上面代码等价于
     if let Some(3) = some_u8_value {
         println!("three");
     }
-    // if let 也可以有 else 分支
+    ](\articles\imgs\](\articles\imgs\ if let 也可以有 else 分支
     else {
         println!("other")
     }
@@ -147,12 +147,12 @@ fn main() {
  通过结构体创建新的复合类型，Key: Value 形式
 
 ```rust
-// 定义
+](\articles\imgs\](\articles\imgs\ 定义
 struct User {
     username: String,
     email: String,
 }
-// 创捷实例
+](\articles\imgs\](\articles\imgs\ 创捷实例
 let mut user1 = User {
     email: String::from("someone@example.com"),
     username: String::from("someusername123"),
@@ -179,11 +179,11 @@ let user2 = User {
 
 ```rust
 impl Rectangle {
-    // 方法语句
+    ](\articles\imgs\](\articles\imgs\ 方法语句
     fn area(&self) -> u32 {
         self.width * self.height
     }
-    // 关联函数
+    ](\articles\imgs\](\articles\imgs\ 关联函数
     fn square(size: u32) -> Rectangle {
         Rectangle { width: size, height: size }
     }
@@ -196,26 +196,26 @@ Rust 里的枚举就有些强了，看官方案例，枚举成员与其命名空
 
 ```rust
 enum IpAddrKind {
-    V4, // 没关联任何数据和类型
+    V4, ](\articles\imgs\](\articles\imgs\ 没关联任何数据和类型
     V6,
 }
 let four = IpAddrKind::V4;
 let six = IpAddrKind::V6;
-// 直接声明枚举成员的类型并将数据附加到成员上
+](\articles\imgs\](\articles\imgs\ 直接声明枚举成员的类型并将数据附加到成员上
 enum IpAddr {
     V4(String),
     V6(String),
 }
 enum Message {
     Quit,
-    Move { x: i32, y: i32 }, // 包含一个匿名结构体
+    Move { x: i32, y: i32 }, ](\articles\imgs\](\articles\imgs\ 包含一个匿名结构体
     Write(String),
-    ChangeColor(i32, i32, i32), // 一个匿名元祖
+    ChangeColor(i32, i32, i32), ](\articles\imgs\](\articles\imgs\ 一个匿名元祖
 }
-// 枚举也可以用 impl 来定义成员方法
+](\articles\imgs\](\articles\imgs\ 枚举也可以用 impl 来定义成员方法
 impl Message {
     fn call(&self) {
-        // method body would be defined here
+        ](\articles\imgs\](\articles\imgs\ method body would be defined here
     }
 }
 
@@ -250,9 +250,9 @@ enum Option<T> {
 
 ```rust
 let mut s = String::from("hello");
-let r1 = &s; // no problem
-let r2 = &s; // no problem
-let r3 = &mut s; // BIG PROBLEM
+let r1 = &s; ](\articles\imgs\](\articles\imgs\ no problem
+let r2 = &s; ](\articles\imgs\](\articles\imgs\ no problem
+let r3 = &mut s; ](\articles\imgs\](\articles\imgs\ BIG PROBLEM
 ```
 
 关于引用，总结来说就是：
