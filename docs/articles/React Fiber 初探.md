@@ -34,7 +34,7 @@ PublishDate: 2018/8/18 23:47
 
 > **window.requestIdleCallback()**会在浏览器空闲时期依次调用函数， 这就可以让开发者在主事件循环中执行后台或低优先级的任务，而且不会对像动画和用户交互这样延迟触发而且关键的事件产生影响。函数一般会按先进先调用的顺序执行，除非函数在浏览器调用它之前就到了它的超时时间。 
 
-我们知道浏览器的绘制是按帧来的，通常一帧约16ms，只要维持在每秒 30 - 60 帧就不会影响用户体验，而每一帧的绘制期间会有一小段间隔时间，称之为 **空闲期（idle Period）**，如上面所说，我们可以把一些低优先级的任务的任务放在这个期间处理，这种就不会影响用户交互和动画，相反高优先级的任务就丢给 `requestAnimationFrame`处理咯。
+我们知道浏览器的绘制是按帧来的，通常一帧约16ms，只要维持在每秒 30 - 60 帧就不会影响用户体验，而每一帧的绘制期间会有一小段间隔时间，称之为**空闲期（idle Period）**，如上面所说，我们可以把一些低优先级的任务的任务放在这个期间处理，这种就不会影响用户交互和动画，相反高优先级的任务就丢给 `requestAnimationFrame`处理咯。（在 Chrome Dev Tools 的 Performance 中可以看到 Frame 相关的信息）
 
 ![frame](\articles\imgs\frame.png) 
 
@@ -44,7 +44,7 @@ const handle = window.requestIdleCallback(callback[, options])
 
 如果我们使用 `requestAnimationFrame` 注册了回调函数，但是浏览器压根没有空闲期咋办，可以根据它的第二个参数来配置强制执行时间。`options`参数值被指定为正数时，当做浏览器调用 callback 的最后期限，它的单位是毫秒。 
 
-也就是说`requestIdleCallback(callback, 5000)`时，若 5000ms 内没有空闲期，callback 就会被强制执行，也就是说 callback 最迟会在 5000ms 之后执行，此时就和 setTimeout 一样了。`requestIdleCallback `利用的是帧尾的空闲时间，在这之前所有的 rAF、Layout、Paint 已经准备好了，所以在这里面不推荐放 DOM 操作以及时间不可预测的操作，在这里面做 DOM 操作会导致 Layout 计算失效拉长整个帧的耗时。
+也就是说`requestIdleCallback(callback, 5000)`时，若 5000ms 内没有空闲期，callback 就会被强制执行，此时就和 setTimeout 一样了。`requestIdleCallback `利用的是帧尾的空闲时间，在这之前所有的 rAF、Layout、Paint 已经准备好了，所以在这里面不推荐放 DOM 操作以及时间不可预测的操作，在这里面做 DOM 操作会导致 Layout 计算失效拉长整个帧的耗时。
 
 `callback`函数接收两个参数：
 
