@@ -1,5 +1,5 @@
 ---
-Title: 蛤丝(Haskell)学习
+Title: 蛤丝（Haskell）学习
 Tags: 编程
 PublishDate: 2018/6/19 23:42
 ---
@@ -32,8 +32,6 @@ function quickSort(arr) {
 ```
 
 加上类型签名，代码行数好像差不多？？不过字符数量少呀。
-
-
 
 **fold**
 
