@@ -440,8 +440,16 @@
     "Content": "\r\n# 引言  \r\n多数人初次使用JavaScript的时候，恐怕都将其作为一种粘合剂使用，用诸如JQuery之类的库来控制页面为，与后端交互等。\r\n当然，这并没有错，这门语言在设计之初就是如此考虑的，但是随着Web技术的发展，JS却出乎意料的成为了浏览器语言的最终胜利者，并被各大浏览器支持，性能也得到了质的提升，隐隐有成为浏览器上的汇编语言这一趋势，出现了诸多以JS代码作为编译目标的语言，如CoffeeScript，TypeScript。\r\n\r\n随着Node.js等一系列的技术出现，JS的领域甚至被拓展至了浏览器之外，如React-Native开发ios、Android应用，GitHub开发的Atom编辑器，即便是在Web端，随着各种前端框架、工程化工具的不断涌现，JS也越来越受到重视，现在JavaScript已经成为了世界上使用最广泛的软件平台，互联网的核心技术。\r\n\r\n**是时候严肃认真的学习它了，深入才能察觉深度，当你学习诸如闭包，this，作用域链，原型链等概念的时候，你会发现JS并不简单！**\r\n\r\n# 作用域与原型\r\n## 作用域\r\n为什么称其为JS的任督二脉？与之相关的概念有作用域链、原型链，而JS中那些最复杂的概念，如闭包等概念其实都在建立在这两套机制之上的，可以说理解了JS的作用域与原型，就掌握了JS精髓的70%!，也只有理解了这两个概念，才能从容自信的使用JS中的各种魔法，或是处理各种奇怪的问题。\r\n作用域一词从字面上来理解，即代码中标识符被限定的可见范围，某些标识符并不总是可见的，会因为声明位置的不同而有所差异。<strong>……</strong>"
   },
   {
-    "fileName": "Cycle.js 体验.md",
+    "fileName": "JS 学习补遗.md",
     "ID": 55,
+    "Title": "JS 学习补遗",
+    "Tags": "前端",
+    "PublishDate": "2018/8/13 0:40:49",
+    "Content": "\r\n## Promise\r\n\r\n### Promise.prototype.finally()\r\n\r\n通常我们知道 JS 里 Promise 的实例方法有 `then、catch` ES2018 还引入 `finally`，这意味着 Promise 的状态无论如何，该方法都会调用，通常用于善后处理，比如文件打开完事后关闭，它和`catch`一样，都是 `then`的一个特例，最新还有一个 `Promise.try()` 提案，用于统一处理异步与同步异常。\r\n\r\n### Promise.race()\r\n\r\n我知道有 `Promise.all()`可以将多个 Promise 包装成一个新的实例，在所有 Promise 实例 `fulfilled` 后该实例才 `fulfilled` 。但还有一个 `Promise.race()` 同样可以包装多个 Promise 实例，但只要其中任意一个实例率先 `fulfilled`，该新实例状态就会 `fulfilled`，并接收率先`fulfilled`实例的返回值，这不是新的方法，也许以前看过，但因为没有应用场景被遗忘了，对于同一个数据有两个接口可用，使用最快响应的接口数据，这样的场景下可以考虑该方法。\r\n\r\n```javascript\r\nlet p1 = new Promise((resolve, reject) => {\r\n  setTimeout(() => resolve('p1'), 1100)\r\n})\r\nlet p2 = new Promise((resolve, reject) => {\r\n  setTimeout(() => resolve('p2'), 500)\r\n})\r\n\r\nPromise.race([p1, p2]).then(res => console.log(res)) // p2\r\n```\r\n\r\n## Generator\r\n\r\n直接用上了 `async/await`，对`Generator`仅停留在了解的层面，但是最近写业务代码似乎想起来可以用这玩意啊，\r\n\r\n通常我们的业务系统根据 Use Case 拆分成了一系列服务，这意味着开发一个场景的功能需要调用多个异步请求服务，尽管我们用 `Promise` 和 `async/await`解决了多个异步调用下的回调地狱问题，但我期望能有这样一个函数，它代表着某一个 Use Case 的抽象，每次调用喂一部分参数，全部喂完后就给我结果。\r\n\r\n比如说我们业务有这样一个复杂地查询场景，查询一份报告需要这样几步，每步都涉及服务调用。<strong>……</strong>"
+  },
+  {
+    "fileName": "Cycle.js 体验.md",
+    "ID": 56,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -449,7 +457,7 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 56,
+    "ID": 57,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
