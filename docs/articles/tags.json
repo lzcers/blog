@@ -413,7 +413,7 @@
     "Title": "React Fiber 初探",
     "Tags": "前端",
     "PublishDate": "2018/8/18 23:47",
-    "Content": "\r\n## 为什么要有 React Fiber\r\n\r\n尽管 React 有非常优秀的常数级 Vitural DOM Diff 算法，但是对于一个复杂的页面而言，React 的调度策略 Stack Reconcile 会深度优先遍历所有的 Vitural DOM 并 Diff 计算完成后才会将主线程释放，这个期间用户与浏览器的任何交互都是得不到反馈的，表现出的样子就是浏览器僵死，只有任务结束后才会得到响应，函数的调用栈就像下面这个样子。\r\n\r\n![img](\\articles\\imgs\\fiber2.jpg) \r\n\r\n怎么才能使得用户察觉不出卡顿？渲染绘制时间小于 **16.6ms**。\r\n\r\n为什么是 16.6ms？一般用户的显示器都是 60Hz 的刷新率，那意味着每帧的绘制时间只有 1000ms / 60 ~ 16.6ms，一但渲染时间超过这个时间，用户就能察觉到卡顿，当然，这里的 16.6ms 是对于动画而言的，通常页面并不会变化如此频繁，如果你用 JS 写动画就要考虑这点了。\r\n\r\n因此，我们不能让 Vitural DOM 这样相对耗时复杂任务长期占据主线程堵塞渲染，在不考虑突破浏览器单线程模型的情况下，**我们只能将这个耗时的长任务分片处理**，这就是 React Fiber 做的，在此之后函数的调用栈就长这样了。\r\n\r\n![img](\\articles\\imgs\\fiber1.jpg) \r\n\r\n**那若是用多线程呢？** 应用 Web Worker，我们可以把一些耗时的任务放入 Web Worker 中去处理，而且也不会堵塞渲染，它不正是做这种事情嘛。<strong>……</strong>"
+    "Content": "\r\n## 为什么要有 React Fiber\r\n\r\n尽管 React 有非常优秀的  Vitural DOM Diff 算法，但是对于一个复杂的页面而言，React 的调度策略 Stack Reconcile 会深度优先遍历所有的 Vitural DOM 并 Diff 计算完成后才会将主线程释放，这个期间用户与浏览器的任何交互都是得不到反馈的，表现出的样子就是浏览器僵死，只有任务结束后才会得到响应，函数的调用栈就像下面这个样子。\r\n\r\n![img](\\articles\\imgs\\fiber2.jpg) \r\n\r\n怎么才能使得用户察觉不出卡顿？渲染绘制时间小于 **16.6ms**。\r\n\r\n为什么是 16.6ms？一般用户的显示器都是 60Hz 的刷新率，那意味着每帧的绘制时间只有 1000ms / 60 ~ 16.6ms，一但渲染时间超过这个时间，用户就能察觉到卡顿，当然，这里的 16.6ms 是对于动画而言的，通常页面并不会变化如此频繁，如果你用 JS 写动画就要考虑这点了。\r\n\r\n因此，我们不能让 Vitural DOM 这样相对耗时复杂任务长期占据主线程堵塞渲染，在不考虑突破浏览器单线程模型的情况下，**我们只能将这个耗时的长任务分片处理**，这就是 React Fiber 做的，在此之后函数的调用栈就长这样了。\r\n\r\n![img](\\articles\\imgs\\fiber1.jpg) \r\n\r\n**那若是用多线程呢？** 应用 Web Worker，我们可以把一些耗时的任务放入 Web Worker 中去处理，而且也不会堵塞渲染，它不正是做这种事情嘛。<strong>……</strong>"
   },
   {
     "fileName": "koa-compose 浅析.md",

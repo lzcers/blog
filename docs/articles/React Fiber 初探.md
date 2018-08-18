@@ -6,7 +6,7 @@ PublishDate: 2018/8/18 23:47
 
 ## 为什么要有 React Fiber
 
-尽管 React 有非常优秀的常数级 Vitural DOM Diff 算法，但是对于一个复杂的页面而言，React 的调度策略 Stack Reconcile 会深度优先遍历所有的 Vitural DOM 并 Diff 计算完成后才会将主线程释放，这个期间用户与浏览器的任何交互都是得不到反馈的，表现出的样子就是浏览器僵死，只有任务结束后才会得到响应，函数的调用栈就像下面这个样子。
+尽管 React 有非常优秀的  Vitural DOM Diff 算法，但是对于一个复杂的页面而言，React 的调度策略 Stack Reconcile 会深度优先遍历所有的 Vitural DOM 并 Diff 计算完成后才会将主线程释放，这个期间用户与浏览器的任何交互都是得不到反馈的，表现出的样子就是浏览器僵死，只有任务结束后才会得到响应，函数的调用栈就像下面这个样子。
 
 ![img](\articles\imgs\fiber2.jpg) 
 
