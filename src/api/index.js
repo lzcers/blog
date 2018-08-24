@@ -3,10 +3,15 @@ import cache from '@/utils/cache.js'
 import marked from '@/utils/mdRender.js'
 import 'core-js/shim'
 
-const tagsUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/tags.json'
+const tagsUrl =
+    'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/2ffd6f41367221a4ad6b953332207079e62252ff/docs/articles/tags.json'
 const localTagsUrl = '/articles/tags.json'
-const fileUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/'
+const fileUrl =
+    'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/2ffd6f41367221a4ad6b953332207079e62252ff/docs/articles/'
 const localfileUrl = '/articles/'
+
+axios.defaults.timeout = 3500
+
 function getTagsData(url) {
     if (cache.has('postList')) return Promise.resolve(cache.get('postList'))
     return axios
