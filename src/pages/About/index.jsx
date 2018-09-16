@@ -24,7 +24,10 @@ const About = _ => (
             能做的，仅是用文字去挽留那些思绪，在这里，给未来的自己留些东西， 也许能勾起回忆，也许能让回忆更加深刻。
         </p>
         <br />
-        <a href="https://github.com/lzcers">My GitHub</a> <br />
+        <a style="text-decoration: underline;" href="https://github.com/lzcers">
+            My GitHub
+        </a>
+        <br />
         <i>Email: lzcers@gmail.com</i> <br />
     </div>
 )
