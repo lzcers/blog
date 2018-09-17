@@ -5,6 +5,7 @@ import Home from '@/pages/Home'
 import Post from '@/pages/Post'
 import About from '@/pages/About'
 import Archive from '@/pages/Archive'
+import Notes from '@/pages/Notes'
 
 const Routes = _ => (
     <Switch>
@@ -15,6 +16,7 @@ const Routes = _ => (
         <Route path="/about" component={About} />
         <Route path="/archive/tag/:tag" component={Archive} />
         <Route path="/archive" component={Archive} />
+        <Route path="/notes" component={Notes} />
     </Switch>
 )
 export default Routes

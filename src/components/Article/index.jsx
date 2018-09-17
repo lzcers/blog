@@ -7,7 +7,7 @@ import './markdown.scss'
 import './article.scss'
 // import angleLeft from '@fortawesome/fontawesome-free-solid/faAngleDoubleLeft'
 // import angleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
-// import Toc from '@/components/Toc'
+import Toc from '@/components/Toc'
 
 const Article = ({ id, title, tags, publishDate, content, toc, mode }) => {
     const date = new Date(publishDate)
@@ -15,10 +15,14 @@ const Article = ({ id, title, tags, publishDate, content, toc, mode }) => {
     const [month, day, year] = [enMonth[date.getMonth()], date.getDate() + 'TH', date.getFullYear()]
     return (
         <article className="article post">
-            {/* <Toc toc={toc} /> */}
             <h1 className="article-title">{mode ? title : <Link to={'/post/' + id}>{title}</Link>}</h1>
             <div className="article-date">{`${month || ''} ${day} ${year || ''}`}</div>
             <div className="article-content">
+                {toc && toc.childrenNode.length >= 3 ? (
+                    <aside className="article-toc">
+                        <Toc toc={toc} />
+                    </aside>
+                ) : null}
                 <div className="post-body markdown-body" dangerouslySetInnerHTML={{ __html: content }} />
             </div>
             <div className="article-info">

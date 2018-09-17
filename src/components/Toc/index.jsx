@@ -7,7 +7,7 @@ function goAnchor(selector) {
     // DTD是否存,会影响document.body.scrollTop 与 document.documentElement.scrollTop的取值
     let curPY = document.documentElement.scrollTop || document.body.scrollTop
     // 目标位置
-    const targetPY = anchor.offsetTop
+    const targetPY = anchor.offsetTop - 80
     // 速率
     const rate = 4
     if (anchor != null) {
@@ -39,7 +39,7 @@ function li(toc, index) {
 export default ({ toc }) =>
     toc ? (
         <div className="toc">
-            {toc.childrenNode.length > 3 ? <h3>目录</h3> : null}
+            {/* {toc.childrenNode.length > 3 ? <h3>目录</h3> : null} */}
             <ol>{toc.childrenNode.map((e, i) => li(e, e.nodeID + i))}</ol>
         </div>
     ) : null
