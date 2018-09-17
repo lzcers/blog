@@ -42,7 +42,7 @@ PublishDate: 2018/8/18 23:47
 const handle = window.requestIdleCallback(callback[, options])
 ```
 
-如果我们使用 `requestAnimationFrame` 注册了回调函数，但是浏览器压根没有空闲期咋办，可以根据它的第二个参数来配置强制执行时间。`options`参数值被指定为正数时，当做浏览器调用 callback 的最后期限，它的单位是毫秒。 
+如果我们使用 `requestIdleCallback` 注册了回调函数，但是浏览器压根没有空闲期咋办，可以根据它的第二个参数来配置强制执行时间。`options`参数值被指定为正数时，当做浏览器调用 callback 的最后期限，它的单位是毫秒。 
 
 也就是说`requestIdleCallback(callback, 5000)`，若 5000ms 内没有空闲期，callback 就会被强制执行，此时就和 setTimeout 一样了。`requestIdleCallback `利用的是帧尾的空闲时间，在这之前所有的 rAF、Layout、Paint 已经准备好了，所以在这里面不推荐放 DOM 操作以及时间不可预测的操作，在这里面做 DOM 操作会导致 Layout 计算失效拉长整个帧的耗时。
 
