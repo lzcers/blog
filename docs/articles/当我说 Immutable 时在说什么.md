@@ -24,7 +24,7 @@ PublishDate: 2018/9/16 14:45
 
 **Immer.js**
 
-**Immer.js** 的解决方案就更有意思了，作者就是搞 mobx 的那个，为了实现 immutable 我们不能对原状态做修改，因此为了基于原状态生成新的状态，我们肯定不可避免地要进行深拷贝了，如果我们能知道修改了哪些，那么其实j就可以对未变化的数据使用浅拷贝，复用已存在的数据，减少内存开销，Immer.js 有意思地是通过 proxy 来实现了 immutable，简单来说就是在 currentState 上生成一个代理 draftState，然后再基于这个 draftState 生成 nextState，即 currentState -> DraftState -> nextState。与 immutable.js 完全自己造一套数据结构不同，immer.js 使用的是原生数据结构。
+**Immer.js** 的解决方案就更有意思了，作者就是搞 mobx 的那个，为了实现 immutable 我们不能对原状态做修改，因此为了基于原状态生成新的状态，我们肯定不可避免地要进行深拷贝了，如果我们能知道修改了哪些，那么其实就可以对未变化的数据使用浅拷贝，复用已存在的数据，减少内存开销，Immer.js 有意思地是通过 proxy 来实现了 immutable，简单来说就是在 currentState 上生成一个代理 draftState，然后再基于这个 draftState 生成 nextState，即 currentState -> DraftState -> nextState。与 immutable.js 完全自己造一套数据结构不同，immer.js 使用的是原生数据结构。
 
 ![Immer.js](https://github.com/mweststrate/immer/raw/master/images/hd/immer.png)
 
