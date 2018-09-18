@@ -18,7 +18,7 @@ PublishDate: 2018/9/16 14:45
 
 **那当我们谈论到 immutable.js 为 React 带去几倍性能提升是咋回事？不是又浪费内存又慢吗？** 
 
-因为 React 拥抱了函数式编程，React 元素是不可变的，如果你需要改变 **State** 对象的某个属性，你需要把整个 **State** 都浅拷贝一次（通常用扩展运算符，会编译成 object.assign），在 React 中频繁操作 **State**，当对象特别大时就会慢啊。而通过简单的 **deep clone** 来实现 **immutable** 当然不行，immutable.js 中使用了**结构共享（Structural Sharing）**来避免频繁的深拷贝开销，即对象树中的节点改变时只修改受它影响的父节点，其它节点则共享。
+因为 React 拥抱了函数式编程，React 元素是不可变的，如果你要改变 **State** 对象的某个属性，你得把整个 **State** 都浅拷贝一次（通常用扩展运算符，会编译成 object.assign），在 React 中频繁操作 **State**，当对象特别大时就会慢啊。而通过简单的 **deep clone** 来实现 **immutable** 当然不行，immutable.js 中使用了**结构共享（Structural Sharing）**来避免频繁的深拷贝开销，即对象树中的节点改变时只修改受它影响的父节点，其它节点则共享。
 
 再考虑在 React 中常见的优化措施，使用纯函数组件、PureComponent（自带浅比较）、在 shouldComponentUpdate 中做比较来**避免不必要的渲染**，因为重渲染时对一个嵌套很深的结构做 **deepCompare** 是非常耗性能的，而引入了 immutable.js 就能非常简单和低成本的判断数据是否发生变化。
 
