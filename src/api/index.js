@@ -1,7 +1,6 @@
 import axios from 'axios'
 import cache from '@/utils/cache.js'
 import marked from '@/utils/mdRender.js'
-import 'core-js/shim'
 
 const tagsUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/tags.json'
 const localTagsUrl = '/articles/tags.json'

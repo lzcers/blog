@@ -1,12 +1,15 @@
 {
-    "presets": ["env", "stage-0"],
-    "plugins": [
-        "transform-react-jsx",
+    "presets": [
         [
-            "transform-runtime",
+            "@babel/preset-env",
             {
-                "regenerator": true
+                "useBuiltIns": "entry"
             }
         ]
+    ],
+    "plugins": [
+        "@babel/plugin-transform-react-jsx",
+        "@babel/plugin-transform-runtime",
+        "@babel/plugin-proposal-class-properties"
     ]
 }
