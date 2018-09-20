@@ -32,7 +32,8 @@ PublishDate: 2015/12/8 22:40
 在JavaScript中存在两类作用域，全局作用域和局部作用域，作用域的意义是显而易见的，典型如避免名字污染的问题，在ES6之前，函数是JavaScript中最一般的作用域单元，称之为函数作用域，但函数并不是唯一的作用域单元，在ES6中又新增了块级作用域，可以采用大括号的方式来创建，并使用let,const的方式声明块级作用域的变量，实际上还有一些特殊的作用域，如try/catch也会创建一个块级作用域。
 
 虽然JavaScript采用的是词法作用域模型，但是却有在运行时修改作用域的方法，但并不推荐使用，会为编译器的分析带来困难，导致明显的性能下降。
-典型如** eval() **函数，它接受一个字符串为参数，并将其中内容视为在当前位置声明的JavaScript语句，并执行。
+典型如 **eval()** 函数，它接受一个字符串为参数，并将其中内容视为在当前位置声明的JavaScript语句，并执行。
+
 ```
 function foo(str, b) {
   eval(str);
@@ -88,18 +89,19 @@ var a = 2;
 ### 作用域链原理
 > “JavaScript中的函数运行在它们被定义的作用域里,而不是它们被执行的作用域里.”   ---《Javascript权威指南》
 
-** Execution context stack **
+**Execution context stack**
+
 > 每个函数在被调用时都会创建自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECSMScript程序中的执行流正是由这个方便的机制控制着。
 
 也就是说，ECMAScript程序的运行时就是由执行上下文（EC）组成的栈，*栈顶*是当前*活跃*(active)上下文：
 ![](http://s0-weizhifeng-net.b0.upaiyun.com/images/tech/ec-stack.png)
 
-** Execution context **
+**Execution context**
 函数在执行的时候会创建一个执行环境（execution context）或称执行上下文， 执行环境定义了变量和函数的访问其他数据的权限。
 
 ![](http://upload-images.jianshu.io/upload_images/54452-0d9dfa7d11533c0e.png)
 
-** VO && AO **
+**VO && AO**
 每个执行环境都有一个与之关联的变量对象，在全局执行环境中的是** VO **(Variable Object)，但是在函数的执行上下文中,变量对象是以活动对象**AO**（activation object）来表示的。（在ECMA-262-5中统一并入了*词法环境*模型 lexical environments model）
 
 在函数环境中定义的所有标识符都存储在这个AO对象内，它包括：
@@ -107,14 +109,15 @@ var a = 2;
 * 函数声明 (function declarations)
 *  形参  (function formal parameters declared in the context)
 
-** scope chain **
+**scope chain**
+
 > 作用域链（scope chain）是一个变量对象列表，上下文代码中出现的标识符在这个列表中进行查找。
 
 每个函数被定义的时候都会创建一个** [[scope]] ** 属性，它会将定义时的scope chain存入这个属性中。
 
 一个函数被调用的时候，活动对象（AO）将会被创建，然后对于每一个函数的形参，都命名为该活动对象的命名属性，这个对象中除了形参还有arguments对象，之后AO将作为函数执行上下文的变量对象使用，
 同时将这个活动对象做为此时的作用域链(scope chain)最前端, 并将这个函数对象的[[scope]]加入到scope chain中。
-** scope chain = AO + [[scope]] **
+**scope chain = AO + [[scope]]**
 
 当解析一个标识符的时候，会从作用域链中的第一个对象（即活动对象）开始查找，如果这个标识符在函数自身的活动对象中没有被查找到，就去作用域链的下一个对象中去查找，如此重复这个过程。
 
@@ -168,4 +171,4 @@ function foo() {
 ```
 - - -
 文档参考 [ECMA-262JavaScript The Core](http://dmitrysoshnikov.com/ecmascript/javascript-the-core/)
-    
+​    
