@@ -1,5 +1,5 @@
 ---
-Title: 用 JS 撸个 LISP 解释器
+Title: 用 JS 撸个 LISP 解释器（1）之 ParserCombinator
 PublishDate: 2018/6/3 21:45
 Tags: 编程 | JS | 坑
 ---
@@ -77,13 +77,13 @@ function tokenizer(str) {
 
 ## Parser Combinator
 
-关于 Parser， 我知道对于 lisp 来说很简单，手写递归下降分析就是，But，我想玩点不一样的，既然是用 JavaScript 来实现，那当然要发挥 JS 函数式编程的特性啦，用解析器组合子吧（Parser Combinator）
+关于 Parser，我知道对于 lisp 来说很简单，手写递归下降分析就是，But，我想玩点不一样的，既然是用 JavaScript 来实现，那当然要发挥 JS 函数式编程的特性啦，用解析器组合子吧（Parser Combinator）。
 
 关于 Parser Combinator 参考装配脑袋（施凡）在infoQ 上的演讲[《Parser组合子——从玩具到专业工具》](http://www.infoq.com/cn/presentations/parser-from-toys-to-professional-tools/)，可惜这位大佬已经不在了。 R.I.P.
 
 考虑之前定义语法用到的 BNF 原语，差不多就是*选择*、*拼接*、*重复*、*递归*，实际上仅仅是选择、拼接、重复就能定义所有的正则语言，再加上递归就能构造所有的 CFG（上下文无关文法）。
 
-Parser Combinator 是啥，parser combinator 就是一个高阶函数。
+**Parser Combinator** 是啥，**Parser Combinator** 就是一个高阶函数。
 
 开搞：
 

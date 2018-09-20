@@ -1,10 +1,8 @@
 ---
-Title: 用 JS 撸个 LISP 解释器（2）
-Tags: 编程 | 坑
+Title: 用 JS 撸个 LISP 解释器（2）之 eval/apply 循环
+Tags: 编程 | JS | 坑
 PublishDate: 2018/6/8 19:53
 ---
-
-
 
 接之前的坑，也许在真正开始写一个解释器之前，需要对解释器是什么做出解释才能继续。
 
