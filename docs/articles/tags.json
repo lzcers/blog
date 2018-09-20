@@ -72,16 +72,8 @@
     "Content": "\r\n当初我一个人来，现在要走了，却是除了回忆什么也带不走，很多的人和事也早已只能从回忆里寻找了，最后，我也把自己也活进了回忆里。\r\n\r\n这是计划中的离职，从入职的时候就考虑过的离开，只是离职的理由并非我最初所想的那样，一直身体硬朗的父亲年中突发脑溢血，尽管愈后精神不错，却丧失了大部分语言能力，行动也不便，如此结果也依旧要感谢上天保佑了，但愿父亲能够恢复的更好。\r\n\r\n父母在不远游，游必有方，本以为能在深圳多呆几年，但现在不光是离职的日程提前了，今后几年在哪工作也需要有所调整，作为家中独子，我必须在家人和事业二者间找到一个平衡点，以便于最大程度上兼顾。父母健康的时候我可以为自己找各种理由不回去，回顾在深圳的三年仅回去了三次，内心不免有些愧疚，离家远吗？ 仅 4 小时的高铁车程，说远也不见得，离职在计划之中，而原因却是意料之外，无论之后作何打算，先回家陪陪父母，这是最重要的。<strong>……</strong>"
   },
   {
-    "fileName": "蛤丝（Haskell）学习.md",
-    "ID": 9,
-    "Title": "蛤丝（Haskell）学习",
-    "Tags": "编程",
-    "PublishDate": "2018/6/19 23:42",
-    "Content": "\r\n知乎上关注的很多前端大佬都是函数式编程玩的贼 6 的那种，动不动就贴 Haskell 代码，就想学习下蛤丝（Haskell）语言，增长点姿势，尽管之前玩 Lisp 有一点点函数式编程的体验，但是 Haskell 的类型和惰性求值还是要感受下的。\r\n\r\n从 [Haskell 趣学指南](http://fleurer.github.io/lyah/) 开始，不得不说，语法糖真是好吃啊，代码还能这样写。\r\n\r\n```haskell\r\nquicksort :: (Ord a) => [a] -> [a]   \r\nquicksort [] = []   \r\nquicksort (x:xs) =   \r\n  let smallerSorted = quicksort [a | a <- xs, a <= x]  \r\n       biggerSorted = quicksort [a | a <- xs, a > x]   \r\n  in smallerSorted ++ [x] ++ biggerSorted\r\n```\r\n\r\n上一段 Haskell 的快排算法，卧槽，还能这么写，` [a | a <- xs, a <= x] ` 像数学一样定义作用域，在 List 里直接做过滤和取值，Cool !， 写过 python 肯定知道列表推导，相比而言这个简直强太多了，还能在 List 里做模式匹配。\r\n\r\nJS 不是也能函数式编程嘛，翻一下\r\n\r\n```javascript\r\nfunction quickSort(arr) {\r\n    if (arr.length == 0) return []\r\n    let i = arr[0]\r\n    const smallerSorted = quickSort(arr.slice(1).filter(e => e <= i))\r\n    const biggerSorted = quickSort(arr.slice(1).filter(e => e > i))\r\n    return [].concat(smallerSorted, i, biggerSorted)\r\n}\r\n```\r\n\r\n加上类型签名，代码行数好像差不多？？不过字符数量少呀。\r\n\r\n**fold**\r\n\r\n`Foldable t => (b -> a -> b) -> b -> t a -> b`\r\n\r\n一个fold取一个二元函数，一个初始值（我喜欢管它叫累加值）和一个需要fold（折叠）的list。<strong>……</strong>"
-  },
-  {
     "fileName": "自由.md",
-    "ID": 10,
+    "ID": 9,
     "Title": "自由",
     "Tags": "随想",
     "PublishDate": "2017/7/30 22:43:40",
@@ -89,7 +81,7 @@
   },
   {
     "fileName": "编译原理学习.md",
-    "ID": 11,
+    "ID": 10,
     "Title": "编译原理学习",
     "Tags": "编程",
     "PublishDate": "2018/5/27 23:26",
@@ -97,7 +89,7 @@
   },
   {
     "fileName": "程序员技能思考.md",
-    "ID": 12,
+    "ID": 11,
     "Title": "程序员技能思考",
     "Tags": "编程 | 随想",
     "PublishDate": "2018/7/9 16:06:33",
@@ -105,7 +97,7 @@
   },
   {
     "fileName": "用JS 实现 Lisp 里的流.md",
-    "ID": 13,
+    "ID": 12,
     "Title": "用JS 实现 Lisp 里的流",
     "Tags": "编程",
     "PublishDate": "2018/3/10 21:24:59",
@@ -113,7 +105,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（3）之作用域与闭包.md",
-    "ID": 14,
+    "ID": 13,
     "Title": "用 JS 撸个 LISP 解释器（3）之作用域与闭包",
     "Tags": "编程 | JS | 坑",
     "PublishDate": "2018/6/10 23:58",
@@ -121,7 +113,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（2）之 evalapply 循环.md",
-    "ID": 15,
+    "ID": 14,
     "Title": "用 JS 撸个 LISP 解释器（2）之 eval/apply 循环",
     "Tags": "编程 | JS | 坑",
     "PublishDate": "2018/6/8 19:53",
@@ -129,7 +121,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（1）之 ParserCombinator.md",
-    "ID": 16,
+    "ID": 15,
     "Title": "用 JS 撸个 LISP 解释器（1）之 ParserCombinator",
     "PublishDate": "2018/6/3 21:45",
     "Tags": "编程 | JS | 坑",
@@ -137,7 +129,7 @@
   },
   {
     "fileName": "用 CSS 实现网页追踪与分析.md",
-    "ID": 17,
+    "ID": 16,
     "Title": "用 CSS 实现网页追踪与分析",
     "Tags": "前端",
     "PublishDate": "2018/1/20 22:15:05",
@@ -145,7 +137,7 @@
   },
   {
     "fileName": "熵与人生.md",
-    "ID": 18,
+    "ID": 17,
     "Title": "熵与人生",
     "Tags": "随想",
     "PublishDate": "2015/3/27 21:15",
@@ -153,7 +145,7 @@
   },
   {
     "fileName": "滚动条导致计算值元素跳动的处理.md",
-    "ID": 19,
+    "ID": 18,
     "Title": "滚动条导致计算值元素跳动的处理",
     "Tags": "前端 | 编码",
     "PublishDate": "2017/12/14 18:29:43",
@@ -161,11 +153,19 @@
   },
   {
     "fileName": "浅谈对架构的理解.md",
-    "ID": 20,
+    "ID": 19,
     "Title": "浅谈对架构的理解",
     "Tags": "编程 | 随想",
     "PublishDate": "2018/7/22 23:57:51",
     "Content": "\r\n手头有一本《聊聊架构》，最近又找来了《架构之美》囫囵吞枣似的读了一遍，写了些读书笔记，我仅仅是想确切的明白架构是什么。似乎每个程序员都能对架构说上一二，但每个人的说法都不尽相同，即便是那些架构师所说的架构也是如此，当然，对于架构这个词是有定义的，但每个架构师的关注点和视角不一样，所谈论的东西也有很大不同。\r\n\r\n多数情况下，架构师这个角色都是由程序员兼任的，尽管这是一个听上去更高阶的角色，但是开发过程总是不可避免涉及某种架构过程，我们总是自嘲自己的工作是“搬砖”，但是在这点上我们跟真正搬砖还是有差异的，软件开发过程允许程序员发挥更大的主观能动性（相对其它大数职业而言），我们总能去创造些精巧的设计去达成业务目的，而搬砖就是真正的搬砖了，这也是为什么写代码这样一件外人看来如此枯燥的事情能够吸引我的原因，而创造是恰好是马斯洛需求层次理论的高阶需求，在代码的世界里它能轻易满足，仅需一台电脑即可。\r\n\r\n## 架构是什么？\r\n\r\n架构不是一个结果，而是一个过程，我们能够看到很多架构演进，演变的文章，从这点可以知道架构决不是一成不变的，正如软件开发过程更像是植物的生长，而不是砌砖。架构的产出是什么？PPT ？这也是为什么很多架构师被黑，称之为 PPT 架构师的原因了。<strong>……</strong>"
+  },
+  {
+    "fileName": "浅尝蛤丝（Haskell）.md",
+    "ID": 20,
+    "Title": "浅尝蛤丝（Haskell）",
+    "Tags": "编程",
+    "PublishDate": "2018/6/19 23:42",
+    "Content": "\r\n知乎上关注的很多前端大佬都是函数式编程玩的贼 6 的那种，动不动就贴 Haskell 代码，就想学习下蛤丝（Haskell）语言，增长点姿势，尽管之前玩 Lisp 有一点点函数式编程的体验，但是 Haskell 的类型和惰性求值还是要感受下的。\r\n\r\n从 [Haskell 趣学指南](http://fleurer.github.io/lyah/) 开始，不得不说，语法糖真是好吃啊，代码还能这样写。\r\n\r\n```haskell\r\nquicksort :: (Ord a) => [a] -> [a]   \r\nquicksort [] = []   \r\nquicksort (x:xs) =   \r\n  let smallerSorted = quicksort [a | a <- xs, a <= x]  \r\n       biggerSorted = quicksort [a | a <- xs, a > x]   \r\n  in smallerSorted ++ [x] ++ biggerSorted\r\n```\r\n\r\n上一段 Haskell 的快排算法，卧槽，还能这么写，` [a | a <- xs, a <= x] ` 像数学一样定义作用域，在 List 里直接做过滤和取值，Cool !， 写过 python 肯定知道列表推导，相比而言这个简直强太多了，还能在 List 里做模式匹配。\r\n\r\nJS 不是也能函数式编程嘛，翻一下\r\n\r\n```javascript\r\nfunction quickSort(arr) {\r\n    if (arr.length == 0) return []\r\n    let i = arr[0]\r\n    const smallerSorted = quickSort(arr.slice(1).filter(e => e <= i))\r\n    const biggerSorted = quickSort(arr.slice(1).filter(e => e > i))\r\n    return [].concat(smallerSorted, i, biggerSorted)\r\n}\r\n```\r\n\r\n加上类型签名，代码行数好像差不多？？不过字符数量少呀。\r\n\r\n**fold**\r\n\r\n`Foldable t => (b -> a -> b) -> b -> t a -> b`\r\n\r\n一个fold取一个二元函数，一个初始值（我喜欢管它叫累加值）和一个需要fold（折叠）的list。<strong>……</strong>"
   },
   {
     "fileName": "无题.md",
@@ -176,16 +176,8 @@
     "Content": "\r\n<iframe frameborder=\"no\" border=\"0\" marginwidth=\"0\" marginheight=\"0\" width=330 height=86 src=\"//music.163.com/outchain/player?type=2&id=22825197&auto=1&height=66\"></iframe>\r\n\r\n> 未经审视的人生是不值得过的。 — 苏格拉底\r\n\r\n如此一般的生活真是经不住审视啊，关于人生的意义这样的问题仔细思考起来就仿若黑洞一般，吞噬精神最终尽归虚无。重复的生活无法在回忆中留下任何印记，回首过往，曾经的少年也开始感叹着岁月无情，那些不堪的记忆仿若发生在昨日，那些快乐的记忆渐行渐远，曾经像是在旷野奔跑，现在像是走入了黑暗森林，我保护着微弱的光亮艰难前行。\r\n\r\n生活的意义不能祈求他人，只能自己赋予，对我而言不重复就是有意义的，不论是好事亦或者坏事，快乐或是忧伤，不求能够体验更好，但求体验更多。\r\n\r\n最近看了本书《心智的构建》，如书中所说，我们以为物理世界和精神世界是彼此独立的，物理世界直接与我们相连，精神世界独立而隐秘，而事实上，不论真实世界还是精神世界，所有的一切都是通过大脑来获得的，这两个世界的差异其实是一种错觉，对那些大脑受损伤的人这种界限更加模糊。<strong>……</strong>"
   },
   {
-    "fileName": "新的计划.md",
-    "ID": 22,
-    "Title": "新的计划",
-    "Tags": "碎念",
-    "PublishDate": "2018/1/20 17:19:52",
-    "Content": "\r\n深圳回来后，从年初到现在一直都在忙碌着家里的各种事情，终于明白在深圳的时候妈妈每次视频通话都说“家里没事，不用你操心”这句话背后有多艰难了。上周四是母亲五十岁生日，为此刻意驱车回老家置办了酒席，邀请了那些我既陌生又熟悉的七大姑八大姨，自从读大学之后就许久未曾回过老家，亲戚们对我倒是印象深刻，可能是小时候特别皮吧，反而我自己好多都叫不出名字了，不过，最重要的是父母开心就好。\r\n\r\n父母的事情告一段落后，终于有闲考虑下自己今年的规划了，老家寒冷的天气着实容易让人提不起劲来，想到几乎每天都被被窝封印许久，年轻的时光就这样被挥霍还是很愧疚的。本来今年的唯一规划就是在家陪伴父母然后安心学习考研，对我而言，趁着年轻投入更多精力去学习或许是收益最大的选择。不过父亲恢复的状态让我这心又躁动了起来，父亲在愈后复健的活动上主观能动性惊人的强，不需要我和母亲的提醒，每天就自觉的按时去做各种恢复肢体运动的动作，即便丧失了大部分语言能力，在我给他装上认字的 APP 后也是每天跟着 APP 每天练习认字和发音，偶尔也能完整的清晰的说出一段话来，这样的状态也确实让我感到非常欣慰，抛开这些，父亲单位的省里领导又来慰问，这让我对某国企单位的好感倒是增加了不少。<strong>……</strong>"
-  },
-  {
     "fileName": "数据抽象.md",
-    "ID": 23,
+    "ID": 22,
     "Title": "数据抽象",
     "Tags": "编码 | 哲思",
     "PublishDate": "2017/8/22 23:30:48",
@@ -193,7 +185,7 @@
   },
   {
     "fileName": "攀登抽象的阶梯.md",
-    "ID": 24,
+    "ID": 23,
     "Title": "攀登抽象的阶梯",
     "Tags": "编码 | 哲思",
     "PublishDate": "2017/8/9 23:00:41",
@@ -201,7 +193,7 @@
   },
   {
     "fileName": "当我说 Immutable 时在说什么.md",
-    "ID": 25,
+    "ID": 24,
     "Title": "当我说 Immutable 时在说什么？",
     "Tags": "前端 | 编码",
     "PublishDate": "2018/9/16 14:45",
@@ -209,7 +201,7 @@
   },
   {
     "fileName": "屋中大象.md",
-    "ID": 26,
+    "ID": 25,
     "Title": "屋中大象",
     "Tags": "编程",
     "PublishDate": "2018/8/4 13:12:26",
@@ -217,7 +209,7 @@
   },
   {
     "fileName": "对自我的思考.md",
-    "ID": 27,
+    "ID": 26,
     "Title": "对自我的思考",
     "Tags": "哲思",
     "PublishDate": "2017/8/6 17:52:40",
@@ -225,7 +217,7 @@
   },
   {
     "fileName": "如何打印 Web 页面上指定区域的内容.md",
-    "ID": 28,
+    "ID": 27,
     "Title": "如何打印 Web 页面上指定区域的内容",
     "Tags": "编码 | 前端",
     "PublishDate": "2017/12/11 13:24:52",
@@ -233,7 +225,7 @@
   },
   {
     "fileName": "央视纪录片《极地》.md",
-    "ID": 29,
+    "ID": 28,
     "Title": "央视纪录片《极地》",
     "Tags": "碎念",
     "PublishDate": "2018/1/22 21:56:11",
@@ -241,7 +233,7 @@
   },
   {
     "fileName": "国庆云南游记.md",
-    "ID": 30,
+    "ID": 29,
     "Title": "国庆云南游记",
     "Tags": "碎念",
     "PublishDate": "2017/10/15 19:17",
@@ -249,7 +241,7 @@
   },
   {
     "fileName": "又一篇什么是 Monad.md",
-    "ID": 31,
+    "ID": 30,
     "Title": "又一篇什么是 Monad",
     "Tags": "编码",
     "PublishDate": "2017/9/1 21:48:38",
@@ -257,7 +249,7 @@
   },
   {
     "fileName": "博弈论带来的启示-信任的进化.md",
-    "ID": 32,
+    "ID": 31,
     "Title": "博弈论带来的启示-信任的进化",
     "Tags": "随想",
     "PublishDate": "2017/12/15 00:04:47",
@@ -265,7 +257,7 @@
   },
   {
     "fileName": "博客文章获取接口修改.md",
-    "ID": 33,
+    "ID": 32,
     "Title": "博客文章获取接口修改",
     "Tags": "编码",
     "PublishDate": "2017/7/25 22:43:00",
@@ -273,23 +265,23 @@
   },
   {
     "fileName": "博客搬家.md",
-    "ID": 34,
+    "ID": 33,
     "Title": "博客搬家",
     "Tags": "编码",
     "PublishDate": "2017/10/28",
     "Content": "\r\n阿里云(套路云)的客服打电话给我说他们双十一活动，服务器打折，于是活动期间没能忍住手买了 1C1G 的丐版服务器，选了香港区，想着再怎么吃灰也能当个梯子嘛，果然，这手真是忍不住的。\r\n吭哧吭哧把博客挪到云服务器上后，第一时间干掉了 coding.net 的页脚，然后用 acme.sh 申请了 Let’s Encrypt 的证书，证书到期自动更新，看到域名旁边的小绿锁，完美！\r\n趁着机会又复习了下nginx的配置，既然都上了服务器了，后续就可以考虑不用静态博客了,笑~\r\n正巧最近学习 Golang ，准备自己手撸一个微服务框架，已经把框架的 Router 撸出来了，这坑又不知道什么时候能填完。\r\n然后... 是不是前端也要换换呢？ 最近 Vue 2.5 提供更好的 TypeScript 支持，于是突然又有了一个大胆的想法，乘机会玩玩吧，现在博客速度太慢了，主要是静态资源这块需要优化，考虑薅各大 CDN 的免费流量试试~\r\n    <strong>……</strong>"
   },
   {
-    "fileName": "前端监控.md",
-    "ID": 35,
-    "Title": "前端监控",
-    "Tags": "前端",
+    "fileName": "前端监控的设计与实现.md",
+    "ID": 34,
+    "Title": "前端监控的设计与实现",
+    "Tags": "前端 | JS",
     "PublishDate": "2018/7/10 18:09:14",
     "Content": "\r\n## 背景\r\n\r\n最近项目痛点，就是应用在我们的设备上好好的，怎么一到用户那就反馈各种问题呢？这个痛点相信不止我一个人遇到，甩给测试去控制那也不容易啊，如果公司穷，测试设备覆盖不全就更痛苦了，而且用户对问题无法给出技术性的描述，作为开发只能靠经验推断，心累。\r\n\r\n于是最近几天我就研究了下**前端监控**相关的内容，写了个简单的信息采集工具，当然，业界已经有许多现成的方案了，如 funDebug、bugsnag、BadJS、betterjs 等，但我就是想自己造一个轮子！\r\n\r\n好像代码量不多？我上我也行（错觉），自己造一个学习下（最重要的理由）。\r\n\r\nGitHub 链接：[fe-monitor](https://github.com/lzcers/femonitor/tree/master/src)\r\n\r\n## 设计要求\r\n\r\n- 易于扩展，可自定义\r\n\r\n  我哪天想到啥新的监控点可以直接扩展，比如说不仅仅是性能监控，js 错误监控之类的，订单请求也可纳入监控范围啊，不是偶尔掉单吗？前端也可以抓点数据嘛。还有用户行为路径之类的数据。\r\n\r\n- 无侵入，小侵入\r\n\r\n  最好简单引入个 sdk 就行，尽可能不要埋点\r\n\r\n- 适用不同框架\r\n\r\n  比如连接 Vue.config.errorHandle \r\n\r\n## 模块\r\n\r\n- 信息采集\r\n- 信息上报 \r\n- 信息分析\r\n- 报警\r\n- 信息可视化\r\n\r\n在前端主要做的就是信息采集和信息上报，数据到了后端存储后再做信息分析，报警，可视化之类的工作，那么问题来了，首先要确定是到底要**采集哪些数据**？采用什么**上报策略**？所有数据一律上报显然不现实，没那必要，也没那么大存储空间。<strong>……</strong>"
   },
   {
     "fileName": "利用 serviceWorker 快速把网站变成 PWA 应用.md",
-    "ID": 36,
+    "ID": 35,
     "Title": "利用 serviceWorker 快速把网站变成 PWA 应用",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/17 20:16:06",
@@ -297,7 +289,7 @@
   },
   {
     "fileName": "写作是一个学习过程.md",
-    "ID": 37,
+    "ID": 36,
     "Title": "写作是一个学习过程",
     "Tags": "碎念",
     "PublishDate": "2018/3/6 00:59:23",
@@ -305,7 +297,7 @@
   },
   {
     "fileName": "写一个简单的 Markdown 编辑器.md",
-    "ID": 38,
+    "ID": 37,
     "Title": "写一个简单的 Markdown 编辑器",
     "Tags": "编码",
     "PublishDate": "2017/12/7 00:28:49",
@@ -313,7 +305,7 @@
   },
   {
     "fileName": "关于沟通.md",
-    "ID": 39,
+    "ID": 38,
     "Title": "关于沟通",
     "Tags": "随想",
     "PublishDate": "2015/9/18 22:29",
@@ -321,7 +313,7 @@
   },
   {
     "fileName": "关于并发的理解.md",
-    "ID": 40,
+    "ID": 39,
     "Title": "关于并发的理解",
     "Tags": "编程",
     "PublishDate": "2018/3/4 13:41:37",
@@ -329,7 +321,7 @@
   },
   {
     "fileName": "关于可视化页面构建工具的思考.md",
-    "ID": 41,
+    "ID": 40,
     "Title": "关于可视化页面构建工具的思考",
     "Tags": "编程 | 前端 | 随想",
     "PublishDate": "2018/06/05 21:30",
@@ -337,7 +329,7 @@
   },
   {
     "fileName": "使用 Systemd 设置 Linux 应用自启动.md",
-    "ID": 42,
+    "ID": 41,
     "Title": "使用 Systemd 设置 Linux 应用自启动",
     "Tags": "编码 | Linux",
     "PublishDate": "2017/12/11 17:27:03",
@@ -345,7 +337,7 @@
   },
   {
     "fileName": "从静态博客转到Golang + MongoDB后端.md",
-    "ID": 43,
+    "ID": 42,
     "Title": "从静态博客转到Golang + MongoDB后端",
     "Tags": "编码",
     "PublishDate": "2017/11/29 23:39:47",
@@ -353,7 +345,7 @@
   },
   {
     "fileName": "从浏览器工作机制看性能优化.md",
-    "ID": 44,
+    "ID": 43,
     "Title": "从浏览器工作机制看性能优化",
     "PublishDate": "2018/7/9 15:31",
     "Tags": "前端",
@@ -361,7 +353,7 @@
   },
   {
     "fileName": "书写以及文字.md",
-    "ID": 45,
+    "ID": 44,
     "Title": "书写以及文字",
     "Tags": "随想",
     "PublishDate": "2015/1/31 23:06",
@@ -369,7 +361,7 @@
   },
   {
     "fileName": "不求甚解与刨根问底.md",
-    "ID": 46,
+    "ID": 45,
     "Title": "不求甚解与刨根问底",
     "Tags": "随想",
     "PublishDate": "2017/9/5 23:28",
@@ -377,7 +369,7 @@
   },
   {
     "fileName": "不念过去，不畏将来，珍惜现在，再见 2017.md",
-    "ID": 47,
+    "ID": 46,
     "Title": "不念过去，不畏将来，珍惜现在，再见 2017",
     "Tags": "碎念",
     "PublishDate": "2017/12/31 17:02:01",
@@ -385,7 +377,7 @@
   },
   {
     "fileName": "七夕.md",
-    "ID": 48,
+    "ID": 47,
     "Title": "七夕",
     "Tags": "碎念",
     "PublishDate": "2017/8/29 21:59:29",
@@ -393,7 +385,7 @@
   },
   {
     "fileName": "《逻辑的引擎》读后感.md",
-    "ID": 49,
+    "ID": 48,
     "Title": "《逻辑的引擎》读后感",
     "Tags": "碎念 | 读书",
     "PublishDate": "2018/2/26 00:56:10",
@@ -401,7 +393,7 @@
   },
   {
     "fileName": "《寻梦环游记》观后感 - 终极的死亡.md",
-    "ID": 50,
+    "ID": 49,
     "Title": "《寻梦环游记》观后感 - 终极的死亡",
     "Tags": "碎念",
     "PublishDate": "2017/12/6 20:40:50",
@@ -409,7 +401,7 @@
   },
   {
     "fileName": "Webpack 4 升级.md",
-    "ID": 51,
+    "ID": 50,
     "Title": "Webpack 4 升级",
     "Tags": "前端",
     "PublishDate": "2018/3/14 01:12:51",
@@ -417,7 +409,7 @@
   },
   {
     "fileName": "Web Worker 与 Service Worker.md",
-    "ID": 52,
+    "ID": 51,
     "Title": "Web Worker 与 Service Worker",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/16 21:09:35",
@@ -425,7 +417,7 @@
   },
   {
     "fileName": "ukulele.md",
-    "ID": 53,
+    "ID": 52,
     "Title": "ukulele",
     "Tags": "碎念",
     "PublishDate": "2017/7/22",
@@ -433,7 +425,7 @@
   },
   {
     "fileName": "Rust 学习笔记.md",
-    "ID": 54,
+    "ID": 53,
     "Title": "Rust 学习笔记",
     "Tags": "编程",
     "PublishDate": "2018/8/6 19:25:28",
@@ -441,7 +433,7 @@
   },
   {
     "fileName": "rem、vhvw 学习笔记.md",
-    "ID": 55,
+    "ID": 54,
     "Title": "rem、vh/vw 学习笔记",
     "Tags": "前端",
     "PublishDate": "2018/7/27 18:03:30",
@@ -449,7 +441,7 @@
   },
   {
     "fileName": "React Fiber 初探.md",
-    "ID": 56,
+    "ID": 55,
     "Title": "React Fiber 初探",
     "Tags": "前端",
     "PublishDate": "2018/8/18 23:47",
@@ -457,7 +449,7 @@
   },
   {
     "fileName": "koa-compose 浅析.md",
-    "ID": 57,
+    "ID": 56,
     "Title": "koa-compose 浅析",
     "Tags": "前端",
     "PublishDate": "2018/8/1 22:07",
@@ -465,7 +457,7 @@
   },
   {
     "fileName": "JS任督二脉-原型.md",
-    "ID": 58,
+    "ID": 57,
     "Title": "JS任督二脉-原型",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/24 23:43",
@@ -473,7 +465,7 @@
   },
   {
     "fileName": "JS任督二脉-作用域.md",
-    "ID": 59,
+    "ID": 58,
     "Title": "JS任督二脉-作用域",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/8 22:40",
@@ -481,7 +473,7 @@
   },
   {
     "fileName": "JS 学习补遗.md",
-    "ID": 60,
+    "ID": 59,
     "Title": "JS 学习补遗",
     "Tags": "前端",
     "PublishDate": "2018/8/13 0:40:49",
@@ -489,7 +481,7 @@
   },
   {
     "fileName": "Cycle.js 体验.md",
-    "ID": 61,
+    "ID": 60,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -497,10 +489,18 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 62,
+    "ID": 61,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
     "Content": "\r\n![](http://imglf0.nosdn.127.net/img/UUcvQWZBZk9URHhUNmthQzQxSXpDZnFmRWN3aTQ5MGozdXh2NUF6RlZFM0hWRUluM3dWaFZnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)\r\n在公司忙活项目的Coding，回到家中亦是摆弄自己的代码，对我而言却是极其幸运的，因为爱好即是工作。  \r\n张嘴就唠叨个不停，没人聊就撩计算姬好了😂\r\n    <strong>……</strong>"
+  },
+  {
+    "fileName": "2018年计划与回顾.md",
+    "ID": 62,
+    "Title": "2018年计划与回顾",
+    "Tags": "碎念",
+    "PublishDate": "2018/1/20 17:19:52",
+    "Content": "\r\n深圳回来后，从年初到现在一直都在忙碌着家里的各种事情，终于明白在深圳的时候妈妈每次视频通话都说“家里没事，不用你操心”这句话背后有多艰难了。上周四是母亲五十岁生日，为此刻意驱车回老家置办了酒席，邀请了那些我既陌生又熟悉的七大姑八大姨，自从读大学之后就许久未曾回过老家，亲戚们对我倒是印象深刻，可能是小时候特别皮吧，反而我自己好多都叫不出名字了，不过，最重要的是父母开心就好。\r\n\r\n父母的事情告一段落后，终于有闲考虑下自己今年的规划了，老家寒冷的天气着实容易让人提不起劲来，想到几乎每天都被被窝封印许久，年轻的时光就这样被挥霍还是很愧疚的。本来今年的唯一规划就是在家陪伴父母然后安心学习考研，对我而言，趁着年轻投入更多精力去学习或许是收益最大的选择。不过父亲恢复的状态让我这心又躁动了起来，父亲在愈后复健的活动上主观能动性惊人的强，不需要我和母亲的提醒，每天就自觉的按时去做各种恢复肢体运动的动作，即便丧失了大部分语言能力，在我给他装上认字的 APP 后也是每天跟着 APP 每天练习认字和发音，偶尔也能完整的清晰的说出一段话来，这样的状态也确实让我感到非常欣慰，抛开这些，父亲单位的省里领导又来慰问，这让我对某国企单位的好感倒是增加了不少。<strong>……</strong>"
   }
 ]

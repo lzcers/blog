@@ -1,5 +1,5 @@
 ---
-Title: 蛤丝（Haskell）学习
+Title: 浅尝蛤丝（Haskell）
 Tags: 编程
 PublishDate: 2018/6/19 23:42
 ---
