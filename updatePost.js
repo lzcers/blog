@@ -2,7 +2,10 @@ const fs = require('fs')
 const path = require('path')
 const exec = require('child_process').exec
 const execSync = require('child_process').execSync
+
+// 读取文章的目录
 const sourcePath = path.format({ dir: 'C:\\articles\\blog' })
+
 const destPath = path.join(__dirname, './docs/articles')
 
 function copyFile(srcPath, tarPath, cb) {
@@ -100,14 +103,16 @@ function genTags() {
     })
 }
 
-// 先干掉文件夹
+// 1.先干掉文件夹
 delFolder(destPath)
+
 if (!fs.existsSync(destPath)) {
     fs.mkdir(destPath, function(err) {
         if (err) {
             console.log(err)
             return
         }
+        // 2. 然后重新拷贝，并生成 tags 调用 git push 操作
         copyFolder(sourcePath, destPath, genTags)
     })
 }
