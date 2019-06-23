@@ -5,6 +5,7 @@ import './about.scss'
 
 const About = _ => (
     <div className="about">
+        <div className="aboutmePic" />
         <p>
             以为人生是连续的，从时光这头到那头，从出生到死亡，像条在时光里蠕动的虫子，
             <br />

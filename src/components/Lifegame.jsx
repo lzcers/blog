@@ -21,6 +21,27 @@ export default class Lifegame extends React.PureComponent {
         const matrixSize = canvasSize / 10
         const cellSize = 10
         if (myCanvas == null) return
+
+        //  初始化画布
+        c.fillStyle = '#eeeeee' // 灰色背景色
+        // c.fillRect(0, 0, canvasSize, canvasSize)
+
+        // 初始化矩阵
+        const cellMatrix = initCellMatrix(matrixSize)
+
+        // 绑定鼠标事件
+        this.mousePassCanvas = mousePassCanvas
+        myCanvas.addEventListener('mousemove', mousePassCanvas)
+
+        // 主循环
+        function Main() {
+            const tempM = deepcopy(cellMatrix)
+            liveStatusUpdate(tempM)
+            mapMatrix(cellMatrix)
+        }
+        // 开始主循环
+        this.state.intervalCode = setInterval(Main, 50)
+
         // 矩阵状态映射至canvas网格
         // 初始化细胞矩阵
         function initCellMatrix(size) {
@@ -31,7 +52,6 @@ export default class Lifegame extends React.PureComponent {
             }
             return array
         }
-        const cellMatrix = initCellMatrix(matrixSize)
         // 细胞周围生存情况
         function surroundCell(_x, _y, cellmatrix) {
             // 映射至细胞矩阵数组坐标
@@ -83,12 +103,7 @@ export default class Lifegame extends React.PureComponent {
             if (offsetMatrixX < matrixSize && offsetMatrixY < matrixSize) cellMatrix[offsetMatrixX][offsetMatrixY] = 1
             mapMatrix(cellMatrix)
         }
-        this.mousePassCanvas = mousePassCanvas
-        myCanvas.addEventListener('mousemove', mousePassCanvas)
 
-        //  初始化画布
-        //    c.fillStyle='#eeeeee' // 灰色背景色
-        c.fillRect(0, 0, canvasSize, canvasSize)
         function deepcopy(obj) {
             const out = []
             const length = obj.length
@@ -102,13 +117,6 @@ export default class Lifegame extends React.PureComponent {
             const length = matrix.length
             for (let i = 0; i < length; i++) for (let j = 0; j < length; j++) liveRule(i, j, matrix)
         }
-
-        function Main() {
-            const tempM = deepcopy(cellMatrix)
-            liveStatusUpdate(tempM)
-            mapMatrix(cellMatrix)
-        }
-        this.state.intervalCode = setInterval(Main, 50)
     }
 
     componentWillUnmount() {

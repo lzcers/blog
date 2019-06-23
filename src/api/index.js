@@ -1,6 +1,7 @@
 import axios from 'axios'
 import cache from '@/utils/cache.js'
 import marked from '@/utils/mdRender.js'
+import memorize from '@/utils/memorize.js'
 
 const tagsUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/tags.json'
 const localTagsUrl = '/articles/tags.json'
@@ -21,13 +22,13 @@ function getTagsData(url) {
         .catch(e => false)
 }
 
-function getTags() {
+const getTags = memorize(() => {
     return getMetadata().then(res => [
         ...new Set(res.map(p => p.Tags.split('|').map(e => e.trim())).reduce((pre, cur) => pre.concat(cur)))
     ])
-}
+})
 
-async function getPosts() {
+const getPosts = memorize(async () => {
     return getMetadata().then(res =>
         res.map(p => {
             p.ID = p.fileName
@@ -36,7 +37,7 @@ async function getPosts() {
             return p
         })
     )
-}
+})
 
 function getFile(fileName, fileUrl) {
     if (cache.has(fileName)) return Promise.resolve(cache.get(fileName))

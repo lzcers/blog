@@ -8,6 +8,15 @@
         font-size: 16px;
     }
 }
+.aboutmePic {
+    width: 250px;
+    height: 300px;
+    background: url(/assets/img/aboutme.bc69568.jpg) no-repeat;
+    background-size: 100%;
+    margin: 0 auto;
+    position: relative;
+    right: 35px;
+}
 
 @media screen and (max-width: 750px) {
     .guide {
