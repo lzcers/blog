@@ -4,7 +4,7 @@ const exec = require('child_process').exec
 const execSync = require('child_process').execSync
 
 // 读取文章的目录
-const sourcePath = path.format({ dir: 'C:\\articles\\blog' })
+const sourcePath = path.format({ dir: 'C:\\code\\docs\\blog' })
 
 const destPath = path.join(__dirname, './docs/articles')
 
