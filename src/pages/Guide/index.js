@@ -21,7 +21,7 @@ const About = _ => (
                 <a href="/#/home">HOME</a>
             </h3>
             <h3>
-                <a href="/#/about">ABOUTME</a>
+                <a href="/#/about">ABOUT</a>
             </h3>
         </div>
     </div>

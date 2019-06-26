@@ -14,9 +14,9 @@
 .nav-header {
     float: left;
     .nav-sitename {
+        font-weight: 900;
         color: #424243;
         text-transform: uppercase;
-        font-family: 'Oswald', sans-serif, 'Microsoft YaHei', STHeiti;
     }
 }
 .nav-menu {
@@ -30,12 +30,11 @@
         line-height: 80px;
         display: inline-block;
         margin: 0 10px;
-        font-family: 'Oswald', sans-serif, 'Microsoft YaHei', STHeiti;
-
         & a:visited {
             color: #808080;
         }
         & a:hover {
+            font-weight: bold;
             color: #000;
         }
     }
@@ -43,7 +42,7 @@
 
 @media screen and (max-width: 750px) {
     .nav {
-        padding: 0 10px;
+        padding: 0;
     }
 }
 

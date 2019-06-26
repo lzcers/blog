@@ -9,9 +9,11 @@
     -webkit-text-size-adjust: 100%;
     color: #444444;
     line-height: 1.7;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol';
-    font-size: 16px;
+    font-family: 'Noto Serif SC', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN',
+        'Source Han Serif', 'source-han-serif-sc', 'Source Serif Pro', 'Crimson Text', 'Source Serif Pro',
+        'Crimson Text', serif;
+    font-size: 1.1em;
+    line-height: 1.8em;
     word-wrap: break-word;
 }
 
@@ -324,15 +326,17 @@
 }
 
 .markdown-body code {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    font-size: 12px;
+    font-family: 'Latin Modern Mono', 'SF Mono', monaco, 'Consolas', 'Noto Serif SC', 'Noto Serif CJK SC',
+        'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif', 'source-han-serif-sc';
 }
 
 .markdown-body pre {
     margin-top: 0;
     margin-bottom: 0;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    font-size: 12px;
+    font-family: 'Latin Modern Mono', 'SF Mono', monaco, 'Consolas', 'Noto Serif SC', 'Noto Serif CJK SC',
+        'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif', 'source-han-serif-sc';
+    font-size: 1.1em;
+    line-height: 1.8em;
 }
 
 .markdown-body .octicon {
