@@ -27,9 +27,11 @@
     .nav-item {
         cursor: pointer;
         color: #808080;
+        width: 100px;
         line-height: 80px;
+        text-align: center;
         display: inline-block;
-        margin: 0 10px;
+        padding: 0 10px;
         & a:visited {
             color: #808080;
         }

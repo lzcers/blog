@@ -5,7 +5,7 @@ import './nav.scss'
 const Nav = _ => (
     <nav className="nav">
         <div className="nav-header">
-            <h1 className="nav-sitename">ksana</h1>
+            <h1 className="nav-sitename">刹那</h1>
         </div>
         <ul className="nav-menu">
             <li className="nav-item">
