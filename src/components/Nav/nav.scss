@@ -3,7 +3,8 @@
     width: 100%;
     max-width: inherit;
     margin: 0 auto;
-    position: fixed;
+    display: flex;
+    flex-flow: row wrap;
     background: #fff;
     z-index: 999;
 }
@@ -12,7 +13,6 @@
 }
 
 .nav-header {
-    float: left;
     .nav-sitename {
         font-weight: 900;
         color: #424243;
@@ -20,7 +20,6 @@
     }
 }
 .nav-menu {
-    float: right;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -44,12 +43,15 @@
 
 @media screen and (max-width: 750px) {
     .nav {
-        padding: 0;
+        justify-content: center;
+        padding: 10px;
     }
 }
 
 @media screen and (min-width: 750px) {
     .nav {
+        justify-content: space-between;
+        position: fixed;
         padding: 0 40px;
     }
 }
