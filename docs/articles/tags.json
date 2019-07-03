@@ -200,8 +200,13 @@
     "Content": "![](http://imglf1.nosdn.127.net/img/UUcvQWZBZk9URHhUNmthQzQxSXpDVnhjaUsxSTloMW9ObXdwTHJ5RkJaZ2VuVUtVUUZJaVlnPT0.jpeg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)\r\n常见的三种编程范式\r\n1. 命令式(过程式)\r\n2. 函数式\r\n3. 对象式\r\n\r\n命令式与函数式编程的主要区别体现在对过程提供的抽象能力上，在lisp中赋予了过程第一级权利:  \r\n1. 可以将过程命名  \r\n2. 可以提供给其它过程作为参数或作为返回结果\r\n3. 可以包含在数据结构中  \r\n\r\n第二点实现的代价就意味着将过程作为值返回，需要为过程中的变量提供存储环境，无论其是否被调用，如果采用词法作用域，那这就是闭包，在典型的命令式编程语言中，例如C语言，我们或许可以通过某些方式实现第一级权利，比如传递指针。  \r\n\r\n但是，两种编程范式的差异不仅体现在这一方面，还有对待副作用的态度，也就是赋值。\r\n在函数式编程中，函数的概念更贴近数学中映射的概念，输入参数，输出结果，简单的映射，将输入集映射到结果集，过程执行中不改变外部环境的状态，也不依赖外部环境的状态。由此引入了更多源自数学的概念，如高阶函数，偏函数，柯里化，函数组合等。  \r\n\r\n在命令式编程的典型C语言中，同样提供了对过程的抽象能力，即将过程抽象为函数，但是此函数就并非函数式编程语言里的函数了，最显然的是没有第一级特权。<strong>……</strong>"
   },
   {
-    "fileName": "当我说 Immutable 时在说什么.md",
+    "fileName": "撤销与重做功能的实现.md",
     "ID": 25,
+    "Content": "```\r\nTitle: 撤销与重做功能的实现\r\nTags: 编程\r\nPublishDate: 2019/7/3 23:54:00 \r\n```\r\n\r\n通常的编辑器里我们需要保证用户在进行错误操作时可以挽救， 因而要使得所有操作都可逆与重做，\r\n\r\n这就意味着要记记录所有的操作序列，因此需要一个 commandManager 来统一管理。\r\n\r\n无论如何任何操作都会产生副作用导致状态的变化，因而在实现**撤销、重做**功能时根据关注的视角有两种实现方式，一种是关注具体的**操作序列**，一种是关注操作前后的**状态变化**。\r\n\r\n### 实现的方法\r\n\r\n- **命令式**\r\n\r\n  不关心当前应用数据的状态，只关注具体命令序列；\r\n\r\n  缺点：需要手动硬编码所有命令的正向操作与逆向操作；\r\n\r\n- **快照式**\r\n\r\n  使用 Immutable 状态，将 View 与 Model 映射，将所有操作映射至状态变化，为所有当前状态保存快照，这样一来撤销和重做只用还原状态现场；\r\n\r\n  缺点：保存状态需要深拷贝会消耗较大的内存且依赖状态的**不可变性**。关于内存消耗的缺点可以在数据结构上进行优化，类似 git ，只存差异；\r\n\r\n<strong>……</strong>"
+  },
+  {
+    "fileName": "当我说 Immutable 时在说什么.md",
+    "ID": 26,
     "Title": "当我说 Immutable 时在说什么？",
     "Tags": "前端 | 编码",
     "PublishDate": "2018/9/16 14:45",
@@ -209,7 +214,7 @@
   },
   {
     "fileName": "屋中大象.md",
-    "ID": 26,
+    "ID": 27,
     "Title": "屋中大象",
     "Tags": "编程",
     "PublishDate": "2018/8/4 13:12:26",
@@ -217,7 +222,7 @@
   },
   {
     "fileName": "对自我的思考.md",
-    "ID": 27,
+    "ID": 28,
     "Title": "对自我的思考",
     "Tags": "哲思",
     "PublishDate": "2017/8/6 17:52:40",
@@ -225,7 +230,7 @@
   },
   {
     "fileName": "如何打印 Web 页面上指定区域的内容.md",
-    "ID": 28,
+    "ID": 29,
     "Title": "如何打印 Web 页面上指定区域的内容",
     "Tags": "编码 | 前端",
     "PublishDate": "2017/12/11 13:24:52",
@@ -233,7 +238,7 @@
   },
   {
     "fileName": "央视纪录片《极地》.md",
-    "ID": 29,
+    "ID": 30,
     "Title": "央视纪录片《极地》",
     "Tags": "碎念",
     "PublishDate": "2018/1/22 21:56:11",
@@ -241,7 +246,7 @@
   },
   {
     "fileName": "国庆云南游记.md",
-    "ID": 30,
+    "ID": 31,
     "Title": "国庆云南游记",
     "Tags": "碎念",
     "PublishDate": "2017/10/15 19:17",
@@ -249,7 +254,7 @@
   },
   {
     "fileName": "又一篇什么是 Monad.md",
-    "ID": 31,
+    "ID": 32,
     "Title": "又一篇什么是 Monad",
     "Tags": "编码",
     "PublishDate": "2017/9/1 21:48:38",
@@ -257,7 +262,7 @@
   },
   {
     "fileName": "博弈论带来的启示-信任的进化.md",
-    "ID": 32,
+    "ID": 33,
     "Title": "博弈论带来的启示-信任的进化",
     "Tags": "随想",
     "PublishDate": "2017/12/15 00:04:47",
@@ -265,7 +270,7 @@
   },
   {
     "fileName": "博客文章获取接口修改.md",
-    "ID": 33,
+    "ID": 34,
     "Title": "博客文章获取接口修改",
     "Tags": "编码",
     "PublishDate": "2017/7/25 22:43:00",
@@ -273,7 +278,7 @@
   },
   {
     "fileName": "博客搬家.md",
-    "ID": 34,
+    "ID": 35,
     "Title": "博客搬家",
     "Tags": "编码",
     "PublishDate": "2017/10/28",
@@ -281,7 +286,7 @@
   },
   {
     "fileName": "前端监控的设计与实现.md",
-    "ID": 35,
+    "ID": 36,
     "Title": "前端监控的设计与实现",
     "Tags": "前端 | JS",
     "PublishDate": "2018/7/10 18:09:14",
@@ -289,7 +294,7 @@
   },
   {
     "fileName": "利用 serviceWorker 快速把网站变成 PWA 应用.md",
-    "ID": 36,
+    "ID": 37,
     "Title": "利用 serviceWorker 快速把网站变成 PWA 应用",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/17 20:16:06",
@@ -297,7 +302,7 @@
   },
   {
     "fileName": "写作是一个学习过程.md",
-    "ID": 37,
+    "ID": 38,
     "Title": "写作是一个学习过程",
     "Tags": "碎念",
     "PublishDate": "2018/3/6 00:59:23",
@@ -305,7 +310,7 @@
   },
   {
     "fileName": "写一个简单的 Markdown 编辑器.md",
-    "ID": 38,
+    "ID": 39,
     "Title": "写一个简单的 Markdown 编辑器",
     "Tags": "编码",
     "PublishDate": "2017/12/7 00:28:49",
@@ -313,7 +318,7 @@
   },
   {
     "fileName": "关于沟通.md",
-    "ID": 39,
+    "ID": 40,
     "Title": "关于沟通",
     "Tags": "随想",
     "PublishDate": "2015/9/18 22:29",
@@ -321,7 +326,7 @@
   },
   {
     "fileName": "关于并发的理解.md",
-    "ID": 40,
+    "ID": 41,
     "Title": "关于并发的理解",
     "Tags": "编程",
     "PublishDate": "2018/3/4 13:41:37",
@@ -329,7 +334,7 @@
   },
   {
     "fileName": "关于可视化页面构建工具的思考.md",
-    "ID": 41,
+    "ID": 42,
     "Title": "关于可视化页面构建工具的思考",
     "Tags": "编程 | 前端 | 随想",
     "PublishDate": "2018/06/05 21:30",
@@ -337,7 +342,7 @@
   },
   {
     "fileName": "使用 Systemd 设置 Linux 应用自启动.md",
-    "ID": 42,
+    "ID": 43,
     "Title": "使用 Systemd 设置 Linux 应用自启动",
     "Tags": "编码 | Linux",
     "PublishDate": "2017/12/11 17:27:03",
@@ -345,7 +350,7 @@
   },
   {
     "fileName": "从静态博客转到Golang + MongoDB后端.md",
-    "ID": 43,
+    "ID": 44,
     "Title": "从静态博客转到Golang + MongoDB后端",
     "Tags": "编码",
     "PublishDate": "2017/11/29 23:39:47",
@@ -353,7 +358,7 @@
   },
   {
     "fileName": "从浏览器工作机制看性能优化.md",
-    "ID": 44,
+    "ID": 45,
     "Title": "从浏览器工作机制看性能优化",
     "PublishDate": "2018/7/9 15:31",
     "Tags": "前端",
@@ -361,7 +366,7 @@
   },
   {
     "fileName": "书写以及文字.md",
-    "ID": 45,
+    "ID": 46,
     "Title": "书写以及文字",
     "Tags": "随想",
     "PublishDate": "2015/1/31 23:06",
@@ -369,7 +374,7 @@
   },
   {
     "fileName": "不求甚解与刨根问底.md",
-    "ID": 46,
+    "ID": 47,
     "Title": "不求甚解与刨根问底",
     "Tags": "随想",
     "PublishDate": "2017/9/5 23:28",
@@ -377,7 +382,7 @@
   },
   {
     "fileName": "不念过去，不畏将来，珍惜现在，再见 2017.md",
-    "ID": 47,
+    "ID": 48,
     "Title": "不念过去，不畏将来，珍惜现在，再见 2017",
     "Tags": "碎念",
     "PublishDate": "2017/12/31 17:02:01",
@@ -385,7 +390,7 @@
   },
   {
     "fileName": "七夕.md",
-    "ID": 48,
+    "ID": 49,
     "Title": "七夕",
     "Tags": "碎念",
     "PublishDate": "2017/8/29 21:59:29",
@@ -393,7 +398,7 @@
   },
   {
     "fileName": "《逻辑的引擎》读后感.md",
-    "ID": 49,
+    "ID": 50,
     "Title": "《逻辑的引擎》读后感",
     "Tags": "碎念 | 读书",
     "PublishDate": "2018/2/26 00:56:10",
@@ -401,7 +406,7 @@
   },
   {
     "fileName": "《寻梦环游记》观后感 - 终极的死亡.md",
-    "ID": 50,
+    "ID": 51,
     "Title": "《寻梦环游记》观后感 - 终极的死亡",
     "Tags": "碎念",
     "PublishDate": "2017/12/6 20:40:50",
@@ -409,7 +414,7 @@
   },
   {
     "fileName": "Webpack 4 升级.md",
-    "ID": 51,
+    "ID": 52,
     "Title": "Webpack 4 升级",
     "Tags": "前端",
     "PublishDate": "2018/3/14 01:12:51",
@@ -417,7 +422,7 @@
   },
   {
     "fileName": "Web Worker 与 Service Worker.md",
-    "ID": 52,
+    "ID": 53,
     "Title": "Web Worker 与 Service Worker",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/16 21:09:35",
@@ -425,7 +430,7 @@
   },
   {
     "fileName": "ukulele.md",
-    "ID": 53,
+    "ID": 54,
     "Title": "ukulele",
     "Tags": "碎念",
     "PublishDate": "2017/7/22",
@@ -433,7 +438,7 @@
   },
   {
     "fileName": "Rust 学习笔记.md",
-    "ID": 54,
+    "ID": 55,
     "Title": "Rust 学习笔记",
     "Tags": "编程",
     "PublishDate": "2018/8/6 19:25:28",
@@ -441,7 +446,7 @@
   },
   {
     "fileName": "rem、vhvw 学习笔记.md",
-    "ID": 55,
+    "ID": 56,
     "Title": "rem、vh/vw 学习笔记",
     "Tags": "前端",
     "PublishDate": "2018/7/27 18:03:30",
@@ -449,7 +454,7 @@
   },
   {
     "fileName": "React Fiber 初探.md",
-    "ID": 56,
+    "ID": 57,
     "Title": "React Fiber 初探",
     "Tags": "前端",
     "PublishDate": "2018/8/18 23:47",
@@ -457,7 +462,7 @@
   },
   {
     "fileName": "koa-compose 浅析.md",
-    "ID": 57,
+    "ID": 58,
     "Title": "koa-compose 浅析",
     "Tags": "前端",
     "PublishDate": "2018/8/1 22:07",
@@ -465,7 +470,7 @@
   },
   {
     "fileName": "JS任督二脉-原型.md",
-    "ID": 58,
+    "ID": 59,
     "Title": "JS任督二脉-原型",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/24 23:43",
@@ -473,7 +478,7 @@
   },
   {
     "fileName": "JS任督二脉-作用域.md",
-    "ID": 59,
+    "ID": 60,
     "Title": "JS任督二脉-作用域",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/8 22:40",
@@ -481,7 +486,7 @@
   },
   {
     "fileName": "JS 学习补遗.md",
-    "ID": 60,
+    "ID": 61,
     "Title": "JS 学习补遗",
     "Tags": "前端",
     "PublishDate": "2018/8/13 0:40:49",
@@ -489,7 +494,7 @@
   },
   {
     "fileName": "Cycle.js 体验.md",
-    "ID": 61,
+    "ID": 62,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -497,7 +502,7 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 62,
+    "ID": 63,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
@@ -505,7 +510,7 @@
   },
   {
     "fileName": "2018年计划与回顾.md",
-    "ID": 63,
+    "ID": 64,
     "Title": "2018年计划与回顾",
     "Tags": "碎念",
     "PublishDate": "2018/1/20 17:19:52",
