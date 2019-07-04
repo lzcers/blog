@@ -60,10 +60,16 @@ function getFile(fileName, fileUrl) {
         .catch(e => false)
 }
 
-async function getMetadata() {
-    return (await getTagsData(tagsUrl)) || (await getTagsData(localTagsUrl))
-}
-async function getPostByID(fileName) {
-    return (await getFile(fileName, fileUrl)) || (await getFile(fileName, localfileUrl))
-}
+const getMetadata = memorize(async () => {
+    const result = await Promise.all([getTagsData(tagsUrl), getTagsData(localTagsUrl)])
+    console.log('test')
+    return result[0] || result[1]
+})
+
+const getPostByID = memorize(async fileName => {
+    const result = await Promise.all([getFile(fileName, fileUrl), getFile(fileName, localfileUrl)])
+    console.log('test1')
+    return result[0] || result[1]
+})
+
 export { getPosts, getTags, getPostByID }
