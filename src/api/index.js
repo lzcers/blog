@@ -62,13 +62,11 @@ function getFile(fileName, fileUrl) {
 
 const getMetadata = memorize(async () => {
     const result = await Promise.all([getTagsData(tagsUrl), getTagsData(localTagsUrl)])
-    console.log('test')
     return result[0] || result[1]
 })
 
 const getPostByID = memorize(async fileName => {
     const result = await Promise.all([getFile(fileName, fileUrl), getFile(fileName, localfileUrl)])
-    console.log('test1')
     return result[0] || result[1]
 })
 
