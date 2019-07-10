@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import { HashRouter as Router } from 'react-router-dom'
 import { getTags, getPosts } from '@/api'
 import App from './App'
-import '@babel/polyfill'
 
 setTimeout(() => getTags(), 1)
 setTimeout(() => getPosts(), 1)
