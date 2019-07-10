@@ -40,7 +40,17 @@ export default class Lifegame extends React.PureComponent {
             mapMatrix(cellMatrix)
         }
         // 开始主循环
-        this.state.intervalCode = setInterval(Main, 50)
+        let start = null
+        const step = timestamp => {
+            if (!start) start = timestamp
+            let progress = timestamp - start
+            if (progress > 60) {
+                start = timestamp
+                Main()
+            }
+            window.requestAnimationFrame(step)
+        }
+        requestAnimationFrame(step)
 
         // 矩阵状态映射至canvas网格
         // 初始化细胞矩阵
@@ -120,9 +130,8 @@ export default class Lifegame extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        const { myCanvas, intervalCode } = this.state
+        const { myCanvas } = this.state
         myCanvas.removeEventListener('mousemove', this.mousePassCanvas)
-        clearInterval(intervalCode)
     }
 
     sizePX() {
