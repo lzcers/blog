@@ -8,6 +8,9 @@
         "tags": "node ./genTagsList.js",
         "posts": "node ./updatePost.js"
     },
+    "bin": {
+        "blog": "pubTool.js"
+    },
     "dependencies": {
         "@babel/polyfill": "^7.4.4",
         "@babel/runtime": "^7.5.4",
