@@ -1,5 +1,5 @@
 const { delFolder, copyFolder } = require('./utils.js')
-const { execSync } = require('child_process')
+const { exec, execSync } = require('child_process')
 const path = require('path')
 const fs = require('fs')
 
