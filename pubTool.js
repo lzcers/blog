@@ -1,6 +1,7 @@
 const { delFolder, copyFolder } = require('./utils.js')
 const { execSync } = require('child_process')
 const path = require('path')
+const fs = require('fs')
 
 // 源目录
 const sourcePath = path.format({ dir: 'C:\\code\\docs\\blog' })
