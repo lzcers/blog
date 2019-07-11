@@ -1,12 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const exec = require('child_process').exec
-const execSync = require('child_process').execSync
-
-// 源目录
-const sourcePath = path.format({ dir: 'C:\\code\\docs\\blog' })
-// 目标目录
-const destPath = path.join(__dirname, './docs/articles')
 
 function copyFile(srcPath, tarPath, cb) {
     const rs = fs.createReadStream(srcPath)
@@ -79,40 +72,4 @@ function copyFolder(srcDir, tarDir, cb) {
     })
 }
 
-function genTags() {
-    // 生成 tags
-    exec('node ./genTagslist.js', (error, stdout, stderr) => {
-        if (stdout.length > 0) {
-            console.log('----------------------------------------')
-            console.log(stdout)
-            console.log('开始推送文章至 Github ...')
-            console.log('git add .')
-            try {
-                execSync('git add .')
-                console.log('git commit -m "update posts..."')
-                execSync('git commit -m "update posts..."')
-                console.log('git push')
-                execSync('git push')
-            } catch (e) {
-                console.log('推送失败!')
-            }
-        }
-        if (error) {
-            console.info('stderr : ' + stderr)
-        }
-    })
-}
-
-// 1.先干掉文件夹
-delFolder(destPath)
-
-if (!fs.existsSync(destPath)) {
-    fs.mkdir(destPath, function(err) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        // 2. 然后重新拷贝，并生成 tags 调用 git push 操作
-        copyFolder(sourcePath, destPath, genTags)
-    })
-}
+module.exports = { copyFile, delFolder, copyFolder }
