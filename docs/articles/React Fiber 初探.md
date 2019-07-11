@@ -8,7 +8,7 @@ PublishDate: 2018/8/18 23:47
 
 尽管 React 有非常优秀的  Vitural DOM Diff 算法，但是对于一个复杂的页面而言，React 的调度策略 Stack Reconcile 会深度优先遍历所有的 Vitural DOM 并 Diff 计算完成后才会将主线程释放，这个期间用户与浏览器的任何交互都是得不到反馈的，表现出的样子就是浏览器僵死，只有任务结束后才得到响应，函数的调用栈就像下面这个样子。
 
-![img](.\imgs\fiber2.jpg) 
+![img](/articles/imgs/fiber2.jpg) 
 
 怎么才能使用户察觉不出卡顿？控制渲染绘制时间小于 **16.6ms**。
 
@@ -16,7 +16,7 @@ PublishDate: 2018/8/18 23:47
 
 因此，我们不能让 Vitural DOM 这样相对耗时复杂任务长期占据主线程堵塞渲染，在不考虑突破浏览器单线程模型的情况下，**我们只能将这个耗时的长任务分片处理**，这就是 React Fiber 做的，在此之后函数的调用栈就长这样了。
 
-![img](.\imgs\fiber1.jpg) 
+![img](/articles/imgs/fiber1.jpg) 
 
 **那若是用多线程呢？** 应用 Web Worker，我们可以把一些耗时的任务放入 Web Worker 中去处理，而且也不会堵塞渲染，它不正是做这种事情嘛。
 
@@ -36,7 +36,7 @@ PublishDate: 2018/8/18 23:47
 
 我们知道浏览器的绘制是按帧来的，通常一帧约16ms，只要维持在每秒 30 - 60 帧就不会影响用户体验，而每一帧的绘制期间会有一小段间隔时间，称之为**空闲期（idle Period）**，如上面所说，我们可以把一些低优先级的任务的任务放在这个期间处理，这种就不会影响用户交互与动画，相反高优先级的任务就丢给 `requestAnimationFrame`处理。（在 Chrome Dev Tools 的 Performance 中可以看到 Frame 相关的信息）
 
-![frame](.\imgs\frame.png) 
+![frame](/articles/imgs/frame.png) 
 
 ```javascript
 const handle = window.requestIdleCallback(callback[, options])

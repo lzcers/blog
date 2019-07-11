@@ -23,7 +23,7 @@ emmmm，确实不难理解，当然，首先你要能理解上面那句话里谈
 
 > "范畴就是使用箭头连接的物体。"（In mathematics, a category is an algebraic structure that comprises "objects" that are linked by "arrows". ）
 
-![catmap](.\imgs\catmap.png)
+![catmap](/articles/imgs/catmap.png)
 这里的物体不是单个的对象，而是所指有这些箭头连接起来的对象的集合，也就是上图中圆圈包裹的整体，当然，除此之外还有一些约束，它的定义是这样的：
 
 1. 一系列的对象(object)；
@@ -123,7 +123,7 @@ compose(map(f), map(g)) === map(compose(f, g));
 
 对于一个函子 M，如果存在自然变换 μ：M(M(x)) -> M(X)、η：x -> M(x)，使得它们保持结合律和单位律，那我们就定义了一个 Monad。注意到μ、η、结合律、单位律形式和幺半群的很相似，所以我们说「自函子范畴上的一个幺半群」。
 
-![](./imgs/monad_associativity.png)
+![](/articles/imgs/monad_associativity.png)
 
 上码
 ```javascript
@@ -167,7 +167,7 @@ mcompose(mcompose(f, g), h) == mcompose(f, mcompose(g, h))
 
 // so，因此Monad函子构成一个范畴
 ```
-![三角同一律](./imgs/triangle_identity.png)
+![三角同一律](/articles/imgs/triangle_identity.png)
 
 我们知道函子总是把一个东西从一个范畴映射到另外一个范畴，那么 monad 函子范畴里有啥特殊的本领么？比如 Maybe 函子就能做空值检测，那么Monad能做啥？
 典型的，Promise 就是一个 Monad，Prmise().then().then().then().....catch() 其中每一个 then 都返回一个 Promise 对象。
