@@ -531,8 +531,8 @@
     "fileName": "AliyunServerless.md",
     "ID": 66,
     "Title": "Aliyun Serverless 体验",
-    "tags": "编程",
-    "publishDate": "2019/7/13 16:33:40",
+    "Tags": "编程",
+    "PublishDate": "2019/7/13 16:33:40",
     "Content": "VS Code 阿里云函数计算的插件 **Aliyun Serverless VSCode Extension**，它能让你在 VS Code 上做函数计算的开发，关于函数计算，或者说 **Serverless** 的概念就不多说了，对于前端来说它算的上是某种革命性的技术。全栈工程的门槛将进一步降低，我们写后端服务仅需要编写相关的函数即可，调用按时间或是次数收费，开发者不需要关系服务器的搭建，环境安装与配置等一堆依赖问题，只需要专注于函数编写即可。\r\n\r\n## 安装踩坑之旅\r\n\r\n在 VS Code 上装好插件后开始 Coding，如果需要本地调试则需要安装  \r\n\r\n`npm install @alicloud/fun -g`\r\n\r\n这个好搞定，关键是 docker 的安装，在 Window 上就必然是踩坑之旅了，首先，docker 依赖底层的 linux 内核提供的能力，在 Windows 上跑 docker 是需要 **Hyper-V** 虚拟机的，而我本机的 **Windows 10 家庭高级版** 并不能使用该功能。\r\n\r\n1. 想办法把电脑升级到 Win10 专业版本后，启用 Hyper-V，把 Docker 装上。\r\n\r\n你以为这就结束了？ Docker 是一个在墙外的东西，启动时安装各种依赖的速度贼慢，因此要配置镜像，好在阿里云提供了镜像服务。<strong>……</strong>"
   },
   {

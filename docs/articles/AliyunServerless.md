@@ -1,7 +1,7 @@
 ---
 Title: Aliyun Serverless 体验
-tags: 编程
-publishDate: 2019/7/13 16:33:40
+Tags: 编程
+PublishDate: 2019/7/13 16:33:40
 ---
 
 VS Code 阿里云函数计算的插件 **Aliyun Serverless VSCode Extension**，它能让你在 VS Code 上做函数计算的开发，关于函数计算，或者说 **Serverless** 的概念就不多说了，对于前端来说它算的上是某种革命性的技术。全栈工程的门槛将进一步降低，我们写后端服务仅需要编写相关的函数即可，调用按时间或是次数收费，开发者不需要关系服务器的搭建，环境安装与配置等一堆依赖问题，只需要专注于函数编写即可。
