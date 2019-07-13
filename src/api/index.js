@@ -4,9 +4,7 @@ import marked from '@/utils/mdRender.js'
 import memorize from '@/utils/memorize.js'
 
 const localTagsUrl = '/articles/tags.json'
-const localfileUrl = '/articles/'
-
-axios.defaults.timeout = 3500
+const localfileUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/'
 
 function getTagsData(url) {
     if (cache.has('postList')) return Promise.resolve(cache.get('postList'))
