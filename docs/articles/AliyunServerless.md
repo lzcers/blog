@@ -34,3 +34,4 @@ VS Code 阿里云函数计算的插件 **Aliyun Serverless VSCode Extension**，
 
 WTF ！ 这就行了？什么鬼，差不多一下午时间浪费在这上面，终于在本地把函数计算的例子跑起来看到了 Hello World。
 
+![1563010060201](imgs/1563010060201.png)
