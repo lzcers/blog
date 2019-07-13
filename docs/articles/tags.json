@@ -1,7 +1,15 @@
 [
   {
-    "fileName": "雨.md",
+    "fileName": "项目规范化开发.md",
     "ID": 0,
+    "Title": "项目规范化开发",
+    "Tags": "随想",
+    "PublishDate": "2019/7/13 22:29:28",
+    "Content": "## 项目规范化开发\r\n\r\n## why\r\n\r\n大部分项目缺少文档、注释、测试、编码不规范、changelog，又加上 IT 行业流动性较大，导致后来的人接手困难，\r\n\r\n哪怕并没有人员变动，项目也会随着时间的推移与代码量的膨胀逐步导致协作的困难，技术债越积越多，从而导致项目进展推动困难甚至项目失败。\r\n\r\n## how\r\n\r\n常见的解决方案是在项目流程上对交付件做出硬性规定，甚至对交付件的都有相应的规范与模板，但大多数最终都会流于形式变成应付，交付件质量奇差，敷衍了事。\r\n\r\n因此在流程上进行约束是不能完全有效的，流程的产生通常来自于这样的过程，最佳实践 -> 规范标准化 -> 流程化，到了流程这一步其实已经可以考虑将其自动化用 IT 工具来承载了，只有自动化才能让开发人员爽，爽了才愿意做乐意做并做好。\r\n\r\n**文档、changelog**这两个其实都可以通过工具来自动生成，常见如 JSDOC 能从代码中抽取规范化的注释生成文档，changelog 也可以通过规范的 Git commit message 来生成。\r\n\r\n开发人员的大部分工作成果都是通过 Git 来交付的，在这一过程中我们可以使用一些工具来拦截到 Git 的 commit、push 等操作来执行一些预处理脚本，如进行代码风格检查、格式化、文档生成等工作，可以使用 **Husky** 来做，配合其他的工具，我们就可以使项目规范化开发更轻松无痛的落地。<strong>……</strong>"
+  },
+  {
+    "fileName": "雨.md",
+    "ID": 1,
     "Title": "雨",
     "Tags": "碎念",
     "PublishDate": "2017/7/17 14:43:00",
@@ -9,7 +17,7 @@
   },
   {
     "fileName": "闲扯带团队与代码质量管理.md",
-    "ID": 1,
+    "ID": 2,
     "Title": "闲扯带团队与代码质量管理",
     "Tags": "编码 | 随想",
     "PublishDate": "2018/9/12 22:45",
@@ -17,7 +25,7 @@
   },
   {
     "fileName": "通过gitHub与Issues构建博客.md",
-    "ID": 2,
+    "ID": 3,
     "Title": "通过gitHub与Issues构建博客",
     "Tags": "碎念",
     "PublishDate": "2017/7/16 19:20:56",
@@ -25,7 +33,7 @@
   },
   {
     "fileName": "通过acme.sh申请Let's Encrypt证书.md",
-    "ID": 3,
+    "ID": 4,
     "Title": "通过acme.sh申请Let's Encrypt证书",
     "Tags": "编码",
     "PublishDate": "2017/8/27 17:43:02",
@@ -33,7 +41,7 @@
   },
   {
     "fileName": "选择.md",
-    "ID": 4,
+    "ID": 5,
     "Title": "选择",
     "Tags": "碎念",
     "PublishDate": "2018/9/10 0:32",
@@ -41,7 +49,7 @@
   },
   {
     "fileName": "过去的 2018.md",
-    "ID": 5,
+    "ID": 6,
     "Title": "过去的 2018",
     "Tags": "随想",
     "PublishDate": "2019/1/27 21:44:00",
@@ -49,7 +57,7 @@
   },
   {
     "fileName": "超酷炫的字体.md",
-    "ID": 6,
+    "ID": 7,
     "Title": "超酷炫的字体",
     "Tags": "碎念",
     "PublishDate": "2017/8/8 20:53:41",
@@ -57,7 +65,7 @@
   },
   {
     "fileName": "读《原则》.md",
-    "ID": 7,
+    "ID": 8,
     "Title": "读《原则》",
     "Tags": "读书",
     "PublishDate": "2018/5/29 00:31",
@@ -65,7 +73,7 @@
   },
   {
     "fileName": "记一次流量劫持.md",
-    "ID": 8,
+    "ID": 9,
     "Title": "记一次流量劫持",
     "Tags": "编码",
     "PublishDate": "2018/9/17 15:15",
@@ -73,7 +81,7 @@
   },
   {
     "fileName": "裸辞.md",
-    "ID": 9,
+    "ID": 10,
     "Title": "裸辞",
     "Tags": "碎念",
     "PublishDate": "2017/12/6 20:28:16",
@@ -81,7 +89,7 @@
   },
   {
     "fileName": "葬礼.md",
-    "ID": 10,
+    "ID": 11,
     "Title": "葬礼",
     "Tags": "碎念",
     "PublishDate": "2019/7/10 00:16:00",
@@ -89,7 +97,7 @@
   },
   {
     "fileName": "自由.md",
-    "ID": 11,
+    "ID": 12,
     "Title": "自由",
     "Tags": "随想",
     "PublishDate": "2017/7/30 22:43:40",
@@ -97,7 +105,7 @@
   },
   {
     "fileName": "编译原理学习.md",
-    "ID": 12,
+    "ID": 13,
     "Title": "编译原理学习",
     "Tags": "编程",
     "PublishDate": "2018/5/27 23:26",
@@ -105,15 +113,15 @@
   },
   {
     "fileName": "类型笔记.md",
-    "ID": 13,
+    "ID": 14,
     "Title": "类型笔记",
     "Tags": "编程",
     "PublishDate": "2019/7/13 22:21:53",
-    "Content": "## 类型系统\r\n\r\n[浅谈 TypeScript 类型系统](https://zhuanlan.zhihu.com/p/64446259)\r\n\r\n[TypeScript Type-Level Programming](https://zhuanlan.zhihu.com/p/54182787)\r\n\r\n#### 标明类型系统（Nominal Type System）\r\n\r\n```c#\r\npublic class Foo  \r\n{\r\n    public string Name { get; set; }\r\n    public int Id { get; set;}\r\n}\r\n\r\npublic class Bar  \r\n{\r\n    public string Name { get; set; }\r\n    public int Id { get; set; }\r\n}\r\n\r\nFoo foo = new Foo(); // Okay.\r\nBar bar = new Foo(); // Error!!!\r\n```\r\n\r\n#### 结构类型系统（Structural Type System）\r\n\r\n```typescript\r\nclass Foo {\r\n  method(input: string): number { ... }\r\n}\r\n\r\nclass Bar {\r\n  method(input: string): number { ... }\r\n}\r\n\r\nconst foo: Foo = new Foo(); // Okay.\r\nconst bar: Bar = new Foo(); // Okay.\r\n```\r\n\r\n**区别：** 标明类型系统比较的是类型本身，一致性要求高，结构类型系统比较的是类型的形状，即类型要满足的约束，若果两个类型满足相同的约束，那他们就是相同的类型，俗称鸭子类型，一个东西看上去和鸭子一样，行为和鸭子一样那它就是鸭子。\r\n\r\n**优缺点：**前者更严格，后者更灵活，适用于各种偏函数式的语言比如 JS 。\r\n\r\n\r\n#### 泛型（Generics）\r\n\r\n泛型可以类比为类型层面的函数声明，接受一个类型参数 -> 返回一个类型，足够强的类型系统是图灵完备的，可以进行编程，比如 TypeScript 中就有人用类型系统写素数判断的程序。\r\n\r\n#### 协变与逆变\r\n\r\n- **子类型**（subtype）子类型可以隐性的转换为父类型，比如 int 就是 flot 的子类型，即 int ≦ float。\r\n- **协变**（covariant），如果它保持了[子类型序关系≦](https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/%25E5%25AD%2590%25E5%259E%258B%25E5%2588%25A5)。<strong>……</strong>"
+    "Content": "## 类型系统\r\n\r\n#### 标明类型系统（Nominal Type System）\r\n\r\n```c#\r\npublic class Foo  \r\n{\r\n    public string Name { get; set; }\r\n    public int Id { get; set;}\r\n}\r\n\r\npublic class Bar  \r\n{\r\n    public string Name { get; set; }\r\n    public int Id { get; set; }\r\n}\r\n\r\nFoo foo = new Foo(); // Okay.\r\nBar bar = new Foo(); // Error!!!\r\n```\r\n\r\n#### 结构类型系统（Structural Type System）\r\n\r\n```typescript\r\nclass Foo {\r\n  method(input: string): number { ... }\r\n}\r\n\r\nclass Bar {\r\n  method(input: string): number { ... }\r\n}\r\n\r\nconst foo: Foo = new Foo(); // Okay.\r\nconst bar: Bar = new Foo(); // Okay.\r\n```\r\n\r\n**区别：** 标明类型系统比较的是类型本身，一致性要求高，结构类型系统比较的是类型的形状，即类型要满足的约束，若果两个类型满足相同的约束，那他们就是相同的类型，俗称鸭子类型，一个东西看上去和鸭子一样，行为和鸭子一样那它就是鸭子。\r\n\r\n**优缺点：**前者更严格，后者更灵活，适用于各种偏函数式的语言比如 JS 。\r\n\r\n\r\n#### 泛型（Generics）\r\n\r\n泛型可以类比为类型层面的函数声明，接受一个类型参数 -> 返回一个类型，足够强的类型系统是图灵完备的，可以进行编程，比如 TypeScript 中就有人用类型系统写素数判断的程序。\r\n\r\n#### 协变与逆变\r\n\r\n- **子类型**（subtype）子类型可以隐性的转换为父类型，比如 int 就是 flot 的子类型，即 int ≦ float。\r\n- **协变**（covariant），如果它保持了[子类型序关系≦](https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/%25E5%25AD%2590%25E5%259E%258B%25E5%2588%25A5)。<strong>……</strong>"
   },
   {
     "fileName": "程序员技能思考.md",
-    "ID": 14,
+    "ID": 15,
     "Title": "程序员技能思考",
     "Tags": "编程 | 随想",
     "PublishDate": "2018/7/9 16:06:33",
@@ -121,7 +129,7 @@
   },
   {
     "fileName": "用JS 实现 Lisp 里的流.md",
-    "ID": 15,
+    "ID": 16,
     "Title": "用JS 实现 Lisp 里的流",
     "Tags": "编程",
     "PublishDate": "2018/3/10 21:24:59",
@@ -129,7 +137,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（3）之作用域与闭包.md",
-    "ID": 16,
+    "ID": 17,
     "Title": "用 JS 撸个 LISP 解释器（3）之作用域与闭包",
     "Tags": "编程 | JS | 坑",
     "PublishDate": "2018/6/10 23:58",
@@ -137,7 +145,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（2）之 evalapply 循环.md",
-    "ID": 17,
+    "ID": 18,
     "Title": "用 JS 撸个 LISP 解释器（2）之 eval/apply 循环",
     "Tags": "编程 | JS | 坑",
     "PublishDate": "2018/6/8 19:53",
@@ -145,7 +153,7 @@
   },
   {
     "fileName": "用 JS 撸个 LISP 解释器（1）之 ParserCombinator.md",
-    "ID": 18,
+    "ID": 19,
     "Title": "用 JS 撸个 LISP 解释器（1）之 ParserCombinator",
     "PublishDate": "2018/6/3 21:45",
     "Tags": "编程 | JS | 坑",
@@ -153,7 +161,7 @@
   },
   {
     "fileName": "用 CSS 实现网页追踪与分析.md",
-    "ID": 19,
+    "ID": 20,
     "Title": "用 CSS 实现网页追踪与分析",
     "Tags": "前端",
     "PublishDate": "2018/1/20 22:15:05",
@@ -161,7 +169,7 @@
   },
   {
     "fileName": "熵与人生.md",
-    "ID": 20,
+    "ID": 21,
     "Title": "熵与人生",
     "Tags": "随想",
     "PublishDate": "2015/3/27 21:15",
@@ -169,7 +177,7 @@
   },
   {
     "fileName": "滚动条导致计算值元素跳动的处理.md",
-    "ID": 21,
+    "ID": 22,
     "Title": "滚动条导致计算值元素跳动的处理",
     "Tags": "前端 | 编码",
     "PublishDate": "2017/12/14 18:29:43",
@@ -177,7 +185,7 @@
   },
   {
     "fileName": "浅谈对架构的理解.md",
-    "ID": 22,
+    "ID": 23,
     "Title": "浅谈对架构的理解",
     "Tags": "编程 | 随想",
     "PublishDate": "2018/7/22 23:57:51",
@@ -185,7 +193,7 @@
   },
   {
     "fileName": "浅尝蛤丝（Haskell）.md",
-    "ID": 23,
+    "ID": 24,
     "Title": "浅尝蛤丝（Haskell）",
     "Tags": "编程",
     "PublishDate": "2018/6/19 23:42",
@@ -193,7 +201,7 @@
   },
   {
     "fileName": "无题.md",
-    "ID": 24,
+    "ID": 25,
     "Title": "无题",
     "Tags": "随想",
     "PublishDate": "2018/9/1 15:14",
@@ -201,7 +209,7 @@
   },
   {
     "fileName": "数据抽象.md",
-    "ID": 25,
+    "ID": 26,
     "Title": "数据抽象",
     "Tags": "编码 | 哲思",
     "PublishDate": "2017/8/22 23:30:48",
@@ -209,7 +217,7 @@
   },
   {
     "fileName": "攀登抽象的阶梯.md",
-    "ID": 26,
+    "ID": 27,
     "Title": "攀登抽象的阶梯",
     "Tags": "编码 | 哲思",
     "PublishDate": "2017/8/9 23:00:41",
@@ -217,7 +225,7 @@
   },
   {
     "fileName": "撤销与重做功能的实现.md",
-    "ID": 27,
+    "ID": 28,
     "Title": "撤销与重做功能的实现",
     "Tags": "编程",
     "PublishDate": "2019/7/3 23:54:00",
@@ -225,7 +233,7 @@
   },
   {
     "fileName": "我爱你这件事.md",
-    "ID": 28,
+    "ID": 29,
     "Title": "我爱你这件事",
     "Tags": "碎念",
     "PublishDate": "2019/7/9 00:36:00",
@@ -233,7 +241,7 @@
   },
   {
     "fileName": "当我说 Immutable 时在说什么.md",
-    "ID": 29,
+    "ID": 30,
     "Title": "当我说 Immutable 时在说什么？",
     "Tags": "前端 | 编码",
     "PublishDate": "2018/9/16 14:45",
@@ -241,7 +249,7 @@
   },
   {
     "fileName": "屋中大象.md",
-    "ID": 30,
+    "ID": 31,
     "Title": "屋中大象",
     "Tags": "编程",
     "PublishDate": "2018/8/4 13:12:26",
@@ -249,7 +257,7 @@
   },
   {
     "fileName": "对自我的思考.md",
-    "ID": 31,
+    "ID": 32,
     "Title": "对自我的思考",
     "Tags": "哲思",
     "PublishDate": "2017/8/6 17:52:40",
@@ -257,7 +265,7 @@
   },
   {
     "fileName": "如何打印 Web 页面上指定区域的内容.md",
-    "ID": 32,
+    "ID": 33,
     "Title": "如何打印 Web 页面上指定区域的内容",
     "Tags": "编码 | 前端",
     "PublishDate": "2017/12/11 13:24:52",
@@ -265,7 +273,7 @@
   },
   {
     "fileName": "央视纪录片《极地》.md",
-    "ID": 33,
+    "ID": 34,
     "Title": "央视纪录片《极地》",
     "Tags": "碎念",
     "PublishDate": "2018/1/22 21:56:11",
@@ -273,7 +281,7 @@
   },
   {
     "fileName": "国庆云南游记.md",
-    "ID": 34,
+    "ID": 35,
     "Title": "国庆云南游记",
     "Tags": "碎念",
     "PublishDate": "2017/10/15 19:17",
@@ -281,7 +289,7 @@
   },
   {
     "fileName": "又一篇什么是 Monad.md",
-    "ID": 35,
+    "ID": 36,
     "Title": "又一篇什么是 Monad",
     "Tags": "编码",
     "PublishDate": "2017/9/1 21:48:38",
@@ -289,7 +297,7 @@
   },
   {
     "fileName": "博弈论带来的启示-信任的进化.md",
-    "ID": 36,
+    "ID": 37,
     "Title": "博弈论带来的启示-信任的进化",
     "Tags": "随想",
     "PublishDate": "2017/12/15 00:04:47",
@@ -297,7 +305,7 @@
   },
   {
     "fileName": "博客文章获取接口修改.md",
-    "ID": 37,
+    "ID": 38,
     "Title": "博客文章获取接口修改",
     "Tags": "编码",
     "PublishDate": "2017/7/25 22:43:00",
@@ -305,7 +313,7 @@
   },
   {
     "fileName": "博客搬家.md",
-    "ID": 38,
+    "ID": 39,
     "Title": "博客搬家",
     "Tags": "编码",
     "PublishDate": "2017/10/28",
@@ -313,7 +321,7 @@
   },
   {
     "fileName": "前端监控的设计与实现.md",
-    "ID": 39,
+    "ID": 40,
     "Title": "前端监控的设计与实现",
     "Tags": "前端 | JS",
     "PublishDate": "2018/7/10 18:09:14",
@@ -321,7 +329,7 @@
   },
   {
     "fileName": "利用 serviceWorker 快速把网站变成 PWA 应用.md",
-    "ID": 40,
+    "ID": 41,
     "Title": "利用 serviceWorker 快速把网站变成 PWA 应用",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/17 20:16:06",
@@ -329,7 +337,7 @@
   },
   {
     "fileName": "写作是一个学习过程.md",
-    "ID": 41,
+    "ID": 42,
     "Title": "写作是一个学习过程",
     "Tags": "碎念",
     "PublishDate": "2018/3/6 00:59:23",
@@ -337,7 +345,7 @@
   },
   {
     "fileName": "写一个简单的 Markdown 编辑器.md",
-    "ID": 42,
+    "ID": 43,
     "Title": "写一个简单的 Markdown 编辑器",
     "Tags": "编码",
     "PublishDate": "2017/12/7 00:28:49",
@@ -345,7 +353,7 @@
   },
   {
     "fileName": "关于沟通.md",
-    "ID": 43,
+    "ID": 44,
     "Title": "关于沟通",
     "Tags": "随想",
     "PublishDate": "2015/9/18 22:29",
@@ -353,7 +361,7 @@
   },
   {
     "fileName": "关于并发的理解.md",
-    "ID": 44,
+    "ID": 45,
     "Title": "关于并发的理解",
     "Tags": "编程",
     "PublishDate": "2018/3/4 13:41:37",
@@ -361,7 +369,7 @@
   },
   {
     "fileName": "关于可视化页面构建工具的思考.md",
-    "ID": 45,
+    "ID": 46,
     "Title": "关于可视化页面构建工具的思考",
     "Tags": "编程 | 前端 | 随想",
     "PublishDate": "2018/06/05 21:30",
@@ -369,7 +377,7 @@
   },
   {
     "fileName": "使用 Systemd 设置 Linux 应用自启动.md",
-    "ID": 46,
+    "ID": 47,
     "Title": "使用 Systemd 设置 Linux 应用自启动",
     "Tags": "编码 | Linux",
     "PublishDate": "2017/12/11 17:27:03",
@@ -377,7 +385,7 @@
   },
   {
     "fileName": "从静态博客转到Golang + MongoDB后端.md",
-    "ID": 47,
+    "ID": 48,
     "Title": "从静态博客转到Golang + MongoDB后端",
     "Tags": "编码",
     "PublishDate": "2017/11/29 23:39:47",
@@ -385,7 +393,7 @@
   },
   {
     "fileName": "从浏览器工作机制看性能优化.md",
-    "ID": 48,
+    "ID": 49,
     "Title": "从浏览器工作机制看性能优化",
     "PublishDate": "2018/7/9 15:31",
     "Tags": "前端",
@@ -393,7 +401,7 @@
   },
   {
     "fileName": "书写以及文字.md",
-    "ID": 49,
+    "ID": 50,
     "Title": "书写以及文字",
     "Tags": "随想",
     "PublishDate": "2015/1/31 23:06",
@@ -401,7 +409,7 @@
   },
   {
     "fileName": "不求甚解与刨根问底.md",
-    "ID": 50,
+    "ID": 51,
     "Title": "不求甚解与刨根问底",
     "Tags": "随想",
     "PublishDate": "2017/9/5 23:28",
@@ -409,7 +417,7 @@
   },
   {
     "fileName": "不念过去，不畏将来，珍惜现在，再见 2017.md",
-    "ID": 51,
+    "ID": 52,
     "Title": "不念过去，不畏将来，珍惜现在，再见 2017",
     "Tags": "碎念",
     "PublishDate": "2017/12/31 17:02:01",
@@ -417,7 +425,7 @@
   },
   {
     "fileName": "七夕.md",
-    "ID": 52,
+    "ID": 53,
     "Title": "七夕",
     "Tags": "碎念",
     "PublishDate": "2017/8/29 21:59:29",
@@ -425,7 +433,7 @@
   },
   {
     "fileName": "《逻辑的引擎》读后感.md",
-    "ID": 53,
+    "ID": 54,
     "Title": "《逻辑的引擎》读后感",
     "Tags": "碎念 | 读书",
     "PublishDate": "2018/2/26 00:56:10",
@@ -433,7 +441,7 @@
   },
   {
     "fileName": "《寻梦环游记》观后感 - 终极的死亡.md",
-    "ID": 54,
+    "ID": 55,
     "Title": "《寻梦环游记》观后感 - 终极的死亡",
     "Tags": "碎念",
     "PublishDate": "2017/12/6 20:40:50",
@@ -441,7 +449,7 @@
   },
   {
     "fileName": "Webpack 4 升级.md",
-    "ID": 55,
+    "ID": 56,
     "Title": "Webpack 4 升级",
     "Tags": "前端",
     "PublishDate": "2018/3/14 01:12:51",
@@ -449,7 +457,7 @@
   },
   {
     "fileName": "Web Worker 与 Service Worker.md",
-    "ID": 56,
+    "ID": 57,
     "Title": "Web Worker 与 Service Worker",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/16 21:09:35",
@@ -457,7 +465,7 @@
   },
   {
     "fileName": "ukulele.md",
-    "ID": 57,
+    "ID": 58,
     "Title": "ukulele",
     "Tags": "碎念",
     "PublishDate": "2017/7/22",
@@ -465,7 +473,7 @@
   },
   {
     "fileName": "Rust 学习笔记.md",
-    "ID": 58,
+    "ID": 59,
     "Title": "Rust 学习笔记",
     "Tags": "编程",
     "PublishDate": "2018/8/6 19:25:28",
@@ -473,7 +481,7 @@
   },
   {
     "fileName": "rem、vhvw 学习笔记.md",
-    "ID": 59,
+    "ID": 60,
     "Title": "rem、vh/vw 学习笔记",
     "Tags": "前端",
     "PublishDate": "2018/7/27 18:03:30",
@@ -481,7 +489,7 @@
   },
   {
     "fileName": "React Fiber 初探.md",
-    "ID": 60,
+    "ID": 61,
     "Title": "React Fiber 初探",
     "Tags": "前端",
     "PublishDate": "2018/8/18 23:47",
@@ -489,7 +497,7 @@
   },
   {
     "fileName": "koa-compose 浅析.md",
-    "ID": 61,
+    "ID": 62,
     "Title": "koa-compose 浅析",
     "Tags": "前端",
     "PublishDate": "2018/8/1 22:07",
@@ -497,7 +505,7 @@
   },
   {
     "fileName": "JS任督二脉-原型.md",
-    "ID": 62,
+    "ID": 63,
     "Title": "JS任督二脉-原型",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/24 23:43",
@@ -505,7 +513,7 @@
   },
   {
     "fileName": "JS任督二脉-作用域.md",
-    "ID": 63,
+    "ID": 64,
     "Title": "JS任督二脉-作用域",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/8 22:40",
@@ -513,7 +521,7 @@
   },
   {
     "fileName": "JS 学习补遗.md",
-    "ID": 64,
+    "ID": 65,
     "Title": "JS 学习补遗",
     "Tags": "前端",
     "PublishDate": "2018/8/13 0:40:49",
@@ -521,7 +529,7 @@
   },
   {
     "fileName": "Cycle.js 体验.md",
-    "ID": 65,
+    "ID": 66,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -529,7 +537,7 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 66,
+    "ID": 67,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
@@ -537,7 +545,7 @@
   },
   {
     "fileName": "AliyunServerless.md",
-    "ID": 67,
+    "ID": 68,
     "Title": "Aliyun Serverless 体验",
     "Tags": "编程",
     "PublishDate": "2019/7/13 16:33:40",
@@ -545,7 +553,7 @@
   },
   {
     "fileName": "2018年计划与回顾.md",
-    "ID": 68,
+    "ID": 69,
     "Title": "2018年计划与回顾",
     "Tags": "碎念",
     "PublishDate": "2018/1/20 17:19:52",
