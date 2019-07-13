@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "dev": "webpack-dev-server --inline --hot --content-base ./dist/ --config ./build/webpack.dev.config.js --mode development",
+        "dev": "webpack-dev-server --inline --hot --content-base ./docs/ --config ./build/webpack.dev.config.js --mode development",
         "build": "webpack -p --progress --hide-modules --config ./build/webpack.prod.config.js --mode production",
         "tags": "node ./genTagsList.js",
         "posts": "node ./updatePost.js"

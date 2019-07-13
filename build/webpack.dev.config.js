@@ -5,6 +5,7 @@ module.exports = merge(baseConfig, {
     output: {
         publicPath: '/'
     },
+
     module: {
         rules: [
             {

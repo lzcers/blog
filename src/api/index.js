@@ -3,9 +3,7 @@ import cache from '@/utils/cache.js'
 import marked from '@/utils/mdRender.js'
 import memorize from '@/utils/memorize.js'
 
-const tagsUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/tags.json'
 const localTagsUrl = '/articles/tags.json'
-const fileUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/'
 const localfileUrl = '/articles/'
 
 axios.defaults.timeout = 3500
@@ -22,14 +20,14 @@ function getTagsData(url) {
         .catch(e => false)
 }
 
-const getTags = memorize(() => {
-    return getMetadata().then(res => [
+const getTags = memorize(() =>
+    getMetadata().then(res => [
         ...new Set(res.map(p => p.Tags.split('|').map(e => e.trim())).reduce((pre, cur) => pre.concat(cur)))
     ])
-})
+)
 
-const getPosts = memorize(async () => {
-    return getMetadata().then(res =>
+const getPosts = memorize(() =>
+    getMetadata().then(res =>
         res.map(p => {
             p.ID = p.fileName
             p.Tags = p.Tags.split('|').map(t => t.trim())
@@ -37,7 +35,7 @@ const getPosts = memorize(async () => {
             return p
         })
     )
-})
+)
 
 function getFile(fileName, fileUrl) {
     if (cache.has(fileName)) return Promise.resolve(cache.get(fileName))
@@ -60,14 +58,8 @@ function getFile(fileName, fileUrl) {
         .catch(e => false)
 }
 
-const getMetadata = memorize(async () => {
-    const result = await Promise.all([getTagsData(tagsUrl), getTagsData(localTagsUrl)])
-    return result[0] || result[1]
-})
+const getMetadata = memorize(() => getTagsData(localTagsUrl))
 
-const getPostByID = memorize(async fileName => {
-    const result = await Promise.all([getFile(fileName, fileUrl), getFile(fileName, localfileUrl)])
-    return result[0] || result[1]
-})
+const getPostByID = memorize(fileName => getFile(fileName, localfileUrl))
 
 export { getPosts, getTags, getPostByID }

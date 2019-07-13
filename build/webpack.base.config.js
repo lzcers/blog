@@ -15,8 +15,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-            '@': resolve('../src'),
-            '#': resolve('../articles')
+            '@': resolve('../src')
         }
     },
     output: {
