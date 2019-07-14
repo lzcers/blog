@@ -30,7 +30,7 @@ module.exports = merge(baseConfig, {
         }
     },
     plugins: [
-        new CleanWebpackPlugin(['assets/styles/*.*'])(),
+        new CleanWebpackPlugin({ dry: true, cleanOnceBeforeBuildPatterns: 'assets/styles/*.*' }),
         new MiniCssExtractPlugin({
             filename: 'assets/styles/styles.[chunkhash:5].css'
         })
