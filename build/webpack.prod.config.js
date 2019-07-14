@@ -2,6 +2,7 @@ const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = merge(baseConfig, {
     output: {
@@ -29,9 +30,10 @@ module.exports = merge(baseConfig, {
         }
     },
     plugins: [
+        new CleanWebpackPlugin(['assets/styles/*.*'])(),
         new MiniCssExtractPlugin({
             filename: 'assets/styles/styles.[chunkhash:5].css'
-        }),
-        new BundleAnalyzerPlugin() // 打包分析
+        })
+        // new BundleAnalyzerPlugin() // 打包分析
     ]
 })
