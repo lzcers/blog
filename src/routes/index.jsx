@@ -6,6 +6,7 @@ import Home from '@/pages/Home'
 import Post from '@/pages/Post'
 import About from '@/pages/About'
 import Archive from '@/pages/Archive'
+import Aranya from '@/pages/Aranya'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
@@ -17,6 +18,7 @@ const MainRoutes = _ => (
         <Route path="/about" component={About} />
         <Route path="/archive/tag/:tag" component={Archive} />
         <Route path="/archive" component={Archive} />
+        <Route path="/aranya" component={Aranya} />
     </Switch>
 )
 

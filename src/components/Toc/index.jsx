@@ -36,6 +36,7 @@ function li(toc, index) {
         </li>
     )
 }
+
 export default ({ toc }) =>
     toc ? (
         <div className="toc">

@@ -3,7 +3,7 @@ import Lifegame from '@/components/Lifegame'
 
 import './guide.scss'
 
-const About = _ => (
+const About = () => (
     <div className="guide">
         <Lifegame size={300} />
         <blockquote className="quotoSICP">

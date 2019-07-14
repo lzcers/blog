@@ -1,27 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default class Lifegame extends React.PureComponent {
-    state = {
-        canvasSize: 0,
-        intervalCode: null,
-        myCanvas: null
-    }
-
-    constructor(props) {
-        super(props)
-        this.state.canvasSize = props.size
-    }
-
-    componentDidMount() {
+export default () => {
+    const [canvasSize, setCanvasSize] = useState()
+    useEffect(() => {
         const myCanvas = document.getElementById('lifegame')
-        const c = myCanvas.getContext('2d')
-        this.state.myCanvas = myCanvas
         const canvasSize = Math.round(myCanvas.offsetWidth / 10) * 10 // 减去 padding 占用的空间
-        this.state.canvasSize = canvasSize
+
+        const c = myCanvas.getContext('2d')
         const matrixSize = canvasSize / 10
         const cellSize = 10
-        if (myCanvas == null) return
-
         //  初始化画布
         c.fillStyle = '#eeeeee' // 灰色背景色
         // c.fillRect(0, 0, canvasSize, canvasSize)
@@ -30,27 +17,16 @@ export default class Lifegame extends React.PureComponent {
         const cellMatrix = initCellMatrix(matrixSize)
 
         // 绑定鼠标事件
-        this.mousePassCanvas = mousePassCanvas
-        myCanvas.addEventListener('mousemove', mousePassCanvas)
+        const mousePassFn = myCanvas.addEventListener('mousemove', mousePassCanvas)
+
+        setCanvasSize(canvasSize)
 
         // 主循环
-        function Main() {
+        function Main(cellMatrix) {
             const tempM = deepcopy(cellMatrix)
             liveStatusUpdate(tempM)
             mapMatrix(cellMatrix)
         }
-        // 开始主循环
-        let start = null
-        const step = timestamp => {
-            if (!start) start = timestamp
-            let progress = timestamp - start
-            if (progress > 60) {
-                start = timestamp
-                Main()
-            }
-            window.requestAnimationFrame(step)
-        }
-        requestAnimationFrame(step)
 
         // 矩阵状态映射至canvas网格
         // 初始化细胞矩阵
@@ -72,6 +48,7 @@ export default class Lifegame extends React.PureComponent {
                         liveNumber += cellmatrix[i][j] === 1 ? 1 : 0
             return liveNumber
         }
+
         function liveRule(x, y, matrix) {
             // 规则1.如果一个细胞周围有三个细胞为生，则该细胞为生
             // 规则2.如果一个细胞周围有2个细胞为生，
@@ -127,15 +104,24 @@ export default class Lifegame extends React.PureComponent {
             const length = matrix.length
             for (let i = 0; i < length; i++) for (let j = 0; j < length; j++) liveRule(i, j, matrix)
         }
-    }
 
-    componentWillUnmount() {
-        const { myCanvas } = this.state
-        myCanvas.removeEventListener('mousemove', this.mousePassCanvas)
-    }
+        // 开始主循环
+        let start = null
+        const step = timestamp => {
+            if (!start) start = timestamp
+            const progress = timestamp - start
+            if (progress > 60) {
+                start = timestamp
+                Main(cellMatrix)
+            }
+            window.requestAnimationFrame(step)
+        }
+        requestAnimationFrame(step)
 
-    sizePX() {
-        const { canvasSize } = this.state
+        return () => myCanvas.removeEventListener('mousemove', mousePassFn)
+    })
+
+    function sizePX(canvasSize = 300) {
         if (canvasSize !== 0)
             return {
                 height: canvasSize + 'px',
@@ -143,13 +129,9 @@ export default class Lifegame extends React.PureComponent {
                 margin: '0 auto'
             }
     }
-
-    render() {
-        const { canvasSize } = this.state
-        return (
-            <div className="lifegame-box" style={this.sizePX()}>
-                <canvas id="lifegame" width={canvasSize} height={canvasSize} />
-            </div>
-        )
-    }
+    return (
+        <div className="lifegame-box" style={sizePX(canvasSize)}>
+            <canvas id="lifegame" width={canvasSize} height={canvasSize} />
+        </div>
+    )
 }

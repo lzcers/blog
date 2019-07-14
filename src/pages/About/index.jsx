@@ -2,11 +2,13 @@ import React from 'react'
 
 import './about.scss'
 
-const About = _ => (
+const About = () => (
     <div className="about">
         <div className="aboutmePic" />
         <p>
-            从时光这头到那头，从出生到死亡，岁月携身体流逝无可挽留，思绪起伏却总是遗忘，
+            从时光这头到那头，从出生到死亡，
+            <br />
+            岁月携身体流逝无可挽留，思绪起伏却总是遗忘，
             <br />
             回忆将破碎的自我在时光中串起以维持人生作为一个整体的印象。
             <br />

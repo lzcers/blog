@@ -1,11 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter as Router } from 'react-router-dom'
-import { getTags, getPosts } from '@/api'
-import App from './App'
+import Routes from '@/routes'
+import 'normalize.css'
+import '@/styles/base.scss'
+import { getPosts } from '@/api'
 
-setTimeout(() => getTags(), 1)
 setTimeout(() => getPosts(), 1)
+
+const App = _ => <Routes />
 
 ReactDOM.render(
     <Router>

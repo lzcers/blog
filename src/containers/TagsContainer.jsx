@@ -1,47 +1,42 @@
-import React, { PureComponent } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getTags } from '@/api'
 
-export default class TagsContainer extends PureComponent {
-    state = {
-        tags: [],
-        selected: ''
-    }
+export default props => {
+    const [tags, setTags] = useState([])
+    const [selected, setSelected] = useState('')
+    const { tag } = props
 
-    constructor(props) {
-        super(props)
-        const { tag } = this.props
-        getTags().then(data => this.setState({ tags: data, selected: tag }))
-    }
+    getTags().then(data => {
+        setTags(data)
+        setSelected(tag)
+    })
 
-    render() {
-        const { selected, tags } = this.state
-        return [
+    return [
+        <li
+            key="ALL"
+            style={{
+                color: selected === 'ALL' ? '#fff' : '',
+                background: selected === 'ALL' ? '#333' : ''
+            }}
+        >
+            <Link to="/archive" onClick={_ => setSelected({ selected: 'ALL' })}>
+                ALL
+            </Link>
+        </li>
+    ].concat(
+        tags.map(i => (
             <li
-                key="ALL"
+                key={i}
                 style={{
-                    color: selected === 'ALL' ? '#fff' : '',
-                    background: selected === 'ALL' ? '#333' : ''
+                    color: selected === i ? '#fff' : '',
+                    background: selected === i ? '#333' : ''
                 }}
             >
-                <Link to="/archive" onClick={_ => this.setState({ selected: 'ALL' })}>
-                    ALL
+                <Link to={'/archive/tag/' + i} onClick={_ => setSelected({ selected: i })}>
+                    {i}
                 </Link>
             </li>
-        ].concat(
-            tags.map(i => (
-                <li
-                    key={i}
-                    style={{
-                        color: selected === i ? '#fff' : '',
-                        background: selected === i ? '#333' : ''
-                    }}
-                >
-                    <Link to={'/archive/tag/' + i} onClick={_ => this.setState({ selected: i })}>
-                        {i}
-                    </Link>
-                </li>
-            ))
-        )
-    }
+        ))
+    )
 }

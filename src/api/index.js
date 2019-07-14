@@ -26,12 +26,12 @@ const getTags = memorize(() =>
 
 const getPosts = memorize(() =>
     getMetadata().then(res =>
-        res.map(p => {
-            p.ID = p.fileName
-            p.Tags = p.Tags.split('|').map(t => t.trim())
-            p.Content = marked(p.Content).html
-            return p
-        })
+        res.map(p => ({
+            ...p,
+            ID: p.fileName,
+            Tags: p.Tags.split('|').map(t => t.trim()),
+            Content: marked(p.Content).html
+        }))
     )
 )
 

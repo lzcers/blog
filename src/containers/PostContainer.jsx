@@ -1,32 +1,28 @@
-import React, { PureComponent } from 'react'
+import React, { useState } from 'react'
 import Article from '@/components/Article'
 import { getPostByID } from '@/api'
 
-export default class PostContainer extends PureComponent {
-    state = {
-        post: {},
-        loadingFlag: true
-    }
+export default props => {
+    const [post, setPosts] = useState([])
+    const [loadingFlag, setLoadingFlag] = useState(true)
 
-    constructor(props) {
-        super(props)
-        getPostByID(props.id).then(data => this.setState({ post: data, loadingFlag: false }))
-    }
+    getPostByID(props.id).then(data => {
+        setPosts(data)
+        setLoadingFlag(false)
+    })
 
-    render() {
-        const { post, loadingFlag } = this.state
-        if (!loadingFlag)
-            return (
-                <Article
-                    id={post.ID}
-                    title={post.Title}
-                    tags={post.Tags}
-                    publishDate={post.PublishDate}
-                    content={post.Content}
-                    toc={post.TOC}
-                    mode={true}
-                />
-            )
-        return <h3>Loading...</h3>
-    }
+    if (!loadingFlag)
+        return (
+            <Article
+                id={post.ID}
+                title={post.Title}
+                tags={post.Tags}
+                publishDate={post.PublishDate}
+                content={post.Content}
+                toc={post.TOC}
+                mode={true}
+            />
+        )
+
+    return <h3>Loading...</h3>
 }

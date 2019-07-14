@@ -1,37 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getPosts } from '@/api'
 
-export default class ArchiveContainer extends React.PureComponent {
-    state = {
-        posts: []
-    }
+export default props => {
+    const [posts, setPosts] = useState([])
+    const { tag } = props
 
-    constructor(props) {
-        super(props)
-        getPosts().then(data => this.setState({ posts: data }))
-    }
+    getPosts().then(data => setPosts(data))
 
-    dateTransform(publishDate) {
+    const dateTransform = publishDate => {
         const date = new Date(publishDate)
         const enMonth = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
         const [month, day, year] = [enMonth[date.getMonth()], date.getDate() + 'TH', date.getFullYear()]
         return `${month} ${day} ${year}`
     }
 
-    render() {
-        const { posts } = this.state
-        const { tag } = this.props
-        return posts
-            .sort((a, b) => (new Date(a.PublishDate) < new Date(b.PublishDate) ? 1 : -1))
-            .filter(p => (tag ? !!p.Tags.includes(tag) : true))
-            .map(i => (
-                <li key={i.ID}>
-                    <Link to={'/post/' + i.ID}>
-                        <span className="item-name">{i.Title}</span>
-                        <span className="item-date">{this.dateTransform(i.PublishDate)}</span>
-                    </Link>
-                </li>
-            ))
-    }
+    return posts
+        .sort((a, b) => (new Date(a.PublishDate) < new Date(b.PublishDate) ? 1 : -1))
+        .filter(p => (tag ? !!p.Tags.includes(tag) : true))
+        .map(i => (
+            <li key={i.ID}>
+                <Link to={'/post/' + i.ID}>
+                    <span className="item-name">{i.Title}</span>
+                    <span className="item-date">{dateTransform(i.PublishDate)}</span>
+                </Link>
+            </li>
+        ))
 }
