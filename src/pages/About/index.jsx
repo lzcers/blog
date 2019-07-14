@@ -1,5 +1,4 @@
 import React from 'react'
-import Lifegame from '@/components/Lifegame'
 
 import './about.scss'
 
