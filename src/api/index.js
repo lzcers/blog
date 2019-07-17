@@ -6,17 +6,7 @@ import memorize from '@/utils/memorize.js'
 const localTagsUrl = '/articles/tags.json'
 const localfileUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/'
 
-function getTagsData(url) {
-    if (cache.has('postList')) return Promise.resolve(cache.get('postList'))
-    return axios
-        .get(url)
-        .then(res => res.data)
-        .then(arr => {
-            cache.set('postList', arr)
-            return arr
-        })
-        .catch(e => false)
-}
+const getTagsData = memorize(url => axios.get(url).then(res => res.data))
 
 const getTags = memorize(() =>
     getMetadata().then(res => [
