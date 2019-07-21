@@ -3,7 +3,7 @@ import cache from '@/utils/cache.js'
 import marked from '@/utils/mdRender.js'
 import memorize from '@/utils/memorize.js'
 
-const localTagsUrl = 'https://ksana.oss-cn-shenzhen.aliyuncs.com/articles/'
+const localTagsUrl = 'https://ksana.oss-cn-shenzhen.aliyuncs.com/articles/tags.json'
 const localfileUrl = 'https://raw.githubusercontent.com/lzcers/KsanaBlog-React/master/docs/articles/'
 
 const getTagsData = memorize(url => axios.get(url).then(res => res.data))
