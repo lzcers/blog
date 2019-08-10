@@ -536,8 +536,16 @@
     "Content": "## Promise\r\n\r\n### Promise.prototype.finally()\r\n\r\n通常我们知道 JS 里 Promise 的实例方法有 `then、catch` ES2018 还引入 `finally`，这意味着 Promise 的状态无论如何，该方法都会调用，通常用于善后处理，比如文件打开完事后关闭，它和`catch`一样，都是 `then`的一个特例，最新还有一个 `Promise.try()` 提案，用于统一处理异步与同步异常。\r\n\r\n### Promise.race()\r\n\r\n我知道有 `Promise.all()`可以将多个 Promise 包装成一个新的实例，在所有 Promise 实例 `fulfilled` 后该实例才 `fulfilled` 。但还有一个 `Promise.race()` 同样可以包装多个 Promise 实例，但只要其中任意一个实例率先 `fulfilled`，该新实例状态就会 `fulfilled`，并接收率先`fulfilled`实例的返回值，这不是新的方法，也许以前看过，但因为没有应用场景被遗忘了，对于同一个数据有两个接口可用，使用最快响应的接口数据，这样的场景下可以考虑该方法。\r\n\r\n```javascript\r\nlet p1 = new Promise((resolve, reject) => {\r\n  setTimeout(() => resolve('p1'), 1100)\r\n})\r\nlet p2 = new Promise((resolve, reject) => {\r\n  setTimeout(() => resolve('p2'), 500)\r\n})\r\n\r\nPromise.race([p1, p2]).then(res => console.log(res)) // p2\r\n```\r\n\r\n## Generator\r\n\r\n直接用上了 `async/await`，对`Generator`仅停留在了解的层面，但是最近写业务代码似乎想起来可以用这玩意啊，\r\n\r\n通常我们的业务系统根据 Use Case 拆分成了一系列服务，这意味着开发一个场景的功能需要调用多个异步请求服务，尽管我们用 `Promise` 和 `async/await`解决了多个异步调用下的回调地狱问题，但我期望能有这样一个函数，它代表着某一个 Use Case 的抽象，每次调用喂一部分参数，全部喂完后就给我结果。\r\n\r\n比如说我们业务有这样一个复杂地查询场景，查询一份报告需要这样几步，每步都涉及服务调用。<strong>……</strong>"
   },
   {
-    "fileName": "Cycle.js 体验.md",
+    "fileName": "esp8266折腾记.md",
     "ID": 67,
+    "Title": "esp8266折腾记",
+    "Tags": "硬件",
+    "PublishDate": "2019/8/10 23:25:11",
+    "Content": "为了保护好家里的植物萌生了开发一套自动浇水系统的念头，再结合最近养了只猫（天猫精灵）脑子里念头一下涌出许多，做一个家庭环境监控系统接入天猫精灵语音控制怎样？「天猫精灵，家里环境状况如何？」，「温度 27 湿度 55 污染 0 状况良好」，这样的念头似乎很美好啊。\r\n\r\n说干就干，本来想最近新出的树莓派4，但是想想之前吃灰的经历便作罢，又仔细找了找一些单片机开发的资料发现了 esp8266 这块神奇的芯片，严格来说这不是单片机，而是一块 WIFI 模块，但是自带一个 32 位的 MCU 令它在国内外都非常火，我们甚至可以用 microPython 来做开发，简直不要太友好了。\r\n\r\n限于手中的材料，我先做了个简单的温度、湿度显示器练手，毕竟我是一个从未接触过硬件的前端开发，这种硬件活还是有点硬了。做好之后便想着如何连接到天猫精灵，看了天猫精灵的接入文档后发现需要一个公网的机器来做 oAuth2 鉴权认证以及处理语音解析结果，最后才对设备下达控制命令。可是阿里云的 ECS 主机 500 一年啊大兄弟，这可比物料成本贵多了，劝退，以后考虑吧。<strong>……</strong>"
+  },
+  {
+    "fileName": "Cycle.js 体验.md",
+    "ID": 68,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -545,7 +553,7 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 68,
+    "ID": 69,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
@@ -553,7 +561,7 @@
   },
   {
     "fileName": "AliyunServerless.md",
-    "ID": 69,
+    "ID": 70,
     "Title": "Aliyun Serverless 体验",
     "Tags": "编程",
     "PublishDate": "2019/7/13 16:33:40",
@@ -561,7 +569,7 @@
   },
   {
     "fileName": "2019年7月18日002002.md",
-    "ID": 70,
+    "ID": 71,
     "Title": "无题",
     "Tags": "碎念",
     "PublishDate": "2019/7/18 00:20:44",
@@ -569,7 +577,7 @@
   },
   {
     "fileName": "2018年计划与回顾.md",
-    "ID": 71,
+    "ID": 72,
     "Title": "2018年计划与回顾",
     "Tags": "碎念",
     "PublishDate": "2018/1/20 17:19:52",
