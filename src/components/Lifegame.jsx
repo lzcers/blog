@@ -119,7 +119,7 @@ export default () => {
         requestAnimationFrame(step)
 
         return () => myCanvas.removeEventListener('mousemove', mousePassFn)
-    })
+    }, [])
 
     function sizePX(canvasSize = 300) {
         if (canvasSize !== 0)
