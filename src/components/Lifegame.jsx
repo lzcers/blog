@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react'
 
 export default () => {
     const [canvasSize, setCanvasSize] = useState()
+    function sizePX(canvasSize = 300) {
+        if (canvasSize !== 0)
+            return {
+                height: canvasSize + 'px',
+                width: canvasSize + 'px',
+                margin: '0 auto'
+            }
+    }
     useEffect(() => {
         const myCanvas = document.getElementById('lifegame')
         const canvasSize = Math.round(myCanvas.offsetWidth / 10) * 10 // 减去 padding 占用的空间
@@ -119,16 +127,8 @@ export default () => {
         requestAnimationFrame(step)
 
         return () => myCanvas.removeEventListener('mousemove', mousePassFn)
-    })
+    }, [])
 
-    function sizePX(canvasSize = 300) {
-        if (canvasSize !== 0)
-            return {
-                height: canvasSize + 'px',
-                width: canvasSize + 'px',
-                margin: '0 auto'
-            }
-    }
     return (
         <div className="lifegame-box" style={sizePX(canvasSize)}>
             <canvas id="lifegame" width={canvasSize} height={canvasSize} />

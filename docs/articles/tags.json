@@ -440,8 +440,16 @@
     "Content": "毫无悬念，这个日子对我而言依旧没有意义，不过倒也过得意外的充实，好死不死的科目二考试约在了8月29日，理所当然，考前当然要好好突击训练一番咯，为此特地请假两天，领导吐槽说，这考试代价真高啊，考试的调休是用双倍工资的钱换来的，当天模拟考试一个半小时就是400块钱花费，如此代价之下不过简直对不起这投入啊。\r\n\r\n考前一天，早上七点半就赶往驾校，平时上班也没这么早啊，泪~~，比早起更可怕的是台风，今年深圳真是神奇了，天鸽刚过不到一周，又迎来今年第14号台风“卡帕”，真是可怕，不得不冒着暴雨练习，在此已经做好了明天雨中考试的准备，好在幸运眷顾，考试当天放晴，艳阳高照，也许我昨天看的是假的天气预报吧，考试的第一把直接挂在左倒库，倒车不入，差点心态爆炸，想着没有压线，位置准的一比，这把肯定稳，结果因为座椅没调给挂了，第二把就随意了，大不了就下月再考呗，结果第二把险过。所以说，科目二考试的不光是技巧和熟练度，还考心理素质啊，回想下平时训练，无非就是那几个套路，对那几个点。  \r\n幸运貌似只眷顾了我？同行三人考试就我一个过了，汗(⊙﹏⊙)b，祝福每天和我一起练车的妹子，辛苦了，感谢~，反正她看不到。^_^  \r\n报名的时候和同事一同报名，想着能一起考，结果两个女同事率先完成了科目二考试，快的都已经考科目三了。<strong>……</strong>"
   },
   {
-    "fileName": "《逻辑的引擎》读后感.md",
+    "fileName": "一个Type.md",
     "ID": 55,
+    "Title": "一个 Type",
+    "Tags": "前端",
+    "PublishDate": "2019/10/3 0:22:14",
+    "Content": "有这样一个函数，我需要用 TypeScript 写出其类型，在写之钱我自以为是我是懂 TypeScript 的，在这之后我深感自己一无所知，真是图样图森破。\r\n\r\n简单来说，我有这样一个函数，熟悉的一看知道是 G6 的图形行为定义。\r\n\r\n```TypeScript\r\nconst behavior:Behavior = {\r\n    getEvents: () => {\r\n        return {\r\n            'edge:mouseenter': 'setAllItemStates',\r\n            'node:click': 'onClick',\r\n        }\r\n    }\r\n    // 期望能根据 gegtEvents 的返回值来约束 Behavior 内要有\r\n    // setAllItemStates、onClick 函数，且其类型为 (e: Event) => void\r\n}\r\n```\r\n\r\n经过一番艰难战斗我写出来的\r\n\r\n\r\n```typescript\r\n// 行为的 event 参数，类型暂时写作 string\r\ntype E = string\r\ntype getValuesType<T> = T[keyof T]\r\n// 拿到函数的返回值，并取返回值的value的  T[P in keyof T]\r\ntype getReturn<T extends () => object> =  T extends () => infer R ? getValuesType<R> : never\r\ntype BehaviorFunc<F extends () => object> = Record<getReturn<F>, (e: E) => void>\r\n    \r\ntype Prettify<T> = T extends infer U ? { [K in keyof U]: U[K] } : never\r\n\r\ntype Behavior<T extends () => any> =  Prettify<{ getEvents: () => any} & BehaviorFunc<T>>\r\n\r\nconst getEvents = () => {\r\n    return {\r\n        'edge:mouseenter': 'setAllItemStates',\r\n    } as const; // 要推导出字面值类型\r\n}\r\n\r\n// 必须将 getEvents 函数的类型当做泛型参数传入\r\nconst test: Behavior<typeof getEvents> = {\r\n     getEvents,\r\n     setAllItemStates() {\r\n\r\n     }\r\n}\r\n```\r\n\r\n么得办法，还是需要用到泛型参数，为了推导出字面量还要用 `as const`，最后结论就是学点 TypeScript 有益于开发大脑，往常写 JS  一把梭从来不考虑类型，跑通纯靠缘分，用了 TS 之后写代码首先会把约束想清楚，这种思想上的改变确实是有益的。\r\n\r\n而且类型系统不仅仅是类型标注那么简单，事实上 TS 的类型系统是图灵完备的，我们甚至可以用它来定义自然数然后写素数筛选的代码，在类型层面进行编程真的很硬核了。<strong>……</strong>"
+  },
+  {
+    "fileName": "《逻辑的引擎》读后感.md",
+    "ID": 56,
     "Title": "《逻辑的引擎》读后感",
     "Tags": "碎念 | 读书",
     "PublishDate": "2018/2/26 00:56:10",
@@ -449,7 +457,7 @@
   },
   {
     "fileName": "《寻梦环游记》观后感 - 终极的死亡.md",
-    "ID": 56,
+    "ID": 57,
     "Title": "《寻梦环游记》观后感 - 终极的死亡",
     "Tags": "碎念",
     "PublishDate": "2017/12/6 20:40:50",
@@ -457,7 +465,7 @@
   },
   {
     "fileName": "Webpack 4 升级.md",
-    "ID": 57,
+    "ID": 58,
     "Title": "Webpack 4 升级",
     "Tags": "前端",
     "PublishDate": "2018/3/14 01:12:51",
@@ -465,7 +473,7 @@
   },
   {
     "fileName": "Web Worker 与 Service Worker.md",
-    "ID": 58,
+    "ID": 59,
     "Title": "Web Worker 与 Service Worker",
     "Tags": "前端 | 编程",
     "PublishDate": "2017/12/16 21:09:35",
@@ -473,7 +481,7 @@
   },
   {
     "fileName": "ukulele.md",
-    "ID": 59,
+    "ID": 60,
     "Title": "ukulele",
     "Tags": "碎念",
     "PublishDate": "2017/7/22",
@@ -481,7 +489,7 @@
   },
   {
     "fileName": "Rust 学习笔记.md",
-    "ID": 60,
+    "ID": 61,
     "Title": "Rust 学习笔记",
     "Tags": "编程",
     "PublishDate": "2018/8/6 19:25:28",
@@ -489,7 +497,7 @@
   },
   {
     "fileName": "rem、vhvw 学习笔记.md",
-    "ID": 61,
+    "ID": 62,
     "Title": "rem、vh/vw 学习笔记",
     "Tags": "前端",
     "PublishDate": "2018/7/27 18:03:30",
@@ -497,7 +505,7 @@
   },
   {
     "fileName": "React Fiber 初探.md",
-    "ID": 62,
+    "ID": 63,
     "Title": "React Fiber 初探",
     "Tags": "前端",
     "PublishDate": "2018/8/18 23:47",
@@ -505,7 +513,7 @@
   },
   {
     "fileName": "koa-compose 浅析.md",
-    "ID": 63,
+    "ID": 64,
     "Title": "koa-compose 浅析",
     "Tags": "前端",
     "PublishDate": "2018/8/1 22:07",
@@ -513,7 +521,7 @@
   },
   {
     "fileName": "JS任督二脉-原型.md",
-    "ID": 64,
+    "ID": 65,
     "Title": "JS任督二脉-原型",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/24 23:43",
@@ -521,7 +529,7 @@
   },
   {
     "fileName": "JS任督二脉-作用域.md",
-    "ID": 65,
+    "ID": 66,
     "Title": "JS任督二脉-作用域",
     "Tags": "编码 | 前端",
     "PublishDate": "2015/12/8 22:40",
@@ -529,7 +537,7 @@
   },
   {
     "fileName": "JS 学习补遗.md",
-    "ID": 66,
+    "ID": 67,
     "Title": "JS 学习补遗",
     "Tags": "前端",
     "PublishDate": "2018/8/13 0:40:49",
@@ -537,7 +545,7 @@
   },
   {
     "fileName": "esp8266折腾日记.md",
-    "ID": 67,
+    "ID": 68,
     "Title": "ESP8266 折腾日记",
     "Tags": "硬件",
     "PublishDate": "2019/8/10 23:25:11",
@@ -545,7 +553,7 @@
   },
   {
     "fileName": "ESP8266天猫精灵接入.md",
-    "ID": 68,
+    "ID": 69,
     "Title": "ESP8266 天猫精灵接入",
     "Tags": "硬件",
     "PublishDate": "2019/8/31 20:00:11",
@@ -553,7 +561,7 @@
   },
   {
     "fileName": "Cycle.js 体验.md",
-    "ID": 69,
+    "ID": 70,
     "Title": "Cycle.js 体验",
     "Tags": "前端",
     "PublishDate": "2018/3/25 20:38:26",
@@ -561,7 +569,7 @@
   },
   {
     "fileName": "coding.md",
-    "ID": 70,
+    "ID": 71,
     "Title": "coding",
     "Tags": "碎念",
     "PublishDate": "2017/7/20 01:35:08",
@@ -569,7 +577,7 @@
   },
   {
     "fileName": "AliyunServerless.md",
-    "ID": 71,
+    "ID": 72,
     "Title": "Aliyun Serverless 体验",
     "Tags": "编程",
     "PublishDate": "2019/7/13 16:33:40",
@@ -577,7 +585,7 @@
   },
   {
     "fileName": "2019年7月18日002002.md",
-    "ID": 72,
+    "ID": 73,
     "Title": "无题",
     "Tags": "碎念",
     "PublishDate": "2019/7/18 00:20:44",
@@ -585,7 +593,7 @@
   },
   {
     "fileName": "2018年计划与回顾.md",
-    "ID": 73,
+    "ID": 74,
     "Title": "2018年计划与回顾",
     "Tags": "碎念",
     "PublishDate": "2018/1/20 17:19:52",
