@@ -6,7 +6,9 @@ import './footer.scss'
 const Footer = () => (
     <footer>
         <p>
-            Copyright © KSANA 2017 - 2019 <FIcon icon={heart} /> Powered by React
+            Copyright © KSANA 2017 - 2019
+            <br />
+            <FIcon icon={heart} /> Powered by React
         </p>
     </footer>
 )

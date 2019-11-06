@@ -5,7 +5,12 @@ import './nav.scss'
 const Nav = () => (
     <nav className="nav">
         <div className="nav-header">
-            <h1 className="nav-sitename">刹那</h1>
+            <h1 className="nav-sitename">
+                刹那
+                <div className="taijiBox">
+                    <div className="taiji" />
+                </div>
+            </h1>
         </div>
         <ul className="nav-menu">
             <li className="nav-item">

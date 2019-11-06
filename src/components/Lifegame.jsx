@@ -128,7 +128,6 @@ export default () => {
 
         return () => myCanvas.removeEventListener('mousemove', mousePassFn)
     }, [])
-
     return (
         <div className="lifegame-box" style={sizePX(canvasSize)}>
             <canvas id="lifegame" width={canvasSize} height={canvasSize} />
