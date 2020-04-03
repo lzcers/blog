@@ -16,6 +16,7 @@ module.exports = merge(baseConfig, {
     },
     // 开发环境需要将请求反向代理到本地的 Golang 后端
     devServer: {
+        host: '0.0.0.0',
         proxy: {
             // '/api': {
             //   target: 'http://localhost:9090',

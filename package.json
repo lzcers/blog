@@ -4,12 +4,7 @@
     "description": "",
     "scripts": {
         "dev": "webpack-dev-server --inline --hot --content-base ./docs/ --config ./build/webpack.dev.config.js --mode development",
-        "build": "webpack -p --progress --hide-modules --config ./build/webpack.prod.config.js --mode production",
-        "tags": "node ./genTagsList.js",
-        "posts": "node ./updatePost.js"
-    },
-    "bin": {
-        "blog": "pubTool.js"
+        "build": "webpack -p --progress --hide-modules --config ./build/webpack.prod.config.js --mode production"
     },
     "dependencies": {
         "@babel/polyfill": "^7.4.4",
