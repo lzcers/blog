@@ -60,9 +60,9 @@
     }
 }
 
-$d: 30px;
-$f: 0.5;
-$t: 1s;
+@d: 30px;
+@f: 0.5;
+@t: 1s;
 
 .taijiBox {
     display: flex;
@@ -77,12 +77,12 @@ $t: 1s;
 .taiji {
     display: flex;
     align-items: center;
-    width: $d;
-    height: $d;
+    width: @d;
+    height: @d;
     border-radius: 50%;
     // 线性渐变来画黑白两种背景颜色
     background: linear-gradient(black 50%, white 0);
-    animation: r 2 * $t linear infinite;
+    animation: r 2 * @t linear infinite;
 
     // 伪元素来充当页面元素的结构
     &:before,
@@ -90,17 +90,17 @@ $t: 1s;
         // flex 和 content 必须，否则不会占据空间
         flex: 1;
         content: '';
-        height: $d/6;
-        border: solid $d/6 black;
+        height: @d / 6;
+        border: solid @d / 6 black;
         border-radius: 50%;
         background: white;
         // 缩小->放大 交替进行无限循环
-        animation: s $t ease-in-out infinite alternate;
+        animation: s @t ease-in-out infinite alternate;
     }
 
     @keyframes s {
         to {
-            transform: scale(2 - $f);
+            transform: scale(2 - @f);
         }
     }
     @keyframes r {
@@ -110,15 +110,15 @@ $t: 1s;
     }
     &:before {
         background: black;
-        height: $d/6;
-        border: solid $d/6 white;
+        height: @d / 6;
+        border: solid @d / 6 white;
         // 从最左边开始变大
         transform-origin: 0% 50%;
-        transform: scale($f);
+        transform: scale(@f);
     }
     &:after {
         transform-origin: 100% 50%;
-        transform: scale($f);
-        animation-delay: -$t;
+        transform: scale(@f);
+        animation-delay: -@t;
     }
 }

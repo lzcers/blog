@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './nav.scss'
+import './nav.less'
 
 const Nav = () => (
     <nav className="nav">

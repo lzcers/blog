@@ -1,5 +1,5 @@
 import React from 'react'
-import './toc.scss'
+import './toc.less'
 
 function goAnchor(selector) {
     const anchor = document.querySelector('#' + selector)
@@ -29,10 +29,10 @@ function li(toc, index) {
     const child = toc.childrenNode
     return (
         <li className="toc-li" key={index}>
-            <a className="toc-anchor" onClick={_ => goAnchor(toc.nodeID)}>
+            <a className="toc-anchor" onClick={(_) => goAnchor(toc.nodeID)}>
                 {toc.nodeID}
             </a>
-            {child.length ? <ol className="toc-li">{child.map(i => li(i, i.nodeID + index))}</ol> : null}
+            {child.length ? <ol className="toc-li">{child.map((i) => li(i, i.nodeID + index))}</ol> : null}
         </li>
     )
 }

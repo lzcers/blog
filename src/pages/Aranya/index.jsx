@@ -1,8 +1,8 @@
 import React from 'react'
 
-import './aranya.scss'
+import './aranya.less'
 
-const About = _ => (
+const About = (_) => (
     <div className="aranya">
         <h3 />
     </div>

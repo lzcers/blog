@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './about.scss'
+import './about.less'
 
 const About = () => (
     <div className="about">

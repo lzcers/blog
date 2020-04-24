@@ -1,7 +1,7 @@
 import React from 'react'
 import Lifegame from '@/components/Lifegame'
 
-import './guide.scss'
+import './guide.less'
 
 const About = () => (
     <div className="guide">

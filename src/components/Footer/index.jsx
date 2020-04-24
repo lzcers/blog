@@ -1,7 +1,7 @@
 import React from 'react'
 import FIcon from '@fortawesome/react-fontawesome'
 import heart from '@fortawesome/fontawesome-free-solid/faHeart'
-import './footer.scss'
+import './footer.less'
 
 const Footer = () => (
     <footer>

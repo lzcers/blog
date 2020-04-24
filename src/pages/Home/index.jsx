@@ -1,7 +1,7 @@
 import React from 'react'
 import ArticlesContainer from '@/containers/ArticlesContainer'
 
-import './home.scss'
+import './home.less'
 
 const Home = ({ match }) => {
     const pageNumber = match.params.pageNumber || 1

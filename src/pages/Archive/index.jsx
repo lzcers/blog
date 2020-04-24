@@ -2,7 +2,7 @@ import React from 'react'
 import TagsContainer from '@/containers/TagsContainer'
 import ArchiveContainer from '@/containers/ArchiveContainer'
 
-import './archive.scss'
+import './archive.less'
 
 const Archive = ({ match }) => (
     <div className="archive">

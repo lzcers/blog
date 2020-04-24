@@ -3,16 +3,16 @@ const baseConfig = require('./webpack.base.config')
 
 module.exports = merge(baseConfig, {
     output: {
-        publicPath: '/'
+        publicPath: '/',
     },
 
     module: {
         rules: [
             {
-                test: /\.(css|scss|sass)$/,
-                loader: 'style-loader!css-loader!sass-loader'
-            }
-        ]
+                test: /\.(css|less|less)$/,
+                loader: 'style-loader!css-loader!less-loader',
+            },
+        ],
     },
     // 开发环境需要将请求反向代理到本地的 Golang 后端
     devServer: {
@@ -24,10 +24,10 @@ module.exports = merge(baseConfig, {
             // },
             '/api': {
                 target: 'https://ksana.net',
-                secure: false
-            }
-        }
+                secure: false,
+            },
+        },
     },
     // 开发环境用这个 source-map 据说会更快
-    devtool: '#cheap-module-eval-source-map'
+    devtool: '#cheap-module-eval-source-map',
 })

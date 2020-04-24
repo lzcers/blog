@@ -3,8 +3,8 @@ import FIcon from '@fortawesome/react-fontawesome'
 import tagsIcon from '@fortawesome/fontawesome-free-solid/faTags'
 import { Link } from 'react-router-dom'
 import 'highlight.js/styles/tomorrow.css'
-import './markdown.scss'
-import './article.scss'
+import './markdown.less'
+import './article.less'
 import Toc from '@/components/Toc'
 
 const Article = ({ id, title, tags, publishDate, content, toc, mode }) => {
@@ -28,7 +28,7 @@ const Article = ({ id, title, tags, publishDate, content, toc, mode }) => {
                 {mode ? null : <Link to={'/post/' + id}>MORE</Link>}
                 <div className="article-tags">
                     <FIcon icon={tagsIcon} className="article-tags-pic" />
-                    {tags.map(e => (
+                    {tags.map((e) => (
                         <Link to={'/archive/tag/' + e} key={e} className="article-tags-link">
                             {e}
                         </Link>
