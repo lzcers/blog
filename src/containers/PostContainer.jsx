@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import Article from '@/components/Article'
 import { getPostByID } from '@/api'
 
-export default props => {
+export default (props) => {
     const [post, setPosts] = useState([])
     const [loadingFlag, setLoadingFlag] = useState(true)
 
-    getPostByID(props.id).then(data => {
+    getPostByID(props.id).then((data) => {
         setPosts(data)
         setLoadingFlag(false)
     })

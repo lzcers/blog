@@ -6,25 +6,16 @@ const Nav = () => (
     <nav className="nav">
         <div className="nav-header">
             <h1 className="nav-sitename">
-                刹那
+                <Link to="/home">刹那</Link>
                 <div className="taijiBox">
                     <div className="taiji" />
                 </div>
             </h1>
         </div>
         <ul className="nav-menu">
-            <li className="nav-item">
-                <Link to="/home">HOME</Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/archive">ARCHIVE</Link>
-            </li>
             {/* <li className="nav-item">
                 <Link to="/aranya">ARANYA</Link>
             </li> */}
-            <li className="nav-item">
-                <Link to="/about">ABOUT</Link>
-            </li>
         </ul>
     </nav>
 )

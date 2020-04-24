@@ -6,15 +6,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = merge(baseConfig, {
     output: {
-        publicPath: 'https://ksana.oss-cn-shenzhen.aliyuncs.com/'
+        publicPath: 'https://ksana.oss-cn-shenzhen.aliyuncs.com/',
     },
     module: {
         rules: [
             {
-                test: /\.(scss|sass|css)$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-            }
-        ]
+                test: /\.(less|css)$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+            },
+        ],
     },
     devtool: '#source-map',
     optimization: {
@@ -24,16 +24,16 @@ module.exports = merge(baseConfig, {
                 // 把 highlight 单独打包出来
                 highlight: {
                     test: /highlight.js/,
-                    chunks: 'initial'
-                }
-            }
-        }
+                    chunks: 'initial',
+                },
+            },
+        },
     },
     plugins: [
         new CleanWebpackPlugin({ dry: true, cleanOnceBeforeBuildPatterns: 'assets/styles/*.*' }),
         new MiniCssExtractPlugin({
-            filename: 'assets/styles/styles.[chunkhash:5].css'
-        })
+            filename: 'assets/styles/styles.[chunkhash:5].css',
+        }),
         // new BundleAnalyzerPlugin() // 打包分析
-    ]
+    ],
 })

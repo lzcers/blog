@@ -13,7 +13,7 @@ const pageButton = (pageNumber, dir) => {
     return (
         <div className={dir ? 'post-left' : 'post-right'}>
             {dir && <FIcon icon={angleLeft} />}
-            <Link onClick={_ => window.scrollTo(0, 0)} to={'/home/page/' + number}>
+            <Link onClick={(_) => window.scrollTo(0, 0)} to={'/home/page/' + number}>
                 {dir ? 'PREVIOUS' : 'NEXT'}
             </Link>
             {!dir && <FIcon icon={angleRight} />}
@@ -21,14 +21,14 @@ const pageButton = (pageNumber, dir) => {
     )
 }
 
-export default props => {
+export default (props) => {
     const [posts, setPosts] = useState([])
     const [loadingFlag, setLoadingFlag] = useState(true)
 
     const { pageNumber } = props
     const offset = (pageNumber - 1) * 10
 
-    getPosts().then(data => {
+    getPosts().then((data) => {
         setPosts(data)
         setLoadingFlag(false)
     })
@@ -38,7 +38,7 @@ export default props => {
             {posts
                 .sort((a, b) => (new Date(a.PublishDate) < new Date(b.PublishDate) ? 1 : -1))
                 .slice(offset, offset + 10)
-                .map(p => (
+                .map((p) => (
                     <Article
                         key={p.ID}
                         id={p.ID}
