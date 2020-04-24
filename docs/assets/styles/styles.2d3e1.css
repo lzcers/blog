@@ -955,6 +955,11 @@ a:active {
 .content {
   padding: 0 40px;
 }
+@media screen and (max-width: 750px) {
+  .content {
+    padding: 0;
+  }
+}
 
 
-/*# sourceMappingURL=styles.dfaa0.css.map*/
+/*# sourceMappingURL=styles.2d3e1.css.map*/
