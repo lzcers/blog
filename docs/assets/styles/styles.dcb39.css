@@ -28,6 +28,8 @@
   line-height: 40px;
   margin: 0 15px;
   cursor: pointer;
+  position: relative;
+  left: -15px;
 }
 .link h3:hover {
   background: #f5f5f5;
@@ -623,6 +625,7 @@
   margin-bottom: 60px;
   width: 100%;
   text-align: justify;
+  padding: 0 10px;
 }
 .article-title {
   font-size: 1.75em;
@@ -962,4 +965,4 @@ a:active {
 }
 
 
-/*# sourceMappingURL=styles.2d3e1.css.map*/
+/*# sourceMappingURL=styles.dcb39.css.map*/
