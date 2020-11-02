@@ -13,13 +13,13 @@ const Article = ({ id, title, tags, publishDate, content, toc, mode }) => {
         <article className="article post">
             <h1 className="article-title">{mode ? title : <Link to={'/post/' + id}>{title}</Link>}</h1>
             <div className="article-date">{`${month || ''} ${day} ${year || ''}`}</div>
+            {/* 目录大于三级的才显示 TOC  */}
+            {/* {toc && toc.childrenNode.length >= 3 && (
+                <aside className="article-toc">
+                    <Toc toc={toc} />
+                </aside>
+            )} */}
             <div className="article-content">
-                {/* 目录大于三级的才显示 TOC  */}
-                {toc && toc.childrenNode.length >= 3 && (
-                    <aside className="article-toc">
-                        <Toc toc={toc} />
-                    </aside>
-                )}
                 <div className="post-body markdown-body" dangerouslySetInnerHTML={{ __html: content }} />
             </div>
             <div className="article-info">
