@@ -4,7 +4,7 @@
     "description": "",
     "scripts": {
         "dev": "webpack serve --inline --hot --content-base ./docs/ --config ./build/webpack.dev.config.js --mode development",
-        "build": "webpack -p --progress --hide-modules --config ./build/webpack.prod.config.js --mode production"
+        "build": "webpack --progress --config ./build/webpack.prod.config.js --mode production"
     },
     "dependencies": {
         "axios": "^0.21.0",

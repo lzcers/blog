@@ -1,4 +1,4 @@
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.base.config')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -16,7 +16,6 @@ module.exports = merge(baseConfig, {
             },
         ],
     },
-    devtool: '#source-map',
     optimization: {
         splitChunks: {
             chunks: 'all',
