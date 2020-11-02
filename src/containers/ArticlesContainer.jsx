@@ -1,22 +1,17 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import FIcon from '@fortawesome/react-fontawesome'
-import angleLeft from '@fortawesome/fontawesome-free-solid/faAngleDoubleLeft'
-import angleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
-
 import Article from '@/components/Article'
-
 import { getPosts } from '@/api'
 
 const pageButton = (pageNumber, dir) => {
     const number = dir ? parseInt(pageNumber, 10) - 1 : parseInt(pageNumber, 10) + 1
     return (
         <div className={dir ? 'post-left' : 'post-right'}>
-            {dir && <FIcon icon={angleLeft} />}
+            {dir && '<'}
             <Link onClick={(_) => window.scrollTo(0, 0)} to={'/home/page/' + number}>
                 {dir ? 'PREVIOUS' : 'NEXT'}
             </Link>
-            {!dir && <FIcon icon={angleRight} />}
+            {!dir && '>'}
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import cache from '@/utils/cache.js'
-import 'core-js/shim'
 
 const tagsUrl = '/api/tags/get'
 const postsUrl = '/api/post/get/'
@@ -11,8 +10,8 @@ const loginUrl = '/api/login'
 const authorizationCheckUrl = '/api/authorizationCheck'
 
 axios.interceptors.response.use(
-    res => res,
-    err => {
+    (res) => res,
+    (err) => {
         const statusCode = err.response.status
         // 根据返回的code值来做不同的处理（和后端约定）
         switch (statusCode) {
@@ -30,15 +29,15 @@ export function getPosts() {
 
     return axios
         .get(postsUrl)
-        .then(res => res.data)
-        .then(arr => {
+        .then((res) => res.data)
+        .then((arr) => {
             cache.set('postList', arr)
             return arr
         })
 }
 
 export function getPostByID(id) {
-    return axios.get(postsUrl + id).then(res => res.data[0])
+    return axios.get(postsUrl + id).then((res) => res.data[0])
 }
 
 export function getPostsByTag(tag) {
@@ -46,8 +45,8 @@ export function getPostsByTag(tag) {
 
     return axios
         .get(postsByTagUrl + tag)
-        .then(res => res.data)
-        .then(raw => {
+        .then((res) => res.data)
+        .then((raw) => {
             cache.set('postByTag' + tag, raw)
             return raw
         })
@@ -63,8 +62,8 @@ export function getTags() {
     if (cache.has('tags')) return Promise.resolve(cache.get('tags'))
     return axios
         .get(tagsUrl)
-        .then(res => res.data)
-        .then(data => {
+        .then((res) => res.data)
+        .then((data) => {
             cache.set('tags', data.Tags)
             return data.Tags
         })
@@ -86,5 +85,5 @@ export default {
     getPostByID,
     getTags,
     login,
-    authorizationCheck
+    authorizationCheck,
 }

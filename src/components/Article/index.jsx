@@ -1,6 +1,4 @@
 import React from 'react'
-import FIcon from '@fortawesome/react-fontawesome'
-import tagsIcon from '@fortawesome/fontawesome-free-solid/faTags'
 import { Link } from 'react-router-dom'
 import 'highlight.js/styles/tomorrow.css'
 import './markdown.less'
@@ -27,7 +25,7 @@ const Article = ({ id, title, tags, publishDate, content, toc, mode }) => {
             <div className="article-info">
                 {mode ? null : <Link to={'/post/' + id}>MORE</Link>}
                 <div className="article-tags">
-                    <FIcon icon={tagsIcon} className="article-tags-pic" />
+                    Tags:
                     {tags.map((e) => (
                         <Link to={'/archive/tag/' + e} key={e} className="article-tags-link">
                             {e}
