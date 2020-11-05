@@ -15,6 +15,8 @@ export default (props) => {
         return `${month} ${day} ${year}`
     }
 
+    if (posts.length === 0) return <h3>Loading...</h3>
+
     return posts
         .sort((a, b) => (new Date(a.PublishDate) < new Date(b.PublishDate) ? 1 : -1))
         .filter((p) => (tag ? !!p.Tags.includes(tag) : true))
