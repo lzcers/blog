@@ -4,15 +4,10 @@ import { HashRouter as Router } from 'react-router-dom'
 import Routes from '@/routes'
 import 'normalize.css'
 import '@/styles/base.less'
-import { getPosts } from '@/api'
-
-setTimeout(() => getPosts(), 1)
-
-const App = (_) => <Routes />
 
 ReactDOM.render(
     <Router>
-        <App />
+        <Routes />
     </Router>,
     document.getElementById('app')
 )

@@ -936,12 +936,17 @@
     padding: 0 40px;
   }
 }
+.nav-title {
+  display: flex;
+  flex-flow: row nowrap;
+}
 .taijiBox {
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-left: 10px;
+  margin: 0 5px;
+  margin-bottom: 5px;
   position: relative;
   top: 3px;
 }
@@ -1319,7 +1324,7 @@ a:active {
   color: inherit;
 }
 .container {
-  max-width: 860px;
+  max-width: 880px;
   min-height: 100vh;
   margin: 0 auto;
   position: relative;

@@ -7,7 +7,7 @@ export default () => {
             return {
                 height: canvasSize + 'px',
                 width: canvasSize + 'px',
-                margin: '0 auto'
+                margin: '0 auto',
             }
     }
     useEffect(() => {
@@ -52,7 +52,7 @@ export default () => {
             let liveNumber = 0
             for (let i = _x - 1; i <= _x + 1; i++)
                 for (let j = _y - 1; j <= _y + 1; j++)
-                    if (i >= 0 && i < cellmatrix.length && (j >= 0 && j < cellmatrix.length) && !(i === _x && j === _y))
+                    if (i >= 0 && i < cellmatrix.length && j >= 0 && j < cellmatrix.length && !(i === _x && j === _y))
                         liveNumber += cellmatrix[i][j] === 1 ? 1 : 0
             return liveNumber
         }
@@ -115,11 +115,11 @@ export default () => {
 
         // 开始主循环
         let start = null
-        const step = timestamp => {
+        const step = (timestamp) => {
             if (!start) start = timestamp
             const progress = timestamp - start
             if (progress > 60) {
-                start = timestamp
+                start = timestamp - (progress % 60)
                 Main(cellMatrix)
             }
             window.requestAnimationFrame(step)

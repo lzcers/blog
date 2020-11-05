@@ -6,10 +6,15 @@ const Nav = () => (
     <nav className="nav">
         <div className="nav-header">
             <h1 className="nav-sitename">
-                <Link to="/home">刹那</Link>
-                <div className="taijiBox">
-                    <div className="taiji" />
-                </div>
+                <Link to="/home">
+                    <div className="nav-title">
+                        刹
+                        <div className="taijiBox">
+                            <div className="taiji" />
+                        </div>
+                        那
+                    </div>
+                </Link>
             </h1>
         </div>
         <ul className="nav-menu">
