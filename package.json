@@ -11,7 +11,7 @@
         "core-js": "^3.6.5",
         "front-matter": "^4.0.2",
         "highlight.js": "^10.3.2",
-        "marked": "^1.2.2",
+        "marked": "^4.0.10",
         "normalize.css": "^8.0.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
