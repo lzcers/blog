@@ -1,0 +1,204 @@
+/* footer */
+.nav {
+  height: 80px;
+  width: 100%;
+  max-width: inherit;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  background: #fff;
+}
+
+.nav h1 {
+  margin: 0;
+}
+
+.nav::after {
+  clear: both;
+}
+
+.nav-header .nav-sitename {
+    font-weight: 900;
+    color: #424243;
+    text-transform: uppercase;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+}
+.nav-menu .nav-item {
+  width: 100px;
+  cursor: pointer;
+  color: #808080;
+  line-height: 80px;
+  text-align: center;
+  display: inline-block;
+  padding: 0 10px;
+}
+
+.nav-item a:visited {
+  color: #808080;
+}
+.nav-item a:hover {
+  font-weight: bold;
+  color: #000;
+}
+
+
+@media screen and (max-width: 750px) {
+  .nav {
+      justify-content: center;
+      padding: 10px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .nav {
+      justify-content: space-between;
+      padding: 0 40px;
+  }
+}
+
+.nav-title {
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 48px;
+}
+
+.taijiBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 5px;
+  margin-bottom: 5px;
+  position: relative;
+  top: 3px;
+}
+
+@keyframes s {
+  to {
+      transform: scale(1.5);
+  }
+}
+@keyframes r {
+  to {
+      transform: rotate(1turn);
+  }
+}
+
+.taiji {
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  /* 线性渐变来画黑白两种背景颜色 */
+  background: linear-gradient(black 50%, white 0);
+  animation: r 2s linear infinite;
+}
+
+ /* 伪元素来充当页面元素的结构 */
+ .taiji:before, .taiji:after {
+     /* flex 和 content 必须，否则不会占据空间 */
+     flex: 1;
+     content: '';
+     height: 5px;
+     border: solid 5px black;
+     border-radius: 50%;
+     background: white;
+     /* 缩小->放大 交替进行无限循环 */
+     animation: s 1s ease-in-out infinite alternate;
+ }
+
+
+ .taiji:before {
+     background: black;
+     height: 5px;
+     border: solid 5px white;
+     /* 从最左边开始变大 */
+     transform-origin: 0% 50%;
+     transform: scale(0.5);
+ }
+
+.taiji:after {
+     transform-origin: 100% 50%;
+     transform: scale(0.5);
+     animation-delay: -1s;
+ }
+
+
+ /* footer */
+footer {
+  font-size: 14px;
+  color: #6b6b6b;
+  line-height: 25px;
+  margin: 25px 0;
+  text-align: center;
+}
+
+
+/* tags */
+.tag {
+
+}
+
+/* article */
+.article {
+  margin-bottom: 60px;
+  width: 100%;
+  text-align: justify;
+  padding: 0 10px;
+
+}
+
+.article-title {
+  font-size: 1.7em;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+}
+
+.article-date {
+  color: #797979;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.article-tags {
+  float: right;
+  font-size: 12px;
+}
+
+.article-tags-link {
+    color: #808080;
+    text-decoration: none;
+    margin-left: 3px;
+}
+.article-tags-link:hover {
+    color: #000;
+}
+
+.article-tags::after {
+  clear: both;
+}
+
+.article-info {
+  height: 24px;
+  margin: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+
+@media (max-width: 767px) {
+  .markdown-body {
+      padding: 0;
+  }
+}
