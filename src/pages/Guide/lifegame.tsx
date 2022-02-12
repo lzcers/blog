@@ -22,8 +22,8 @@ export default () => {
         const matrixSize = canvasSize / 10
         const cellSize = 10;
         //  初始化画布
-        c.fillStyle = '#eeeeee' // 灰色背景色
-        // c.fillRect(0, 0, canvasSize, canvasSize)
+        c.fillStyle = '#f9f9f9' // 灰色背景色
+        c.fillRect(0, 0, canvasSize, canvasSize)
 
         // 初始化矩阵
         const cellMatrix = initCellMatrix(matrixSize)
@@ -87,7 +87,7 @@ export default () => {
         function killCell(_x: number, _y: number) {
             if (!c) return;
             //        c.fillStyle='#eeeeee'; // 采用背景色填充
-            c.fillStyle = '#ffffff'
+            c.fillStyle = '#f9f9f9'
             c.fillRect(_x * cellSize, _y * cellSize, cellSize * window.devicePixelRatio, cellSize * window.devicePixelRatio)
         }
         function mapMatrix(matrix: Matrix) {

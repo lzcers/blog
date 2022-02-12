@@ -23,7 +23,7 @@ function parseTokensGenTOC(tokens: Token[]) {
     const rootNode = { nodeID: 'root', nodeLevel: 0, childrenNode: [] }
     function createTOCTree(root: any, node: any) {
         let nextNode
-        root.childrenNode.forEach(i => {
+        root.childrenNode.forEach((i: any) => {
             if (node.nodeLevel > i.nodeLevel) nextNode = i
         })
 

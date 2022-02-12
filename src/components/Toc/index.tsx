@@ -1,8 +1,12 @@
 import React from 'react'
 import './toc.less'
 
-function goAnchor(selector) {
-    const anchor = document.querySelector('#' + selector)
+interface TOC {
+    nodeID: number;
+    childrenNode: TOC[];
+}
+function goAnchor(selector: string) {
+    const anchor = document.querySelector('#' + selector) as HTMLElement;
     // 当前位置
     // DTD是否存,会影响document.body.scrollTop 与 document.documentElement.scrollTop的取值
     let curPY = document.documentElement.scrollTop || document.body.scrollTop
@@ -25,11 +29,11 @@ function goAnchor(selector) {
     }
 }
 
-function li(toc, index) {
+function li(toc: TOC, index: number) {
     const child = toc.childrenNode
     return (
         <li className="toc-li" key={index}>
-            <a className="toc-anchor" onClick={(_) => goAnchor(toc.nodeID)}>
+            <a className="toc-anchor" onClick={(_) => goAnchor(toc.nodeID + '')}>
                 {toc.nodeID}
             </a>
             {child.length ? <ol className="toc-li">{child.map((i) => li(i, i.nodeID + index))}</ol> : null}
@@ -37,7 +41,7 @@ function li(toc, index) {
     )
 }
 
-export default ({ toc }) =>
+export default ({ toc }: { toc: TOC }) =>
     toc ? (
         <div className="toc">
             {/* {toc.childrenNode.length > 3 ? <h3>目录</h3> : null} */}
