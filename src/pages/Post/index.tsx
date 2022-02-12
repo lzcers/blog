@@ -8,7 +8,7 @@ import { getPostById } from '@/api';
 interface PostProps {
   html: string;
   markdown: string;
-  meta: { Title: string, PublishDate: string, Tags: string };
+  meta: { title: string, publishDate: string, tags: string };
   tocTree: Object;
 }
 
@@ -32,9 +32,9 @@ export default () => {
   return (
     <Article
       id={Number(id)}
-      title={post.meta.Title}
-      tags={post.meta.Tags}
-      publishDate={post.meta.PublishDate}
+      title={post.meta.title}
+      tags={post.meta.tags}
+      publishDate={post.meta.publishDate}
       content={post.html}
       toc={post.tocTree}
       mode={true}

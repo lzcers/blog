@@ -59,7 +59,7 @@ marked.setOptions({
 function metaMarked(src: string) {
     const { attributes, body } = fm(src);
     const markdown = body;
-    const meta = attributes as { Title: string, PublishDate: string, Tags: string };
+    const meta = attributes as { title: string, publishDate: string, tags: string };
     const tokens = marked.lexer(markdown);
     const tocTree = parseTokensGenTOC(tokens);
     const html = marked.parser(tokens);
