@@ -4,12 +4,13 @@ export default class ErrorBoundary extends React.Component<{}, { hasError: boole
   constructor(props: {}) {
     super(props);
     this.state = { hasError: false, error: '' };
+    this.setState
   }
 
   static getDerivedStateFromError(error: string) {
-    console.error(error);
     return { hasError: true, error };
   }
+
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
   }
@@ -21,7 +22,7 @@ export default class ErrorBoundary extends React.Component<{}, { hasError: boole
         <>
           <h3 style={{ textAlign: "center" }}>发生了某些意外，这篇文章不见了！</h3>
           <br />
-          <span style={{ color: '#fff' }}>{this.state.error}</span>
+          <span style={{ color: '#fff' }}>{this.state.error.toString()}</span>
         </>
       )
     }
