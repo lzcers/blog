@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Article from '@/components/Article';
 import parseMarkdown from '@/utils/mdRender';
 import { getPostById } from '@/api';
+import ErrorBoundary from './errorBound';
 
 
 interface PostProps {
@@ -20,24 +21,28 @@ export default () => {
   useEffect(() => {
     if (!id) return;
     getPostById(Number(id)).then((data) => {
-      const result = parseMarkdown(data);
-      if (!result) return;
-      setPost(result);
-      setLoadingFlag(false);
+      try {
+        const result = parseMarkdown(data);
+        if (!result) return;
+        setPost(result);
+        setLoadingFlag(false);
+      } catch { }
     });
   }, [id]);
 
   if (loadingFlag || !post) return <h3 style={{ textAlign: "center" }}>Loading...</h3>
 
   return (
-    <Article
-      id={Number(id)}
-      title={post.meta.title}
-      tags={post.meta.tags}
-      publishDate={post.meta.publishDate}
-      content={post.html}
-      toc={post.tocTree}
-      mode={true}
-    />
+    <ErrorBoundary>
+      <Article
+        id={Number(id)}
+        title={post.meta.title}
+        tags={post.meta.tags}
+        publishDate={post.meta.publishDate}
+        content={post.html}
+        toc={post.tocTree}
+        mode={true}
+      />
+    </ErrorBoundary>
   );
 }
