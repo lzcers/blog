@@ -1,0 +1,103 @@
+.article {
+    margin-bottom: 60px;
+    width: 100%;
+    text-align: justify;
+    padding: 0 10px;
+    &-title {
+        font-size: 1.7em;
+        text-align: center;
+        font-weight: bold;
+        color: #111;
+        a:hover,
+        a:link,
+        a:visited {
+            text-decoration: none;
+            color: #111;
+        }
+    }
+    &-toc {
+        float: right;
+        margin: 20px;
+    }
+    &-date {
+        color: #797979;
+        text-align: center;
+        margin: 10px 0;
+    }
+    &-more {
+        float: left;
+        color: #808080;
+        text-decoration: none;
+    }
+    &-more:hover {
+        color: #111;
+    }
+    &-tags {
+        float: right;
+        font-size: 12px;
+        &-link {
+            color: #808080;
+            text-decoration: none;
+            margin-left: 3px;
+        }
+        &-link:hover {
+            color: #111;
+        }
+    }
+    &-tags::after {
+        clear: both;
+    }
+    &-info {
+        height: 24px;
+        margin: 20px 0;
+        border-bottom: 1px solid #eee;
+    }
+    &-tags-pic {
+        margin-right: 5px;
+    }
+}
+
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.markdown-body a {
+    color: #0366d6 !important;
+}
+
+@media (max-width: 767px) {
+    .markdown-body {
+        padding: 0;
+    }
+}
+
+// Post 页面
+.post-nav {
+    height: 40px;
+}
+.post-left,
+.post-right {
+    font-size: 14px;
+    line-height: 40px;
+    height: 40px;
+    a,
+    a:visited {
+        color: #797979;
+        margin: 0 5px;
+    }
+    a:hover {
+        color: #111;
+        text-decoration: underline;
+    }
+}
+
+.post-left {
+    float: left;
+}
+
+.post-right {
+    float: right;
+}

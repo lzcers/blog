@@ -1,0 +1,38 @@
+.post-list {
+    a {
+        height: 30px;
+        display: block;
+    }
+    li:hover {
+        opacity: 0.6;
+    }
+    .post-item-name {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .post-item-date {
+        display: inline-block;
+        text-align: right;
+        overflow: hidden;
+    }
+    @media screen and (max-width: 750px) {
+        .post-item-name {
+            padding-right: 5px;
+            width: 60%;
+        }
+        .post-item-date {
+            width: 40%;
+        }
+    }
+    
+    @media screen and (min-width: 750px) {
+        .post-item-name {
+            width: 75%;
+        }
+        .post-item-date {
+            width: 25%;
+        }
+    }
+}

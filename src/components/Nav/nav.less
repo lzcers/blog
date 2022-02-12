@@ -1,0 +1,130 @@
+.nav {
+    min-height: 80px;
+    width: 100%;
+    max-width: inherit;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    background: #fff;
+}
+.nav::after {
+    clear: both;
+}
+
+.nav-header {
+    .nav-sitename {
+        font-weight: 900;
+        color: #424243;
+        text-transform: uppercase;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.nav-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    .nav-item {
+        cursor: pointer;
+        color: #808080;
+        text-align: center;
+        display: inline-block;
+        padding: 0;
+        margin-left: 20px;
+        & a:visited {
+            color: #808080;
+        }
+        & a:hover {
+            font-weight: bold;
+            color: #111;
+        }
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .nav {
+        justify-content: center;
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .nav {
+        justify-content: space-between;
+        padding: 0 40px;
+    }
+}
+
+.nav-title {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+@d: 30px;
+@f: 0.5;
+@t: 1s;
+
+.taijiBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0 5px;
+    margin-bottom: 5px;
+    position: relative;
+    top: 3px;
+}
+
+.taiji {
+    display: flex;
+    align-items: center;
+    width: @d;
+    height: @d;
+    border-radius: 50%;
+    // 线性渐变来画黑白两种背景颜色
+    background: linear-gradient(black 50%, white 0);
+    animation: r (2 * @t) linear infinite;
+
+    // 伪元素来充当页面元素的结构
+    &:before,
+    &:after {
+        // flex 和 content 必须，否则不会占据空间
+        flex: 1;
+        content: '';
+        height: (@d / 6);
+        border: solid (@d / 6) black;
+        border-radius: 50%;
+        background: white;
+        // 缩小->放大 交替进行无限循环
+        animation: s @t ease-in-out infinite alternate;
+    }
+
+    @keyframes s {
+        to {
+            transform: scale(2 - @f);
+        }
+    }
+    @keyframes r {
+        to {
+            transform: rotate(1turn);
+        }
+    }
+    &:before {
+        background: black;
+        height: (@d / 6);
+        border: solid (@d / 6) white;
+        // 从最左边开始变大
+        transform-origin: 0% 50%;
+        transform: scale(@f);
+    }
+    &:after {
+        transform-origin: 100% 50%;
+        transform: scale(@f);
+        animation-delay: -@t;
+    }
+}
