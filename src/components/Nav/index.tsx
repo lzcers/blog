@@ -7,10 +7,11 @@ const Nav = () => (
             <h1 className="nav-sitename">
                 <Link to="/blog">
                     <div className="nav-title">
+                        刹
                         <div className="taijiBox">
                             <div className="taiji" />
                         </div>
-                        刹那
+                        那
                     </div>
                 </Link>
             </h1>

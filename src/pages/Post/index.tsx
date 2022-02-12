@@ -27,7 +27,7 @@ export default () => {
     });
   }, [id]);
 
-  if (loadingFlag || !post) return <h3>Loading...</h3>
+  if (loadingFlag || !post) return <h3 style={{ textAlign: "center" }}>Loading...</h3>
 
   return (
     <Article
