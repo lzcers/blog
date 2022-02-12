@@ -33,7 +33,7 @@ export default () => {
   if (loadingFlag || !post) return <h3 style={{ textAlign: "center" }}>Loading...</h3>
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary post={post}>
       <Article
         id={Number(id)}
         title={post.meta.title}

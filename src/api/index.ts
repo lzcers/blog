@@ -32,7 +32,7 @@ const getPostById = async (id: number) => {
 const getFile = (fileName: string) => request.get(localfileUrl + fileName);
 
 const getMetadata = () => 
-    request.get<(Omit<Post, 'tags'> & {tags: string})[]>(localTagsUrl, {useCache: true})
+    request.get<(Omit<Post, 'tags'> & {tags: string})[]>(localTagsUrl)
     .then(data => data.map(post => {
         const tags = post.tags.split('|').map((e) => e.trim());
         return {...post, tags};

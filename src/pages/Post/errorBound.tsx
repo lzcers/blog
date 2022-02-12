@@ -1,7 +1,7 @@
 import React, { ErrorInfo } from "react";
 
-export default class ErrorBoundary extends React.Component<{}, { hasError: boolean; error: string }> {
-  constructor(props: {}) {
+export default class ErrorBoundary extends React.Component<{ post: any }, { hasError: boolean; error: string }> {
+  constructor(props: any) {
     super(props);
     this.state = { hasError: false, error: '' };
     this.setState
@@ -22,7 +22,8 @@ export default class ErrorBoundary extends React.Component<{}, { hasError: boole
         <>
           <h3 style={{ textAlign: "center" }}>发生了某些意外，这篇文章不见了！</h3>
           <br />
-          <span style={{ color: '#fff' }}>{this.state.error.toString()}</span>
+          <p style={{ color: '#fff' }}>{this.state.error.toString()}</p>
+          <p style={{ color: '#fff', maxHeight: 300 }}>{JSON.stringify(this.props.post)}</p>
         </>
       )
     }
