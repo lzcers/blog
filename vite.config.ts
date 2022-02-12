@@ -5,6 +5,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "//ksana.oss-cn-shenzhen.aliyuncs.com/",
   build: {
     outDir:  path.resolve(__dirname, './docs/'),
     rollupOptions: {
