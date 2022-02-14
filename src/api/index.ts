@@ -1,8 +1,8 @@
 import request from 'umi-request';
 import parseMarkdown from '@/utils/mdRender';
 
-const localTagsUrl = 'http://oss.ksana.net/articles/postList.json'
-const localfileUrl = 'http://oss.ksana.net/articles/'
+const localTagsUrl = '//oss.ksana.net/articles/postList.json'
+const localfileUrl = '//oss.ksana.net/articles/'
 
 export interface Post {
     id: number;
