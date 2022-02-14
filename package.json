@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --base=//ksana.oss-cn-shenzhen.aliyuncs.com/",
+    "build": "tsc && vite build --base=//oss.ksana.net/",
     "preview": "vite preview"
   },
   "dependencies": {
