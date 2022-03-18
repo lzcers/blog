@@ -1,18 +1,28 @@
 .tags {
+
   li {
-      background: #f2f2f2;
-      color: #666;
-      float: left;
+    float: left;
+    background: #f2f2f2;
+    text-decoration: none;
+      a {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        color: #666;
+    }
   }
-  a {
-      display: inline-block;
-      height: 30px;
-      line-height: 30px;
-      padding: 0 10px;
-  }
+
   li:hover {
-      background: #333;
-      color: #fff;
-      text-decoration: none;
+    .selectedTag;
   }
+
+  .selectedTag {
+    background: #333;
+    text-decoration: none;
+    a {
+      color: #fff;
+    }
+  }
+
 }

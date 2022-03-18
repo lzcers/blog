@@ -21,9 +21,7 @@ export default (props: { tag: string }) => {
 
   return (
     <ul className="tags">
-      <li
-        style={{ color: selected === "all" ? '#fff' : '', background: selected === "all" ? '#333' : '' }}
-      >
+      <li className={`${selected === 'all' ? "selectedTag" : ""}`}>
         <Link to="/blog" onClick={(_) => setSelected("all")}>
           ALL
         </Link>
@@ -31,14 +29,15 @@ export default (props: { tag: string }) => {
       {tags.map((i) => (
         <li
           key={i}
-          style={{ color: selected === i ? '#fff' : '', background: selected === i ? '#333' : '' }}
+          className={`${selected === i ? "selectedTag" : ""}`}
         >
           <Link to={'/blog/tag/' + i} onClick={() => setSelected(i)}>
             {i}
           </Link>
         </li>
-      ))}
-    </ul>
+      ))
+      }
+    </ul >
   )
 }
 

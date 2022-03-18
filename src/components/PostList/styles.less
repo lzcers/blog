@@ -17,6 +17,37 @@
         text-align: right;
         overflow: hidden;
     }
+
+    .post-nav {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .post-left,
+    .post-right {
+        font-size: 14px;
+        line-height: 40px;
+        height: 40px;
+        a,
+        a:visited {
+            color: #797979;
+            margin: 0 5px;
+        }
+        a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+    }
+    
+    .post-left {
+        float: left;
+    }
+    
+    .post-right {
+        float: right;
+    }
+
     @media screen and (max-width: 750px) {
         .post-item-name {
             padding-right: 5px;
