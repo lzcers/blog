@@ -8,11 +8,11 @@ const pageButton = (pageNumber: number, dir: "left" | "right") => {
   const number = dir == "left" ? pageNumber - 1 : pageNumber + 1
   return (
     <div className={dir == "left" ? "post-left" : "post-right"}>
-      {dir == "left" && '<'}
+      {dir == "left" && '◀'}
       <Link onClick={(_) => window.scrollTo(0, 0)} to={{ search: `?pageNumber=${number}` }}>
         {dir == "left" ? "PREVIOUS" : "NEXT"}
       </Link>
-      {dir == "right" && '>'}
+      {dir == "right" && '▶'}
     </div>
   )
 }

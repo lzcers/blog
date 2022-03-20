@@ -1,6 +1,4 @@
 import request from 'umi-request';
-import parseMarkdown from '@/utils/mdRender';
-
 const localTagsUrl = '//oss.ksana.net/articles/postList.json'
 const localfileUrl = '//oss.ksana.net/articles/'
 

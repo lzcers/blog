@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
     <link rel="icon" type="image/svg+xml" href="//oss.ksana.net/assets/favicon.ico" />
     <link rel="preconnect" href="//fonts.proxy.ustclug.org">
     <link rel="preconnect" href="//fonts.proxy.ustclug.org" crossorigin="">
@@ -9,7 +10,6 @@
     <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
     <link href="//fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="//fonts.proxy.ustclug.org/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>刹那·KSANA</title>
     <script type="module" crossorigin src="//oss.ksana.net/assets/index.js"></script>
@@ -19,5 +19,10 @@
   <body>
     <div id="app"></div>
     
+    <script src="//unpkg.com/heti/umd/heti-addon.min.js"></script>
+    <script>
+      const heti = new Heti('.heti');
+      heti.autoSpacing(); // 自动进行中西文混排美化和标点挤压
+    </script>
   </body>
 </html>
