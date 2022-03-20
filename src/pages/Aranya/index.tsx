@@ -19,7 +19,7 @@ export default () => {
     const heatList: ReatPoint[] = Array(30).fill({ date: "2022-03-20", count: 5 });
     const [recordList, setRecordList] = useState<Record[]>([]);
 
-    useEffect(() => {
+    const openTheDoor = () => {
         get_list().then(data => {
             setRecordList(
                 data.map(item => {
@@ -32,14 +32,30 @@ export default () => {
                     };
                 }).reverse()
             );
-            console.log(data);
         });
+    }
+    useEffect(() => {
+        openTheDoor();
     }, []);
+
+    const knockDoor = (token: string) => {
+        window.myToken = token;
+        openTheDoor();
+    }
+
     return (
         <div className="aranya">
-            <div className="heti heti--ancient">
-                <p>非六根所见，着六尘而显，凡了悟者即知道。</p>
-            </div>
+            {recordList.length == 0 &&
+                <>
+                    <div className="heti heti--ancient">
+                        <p>非六根所见，着六尘而显，凡了悟者即知道。</p>
+                    </div>
+                    <input type="text" className={"door"} onKeyUp={e => {
+                        if (e.keyCode == 13) {
+                            knockDoor((e.target as HTMLInputElement).value);
+                        }
+                    }} />
+                </>}
             {/* <div className="heatmap"> */}
             {/* <div className="prev">◀</div> */}
             {/* {heatList.map(p => {
