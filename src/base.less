@@ -5,8 +5,8 @@ html {
     font-family: 'Noto Serif SC', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN',
         'Source Han Serif', 'source-han-serif-sc', 'Source Serif Pro', 'Source Serif Pro', 'PingFang SC', 'Microsoft YaHei','WenQuanYi Micro Hei', -apple-system, BlinkMacSystemFont, serif;
     color: #333333;
-    overflow-y: scroll;
-    background: #f9f9f9;
+    overflow-y: auto;
+    background: #fff;
 }
 
 * {
@@ -22,7 +22,7 @@ a:active {
 }
 
 #app {
-    background: #f9f9f9;
+    background: #fff;
 }
 
 .container {
@@ -31,11 +31,17 @@ a:active {
     margin: 0 auto;
     position: relative;
     background: #fff;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .content {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1;
     padding: 0 40px;
 }
+
 @media screen and (max-width: 750px) {
     .content {
         padding: 0 1vw;

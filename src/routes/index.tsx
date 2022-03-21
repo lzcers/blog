@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import Guide from '@/pages/Guide';
 import Post from '@/pages/Post';
 import Archive from '@/pages/Archive';
 import About from '@/pages/About';
@@ -30,7 +29,7 @@ const Blog = () => (
 
 const MainRoutes = () => (
     <Routes>
-        <Route path="/" element={<Guide />} />
+        <Route path="/" element={<Blog />} />
         <Route path="/blog/*" element={<Blog />} />
     </Routes>
 );

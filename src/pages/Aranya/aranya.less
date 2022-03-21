@@ -1,14 +1,25 @@
 .aranya {
     display: flex;
-    padding: 5% 3%;
     margin: 0 auto;
     flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+    flex: 1;
     .door {
-        border: none;
-        outline: none;
-        margin: 10px 0px;
+        margin-top: 15vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column nowrap;
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .key {
+            border: none;
+            outline: none;
+            width: 100%;
+            text-align: center;
+        }
     }
 }
 
@@ -34,41 +45,71 @@
     }
 }
 
-.inputarea {
-    width: 90%;
-    margin-top: 20px;
-    min-height: 80px;
-    max-height: 160px;
-    textarea {
-        width: 100%;
-        padding: 10px;
-    }       
+.newRecord {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    .btn {
+        width: 50px;
+    }
+}
+
+.newRecord:hover, .newRecord:focus-within {
+    background-color: rgba(0,0,0,.02);
+}
+
+.editArea {
+    resize: none;
+    border: none;
+    outline: none;
+    background-color: rgba(0,0,0,0);
+    padding: 10px;
+    width: 100%;
+
 }
 
 .timeline {
-    width: 90%;
-    height: 65vh;
     overflow: auto;
+    max-height: 85vh;
     .record {
         display: flex;
         flex-flow: column nowrap;
         margin-bottom: 30px;
-        border-bottom: 1px solid #3333;
+        background-color: rgba(0,0,0,.02);
+        
         .content {
             width: 100%;
-            min-height: 80px;
-            padding: 12px 16px;
+            padding: 10px;
         }
         .props {
             display: flex;
             flex-flow: row nowrap;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
+            padding: 0 10px;
             line-height: 30px;
             height: 30px;
             font-size: 14px;
+            border-top: 1px solid #e5e5e5;
+        }
+        .opt {
+            visibility: hidden;
         }
     }
+    .record:hover,.record:focus-within {
+        .opt {
+            visibility: visible;
+        }
+    }
+}
+
+.btn {
+    background: rgba(0,0,0,0);
+    border: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .timeline::-webkit-scrollbar {  display: none; }
