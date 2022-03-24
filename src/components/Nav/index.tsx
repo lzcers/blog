@@ -18,9 +18,6 @@ const Nav = () => (
         </div>
         <ul className="nav-menu">
             <li className="nav-item">
-                <Link to="/">LIFEGAME</Link>
-            </li>
-            <li className="nav-item">
                 <Link to="/blog">BLOG</Link>
             </li>
             <li className="nav-item">

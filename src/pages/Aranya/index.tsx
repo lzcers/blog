@@ -1,23 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import { getList, updateRecord, createRecord } from '@/api/github';
 import metaMarked from '@/utils/mdRender';
-import Textarea from 'react-expanding-textarea';
+import Textarea, { resize } from 'react-expanding-textarea';
 import './aranya.less'
 
-interface ReatPoint {
+interface HeatPoint {
     date: string;
     count: number;
 }
 
 interface Record {
     id: number;
-    createDatetime: string;
-    updateDatetime: string;
+    createdAt: string;
+    updatedAt: string;
     content: string;
 }
 
 export default () => {
-    const heatList: ReatPoint[] = Array(30).fill({ date: "2022-03-20", count: 5 });
+    const [heatList, setHeatList] = useState<HeatPoint[]>([]);
     const [recordList, setRecordList] = useState<Record[]>([]);
     const [editable, setEditable] = useState<number | null>(null);
     const editTextareaRef = useRef<HTMLTextAreaElement>(null);
@@ -29,8 +29,8 @@ export default () => {
                 data.map(item => {
                     return {
                         id: item.id,
-                        createDatetime: new Date(item.created_at).toLocaleString(),
-                        updateDatetime: new Date(item.updated_at).toLocaleString(),
+                        createdAt: new Date(item.created_at).toLocaleString(),
+                        updatedAt: new Date(item.updated_at).toLocaleString(),
                         content: item.body
                     };
                 }).reverse()
@@ -60,8 +60,30 @@ export default () => {
         createRecord(addRecotdTextareaRef.current.value).then(() => {
             getRecords();
             addRecotdTextareaRef.current!.value = '';
+            resize(0, addRecotdTextareaRef.current);
         });
     }
+
+    useEffect(() => {
+        let dateGroupList = recordList.reduce((prev, item) => {
+            const date = item.updatedAt.match(/\d*\/\d*\/\d*/g)?.pop();
+            if (date) {
+                if (prev[date]) {
+                    prev[date].push(item)
+                } else {
+                    prev[date] = [item];
+                }
+            }
+            return prev;
+        }, {} as { [key: string]: Record[] });
+        console.log(dateGroupList);
+        let heatList = Object.keys(dateGroupList).reduce((result, key) => {
+            result.push({ date: key, count: dateGroupList[key].length });
+            return result;
+        }, [] as HeatPoint[]);
+        setHeatList(heatList);
+
+    }, [recordList]);
 
     useEffect(() => {
         openTheDoor();
@@ -84,21 +106,17 @@ export default () => {
 
     return (
         <div className="aranya">
-            {/* <div className="heatmap"> */}
-            {/* <div className="prev">◀</div> */}
-            {/* {heatList.map(p => {
+            {/* <div className="heatmap">
+                <div className="prev">◀</div>
+                {heatList.map(p => {
                     return (
-                        <div key={p.date} className="heatPoint" style={{ backgroundColor: `rgba(0, 160, 0, ${Math.random()})` }}></div>
+                        <div key={p.date} className="heatPoint" style={{ backgroundColor: `rgba(0, 160, 0, .${p.count})` }}></div>
                     )
-                })} */}
-            {/* <div className="next">▶</div> */}
-            {/* </div> */}
-            {/* <div className="inputarea">
-                <textarea />
+                })}
+                <div className="next">▶</div>
             </div> */}
-            <div className="tags">
-
-            </div>
+            {/* <div className="tags">
+            </div> */}
             <div className="newRecord">
                 <Textarea className="editArea post-body markdown-body" autoFocus ref={addRecotdTextareaRef} placeholder="..." />
                 <button className="btn" onClick={onAddRecord}>记下</button>
@@ -118,7 +136,7 @@ export default () => {
                                     {editable == r.id && <button className="btn" onClick={() => onSaveRecord(r)}>保存</button>}
                                     {editable == r.id && <button className="btn" onClick={() => setEditable(null)}>取消</button>}
                                 </div>
-                                <span className="datetime">{r.updateDatetime}</span>
+                                <span className="datetime">{r.updatedAt}</span>
                             </div>
                         </div>
                     )
