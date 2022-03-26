@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getList, updateRecord, createRecord } from '@/api/github';
 import metaMarked from '@/utils/mdRender';
 import Textarea, { resize } from 'react-expanding-textarea';
@@ -11,6 +11,7 @@ interface HeatPoint {
 
 interface Record {
     id: number;
+    tags: string[];
     createdAt: string;
     updatedAt: string;
     content: string;
@@ -19,24 +20,27 @@ interface Record {
 export default () => {
     const [heatList, setHeatList] = useState<HeatPoint[]>([]);
     const [recordList, setRecordList] = useState<Record[]>([]);
+    const [showList, setShowList] = useState<Record[]>([]);
     const [editable, setEditable] = useState<number | null>(null);
     const editTextareaRef = useRef<HTMLTextAreaElement>(null);
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
 
     const getRecords = () => {
         getList().then(data => {
-            setRecordList(
-                data.map(item => {
-                    return {
-                        id: item.id,
-                        createdAt: new Date(item.created_at).toLocaleString(),
-                        updatedAt: new Date(item.updated_at).toLocaleString(),
-                        content: item.body
-                    };
-                }).reverse()
-            );
+            const list = data.map(item => {
+                return {
+                    id: item.id,
+                    tags: [],
+                    createdAt: new Date(item.created_at).toLocaleString(),
+                    updatedAt: new Date(item.updated_at).toLocaleString(),
+                    content: item.body
+                };
+            }).reverse()
+            setRecordList(list);
+            setShowList(list);
         });
     }
+
     const openTheDoor = () => getRecords();
 
     const knockDoor = (token: string) => {
@@ -56,7 +60,7 @@ export default () => {
     }
 
     const onAddRecord = () => {
-        if (!addRecotdTextareaRef.current) return;
+        if (!addRecotdTextareaRef.current || !addRecotdTextareaRef.current.value) return;
         createRecord(addRecotdTextareaRef.current.value).then(() => {
             getRecords();
             addRecotdTextareaRef.current!.value = '';
@@ -64,8 +68,12 @@ export default () => {
         });
     }
 
+    const filterRecord = useCallback((filter: (r: Record) => boolean) => {
+        setShowList(recordList.filter(filter))
+    }, [recordList]);
+
     useEffect(() => {
-        let dateGroupList = recordList.reduce((prev, item) => {
+        const dateGroupList = recordList.reduce((prev, item) => {
             const date = item.updatedAt.match(/\d*\/\d*\/\d*/g)?.pop();
             if (date) {
                 if (prev[date]) {
@@ -75,12 +83,15 @@ export default () => {
                 }
             }
             return prev;
-        }, {} as { [key: string]: Record[] });
-        console.log(dateGroupList);
-        let heatList = Object.keys(dateGroupList).reduce((result, key) => {
-            result.push({ date: key, count: dateGroupList[key].length });
-            return result;
-        }, [] as HeatPoint[]);
+        }, {} as { [key: string]: Record[] })
+
+        const heatList = Object.keys(dateGroupList)
+            .reverse()
+            .reduce((result, key) => {
+                result.push({ date: key, count: dateGroupList[key].length });
+                return result;
+            }, [] as HeatPoint[]);
+
         setHeatList(heatList);
 
     }, [recordList]);
@@ -106,23 +117,39 @@ export default () => {
 
     return (
         <div className="aranya">
-            {/* <div className="heatmap">
-                <div className="prev">◀</div>
-                {heatList.map(p => {
-                    return (
-                        <div key={p.date} className="heatPoint" style={{ backgroundColor: `rgba(0, 160, 0, .${p.count})` }}></div>
-                    )
-                })}
-                <div className="next">▶</div>
-            </div> */}
-            {/* <div className="tags">
-            </div> */}
+
+            <div className="heatmap">
+                <div className="left">
+                    {/* <div className="prev">◀</div> */}
+                    {heatList.map(p => {
+                        return (
+                            <div
+                                key={p.date}
+                                className="heatPoint"
+                                onClick={() => {
+                                    const filter = (r: Record) => r.updatedAt.includes(p.date);
+                                    filterRecord(filter);
+                                }}
+                                style={{ backgroundColor: `rgba(0, 160, 0, ${p.count / 5 < 1 ? p.count / 5 : 1})` }}>
+                            </div>
+                        )
+                    })}
+                    {/* <div className="next">▶</div> */}
+                </div>
+                <div className="count" onClick={() => filterRecord(_ => true)}>
+                    <span>共</span>
+                    <span>{heatList.length} 天</span>
+                    <span>{recordList.length} 笔</span>
+                </div>
+            </div>
+            <div className="tags">
+            </div>
             <div className="newRecord">
                 <Textarea className="editArea post-body markdown-body" autoFocus ref={addRecotdTextareaRef} placeholder="..." />
-                <button className="btn" onClick={onAddRecord}>记下</button>
+                <button className="btn" onClick={onAddRecord}><strong>记</strong></button>
             </div>
             <div className="timeline">
-                {recordList.map(r => {
+                {showList.map(r => {
                     return (
                         <div className="record" key={r.id}>
                             {
