@@ -72,6 +72,7 @@ export default () => {
         setShowList(recordList.filter(filter))
     }, [recordList]);
 
+
     useEffect(() => {
         const dateGroupList = recordList.reduce((prev, item) => {
             const date = item.updatedAt.match(/\d*\/\d*\/\d*/g)?.pop();
@@ -94,6 +95,7 @@ export default () => {
 
         setHeatList(heatList);
 
+        setShowList(recordList);
     }, [recordList]);
 
     useEffect(() => {
@@ -169,6 +171,6 @@ export default () => {
                     )
                 })}
             </div>
-        </div >
+        </div>
     );
 }
