@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getList, updateRecord, createRecord } from '@/api/github';
+import { getList, updateRecord, createRecord, getIssuesInfo } from '@/api/github';
 import metaMarked from '@/utils/mdRender';
 import Textarea, { resize } from 'react-expanding-textarea';
 import './aranya.less'
@@ -17,6 +17,8 @@ interface Record {
     content: string;
 }
 
+const PAGE_SIZE = 30;
+
 export default () => {
     const [heatList, setHeatList] = useState<HeatPoint[]>([]);
     const [recordList, setRecordList] = useState<Record[]>([]);
@@ -25,8 +27,8 @@ export default () => {
     const editTextareaRef = useRef<HTMLTextAreaElement>(null);
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
 
-    const getRecords = () => {
-        getList().then(data => {
+    const getRecords = (pageNumber?: number) => {
+        return getList(pageNumber).then(data => {
             const list = data.map(item => {
                 return {
                     id: item.id,
@@ -36,16 +38,24 @@ export default () => {
                     content: item.body
                 };
             }).reverse()
-            setRecordList(list);
-            setShowList(list);
+            setRecordList(l => l.concat(...list));
+            setShowList(l => l.concat(...list));
         });
     }
 
-    const openTheDoor = () => getRecords();
+    const openDoor = () => {
+        getIssuesInfo().then(res => {
+            const rc = res.comments;
+            let page = rc % PAGE_SIZE != 0 ? Math.floor(rc / PAGE_SIZE) + 1 : rc / PAGE_SIZE;
+            const loopLoad = (p: number) => {
+                p > 0 && getRecords(p).then(() => loopLoad(--p))
+            }
+            loopLoad(page);
+        });
+    }
 
     const knockDoor = (token: string) => {
         localStorage.setItem('myToken', token);
-        openTheDoor();
     }
 
     const onSaveRecord = (r: Record) => {
@@ -99,7 +109,7 @@ export default () => {
     }, [recordList]);
 
     useEffect(() => {
-        openTheDoor();
+        openDoor();
     }, []);
 
     if (recordList.length == 0) {
@@ -110,6 +120,7 @@ export default () => {
                     <input type="text" className={"key"} autoFocus onKeyUp={e => {
                         if (e.keyCode == 13) {
                             knockDoor((e.target as HTMLInputElement).value);
+                            openDoor();
                         }
                     }} />
                 </div>
