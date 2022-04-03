@@ -25,8 +25,8 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: './CNAME',
-          dest: './'
+          src:  "CNAME",
+          dest:  "/"
         }
       ]
   })]
