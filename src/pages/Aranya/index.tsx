@@ -72,7 +72,8 @@ export default () => {
     const onAddRecord = () => {
         if (!addRecotdTextareaRef.current || !addRecotdTextareaRef.current.value) return;
         createRecord(addRecotdTextareaRef.current.value).then(() => {
-            getRecords();
+            setRecordList([]);
+            openDoor();
             addRecotdTextareaRef.current!.value = '';
             resize(0, addRecotdTextareaRef.current);
         });
