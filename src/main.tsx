@@ -1,12 +1,9 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { HashRouter as Router } from 'react-router-dom';
 import Routes from '@/routes';
 import 'normalize.css';
 import './base.less';
 
-ReactDOM.render(
-    <Router>
-        <Routes />
-    </Router>,
-    document.getElementById('app')
-);
+const container = document.getElementById('app')!;
+const root = createRoot(container);
+root.render(<Router><Routes /></Router>);

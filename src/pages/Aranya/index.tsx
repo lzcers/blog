@@ -29,7 +29,7 @@ export default () => {
 
     const getRecords = (pageNumber?: number) => {
         return getList(pageNumber).then(data => {
-            const list = data.map(item => {
+            return data.map(item => {
                 return {
                     id: item.id,
                     tags: [],
@@ -37,18 +37,22 @@ export default () => {
                     updatedAt: new Date(item.updated_at).toLocaleString(),
                     content: item.body
                 };
-            }).reverse()
-            setRecordList(l => l.concat(...list));
-            setShowList(l => l.concat(...list));
+            }).reverse();
         });
     }
-
     const openDoor = () => {
+        let newRecords: Record[] = [];
         getIssuesInfo().then(res => {
             const rc = res.comments;
             let page = rc % PAGE_SIZE != 0 ? Math.floor(rc / PAGE_SIZE) + 1 : rc / PAGE_SIZE;
             const loopLoad = (p: number) => {
-                p > 0 && getRecords(p).then(() => loopLoad(--p))
+                if (p > 0) {
+                    getRecords(p).then((r) => {
+                        newRecords = newRecords.concat(...r)
+                        setRecordList(newRecords);
+                        loopLoad(--p);
+                    })
+                }
             }
             loopLoad(page);
         });
@@ -72,10 +76,9 @@ export default () => {
     const onAddRecord = () => {
         if (!addRecotdTextareaRef.current || !addRecotdTextareaRef.current.value) return;
         createRecord(addRecotdTextareaRef.current.value).then(() => {
-            setRecordList([]);
-            openDoor();
             addRecotdTextareaRef.current!.value = '';
             resize(0, addRecotdTextareaRef.current);
+            openDoor();
         });
     }
 
@@ -105,7 +108,6 @@ export default () => {
             }, [] as HeatPoint[]);
 
         setHeatList(heatList);
-
         setShowList(recordList);
     }, [recordList]);
 

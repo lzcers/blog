@@ -1,16 +1,75 @@
 .about {
-    text-align: center;
-    padding: 0 5%;
+    padding-top: 50px;
+
     a,
     i {
         line-height: 1.5em;
         font-size: 1em;
         font-weight: 500;
     }
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    blockquote {
+        margin: 0;
+    }
+
+    .quotoSICP {
+        font-size: 14px;
+        margin-left: 10px;
+
+        p {
+            text-align: left;
+            font-weight: 700;
+            line-height: 20px;
+            margin: 0;
+        }
+    }
+
+}
+
+.selfLeft {
+    flex: 1;
+    text-align: left;
+
+    .myPic {
+        display: flex;
+        flex-flow: row;
+        align-items: flex-start;
+    }
+
+    .myPic img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+}
+
+.selfRight {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
 @media screen and (max-width: 750px) {
+    .about {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+    }
+
     .guide {
         margin: 15px 0;
+    }
+
+    .selfLeft {
+        text-align: center;
+    }
+
+    .selfRight {
+        flex: 1;
+        display: flex;
+        justify-content: center;
     }
 }
