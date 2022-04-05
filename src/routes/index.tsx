@@ -29,7 +29,7 @@ const Blog = () => (
 
 const MainRoutes = () => (
     <Routes>
-        <Route path="/" element={<Blog />} />
+        <Route path="/*" element={<Blog />} />
         <Route path="/blog/*" element={<Blog />} />
     </Routes>
 );

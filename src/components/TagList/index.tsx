@@ -9,7 +9,6 @@ export default (props: { tag: string }) => {
   const { tag } = props;
 
   useEffect(() => {
-    console.log(tag);
     tag && setSelected(tag);
   }, [tag]);
 

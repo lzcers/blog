@@ -44,7 +44,7 @@ export default (props: { tag: string, pageNumber: number }) => {
     return `${month} ${day} ${year}`;
   }
 
-  if (posts.length === 0) return <h3>Loading...</h3>;
+  if (posts.length === 0) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>Loading...</h3>;
 
   return (
     <div className="posts">
