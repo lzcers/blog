@@ -17,13 +17,20 @@ interface Record {
     content: string;
 }
 
+interface Filter {
+    date: string | null;
+    tag: string | null;
+}
+
 const PAGE_SIZE = 30;
 
 export default () => {
+    const [tagList, setTagList] = useState<string[]>([]);
     const [heatList, setHeatList] = useState<HeatPoint[]>([]);
     const [recordList, setRecordList] = useState<Record[]>([]);
     const [showList, setShowList] = useState<Record[]>([]);
     const [editable, setEditable] = useState<number | null>(null);
+    const [filter, setFilter] = useState<Filter>({ date: null, tag: null });
     const editTextareaRef = useRef<HTMLTextAreaElement>(null);
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -32,7 +39,7 @@ export default () => {
             return data.map(item => {
                 return {
                     id: item.id,
-                    tags: [],
+                    tags: [...item.body.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
                     createdAt: new Date(item.created_at).toLocaleString(),
                     updatedAt: new Date(item.updated_at).toLocaleString(),
                     content: item.body
@@ -40,16 +47,20 @@ export default () => {
             }).reverse();
         });
     }
+
     const openDoor = () => {
         let newRecords: Record[] = [];
+        let tags: string[] = [];
         getIssuesInfo().then(res => {
             const rc = res.comments;
             let page = rc % PAGE_SIZE != 0 ? Math.floor(rc / PAGE_SIZE) + 1 : rc / PAGE_SIZE;
             const loopLoad = (p: number) => {
                 if (p > 0) {
                     getRecords(p).then((r) => {
+                        tags = tags.concat(...r.map(i => i.tags).flat())
                         newRecords = newRecords.concat(...r)
                         setRecordList(newRecords);
+                        setTagList([...new Set(tags)]);
                         loopLoad(--p);
                     })
                 }
@@ -82,14 +93,9 @@ export default () => {
         });
     }
 
-    const filterRecord = useCallback((filter: (r: Record) => boolean) => {
-        setShowList(recordList.filter(filter))
-    }, [recordList]);
-
-
-    useEffect(() => {
+    const clacHeatList = useCallback(() => {
         const dateGroupList = recordList.reduce((prev, item) => {
-            const date = item.updatedAt.match(/\d*\/\d*\/\d*/g)?.pop();
+            const date = item.createdAt.match(/\d*\/\d*\/\d*/g)?.pop();
             if (date) {
                 if (prev[date]) {
                     prev[date].push(item)
@@ -106,10 +112,38 @@ export default () => {
                 result.push({ date: key, count: dateGroupList[key].length });
                 return result;
             }, [] as HeatPoint[]);
-
-        setHeatList(heatList);
-        setShowList(recordList);
+        return heatList;
     }, [recordList]);
+
+    const filterRecord = useCallback((filter: (r: Record) => boolean) => {
+        const result = recordList.filter(filter);
+        setShowList(result)
+    }, [recordList]);
+
+
+    useEffect(() => {
+        // setTagList([...new Set(showList.map(r => r.tags).flat())]);
+    }, [showList]);
+
+    useEffect(() => {
+        setShowList(recordList);
+        setHeatList(clacHeatList());
+        setTagList([...new Set(recordList.map(r => r.tags).flat())]);
+    }, [recordList]);
+
+    useEffect(() => {
+        const f = (r: Record) => {
+            const { date, tag } = filter;
+            if (date && tag) {
+                return r.createdAt.includes(date) && r.tags.includes(tag);
+            } else {
+                if (date) return r.createdAt.includes(date)
+                else if (tag) return r.tags.includes(tag);
+            }
+            return true;
+        }
+        filterRecord(f);
+    }, [filter]);
 
     useEffect(() => {
         openDoor();
@@ -133,7 +167,17 @@ export default () => {
 
     return (
         <div className="aranya">
-
+            <ul className="tags">
+                {tagList.map(tag => {
+                    return <li className={filter.tag == tag ? "selectedTag" : ''} key={tag}
+                        onClick={() => {
+                            setFilter(f => {
+                                if (f.tag == tag) return { date: null, tag: null };
+                                else return { date: null, tag };
+                            })
+                        }}><a>{tag}</a></li>;
+                })}
+            </ul>
             <div className="heatmap">
                 <div className="left">
                     {/* <div className="prev">◀</div> */}
@@ -143,8 +187,7 @@ export default () => {
                                 key={p.date}
                                 className="heatPoint"
                                 onClick={() => {
-                                    const filter = (r: Record) => r.updatedAt.includes(p.date);
-                                    filterRecord(filter);
+                                    setFilter(f => ({ tag: null, date: p.date }))
                                 }}
                                 style={{ backgroundColor: `rgba(0, 160, 0, ${p.count / 5 < 1 ? p.count / 5 : 1})` }}>
                             </div>
@@ -152,13 +195,11 @@ export default () => {
                     })}
                     {/* <div className="next">▶</div> */}
                 </div>
-                <div className="count" onClick={() => filterRecord(_ => true)}>
+                <div className="count" onClick={() => setFilter({ date: null, tag: null })}>
                     <span>共</span>
                     <span>{heatList.length} 天</span>
                     <span>{recordList.length} 笔</span>
                 </div>
-            </div>
-            <div className="tags">
             </div>
             <div className="newRecord">
                 <Textarea className="editArea post-body markdown-body" autoFocus ref={addRecotdTextareaRef} placeholder="..." />

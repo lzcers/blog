@@ -4,17 +4,26 @@
     flex-flow: column nowrap;
     flex: 1;
     width: 100%;
+
+    .tags {
+        li {
+            margin: 5px;
+        }
+    }
+
     .door {
         margin-top: 15vh;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-flow: column nowrap;
+
         p {
             font-size: 18px;
             font-weight: bold;
             text-align: center;
         }
+
         .key {
             border: none;
             outline: none;
@@ -32,32 +41,38 @@
     align-items: center;
     min-height: 20px;
     background: #fafafa;
+
     .left {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
     }
+
     .count {
         font-weight: bold;
         cursor: pointer;
         margin-right: 5px;
+
         span {
             margin-left: 5px;
         }
     }
+
     .heatPoint {
         width: 15px;
         height: 15px;
         margin: 3px;
         cursor: pointer;
     }
-    .prev,.next {
+
+    .prev,
+    .next {
         margin: 0 5px;
         cursor: pointer;
         line-height: 20px;
         font-size: 12px;
-        color: rgba(0,0,0,.5);
+        color: rgba(0, 0, 0, .5);
     }
 }
 
@@ -67,20 +82,22 @@
     justify-content: space-between;
     align-items: center;
     margin: 20px 0;
+
     .btn {
         padding: 0 5px;
     }
 }
 
-.newRecord:hover, .newRecord:focus-within {
-    background-color: rgba(0,0,0,.02);
+.newRecord:hover,
+.newRecord:focus-within {
+    background-color: rgba(0, 0, 0, .02);
 }
 
 .editArea {
     resize: none;
     border: none;
     outline: none;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     padding: 10px;
     width: 100%;
 
@@ -89,16 +106,18 @@
 .timeline {
     overflow: auto;
     max-height: 85vh;
+
     .record {
         display: flex;
         flex-flow: column nowrap;
         margin-bottom: 30px;
-        background-color: rgba(0,0,0,.02);
-        
+        background-color: rgba(0, 0, 0, .02);
+
         .content {
             width: 100%;
             padding: 10px;
         }
+
         .props {
             display: flex;
             flex-flow: row nowrap;
@@ -110,11 +129,14 @@
             font-size: 14px;
             border-top: 1px solid #e5e5e5;
         }
+
         .opt {
             visibility: hidden;
         }
     }
-    .record:hover,.record:focus-within {
+
+    .record:hover,
+    .record:focus-within {
         .opt {
             visibility: visible;
         }
@@ -122,11 +144,13 @@
 }
 
 .btn {
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     border: none;
     color: inherit;
     cursor: pointer;
     font-weight: bold;
 }
 
-.timeline::-webkit-scrollbar {  display: none; }
+.timeline::-webkit-scrollbar {
+    display: none;
+}
