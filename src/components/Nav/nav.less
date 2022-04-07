@@ -7,6 +7,7 @@
     flex-flow: row wrap;
     background: #fff;
 }
+
 .nav::after {
     clear: both;
 }
@@ -22,6 +23,7 @@
         align-items: center;
     }
 }
+
 .nav-menu {
     list-style-type: none;
     padding: 0;
@@ -29,6 +31,7 @@
     display: flex;
     flex-flow: row;
     align-items: center;
+
     .nav-item {
         cursor: pointer;
         color: #808080;
@@ -36,9 +39,12 @@
         display: inline-block;
         padding: 0;
         margin-left: 20px;
+        width: 75px;
+
         & a:visited {
             color: #808080;
         }
+
         & a:hover {
             font-weight: bold;
             color: #111;
@@ -108,11 +114,13 @@
             transform: scale(2 - @f);
         }
     }
+
     @keyframes r {
         to {
             transform: rotate(1turn);
         }
     }
+
     &:before {
         background: black;
         height: (@d / 6);
@@ -121,6 +129,7 @@
         transform-origin: 0% 50%;
         transform: scale(@f);
     }
+
     &:after {
         transform-origin: 100% 50%;
         transform: scale(@f);
