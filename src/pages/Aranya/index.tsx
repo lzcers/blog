@@ -75,13 +75,14 @@ export default () => {
 
     const onSaveRecord = (r: Record) => {
         if (!editTextareaRef.current) return;
-        const newRecord = { ...r, content: editTextareaRef.current.value };
+        const newRecord = { ...r, content: editTextareaRef.current.value, tags: [...editTextareaRef.current.value.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]) };
         setRecordList(recordList.map(i => {
             if (i.id == r.id) return newRecord;
             return i;
         }));
-        updateRecord(r.id, editTextareaRef.current.value);
-        setEditable(null);
+        updateRecord(r.id, editTextareaRef.current.value).then(() => {
+            setEditable(null);
+        })
     }
 
     const onAddRecord = () => {
