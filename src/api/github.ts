@@ -26,7 +26,7 @@ function updateRecord(id: number, content: string) {
   return request.patch(`${updateUrl}/${id}`, {headers: {Authorization: `token ${getToken()}`}, data}).catch(e => {console.info("update record faild..."); return []});
 }
 
-function createRecord(content: string) {
+function createRecord(content: string): Promise<{id: number, body: string, created_at: string, updated_at: string}> {
   const data = {
     body: content,
   }

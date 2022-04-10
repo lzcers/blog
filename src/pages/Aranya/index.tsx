@@ -48,6 +48,11 @@ export default () => {
         });
     }
 
+    const insertRecord = useCallback((r: Record) => {
+        recordList.unshift(r);
+        setRecordList([...recordList]);
+    }, [recordList]);
+
     const openDoor = () => {
         let newRecords: Record[] = [];
         let tags: string[] = [];
@@ -87,10 +92,16 @@ export default () => {
 
     const onAddRecord = () => {
         if (!addRecotdTextareaRef.current || !addRecotdTextareaRef.current.value) return;
-        createRecord(addRecotdTextareaRef.current.value).then(() => {
+        createRecord(addRecotdTextareaRef.current.value).then((r) => {
             addRecotdTextareaRef.current!.value = '';
             resize(0, addRecotdTextareaRef.current);
-            openDoor();
+            insertRecord({
+                id: r.id,
+                createdAt: new Date(r.created_at).toLocaleString(),
+                updatedAt: new Date(r.updated_at).toLocaleString(),
+                tags: [...r.body.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
+                content: r.body
+            })
         });
     }
 
@@ -121,10 +132,6 @@ export default () => {
         setShowList(result)
     }, [recordList]);
 
-
-    useEffect(() => {
-        // setTagList([...new Set(showList.map(r => r.tags).flat())]);
-    }, [showList]);
 
     useEffect(() => {
         setShowList(recordList);
