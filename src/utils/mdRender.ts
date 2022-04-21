@@ -49,53 +49,29 @@ renderer.code = (code: string, lang: string) => {
     return `<pre><code class="lang-${lang}">${highlightResult}</code></pre>`;
 }
 
-const tagListRender = {
-    name: 'tagList',
-    level: 'block',                                  
-    start(src: string) { return src.search(/#[^\s]+/g) != -1 },
-    tokenizer(this: any, src: string) {
-        const rule = /(#[^\s]+[\b|\s])+/g;
-        const result = rule.exec(src);
-        if (result) {
-            const token = {                              
-                type: 'tagList',
-                raw: result[0],
-                text: result[0].trim(),
-                tokens: [],         
-            };
-            this.lexer.inline(token.text, token.tokens); 
-            return token;
-        }
-    },
-    renderer(this: any, token: Token) {
-        return `<ul class="contentTags">${this.parser.parseInline(token.tokens)}</ul>`; // parseInline to turn child tokens into HTML
-    }
-};
-
-const tagRender = {
+const tagItemRender = {
     name: 'tag',
     level: 'inline',                                  
     start(src: string) { return src.search(/#[^\s]+/g) != -1 },
     tokenizer(src: string) {
-        const rule = /#([^\s]+)[\b|\s]?/g;
+        const rule = /#([^\s]+)[\s|\b]?/g;
         const result = rule.exec(src);
         if (result) {
             const token = {                              
                 type: 'tag',
-                raw: result[0],
+                raw: result[0].slice(-1) == '\n' ? result[0].slice(0, -1) : result[0],
                 text: result[1]
             };
             return token;
         }
     },
     renderer(token: Token) {
-        return `<li>${token.text}</li>`;
+        return `<span class="tagItem">${token.text}</span>`;
     }
 };
 
+marked.use({ extensions: [tagItemRender] });
 
-
-marked.use({ extensions: [tagListRender, tagRender] });
 marked.setOptions({
     renderer,
     breaks: true,

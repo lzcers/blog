@@ -132,23 +132,18 @@
             padding: 10px;
         }
 
-        .contentTags {
-            display: flex;
-            flex-flow: row wrap;
-            align-items: center;
-            margin: 5px 0;
-            padding: 0;
+        .tagItem {
+            display: inline-block;
+            margin: 5px 3px;
+            padding: 0 5px;
+            font-size: 14px;
+            background: #f2f2f2;
+            text-decoration: none;
+            list-style: none;
+        }
 
-            li {
-                margin: 0px;
-                margin-right: 6px;
-                padding: 0 5px;
-                font-size: 14px;
-                float: left;
-                background: #f2f2f2;
-                text-decoration: none;
-                list-style: none;
-            }
+        .tagItem:first-of-type {
+            margin: 5px 0px;
         }
 
         .props {
