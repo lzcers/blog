@@ -19,6 +19,14 @@
         }
     }
 
+    .tag {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        color: #666;
+    }
+
     .door {
         margin-top: 15vh;
         display: flex;
@@ -122,6 +130,25 @@
         .content {
             width: 100%;
             padding: 10px;
+        }
+
+        .contentTags {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            margin: 5px 0;
+            padding: 0;
+
+            li {
+                margin: 0px;
+                margin-right: 6px;
+                padding: 0 5px;
+                font-size: 14px;
+                float: left;
+                background: #f2f2f2;
+                text-decoration: none;
+                list-style: none;
+            }
         }
 
         .props {
