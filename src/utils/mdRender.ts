@@ -52,15 +52,15 @@ renderer.code = (code: string, lang: string) => {
 const tagItemRender = {
     name: 'tag',
     level: 'inline',                                  
-    start(src: string) { return src.search(/#[^\s]+/g) != -1 },
+    start(src: string) { return src.match(/#[^\s]+/)?.index },
     tokenizer(src: string) {
-        const rule = /#([^\s]+)[\s|\b]?/g;
-        const result = rule.exec(src);
+        const rule = /^#([^\s]+)[\s|\b]/;
+        const result = src.match(rule);
         if (result) {
             const token = {                              
                 type: 'tag',
                 raw: result[0].slice(-1) == '\n' ? result[0].slice(0, -1) : result[0],
-                text: result[1]
+                text: result[1].trim()
             };
             return token;
         }
