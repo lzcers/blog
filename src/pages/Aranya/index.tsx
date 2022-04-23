@@ -194,6 +194,7 @@ export default () => {
                             <div
                                 key={p.date}
                                 className="heatPoint"
+                                date-title={p.date}
                                 onClick={() => {
                                     setFilter(f => ({ tag: null, date: p.date }))
                                 }}

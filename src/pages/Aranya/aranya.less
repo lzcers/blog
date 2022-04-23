@@ -60,14 +60,18 @@
     .left {
         display: flex;
         flex-flow: row wrap;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        flex: 1 1 auto;
     }
 
     .count {
         font-weight: bold;
         cursor: pointer;
-        margin-right: 5px;
+        margin: 0 5px;
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: flex-end;
 
         span {
             margin-left: 5px;
@@ -79,6 +83,18 @@
         height: 15px;
         margin: 3px;
         cursor: pointer;
+    }
+
+    .heatPoint:hover::after {
+        content: attr(date-title);
+        position: relative;
+        top: 20px;
+        background: #333;
+        color: #fff;
+        padding: 3px 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        box-shadow: 1.5px 1.5px 5px 0 #ccc;
     }
 
     .prev,
