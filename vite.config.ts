@@ -23,11 +23,10 @@ export default defineConfig({
   plugins: [
     react(),   
     // viteStaticCopy({
-    //   flatten: true,
     //   targets: [
     //     {
     //       src:  "CNAME",
-    //       dest:  ""
+    //       dest:  "CNAME"
     //     }
     //   ]
     // })
