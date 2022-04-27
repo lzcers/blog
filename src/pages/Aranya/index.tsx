@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getList, updateRecord, createRecord, getIssuesInfo } from '@/api/github';
+import blogServer from '@/api/server';
 import metaMarked from '@/utils/mdRender';
 import Textarea, { resize } from 'react-expanding-textarea';
 import './aranya.less'
@@ -35,14 +35,14 @@ export default () => {
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
 
     const getRecords = (pageNumber?: number) => {
-        return getList(pageNumber).then(data => {
+        return blogServer.getRecordList(pageNumber).then(data => {
             return data.map(item => {
                 return {
                     id: item.id,
-                    tags: [...item.body.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
+                    tags: [...item.content.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
                     createdAt: new Date(item.created_at).toLocaleString(),
                     updatedAt: new Date(item.updated_at).toLocaleString(),
-                    content: item.body
+                    content: item.content
                 };
             }).reverse();
         });
@@ -56,22 +56,20 @@ export default () => {
     const openDoor = () => {
         let newRecords: Record[] = [];
         let tags: string[] = [];
-        getIssuesInfo().then(res => {
-            const rc = res.comments;
-            let page = rc % PAGE_SIZE != 0 ? Math.floor(rc / PAGE_SIZE) + 1 : rc / PAGE_SIZE;
-            const loopLoad = (p: number) => {
-                if (p > 0) {
-                    getRecords(p).then((r) => {
-                        tags = tags.concat(...r.map(i => i.tags).flat())
-                        newRecords = newRecords.concat(...r)
-                        setRecordList(newRecords);
-                        setTagList([...new Set(tags)]);
-                        loopLoad(--p);
-                    })
-                }
+        const rc = 30;
+        let page = rc % PAGE_SIZE != 0 ? Math.floor(rc / PAGE_SIZE) + 1 : rc / PAGE_SIZE;
+        const loopLoad = (p: number) => {
+            if (p > 0) {
+                getRecords(p).then((r) => {
+                    tags = tags.concat(...r.map(i => i.tags).flat())
+                    newRecords = newRecords.concat(...r)
+                    setRecordList(newRecords);
+                    setTagList([...new Set(tags)]);
+                    loopLoad(--p);
+                })
             }
-            loopLoad(page);
-        });
+        }
+        loopLoad(page);
     }
 
     const knockDoor = (token: string) => {
@@ -85,22 +83,22 @@ export default () => {
             if (i.id == r.id) return newRecord;
             return i;
         }));
-        updateRecord(r.id, editTextareaRef.current.value).then(() => {
+        blogServer.updateRecord(r.id, editTextareaRef.current.value).then(() => {
             setEditable(null);
         })
     }
 
     const onAddRecord = () => {
         if (!addRecotdTextareaRef.current || !addRecotdTextareaRef.current.value) return;
-        createRecord(addRecotdTextareaRef.current.value).then((r) => {
+        blogServer.createRecord(addRecotdTextareaRef.current.value).then((r) => {
             addRecotdTextareaRef.current!.value = '';
             resize(0, addRecotdTextareaRef.current);
             insertRecord({
                 id: r.id,
                 createdAt: new Date(r.created_at).toLocaleString(),
                 updatedAt: new Date(r.updated_at).toLocaleString(),
-                tags: [...r.body.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
-                content: r.body
+                tags: [...r.content.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
+                content: r.content
             })
         });
     }
@@ -157,7 +155,7 @@ export default () => {
         openDoor();
     }, []);
 
-    if (recordList.length == 0) {
+    if (!localStorage.getItem("myToken")) {
         return (
             <div className="aranya">
                 <div className="door">
