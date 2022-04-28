@@ -35,7 +35,7 @@ export default () => {
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
 
     const getRecords = (pageNumber?: number) => {
-        return blogServer.getRecordList(pageNumber).then(data => {
+        return blogServer.getNoteList(pageNumber).then(data => {
             return data.map(item => {
                 return {
                     id: item.id,
@@ -83,14 +83,14 @@ export default () => {
             if (i.id == r.id) return newRecord;
             return i;
         }));
-        blogServer.updateRecord(r.id, editTextareaRef.current.value).then(() => {
+        blogServer.updateNote(r.id, editTextareaRef.current.value).then(() => {
             setEditable(null);
         })
     }
 
     const onAddRecord = () => {
         if (!addRecotdTextareaRef.current || !addRecotdTextareaRef.current.value) return;
-        blogServer.createRecord(addRecotdTextareaRef.current.value).then((r) => {
+        blogServer.createNote(addRecotdTextareaRef.current.value).then((r) => {
             addRecotdTextareaRef.current!.value = '';
             resize(0, addRecotdTextareaRef.current);
             insertRecord({
