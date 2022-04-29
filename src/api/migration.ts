@@ -2,6 +2,7 @@ import { getList } from "./github";
 import blogServer from "./server";
 
 type Record = {content: string; createdAt: string; updatedAt: string;}
+
 export default function migrationData() {
   let newRecords: Record[] = [];
   const totalNumber = 62;
@@ -38,4 +39,3 @@ export default function migrationData() {
     })
   })
 }
-
