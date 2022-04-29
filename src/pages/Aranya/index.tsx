@@ -44,7 +44,7 @@ export default () => {
                     updatedAt: new Date(item.updated_at).toLocaleString(),
                     content: item.content
                 };
-            }).reverse();
+            })
         });
     }
 
@@ -56,20 +56,20 @@ export default () => {
     const openDoor = () => {
         let newRecords: Record[] = [];
         let tags: string[] = [];
-        const rc = 30;
-        let page = rc % PAGE_SIZE != 0 ? Math.floor(rc / PAGE_SIZE) + 1 : rc / PAGE_SIZE;
-        const loopLoad = (p: number) => {
-            if (p > 0) {
-                getRecords(p).then((r) => {
-                    tags = tags.concat(...r.map(i => i.tags).flat())
-                    newRecords = newRecords.concat(...r)
-                    setRecordList(newRecords);
-                    setTagList([...new Set(tags)]);
-                    loopLoad(--p);
-                })
-            }
-        }
-        loopLoad(page);
+        // const rc = 30;
+        // let page = rc % PAGE_SIZE != 0 ? Math.floor(rc / PAGE_SIZE) + 1 : rc / PAGE_SIZE;
+        // const loopLoad = (p: number) => {
+        // if (p > 0) {
+        getRecords(0).then((r) => {
+            tags = tags.concat(...r.map(i => i.tags).flat())
+            newRecords = newRecords.concat(...r)
+            setRecordList(newRecords);
+            setTagList([...new Set(tags)]);
+            // loopLoad(--p);
+        })
+        // }
+        // }
+        // loopLoad(page);
     }
 
     const knockDoor = (token: string) => {
