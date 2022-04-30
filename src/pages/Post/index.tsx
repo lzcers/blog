@@ -30,7 +30,7 @@ export default () => {
     });
   }, [id]);
 
-  if (loadingFlag || !post) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>Loading...</h3>
+  if (loadingFlag || !post) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>加载中...</h3>
 
   return (
     <ErrorBoundary post={post}>

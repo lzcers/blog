@@ -165,7 +165,7 @@
         .props {
             display: flex;
             flex-flow: row nowrap;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             padding: 0 10px;
             line-height: 30px;
@@ -175,14 +175,25 @@
         }
 
         .opt {
-            visibility: hidden;
+            display: none;
+            flex: 1;
+        }
+
+        .confirm {
+            flex: 1;
+        }
+
+        .emphasis {
+            font-weight: bold;
+            color: #fff;
+            background: #333;
         }
     }
 
     .record:hover,
     .record:focus-within {
         .opt {
-            visibility: visible;
+            display: block;
         }
     }
 }

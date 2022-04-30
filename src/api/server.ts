@@ -1,6 +1,7 @@
 import request from 'umi-request';
 
 const apiUrl = "https://api.ksana.net";
+// const apiUrl = "http://localhost:4443";
 
 interface Note {
   id: number;
@@ -9,20 +10,34 @@ interface Note {
   updated_at: string;
 };
 
-function getToken() {
-  return localStorage.getItem("myToken") || '';
+interface NotesPage {
+  total: number;
+  page_size: number;
+  page_number: number;
+  list: Note[];
 }
+
+function getToken() {
+  return localStorage.getItem("token") || '';
+}
+
 interface BlogNotes {
-  getNoteList(pageNumber?: number): Promise<Note[]>;
+  getNoteList(pageNumber?: number): Promise<NotesPage>;
   updateNote(id: number, content: string): Promise<unknown>;
   createNote(content: string): Promise<Note>;
   deleteNote(id: number): Promise<unknown>;
+  authToken(): Promise<{result: boolean}>;
 }
 
 class BlogServer implements BlogNotes {
 
-  getNoteList(pageNumber?: number): Promise<Note[]> {
-    return request.get(apiUrl + '/get_all_notes');
+  authToken(): Promise<{result: boolean}> {
+    const token = getToken();
+    return request.get(apiUrl + '/auth_token', { headers: { token } });
+  }
+
+  getNoteList(pageNumber?: number, pageSize?: number): Promise<NotesPage> {
+    return request.post(apiUrl + '/get_notes', {data: { page_number: pageNumber ?? 1, page_size: pageSize ?? 100} });
   }
 
   updateNote(id: number, content: string): Promise<unknown> {

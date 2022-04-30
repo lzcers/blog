@@ -3,5 +3,5 @@
 declare module "marked";
 
 interface Window {
-  myToken: string;
+  token: string;
 }

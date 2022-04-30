@@ -8,11 +8,13 @@ const pageButton = (pageNumber: number, dir: "left" | "right") => {
   const number = dir == "left" ? pageNumber - 1 : pageNumber + 1
   return (
     <div className={dir == "left" ? "post-left" : "post-right"}>
-      {dir == "left" && '◀'}
       <Link onClick={(_) => window.scrollTo(0, 0)} to={{ search: `?pageNumber=${number}` }}>
-        {dir == "left" ? "PREVIOUS" : "NEXT"}
+        {dir == "left" && '◀'}
+        <span className="pager-name">
+          {dir == "left" ? "前页" : "下页"}
+        </span>
+        {dir == "right" && '▶'}
       </Link>
-      {dir == "right" && '▶'}
     </div>
   )
 }
@@ -39,12 +41,11 @@ export default (props: { tag: string, pageNumber: number }) => {
 
   const dateTransform = (publishDate: string) => {
     const date = new Date(publishDate);
-    const enMonth = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-    const [month, day, year] = [enMonth[date.getMonth()], date.getDate() + 'TH', date.getFullYear()];
-    return `${month} ${day} ${year}`;
+    const [month, day, year] = [date.getMonth() + 1, date.getDate(), date.getFullYear()];
+    return `${year}年${month < 10 ? "0" + month : month}月${day < 10 ? "0" + day : day}日`;
   }
 
-  if (posts.length === 0) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>Loading...</h3>;
+  if (posts.length === 0) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>加载中...</h3>;
 
   return (
     <div className="posts">
@@ -53,7 +54,7 @@ export default (props: { tag: string, pageNumber: number }) => {
           .slice(offset, offset + COUNT)
           .map((i) => (
             <li key={i.id}>
-              <Link to={'/blog/post/' + i.id}>
+              <Link to={'/post/' + i.id}>
                 <span className="post-item-name">{i.title}</span>
                 <span className="post-item-date">{dateTransform(i.publish_date)}</span>
               </Link>

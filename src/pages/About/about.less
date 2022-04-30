@@ -35,8 +35,10 @@
     text-align: left;
 
     .introduction {
+
         p {
-            line-height: 15px;
+            margin: 10px 0;
+            line-height: 20px;
             font-size: 16px;
         }
     }
@@ -54,9 +56,10 @@
 }
 
 .selfRight {
-    flex: 1;
     display: flex;
-    justify-content: flex-end;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    flex: .5;
 }
 
 @media screen and (max-width: 750px) {
@@ -77,6 +80,7 @@
     .selfRight {
         flex: 1;
         display: flex;
+        flex-flow: row;
         justify-content: center;
         margin-top: 20px;
     }

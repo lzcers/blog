@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import blogServer from '@/api/server';
 import metaMarked from '@/utils/mdRender';
 import Textarea, { resize } from 'react-expanding-textarea';
+import { globalState } from '@/main';
 import './aranya.less'
 
 interface HeatPoint {
@@ -22,21 +23,31 @@ interface Filter {
     tag: string | null;
 }
 
-const PAGE_SIZE = 30;
+const PAGE_SIZE = 100;
 
 export default () => {
     const [tagList, setTagList] = useState<string[]>([]);
     const [heatList, setHeatList] = useState<HeatPoint[]>([]);
-    const [recordList, setRecordList] = useState<Record[]>([]);
+    const [noteList, setNoteList] = useState<Record[]>([]);
     const [showList, setShowList] = useState<Record[]>([]);
     const [editable, setEditable] = useState<number | null>(null);
     const [filter, setFilter] = useState<Filter>({ date: null, tag: null });
     const editTextareaRef = useRef<HTMLTextAreaElement>(null);
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
+    const [confirmAction, setConfirmAction] = useState<number | null>(null);
 
-    const getRecords = (pageNumber?: number) => {
-        return blogServer.getNoteList(pageNumber).then(data => {
-            return data.map(item => {
+    const { isEditor, setIsEditor } = useContext(globalState)!;
+
+
+    const insertRecord = useCallback((r: Record) => {
+        noteList.unshift(r);
+        setNoteList([...noteList]);
+    }, [noteList]);
+
+
+    const getNotes = (pageNumber?: number, pageSize?: number) => {
+        return blogServer.getNoteList(pageNumber, pageSize).then(({ list, ...info }) => {
+            let notes = list.map(item => {
                 return {
                     id: item.id,
                     tags: [...item.content.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
@@ -45,41 +56,19 @@ export default () => {
                     content: item.content
                 };
             })
+            return {
+                total: info.total,
+                pageSize: info.page_size,
+                pageNumber: info.page_number,
+                list: notes
+            }
         });
     }
 
-    const insertRecord = useCallback((r: Record) => {
-        recordList.unshift(r);
-        setRecordList([...recordList]);
-    }, [recordList]);
-
-    const openDoor = () => {
-        let newRecords: Record[] = [];
-        let tags: string[] = [];
-        const rc = 30;
-        let page = rc % PAGE_SIZE != 0 ? Math.floor(rc / PAGE_SIZE) + 1 : rc / PAGE_SIZE;
-        const loopLoad = (p: number) => {
-            if (p > 0) {
-                getRecords(0).then((r) => {
-                    tags = tags.concat(...r.map(i => i.tags).flat())
-                    newRecords = newRecords.concat(...r)
-                    setRecordList(newRecords);
-                    setTagList([...new Set(tags)]);
-                    loopLoad(--p);
-                })
-            }
-        }
-        loopLoad(page);
-    }
-
-    const knockDoor = (token: string) => {
-        localStorage.setItem('myToken', token);
-    }
-
-    const onSaveRecord = (r: Record) => {
+    const onSaveNote = (r: Record) => {
         if (!editTextareaRef.current) return;
         const newRecord = { ...r, content: editTextareaRef.current.value, tags: [...editTextareaRef.current.value.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]) };
-        setRecordList(recordList.map(i => {
+        setNoteList(noteList.map(i => {
             if (i.id == r.id) return newRecord;
             return i;
         }));
@@ -88,7 +77,7 @@ export default () => {
         })
     }
 
-    const onAddRecord = () => {
+    const onAddNote = () => {
         if (!addRecotdTextareaRef.current || !addRecotdTextareaRef.current.value) return;
         blogServer.createNote(addRecotdTextareaRef.current.value).then((r) => {
             addRecotdTextareaRef.current!.value = '';
@@ -103,8 +92,15 @@ export default () => {
         });
     }
 
+    const onDeleteNote = (id: number) => {
+        blogServer.deleteNote(id).then(() => {
+            setNoteList(noteList.filter(note => note.id != id));
+            setEditable(null);
+        })
+    }
+
     const clacHeatList = useCallback(() => {
-        const dateGroupList = recordList.reduce((prev, item) => {
+        const dateGroupList = noteList.reduce((prev, item) => {
             const date = item.createdAt.match(/\d*\/\d*\/\d*/g)?.pop();
             if (date) {
                 if (prev[date]) {
@@ -123,19 +119,35 @@ export default () => {
                 return result;
             }, [] as HeatPoint[]);
         return heatList;
-    }, [recordList]);
+    }, [noteList]);
 
-    const filterRecord = useCallback((filter: (r: Record) => boolean) => {
-        const result = recordList.filter(filter);
+    const filterNotes = useCallback((filter: (r: Record) => boolean) => {
+        const result = noteList.filter(filter);
         setShowList(result)
-    }, [recordList]);
+    }, [noteList]);
 
+    const getAllNotes = () => {
+        let newRecords: Record[] = [];
+        let tags: string[] = [];
+        const loopLoad = (p: number) => {
+            getNotes(p, PAGE_SIZE).then(({ list }) => {
+                tags = tags.concat(...list.map(i => i.tags).flat())
+                newRecords = newRecords.concat(...list)
+                setNoteList(newRecords);
+                setTagList([...new Set(tags)]);
+                if (list.length == PAGE_SIZE) {
+                    loopLoad(p + 1);
+                }
+            })
+        }
+        loopLoad(1);
+    }
 
     useEffect(() => {
-        setShowList(recordList);
+        setShowList(noteList);
         setHeatList(clacHeatList());
-        setTagList([...new Set(recordList.map(r => r.tags).flat())]);
-    }, [recordList]);
+        setTagList([...new Set(noteList.map(r => r.tags).flat())]);
+    }, [noteList]);
 
     useEffect(() => {
         const f = (r: Record) => {
@@ -148,28 +160,15 @@ export default () => {
             }
             return true;
         }
-        filterRecord(f);
+        filterNotes(f);
     }, [filter]);
 
     useEffect(() => {
-        openDoor();
+        getAllNotes();
+        blogServer.authToken().then(({ result }) => {
+            setIsEditor(result);
+        })
     }, []);
-
-    if (!localStorage.getItem("myToken")) {
-        return (
-            <div className="aranya">
-                <div className="door">
-                    <p>非六根所见，着六尘而显，凡了悟者即知道。</p>
-                    <input type="text" className={"key"} autoFocus onKeyUp={e => {
-                        if (e.keyCode == 13) {
-                            knockDoor((e.target as HTMLInputElement).value);
-                            openDoor();
-                        }
-                    }} />
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="aranya">
@@ -205,13 +204,15 @@ export default () => {
                 <div className="count" onClick={() => setFilter({ date: null, tag: null })}>
                     <span>共</span>
                     <span>{heatList.length} 天</span>
-                    <span>{recordList.length} 笔</span>
+                    <span>{noteList.length} 笔</span>
                 </div>
             </div>
-            <div className="newRecord">
-                <Textarea className="editArea post-body markdown-body" autoFocus ref={addRecotdTextareaRef} placeholder="..." />
-                <button className="btn" onClick={onAddRecord}><strong>记</strong></button>
-            </div>
+            {isEditor &&
+                <div className="newRecord">
+                    <Textarea className="editArea post-body markdown-body" autoFocus ref={addRecotdTextareaRef} placeholder="..." />
+                    <button className="btn" onClick={onAddNote}><strong>记</strong></button>
+                </div>
+            }
             <div className="timeline">
                 {showList.map(r => {
                     return (
@@ -222,11 +223,20 @@ export default () => {
                                     <Textarea className="editArea post-body markdown-body" autoFocus defaultValue={r.content} ref={editTextareaRef} placeholder="..." />
                             }
                             <div className="props">
-                                <div className="opt">
-                                    {editable != r.id && <button className="btn" onClick={() => setEditable(r.id)}>编辑</button>}
-                                    {editable == r.id && <button className="btn" onClick={() => onSaveRecord(r)}>保存</button>}
-                                    {editable == r.id && <button className="btn" onClick={() => setEditable(null)}>取消</button>}
-                                </div>
+                                {isEditor && !confirmAction &&
+                                    <div className="opt">
+                                        {editable != r.id && <button className="btn" onClick={() => setEditable(r.id)}>编辑</button>}
+                                        {editable != r.id && <button className="btn" onClick={() => setConfirmAction(r.id)}>删除</button>}
+                                        {editable == r.id && <button className="btn" onClick={() => onSaveNote(r)}>保存</button>}
+                                        {editable == r.id && <button className="btn" onClick={() => setEditable(null)}>取消</button>}
+                                    </div>
+                                }
+                                {isEditor && confirmAction == r.id &&
+                                    <div className="confirm">
+                                        <button className="btn emphasis" onClick={() => onDeleteNote(r.id)}>确定</button>
+                                        <button className="btn" onClick={() => setConfirmAction(null)}>取消</button>
+                                    </div>
+                                }
                                 <span className="datetime">{r.updatedAt}</span>
                             </div>
                         </div>

@@ -16,12 +16,11 @@ interface ArticleProps {
 
 const Article = ({ id, title, tags, publishDate, content, toc, mode }: ArticleProps) => {
     const date = new Date(publishDate)
-    const enMonth = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
-    const [month, day, year] = [enMonth[date.getMonth()], date.getDate() + 'TH', date.getFullYear()]
+    const [month, day, year] = [date.getMonth() + 1, date.getDate(), date.getFullYear()]
     return (
         <article className="article post">
             <h1 className="article-title">{mode ? title : <Link to={'/post/' + id}>{title}</Link>}</h1>
-            <div className="article-date">{`${month || ''} ${day} ${year || ''}`}</div>
+            <div className="article-date">{`${year}年${month < 10 ? "0" + month : month}月${day < 10 ? "0" + day : day}日`}</div>
             {/* 目录大于三级的才显示 TOC  */}
             {/* {toc && toc.childrenNode.length >= 3 && (
                 <aside className="article-toc">
@@ -33,9 +32,9 @@ const Article = ({ id, title, tags, publishDate, content, toc, mode }: ArticlePr
             </div>
             <div className="article-info">
                 <div className="article-tags">
-                    <span>Tags:</span>
+                    <span>标签:</span>
                     {tags.split("|").map((e) => (
-                        <Link to={'/blog/tag/' + e} key={e} className="article-tags-link">
+                        <Link to={'/tag/' + e} key={e} className="article-tags-link">
                             {e}
                         </Link>
                     ))}

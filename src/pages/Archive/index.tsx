@@ -16,11 +16,11 @@ const Archive = () => {
     return (
         <div className="archive">
             <div className="archive-tags">
-                <h3>Tags</h3>
+                {/* <h3>Tags</h3> */}
                 <TagList tag={params.tag || ""} />
             </div>
             <div className="archive-list">
-                <h3>List</h3>
+                {/* <h3>List</h3> */}
                 <PostList tag={params.tag || ""} pageNumber={Number(query.get("pageNumber")) || 0} />
             </div>
         </div>

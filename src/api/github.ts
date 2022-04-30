@@ -6,7 +6,7 @@ const issuesUrl = "https://api.github.com/repos/lzcers/docs/issues/114";
 
 
 function getToken() {
-  return localStorage.getItem("myToken");
+  return localStorage.getItem("token");
 }
 
 function getIssuesInfo() {

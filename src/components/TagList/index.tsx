@@ -21,7 +21,7 @@ export default (props: { tag: string }) => {
   return (
     <ul className="tags">
       <li className={`${selected === 'all' ? "selectedTag" : ""}`}>
-        <Link to="/blog" onClick={(_) => setSelected("all")}>
+        <Link to="/" onClick={(_) => setSelected("all")}>
           ALL
         </Link>
       </li>
@@ -30,7 +30,7 @@ export default (props: { tag: string }) => {
           key={i}
           className={`${selected === i ? "selectedTag" : ""}`}
         >
-          <Link to={'/blog/tag/' + i} onClick={() => setSelected(i)}>
+          <Link to={'/tag/' + i} onClick={() => setSelected(i)}>
             {i}
           </Link>
         </li>

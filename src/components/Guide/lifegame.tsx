@@ -11,7 +11,7 @@ function sizePX(canvasSize = 300) {
 }
 
 export default () => {
-    const [canvasSize, setCanvasSize] = useState<number>(200)
+    const [canvasSize, setCanvasSize] = useState<number>(250)
 
     useEffect(() => {
         const canvas = document.getElementById('lifegame') as HTMLCanvasElement

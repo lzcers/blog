@@ -3,6 +3,8 @@ import Post from '@/pages/Post';
 import Archive from '@/pages/Archive';
 import About from '@/pages/About';
 import Aranya from '@/pages/Aranya';
+import See from '@/pages/See';
+import Door from '@/pages/Door';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 
@@ -13,6 +15,8 @@ const BlogRoutes = () => (
         <Route path="/post/:id" element={<Post />} />
         <Route path="/aboutme" element={<About />} />
         <Route path="/aranya" element={<Aranya />} />
+        <Route path="/see" element={<See />} />
+        <Route path="/door" element={<Door />} />
     </Routes>
 );
 
@@ -30,7 +34,6 @@ const Blog = () => (
 const MainRoutes = () => (
     <Routes>
         <Route path="/*" element={<Blog />} />
-        <Route path="/blog/*" element={<Blog />} />
     </Routes>
 );
 
