@@ -31,6 +31,28 @@ a:active {
     color: inherit;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+    border-radius: 10px;
+}
+
+pre::-webkit-scrollbar-thumb,
+code::-webkit-scrollbar-thumb {
+    background-color: #0000;
+    border-radius: 10px;
+}
+
+pre:hover::-webkit-scrollbar-thumb,
+code:hover::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+    border-radius: 10px;
+}
+
 .container {
     width: 100%;
     height: 100%;

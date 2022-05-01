@@ -1,5 +1,4 @@
 import { marked } from 'marked';
-import highlight from 'highlight.js';
 import fm from 'front-matter';
 
 type Token = {
@@ -44,8 +43,8 @@ renderer.heading = (text: string, level: string) => {
 }
 
 renderer.code = (code: string, lang: string) => {
-    const highlightResult = highlight.highlightAuto(code).value;
-    return `<pre><code class="lang-${lang}">${highlightResult}</code></pre>`;
+    const html = window.Prism?.highlight(code, window.Prism?.languages[lang], 'javascript');
+    return `<pre><code class="lang-${lang}">${html}</code></pre>`;
 }
 
 const tagItemRender = {

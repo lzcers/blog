@@ -1,6 +1,6 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Toc from '@/components/Toc';
-import 'highlight.js/styles/github.css';
 import './article.less';
 
 interface ArticleProps {
@@ -15,6 +15,7 @@ interface ArticleProps {
 const Article = ({ title, tags, publishDate, content, toc }: ArticleProps) => {
     const date = new Date(publishDate);
     const [month, day, year] = [date.getMonth() + 1, date.getDate(), date.getFullYear()];
+
     return (
         <article className="article">
             <h1 className="article-title">{title}</h1>
