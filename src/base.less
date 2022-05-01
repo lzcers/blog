@@ -4,6 +4,7 @@
     --bg-main-color: #fff;
     --gray-color: #f2f2f2;
     --white-color: #fff;
+    --blue-color: #4387f4;
 }
 
 html {
@@ -22,14 +23,28 @@ body {
     box-sizing: border-box;
 }
 
-
 a:hover,
 a:visited,
 a:link,
 a:active {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
+
+.heti {
+
+    a:visited,
+    a:link,
+    a:active {
+        color: var(--blue-color);
+    }
+
+    a:hover {
+        cursor: pointer;
+        color: #2060d0;
+    }
+}
+
 
 ::-webkit-scrollbar {
     width: 8px;

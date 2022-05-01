@@ -43,7 +43,7 @@ renderer.heading = (text: string, level: string) => {
 }
 
 renderer.code = (code: string, lang: string) => {
-    const html = window.Prism?.highlight(code, window.Prism?.languages[lang], 'javascript');
+    const html = window.Prism?.highlight(code, window.Prism?.languages[lang], 'javascript') || code;
     return `<pre><code class="lang-${lang}">${html}</code></pre>`;
 }
 
