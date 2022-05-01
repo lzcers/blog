@@ -37,7 +37,8 @@ class BlogServer implements BlogNotes {
   }
 
   getNoteList(pageNumber?: number, pageSize?: number): Promise<NotesPage> {
-    return request.post(apiUrl + '/get_notes', {data: { page_number: pageNumber ?? 1, page_size: pageSize ?? 100} });
+    const token = getToken();
+    return request.post(apiUrl + '/get_notes', {  headers: { token }, data: { page_number: pageNumber ?? 1, page_size: pageSize ?? 100} });
   }
 
   updateNote(id: number, content: string): Promise<unknown> {

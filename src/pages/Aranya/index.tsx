@@ -172,6 +172,10 @@ export default () => {
 
     useEffect(() => {
         getAllNotes();
+    }, [isEditor]);
+
+    useEffect(() => {
+        getAllNotes();
         blogServer.authToken().then(({ result }) => {
             setIsEditor(result);
         })
