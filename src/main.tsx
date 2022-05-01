@@ -8,14 +8,15 @@ import './base.less';
 const container = document.getElementById('app')!;
 const root = createRoot(container);
 
-type GlobalState = { isEditor: boolean, setIsEditor: Function };
+type GlobalState = { isEditor: boolean, setIsEditor: Function, darkMode: boolean, setDarkMode: Function };
 export const globalState = createContext<GlobalState | null>(null);
 
 const RootContainer = () => {
   const [isEditor, setIsEditor] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   return (
     <Router>
-      <globalState.Provider value={{ isEditor, setIsEditor }}>
+      <globalState.Provider value={{ isEditor, setIsEditor, darkMode, setDarkMode }}>
         <Routes />
       </globalState.Provider>
     </Router>

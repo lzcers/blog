@@ -1,17 +1,28 @@
+:root {
+    --ft-main-color: #111111;
+    --ft-minor-color: #333333;
+    --bg-main-color: #fff;
+    --gray-color: #f2f2f2;
+    --white-color: #fff;
+}
+
 html {
     width: 100%;
     height: 100%;
-    // 有衬线的思源宋体
-    font-family: 'Noto Serif SC', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN',
-        'Source Han Serif', 'source-han-serif-sc', 'Source Serif Pro', 'Source Serif Pro', 'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', -apple-system, BlinkMacSystemFont, serif;
-    color: #333333;
+    font-family: "Times New Roman", times, "Heti Song", 'Noto Serif SC', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN',
+        'Source Han Serif', 'source-han-serif-sc', 'Source Serif Pro', 'Source Serif Pro', serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     overflow-y: auto;
-    background: #fff;
+    overflow-x: hidden;
+}
+
+body {
+    margin-left: calc(100vw - 100%);
 }
 
 * {
     box-sizing: border-box;
 }
+
 
 a:hover,
 a:visited,
@@ -21,27 +32,39 @@ a:active {
     color: inherit;
 }
 
-#app {
-    background: #fff;
+.container {
+    width: 100%;
+    height: 100%;
+    color: var(--ft-main-color);
+    background-color: var(--bg-main-color);
+    transition: filter 300ms;
 }
 
-.container {
-    max-width: 880px;
+.container[data-theme='dark-mode'] {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.container[data-theme='dark-mode'] img {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.main {
+    max-width: 768px;
     min-height: 100vh;
     margin: 0 auto;
     position: relative;
-    background: #fff;
     display: flex;
     flex-flow: column nowrap;
-    padding: 0 40px;
+    padding: 0 16px;
 }
+
 
 .content {
     flex: 1;
 }
 
 @media screen and (max-width: 750px) {
-    .container {
+    .main {
         padding: 0 1vw;
     }
 }

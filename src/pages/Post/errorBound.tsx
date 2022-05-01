@@ -22,8 +22,8 @@ export default class ErrorBoundary extends React.Component<any, { hasError: bool
         <>
           <h3 style={{ textAlign: "center" }}>发生了某些意外，这篇文章不见了！</h3>
           <br />
-          <p style={{ color: '#fff' }}>{this.state.error.toString()}</p>
-          <p style={{ color: '#fff', maxHeight: 300 }}>{JSON.stringify(this.props.post)}</p>
+          <p className="err-info">{this.state.error.toString()}</p>
+          <p className="err-info">{JSON.stringify(this.props.post)}</p>
         </>
       )
     }

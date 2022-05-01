@@ -1,34 +1,35 @@
 .tags {
-
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
   padding: 0;
 
-  li {
-    float: left;
-    background: #f2f2f2;
+  .tag {
+    display: inline-block;
     text-decoration: none;
+    background: var(--gray-color);
+    color: var(--ft-minor-color);
     list-style: none;
     cursor: pointer;
-
-    a {
-      display: inline-block;
-      height: 30px;
-      line-height: 30px;
-      padding: 0 10px;
-      color: #666;
-    }
+    margin: 3px;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
   }
 
-  li:hover {
+  .tag:hover {
     .selectedTag;
   }
 
   .selectedTag {
-    background: #333;
-    text-decoration: none;
+    background: var(--ft-main-color);
+    color: var(--white-color);
+  }
 
-    a {
-      color: #fff;
-    }
+  &:after {
+    content: '';
+    display: block;
+    flex-grow: 99999;
   }
 
 }

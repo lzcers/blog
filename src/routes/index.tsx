@@ -7,6 +7,8 @@ import See from '@/pages/See';
 import Door from '@/pages/Door';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import { useContext } from 'react';
+import { globalState } from '@/main';
 
 const BlogRoutes = () => (
     <Routes>
@@ -20,15 +22,20 @@ const BlogRoutes = () => (
     </Routes>
 );
 
-const Blog = () => (
-    <div className="container">
-        <Nav />
-        <div className="content">
-            <BlogRoutes />
+const Blog = () => {
+    const { darkMode } = useContext(globalState)!;
+    return (
+        <div className="container" data-theme={darkMode ? "dark-mode" : "light-mode"}>
+            <div className="main">
+                <Nav />
+                <div className="content">
+                    <BlogRoutes />
+                </div>
+                <Footer />
+            </div>
         </div>
-        <Footer />
-    </div>
-);
+    );
+}
 
 
 const MainRoutes = () => (

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Post, getPosts } from '@/api';
+import { Post } from '@/api';
 import './styles.less';
 
 
@@ -21,36 +20,22 @@ const pageButton = (pageNumber: number, dir: "left" | "right") => {
 
 
 const COUNT = 20;
-export default (props: { tag: string, pageNumber: number }) => {
-  const { tag, pageNumber } = props;
+export default (props: { list: Post[], pageNumber: number }) => {
+  const { pageNumber, list } = props;
   const offset = pageNumber * COUNT;
-
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [showPosts, setShowPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    getPosts().then((data) => setPosts(data));
-  }, []);
-
-  useEffect(() => {
-    const p = posts
-      .sort((a, b) => (new Date(a.publish_date) < new Date(b.publish_date) ? 1 : -1))
-      .filter((p) => (tag ? !!p.tags.includes(tag) : true));
-    setShowPosts(p);
-  }, [posts, tag]);
 
   const dateTransform = (publishDate: string) => {
     const date = new Date(publishDate);
     const [month, day, year] = [date.getMonth() + 1, date.getDate(), date.getFullYear()];
-    return `${year}年${month < 10 ? "0" + month : month}月${day < 10 ? "0" + day : day}日`;
+    return `${year}/${month < 10 ? "0" + month : month}/${day < 10 ? "0" + day : day}`;
   }
 
-  if (posts.length === 0) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>加载中...</h3>;
+  if (list.length === 0) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>加载中...</h3>;
 
   return (
     <div className="posts">
       <ul className="post-list">
-        {showPosts
+        {list
           .slice(offset, offset + COUNT)
           .map((i) => (
             <li key={i.id}>
@@ -63,7 +48,7 @@ export default (props: { tag: string, pageNumber: number }) => {
       </ul>
       <div className="post-nav">
         {pageNumber > 0 && pageButton(pageNumber, "left")}
-        {pageNumber < showPosts.length / COUNT - 1 && pageButton(pageNumber, "right")}
+        {pageNumber < list.length / COUNT - 1 && pageButton(pageNumber, "right")}
       </div>
     </div>
 

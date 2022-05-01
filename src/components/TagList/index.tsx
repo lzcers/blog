@@ -1,42 +1,39 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getTags } from '@/api';
+import { useNavigate } from 'react-router-dom';
 import './styles.less';
 
-export default (props: { tag: string }) => {
+export default (props: { list: string[], tag: string }) => {
+  const { tag, list } = props;
+  const navigate = useNavigate();
   const [tags, setTags] = useState<string[]>([]);
   const [selected, setSelected] = useState('all');
-  const { tag } = props;
+
+  const onClickLink = (path: string) => navigate(path);
 
   useEffect(() => {
     tag && setSelected(tag);
   }, [tag]);
 
   useEffect(() => {
-    getTags().then((data) => {
-      setTags(data);
-    })
-  }, []);
+    list && setTags(list);
+  }, [list]);
 
   return (
     <ul className="tags">
-      <li className={`${selected === 'all' ? "selectedTag" : ""}`}>
-        <Link to="/" onClick={(_) => setSelected("all")}>
-          ALL
-        </Link>
+      <li className={`tag ${selected === 'all' ? "selectedTag" : ""}`} onClick={() => { onClickLink("/"), setSelected("all") }}>
+        ALL
       </li>
       {tags.map((i) => (
         <li
           key={i}
-          className={`${selected === i ? "selectedTag" : ""}`}
+          className={`tag ${selected === i ? "selectedTag" : ""}`}
+          onClick={() => { onClickLink('/tag/' + i), setSelected(i) }}
         >
-          <Link to={'/tag/' + i} onClick={() => setSelected(i)}>
-            {i}
-          </Link>
+          {i}
         </li>
       ))
       }
-    </ul >
+    </ul>
   )
 }
 

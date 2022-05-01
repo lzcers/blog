@@ -45,6 +45,13 @@ export default () => {
     }, [noteList]);
 
 
+    const onClickTag = (tag: string) => {
+        setFilter(f => {
+            if (f.tag == tag) return { date: null, tag: null };
+            else return { date: null, tag };
+        })
+    }
+
     const getNotes = (pageNumber?: number, pageSize?: number) => {
         return blogServer.getNoteList(pageNumber, pageSize).then(({ list, ...info }) => {
             let notes = list.map(item => {
@@ -174,13 +181,11 @@ export default () => {
         <div className="aranya">
             <ul className="tags">
                 {tagList.map(tag => {
-                    return <li className={filter.tag == tag ? "selectedTag" : ''} key={tag}
-                        onClick={() => {
-                            setFilter(f => {
-                                if (f.tag == tag) return { date: null, tag: null };
-                                else return { date: null, tag };
-                            })
-                        }}><a>{tag}</a></li>;
+                    return (
+                        <li key={tag} className={`tag ${filter.tag == tag ? "selectedTag" : ''}`} onClick={() => onClickTag(tag)}>
+                            {tag}
+                        </li>
+                    );
                 })}
             </ul>
             <div className="heatmap">
@@ -209,7 +214,7 @@ export default () => {
             </div>
             {isEditor &&
                 <div className="newRecord">
-                    <Textarea className="editArea post-body markdown-body" autoFocus ref={addRecotdTextareaRef} placeholder="..." />
+                    <Textarea className="editArea heti heti--classic" autoFocus ref={addRecotdTextareaRef} placeholder="..." />
                     <button className="btn" onClick={onAddNote}><strong>记</strong></button>
                 </div>
             }
@@ -219,8 +224,8 @@ export default () => {
                         <div className="record" key={r.id}>
                             {
                                 editable != r.id ?
-                                    <div className="content post-body markdown-body" dangerouslySetInnerHTML={{ __html: metaMarked(r.content).html }}></div> :
-                                    <Textarea className="editArea post-body markdown-body" autoFocus defaultValue={r.content} ref={editTextareaRef} placeholder="..." />
+                                    <div className="content heti heti--classic" dangerouslySetInnerHTML={{ __html: metaMarked(r.content).html }}></div> :
+                                    <Textarea className="editArea heti heti--classic" autoFocus defaultValue={r.content} ref={editTextareaRef} placeholder="..." />
                             }
                             <div className="props">
                                 {isEditor && !confirmAction &&

@@ -7,7 +7,7 @@ import './taiji.less';
 
 const Nav = () => {
     const navigate = useNavigate();
-    const { isEditor, setIsEditor } = useContext(globalState)!;
+    const { isEditor, setIsEditor, darkMode, setDarkMode } = useContext(globalState)!;
 
     const knockDoor = () => {
         blogServer.authToken().then(({ result }) => {
@@ -34,17 +34,18 @@ const Nav = () => {
                 </h1>
             </div>
             <ul className="nav-menu">
-                <li className="nav-item">
-                    <Link to="/">博客</Link>
+                <button className="dark-mode-btn" onClick={() => setDarkMode(~darkMode)}>🌓</button>
+                <li className="nav-item" onClick={() => navigate("/")}>
+                    博客
                 </li>
-                <li className="nav-item">
-                    <Link to="/aranya">兰若</Link>
+                <li className="nav-item" onClick={() => navigate("/aranya")}>
+                    兰若
                 </li>
-                <li className="nav-item">
-                    <Link to="/see">见闻</Link>
+                <li className="nav-item" onClick={() => navigate("/see")}>
+                    见闻
                 </li>
-                <li className="nav-item">
-                    <Link to="/aboutme">我</Link>
+                <li className="nav-item" onClick={() => navigate("/aboutme")}>
+                    我
                 </li>
             </ul>
         </nav>

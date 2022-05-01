@@ -41,7 +41,6 @@ export default () => {
         publishDate={post.meta.publishDate}
         content={post.html}
         toc={post.tocTree}
-        mode={true}
       />
     </ErrorBoundary>
   );

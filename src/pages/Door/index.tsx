@@ -1,5 +1,6 @@
 import blogServer from "@/api/server";
 import { useNavigate } from "react-router-dom";
+import './styles.less';
 
 export default () => {
   const navigate = useNavigate();

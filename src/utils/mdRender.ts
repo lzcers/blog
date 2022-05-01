@@ -1,7 +1,6 @@
 import { marked } from 'marked';
 import highlight from 'highlight.js';
 import fm from 'front-matter';
-import { debug } from 'console';
 
 type Token = {
     type: string;
