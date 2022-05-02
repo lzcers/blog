@@ -24,13 +24,11 @@ const Nav = () => {
         <nav className="nav">
             <div className="nav-header">
                 <h1 className="nav-sitename">
-                    <div className="nav-title">
-                        <Link to="/">刹</Link>
-                        <div className="taijiBox" onClick={knockDoor}>
-                            <div className={`taiji ${isEditor ? 'harmony' : 'turn'}`} />
-                        </div>
-                        <Link to="/">那</Link>
+                    <Link to="/">刹</Link>
+                    <div className="taijiBox" onClick={knockDoor}>
+                        <div className={`taiji ${isEditor ? 'harmony' : 'turn'}`} />
                     </div>
+                    <Link to="/">那</Link>
                 </h1>
             </div>
             <ul className="nav-menu">

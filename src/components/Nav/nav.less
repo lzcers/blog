@@ -6,7 +6,6 @@
     display: flex;
     flex-flow: row wrap;
     background: var(--bg-main-color);
-    font-family: "Times New Roman", times, "Heti Kai Black", serif;
 }
 
 .dark-mode-btn {
@@ -19,33 +18,34 @@
 }
 
 .nav-header {
+    flex: 1;
+
     .nav-sitename {
+        font-family: "ksana-title", "Times New Roman", times, "Heti Kai Black", serif;
         font-weight: 900;
+        font-size: 42px;
         color: var(--ft-main-color);
         text-transform: uppercase;
         display: flex;
         flex-flow: row nowrap;
-        justify-content: center;
         align-items: center;
     }
-}
-
-.nav-title {
-    display: flex;
-    flex-flow: row nowrap;
-    color: var(--ft-main-color);
 }
 
 .nav-menu {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    flex: 1;
     display: flex;
     flex-flow: row;
     align-items: center;
+    justify-content: flex-end;
+    font-family: "ksana-nav", "Times New Roman", times, "Heti Kai Black", serif;
 
     .nav-item {
         cursor: pointer;
+        font-size: 24px;
         color: var(--ft-main-color);
         text-align: center;
         display: inline-block;
