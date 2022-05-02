@@ -55,9 +55,11 @@ export default () => {
     const getNotes = (pageNumber?: number, pageSize?: number) => {
         return blogServer.getNoteList(pageNumber, pageSize).then(({ list, ...info }) => {
             let notes = list.map(item => {
+                // 无标签的分配「无」标签
+                const tags = [...item.content.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]);
                 return {
                     id: item.id,
-                    tags: [...item.content.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
+                    tags: tags.length > 0 ? tags : ["无"],
                     createdAt: new Date(item.created_at).toLocaleString(),
                     updatedAt: new Date(item.updated_at).toLocaleString(),
                     content: item.content
@@ -150,6 +152,18 @@ export default () => {
         loopLoad(1);
     }
 
+    const sortTags = (tags: string[]) => {
+        return tags.reduce((arr, tag) => {
+            // 让「无」和「密」标签在前面
+            if (tag == "无" || tag == "密") {
+                arr.unshift(tag);
+            } else {
+                arr.push(tag);
+            }
+            return arr;
+        }, [] as string[]);
+    }
+
     useEffect(() => {
         setShowList(noteList);
         setHeatList(clacHeatList());
@@ -184,7 +198,7 @@ export default () => {
     return (
         <div className="aranya">
             <ul className="tags">
-                {tagList.map(tag => {
+                {sortTags(tagList).map(tag => {
                     return (
                         <li key={tag} className={`tag ${filter.tag == tag ? "selectedTag" : ''}`} onClick={() => onClickTag(tag)}>
                             {tag}
