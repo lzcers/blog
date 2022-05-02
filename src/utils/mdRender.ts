@@ -42,16 +42,17 @@ renderer.heading = (text: string, level: string) => {
     return `<h${level} id="${slug}">${text}</h${level}>`
 }
 
-renderer.code = (code: string, lang: string) => {
+renderer.code = (code: string, language: string) => {
     let html = code;
-    if (window.Prism?.languages[lang]) { 
-        try {
-            html = window.Prism?.highlight(code, window.Prism?.languages[lang], lang);
-        } catch (e) {
-            throw e;
-        }
-    } else {
+    const lang = language.toLowerCase();
+    const grammar = window.Prism?.languages[lang] || window.Prism?.languages['clike'];
+    if (!window.Prism?.languages[lang]) {
         console.warn(`unknown code language ${lang}!`);
+    }
+    try {
+        html = window.Prism?.highlight(code, grammar, lang);
+    } catch (e) {
+        throw e;
     }
     return `<pre><code class="lang-${lang}">${html}</code></pre>`;
 }
