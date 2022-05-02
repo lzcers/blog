@@ -43,7 +43,16 @@ renderer.heading = (text: string, level: string) => {
 }
 
 renderer.code = (code: string, lang: string) => {
-    const html = window.Prism?.highlight(code, window.Prism?.languages[lang], 'javascript') || code;
+    let html = code;
+    if (window.Prism?.languages[lang]) { 
+        try {
+            html = window.Prism?.highlight(code, window.Prism?.languages[lang], lang);
+        } catch (e) {
+            throw e;
+        }
+    } else {
+        console.warn(`unknown code language ${lang}!`);
+    }
     return `<pre><code class="lang-${lang}">${html}</code></pre>`;
 }
 

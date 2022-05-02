@@ -13,11 +13,10 @@ interface PostProps {
   tocTree: Object;
 }
 
-export default () => {
+const ArtilceBox = () => {
   const [post, setPost] = useState<PostProps>();
   const [loadingFlag, setLoadingFlag] = useState(true);
   const { id } = useParams();
-
   useEffect(() => {
     if (!id) return;
     getPostById(Number(id)).then((data) => {
@@ -26,22 +25,30 @@ export default () => {
         if (!result) return;
         setPost(result);
         setLoadingFlag(false);
-      } catch { }
+      } catch (e) {
+        throw e;
+      }
     });
   }, [id]);
 
   if (loadingFlag || !post) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>加载中...</h3>
-
   return (
-    <ErrorBoundary post={post}>
-      <Article
-        id={Number(id)}
-        title={post.meta.title}
-        tags={post.meta.tags}
-        publishDate={post.meta.publishDate}
-        content={post.html}
-        toc={post.tocTree}
-      />
+    <Article
+      id={Number(id)}
+      title={post.meta.title}
+      tags={post.meta.tags}
+      publishDate={post.meta.publishDate}
+      content={post.html}
+      toc={post.tocTree}
+    />
+  );
+}
+
+export default () => {
+  return (
+    <ErrorBoundary>
+      <ArtilceBox />
     </ErrorBoundary>
   );
 }
+

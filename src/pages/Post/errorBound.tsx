@@ -4,7 +4,6 @@ export default class ErrorBoundary extends React.Component<any, { hasError: bool
   constructor(props: any) {
     super(props);
     this.state = { hasError: false, error: '' };
-    this.setState
   }
 
   static getDerivedStateFromError(error: string) {
@@ -17,7 +16,6 @@ export default class ErrorBoundary extends React.Component<any, { hasError: bool
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
       return (
         <>
           <h3 style={{ textAlign: "center" }}>发生了某些意外，这篇文章不见了！</h3>
