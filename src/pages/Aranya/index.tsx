@@ -102,9 +102,10 @@ export default () => {
     }
 
     const onDeleteNote = (id: number) => {
-        blogServer.deleteNote(id).then(() => {
+        return blogServer.deleteNote(id).then(() => {
             setNoteList(noteList.filter(note => note.id != id));
             setEditable(null);
+            setConfirmAction(null);
         })
     }
 
