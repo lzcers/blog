@@ -174,6 +174,7 @@ export default () => {
     useEffect(() => {
         const f = (r: Record) => {
             const { date, tag } = filter;
+            console.log(date);
             if (date && tag) {
                 return r.createdAt.includes(date) && r.tags.includes(tag);
             } else {
@@ -261,7 +262,7 @@ export default () => {
                                         <button className="btn" onClick={() => setConfirmAction(null)}>取消</button>
                                     </div>
                                 }
-                                <span className="datetime">{r.updatedAt}</span>
+                                <span className="datetime">{r.createdAt}</span>
                             </div>
                         </div>
                     )

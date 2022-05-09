@@ -1,9 +1,12 @@
-import blogServer from "@/api/server";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import blogServer from "@/api/server";
+import { globalState } from "@/main";
 import './styles.less';
 
 export default () => {
   const navigate = useNavigate();
+  const {  setIsEditor  } = useContext(globalState)!;
 
   const openDoor = (token: string) => {
     localStorage.setItem('token', token);
@@ -13,6 +16,12 @@ export default () => {
       }
     })
   }
+
+  
+  useEffect(() => {
+    setIsEditor(true);
+    return () => setIsEditor(false);
+}, []);
 
   return (
     <div className="aranya">
