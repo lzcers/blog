@@ -1,6 +1,9 @@
 .about {
     .box {
         padding-top: 50px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
 
         a,
         i {
@@ -9,9 +12,7 @@
             font-weight: 500;
         }
 
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
+
 
         .myPic {
             height: 80px;
@@ -84,13 +85,11 @@
 }
 
 @media screen and (max-width: 750px) {
-    .about {
+    .box {
         display: flex;
         flex-flow: column;
         justify-content: center;
-    }
 
-    .box {
         .guide {
             margin: 15px 0;
         }
