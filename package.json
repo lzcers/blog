@@ -8,7 +8,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@giscus/react": "^2.0.3",
     "front-matter": "^4.0.2",
     "marked": "^4.0.14",
     "normalize.css": "^8.0.1",

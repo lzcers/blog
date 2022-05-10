@@ -1,11 +1,33 @@
 import Guide from '@/components/Guide';
 import MyPic from './my_pic.jpg';
-// import Giscus from '@giscus/react';
 import './about.less'
+import { useEffect, useRef } from 'react';
 
 
-const About = () => (
-    <div className="about">
+const About = () => {
+    const giscusRef = useRef<HTMLDivElement|null>(null);
+
+    useEffect(() => {
+        giscusRef.current!.innerHTML = `
+            <giscus-widget
+                id="comments"
+                repo="lzcers/giscus"
+                repoid="R_kgDOHUCV4w"
+                category="留言"
+                categoryid="DIC_kwDOHUCV484CPB94"
+                mapping="specific"
+                term="comments"
+                reactionsenabled="1"
+                emitmetadata="0"
+                inputposition="top"
+                theme="light"
+                lang="zh-CN"
+                loading="lazy"
+                ></giscus-widget>
+        `;
+    }, []);
+
+    return (<div className="about">
         <div className="box">
             <div className="selfLeft">
                 <div className="myPic">
@@ -38,24 +60,10 @@ const About = () => (
                 <Guide />
             </div>
         </div>
-        <div className="comments">
-            {/* <Giscus
-                id="comments"
-                repo="lzcers/giscus"
-                repoId="R_kgDOHUCV4w="
-                category="留言"
-                categoryId="DIC_kwDOHUCV484CPB94"
-                mapping="title"
-                term="留言"
-                reactionsEnabled="1"
-                emitMetadata="0"
-                inputPosition="top"
-                theme="light"
-                lang="cn"
-                loading="lazy"
-            /> */}
+        <div className="giscus-frame" ref={giscusRef}>
+
         </div>
-    </div>
-)
+    </div>);
+}
 
 export default About;
