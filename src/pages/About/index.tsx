@@ -1,6 +1,6 @@
 import Guide from '@/components/Guide';
 import MyPic from './my_pic.jpg';
-import Giscus from '@giscus/react';
+// import Giscus from '@giscus/react';
 import './about.less'
 
 
