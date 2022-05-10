@@ -39,7 +39,7 @@ const About = () => (
             </div>
         </div>
         <div className="comments">
-            <Giscus
+            {/* <Giscus
                 id="comments"
                 repo="lzcers/giscus"
                 repoId="R_kgDOHUCV4w="
@@ -53,9 +53,9 @@ const About = () => (
                 theme="light"
                 lang="cn"
                 loading="lazy"
-            />
+            /> */}
         </div>
     </div>
 )
 
-export default About
+export default About;
