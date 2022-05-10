@@ -1,49 +1,47 @@
-.about {
-    .box {
-        padding-top: 50px;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
+.self {
+    padding-top: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 
-        a,
-        i {
-            line-height: 1.5em;
-            font-size: 1em;
-            font-weight: 500;
-        }
-
+    a,
+    i {
+        line-height: 1.5em;
+        font-size: 1em;
+        font-weight: 500;
+    }
 
 
-        .myPic {
-            height: 80px;
-        }
 
-        blockquote {
+    .myPic {
+        height: 80px;
+    }
+
+    blockquote {
+        margin: 0;
+    }
+
+    .quotoSICP {
+        font-size: 14px;
+        margin-left: 10px;
+
+        p {
+            text-align: left;
+            font-weight: 700;
+            line-height: 20px;
             margin: 0;
         }
-
-        .quotoSICP {
-            font-size: 14px;
-            margin-left: 10px;
-
-            p {
-                text-align: left;
-                font-weight: 700;
-                line-height: 20px;
-                margin: 0;
-            }
-        }
     }
+}
 
-    .giscus-frame {
-        width: 100%;
-        min-height: 200px;
-        max-height: 600px;
-        border-top: 1px solid var(--gray-color);
-        margin-top: 20px;
-        padding-top: 20px;
-        overflow: auto;
-    }
+.giscus-frame {
+    width: 100%;
+    min-height: 200px;
+    max-height: 600px;
+    border-top: 1px solid var(--gray-color);
+    margin-top: 20px;
+    padding-top: 20px;
+    overflow: auto;
 }
 
 
@@ -85,7 +83,7 @@
 }
 
 @media screen and (max-width: 750px) {
-    .box {
+    .self {
         display: flex;
         flex-flow: column;
         justify-content: center;

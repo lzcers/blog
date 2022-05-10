@@ -28,7 +28,7 @@ const About = () => {
     }, []);
 
     return (<div className="about">
-        <div className="box">
+        <div className="self">
             <div className="selfLeft">
                 <div className="myPic">
                     <img src={MyPic} alt="" />
