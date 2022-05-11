@@ -226,10 +226,12 @@ export default () => {
                     })}
                     {/* <div className="next">▶</div> */}
                 </div>
-                <div className="count" onClick={() => setFilter({ date: null, tag: null })}>
-                    <span>共</span>
-                    <span>{heatList.length} 天</span>
-                    <span>{noteList.length} 笔</span>
+                <div className="right">
+                    <div className="count" onClick={() => setFilter({ date: null, tag: null })}>
+                        <span>共</span>
+                        <span>{heatList.length} 天</span>
+                        <span>{noteList.length} 笔</span>
+                    </div>
                 </div>
             </div>
             {isEditor &&
