@@ -26,9 +26,9 @@ interface Filter {
 const PAGE_SIZE = 100;
 
 export default () => {
+    const [noteList, setNoteList] = useState<Record[]>([]);
     const [tagList, setTagList] = useState<string[]>([]);
     const [heatList, setHeatList] = useState<HeatPoint[]>([]);
-    const [noteList, setNoteList] = useState<Record[]>([]);
     const [showList, setShowList] = useState<Record[]>([]);
     const [editable, setEditable] = useState<number | null>(null);
     const [filter, setFilter] = useState<Filter>({ date: null, tag: null });
@@ -153,6 +153,8 @@ export default () => {
         loopLoad(1);
     }
 
+    const sortShowNotesByUpdatedAt = (notes: Record[]) => notes.sort((a, b) => (new Date(a.updatedAt) < new Date(b.updatedAt) ? 1 : -1))
+    
     const sortTags = (tags: string[]) => {
         return tags.reduce((arr, tag) => {
             // 让「无」和「密」标签在前面
@@ -174,7 +176,6 @@ export default () => {
     useEffect(() => {
         const f = (r: Record) => {
             const { date, tag } = filter;
-            console.log(date);
             if (date && tag) {
                 return r.createdAt.includes(date) && r.tags.includes(tag);
             } else {
@@ -264,7 +265,9 @@ export default () => {
                                         <button className="btn" onClick={() => setConfirmAction(null)}>取消</button>
                                     </div>
                                 }
-                                <span className="datetime">{r.createdAt}</span>
+                                <div className="datetime">
+                                    <span>{r.createdAt}</span>
+                                </div>
                             </div>
                         </div>
                     )
