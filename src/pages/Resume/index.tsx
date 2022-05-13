@@ -7,6 +7,7 @@ export default () => {
       <section className="info">
         <span>李志成</span>
         <span>男</span>
+        <span>1993.11</span>
         <span>本科</span>
         <span>17603050797</span>
         <span>zack@ksana.net</span>
