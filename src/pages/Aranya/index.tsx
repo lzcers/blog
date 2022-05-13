@@ -56,7 +56,7 @@ export default () => {
         return blogServer.getNoteList(pageNumber, pageSize).then(({ list, ...info }) => {
             let notes = list.map(item => {
                 // 无标签的分配「无」标签
-                const tags = [...item.content.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]);
+                const tags = [...item.content.matchAll(/#([^\s]+)[\s\r\n]/g)].map(i => i[1]);
                 return {
                     id: item.id,
                     tags: tags.length > 0 ? tags : ["无"],
@@ -76,7 +76,7 @@ export default () => {
 
     const onSaveNote = (r: Record) => {
         if (!editTextareaRef.current) return;
-        const newRecord = { ...r, content: editTextareaRef.current.value, tags: [...editTextareaRef.current.value.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]) };
+        const newRecord = { ...r, content: editTextareaRef.current.value, tags: [...editTextareaRef.current.value.matchAll(/#([^\s]+)[\s\r\n]/g)].map(i => i[1]) };
         setNoteList(noteList.map(i => {
             if (i.id == r.id) return newRecord;
             return i;
@@ -95,7 +95,7 @@ export default () => {
                 id: r.id,
                 createdAt: new Date(r.created_at).toLocaleString(),
                 updatedAt: new Date(r.updated_at).toLocaleString(),
-                tags: [...r.content.matchAll(/#([^\s]+)\s?/g)].map(i => i[1]),
+                tags: [...r.content.matchAll(/#([^\s]+)[\s\r\n]/g)].map(i => i[1]),
                 content: r.content
             })
         });

@@ -60,9 +60,11 @@ renderer.code = (code: string, language: string) => {
 const tagItemRender = {
     name: 'tag',
     level: 'inline',                                  
-    start(src: string) { return src.match(/#[^\s]+/)?.index },
+    start(src: string) { 
+        return src[0] == '#';
+     },
     tokenizer(src: string) {
-        const rule = /^#([^\s]+)[\s|\b]/;
+        const rule = /^#([^\s]+)[\s\n\r]?/;
         const result = src.match(rule);
         if (result) {
             const token = {                              
