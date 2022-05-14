@@ -64,7 +64,7 @@ const tagItemRender = {
         return src[0] == '#';
      },
     tokenizer(src: string) {
-        const rule = /^#([^\s]+)[\s\n\r]?/;
+        const rule = /^#([^#^\s]+)[\s\n\r]?/;
         const result = src.match(rule);
         if (result) {
             const token = {                              

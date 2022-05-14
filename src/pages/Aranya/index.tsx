@@ -56,7 +56,7 @@ export default () => {
         return blogServer.getNoteList(pageNumber, pageSize).then(({ list, ...info }) => {
             let notes = list.map(item => {
                 // 无标签的分配「无」标签
-                const tags = [...item.content.matchAll(/#([^\s]+)[\s\r\n]/g)].map(i => i[1]);
+                const tags = [...item.content.matchAll(/#([^\s^#]+)[\s\r\n]/g)].map(i => i[1]);
                 return {
                     id: item.id,
                     tags: tags.length > 0 ? tags : ["无"],
@@ -76,7 +76,7 @@ export default () => {
 
     const onSaveNote = (r: Record) => {
         if (!editTextareaRef.current) return;
-        const newRecord = { ...r, content: editTextareaRef.current.value, tags: [...editTextareaRef.current.value.matchAll(/#([^\s]+)[\s\r\n]/g)].map(i => i[1]) };
+        const newRecord = { ...r, content: editTextareaRef.current.value, tags: [...editTextareaRef.current.value.matchAll(/#([^#^\s]+)[\s\r\n]/g)].map(i => i[1]) };
         setNoteList(noteList.map(i => {
             if (i.id == r.id) return newRecord;
             return i;
@@ -91,11 +91,12 @@ export default () => {
         blogServer.createNote(addRecotdTextareaRef.current.value).then((r) => {
             addRecotdTextareaRef.current!.value = '';
             resize(0, addRecotdTextareaRef.current);
+            const tags = [...r.content.matchAll(/#([^\s^#]+)[\s\r\n]/g)].map(i => i[1]);
             insertRecord({
                 id: r.id,
                 createdAt: new Date(r.created_at).toLocaleString(),
                 updatedAt: new Date(r.updated_at).toLocaleString(),
-                tags: [...r.content.matchAll(/#([^\s]+)[\s\r\n]/g)].map(i => i[1]),
+                tags: tags.length > 0 ? tags : ["无"],
                 content: r.content
             })
         });
@@ -128,6 +129,7 @@ export default () => {
                 result.push({ date: key, count: dateGroupList[key].length });
                 return result;
             }, [] as HeatPoint[]);
+            
         return heatList;
     }, [noteList]);
 
@@ -153,20 +155,39 @@ export default () => {
         loopLoad(1);
     }
 
-    const sortShowNotesByUpdatedAt = (notes: Record[]) => notes.sort((a, b) => (new Date(a.updatedAt) < new Date(b.updatedAt) ? 1 : -1))
+    const sortNotes = (notes: Record[]) => notes.sort((a, b) => {
+        if (a.tags.includes("置顶") && b.tags.includes("置顶")) {
+            return 0;
+        } else if (a.tags.includes("置顶")) {
+            return -1;
+        } else {
+            return 1;
+        }
+    })
     
-    const sortTags = (tags: string[]) => {
-        return tags.reduce((arr, tag) => {
-            // 让「无」和「密」标签在前面
-            if (tag == "无" || tag == "密") {
-                arr.unshift(tag);
-            } else {
-                arr.push(tag);
-            }
-            return arr;
-        }, [] as string[]);
+    const sortTags = (tags: string[]) => tags.sort((a, b) => {
+        if ((a == '无' || a == '密') && (b == '无' || b == '密')) {
+            return 0;
+        } else if (a == '无' || a == '密') {
+            return -1;
+        } return 1;
+    })
+
+    const handleTab = (e: React.KeyboardEvent<HTMLTextAreaElement>, ref: HTMLTextAreaElement | null) => {
+        if (!ref) return;
+        const content = (e.target as HTMLInputElement).value;
+        const start   = (e.target as HTMLInputElement).selectionStart!;
+        const end =  (e.target as HTMLInputElement).selectionEnd!;
+        if(e.key === 'Tab'){
+            e.preventDefault();
+            let newText = content.substring(0, start) + '\t' + content.substring(end);
+            ref.value = newText;
+            (e.target as HTMLInputElement).selectionStart =
+            (e.target as HTMLInputElement).selectionEnd = start + 1;
+        }
     }
 
+    
     useEffect(() => {
         setShowList(noteList);
         setHeatList(clacHeatList());
@@ -185,7 +206,7 @@ export default () => {
             return true;
         }
         filterNotes(f);
-    }, [filter]);
+    }, [noteList, filter]);
 
     useEffect(() => {
         getAllNotes();
@@ -237,18 +258,18 @@ export default () => {
             </div>
             {isEditor &&
                 <div className="newRecord">
-                    <Textarea className="editArea heti heti--classic" autoFocus ref={addRecotdTextareaRef} placeholder="..." />
+                    <Textarea className="editArea heti heti--classic" autoFocus ref={addRecotdTextareaRef} placeholder="..."  onKeyDown={(e) => handleTab(e, addRecotdTextareaRef.current)} />
                     <button className="btn" onClick={onAddNote}><strong>记</strong></button>
                 </div>
             }
             <div className="timeline">
-                {showList.map(r => {
+                {sortNotes(showList).map(r => {
                     return (
                         <div className="record" key={r.id}>
                             {
                                 editable != r.id ?
                                     <div className="content heti heti--classic" dangerouslySetInnerHTML={{ __html: metaMarked(r.content).html }}></div> :
-                                    <Textarea className="editArea heti heti--classic" autoFocus defaultValue={r.content} ref={editTextareaRef} placeholder="..." />
+                                    <Textarea className="editArea heti heti--classic" autoFocus defaultValue={r.content} ref={editTextareaRef} placeholder="..."   onKeyDown={(e) => handleTab(e, editTextareaRef.current)} />
                             }
                             <div className="props">
                                 {isEditor && !confirmAction &&
