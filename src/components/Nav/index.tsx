@@ -36,11 +36,11 @@ const Nav = () => {
                 <li className="nav-item" onClick={() => navigate("/")}>
                     博客
                 </li>
-                <li className="nav-item" onClick={() => navigate("/aranya")}>
-                    兰若
-                </li>
                 <li className="nav-item" onClick={() => navigate("/see")}>
                     见闻
+                </li>
+                <li className="nav-item" onClick={() => navigate("/aranya")}>
+                    兰若
                 </li>
                 <li className="nav-item" onClick={() => navigate("/aboutme")}>
                     我
