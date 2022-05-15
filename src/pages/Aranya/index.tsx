@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import blogServer from '@/api/server';
 import metaMarked from '@/utils/mdRender';
 import Textarea, { resize } from 'react-expanding-textarea';
@@ -27,17 +27,69 @@ const PAGE_SIZE = 100;
 
 export default () => {
     const [noteList, setNoteList] = useState<Record[]>([]);
-    const [tagList, setTagList] = useState<string[]>([]);
-    const [heatList, setHeatList] = useState<HeatPoint[]>([]);
-    const [showList, setShowList] = useState<Record[]>([]);
     const [editable, setEditable] = useState<number | null>(null);
     const [filter, setFilter] = useState<Filter>({ date: null, tag: null });
     const editTextareaRef = useRef<HTMLTextAreaElement>(null);
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
     const [confirmAction, setConfirmAction] = useState<number | null>(null);
-
     const { isEditor, setIsEditor } = useContext(globalState)!;
 
+    // 派生状态
+    const showList = useMemo(() => {
+        const f = (r: Record) => {
+            const { date, tag } = filter;
+            if (date && tag) {
+                return r.createdAt.includes(date) && r.tags.includes(tag);
+            } else {
+                if (date) return r.createdAt.includes(date)
+                else if (tag) return r.tags.includes(tag);
+            }
+            return true;
+        }
+        const sortFn = (a: Record, b: Record) => {
+            if (a.tags.includes("置顶") && b.tags.includes("置顶")) {
+                return 0;
+            } else if (a.tags.includes("置顶")) {
+                return -1;
+            } else {
+                return 1;
+            }
+        };
+
+        if (filter.date || filter.tag) {
+            return noteList.filter(f).sort(sortFn);
+        }
+        return noteList.sort(sortFn);
+    }, [noteList, filter]);
+
+    const tagList = useMemo(() => [...new Set(noteList.map(r => r.tags).flat())].sort((a, b) => {
+        if ((a == '无' || a == '密') && (b == '无' || b == '密')) {
+            return 0;
+        } else if (a == '无' || a == '密') {
+            return -1;
+        } return 1;
+    }), [noteList]);
+
+    const heatList = useMemo(() => {
+            const dateGroupList = noteList.reduce((prev, item) => {
+                const date = item.createdAt.match(/\d*\/\d*\/\d*/g)?.pop();
+                if (date) {
+                    if (prev[date]) {
+                        prev[date].push(item)
+                    } else {
+                        prev[date] = [item];
+                    }
+                }
+                return prev;
+            }, {} as { [key: string]: Record[] })
+            const heatList = Object.keys(dateGroupList)
+                .reverse()
+                .reduce((result, key) => {
+                    result.push({ date: key, count: dateGroupList[key].length });
+                    return result;
+                }, [] as HeatPoint[]);
+            return heatList;
+    }, [noteList]);
 
     const insertRecord = useCallback((r: Record) => {
         noteList.unshift(r);
@@ -109,35 +161,7 @@ export default () => {
             setConfirmAction(null);
         })
     }
-
-    const clacHeatList = useCallback(() => {
-        const dateGroupList = noteList.reduce((prev, item) => {
-            const date = item.createdAt.match(/\d*\/\d*\/\d*/g)?.pop();
-            if (date) {
-                if (prev[date]) {
-                    prev[date].push(item)
-                } else {
-                    prev[date] = [item];
-                }
-            }
-            return prev;
-        }, {} as { [key: string]: Record[] })
-
-        const heatList = Object.keys(dateGroupList)
-            .reverse()
-            .reduce((result, key) => {
-                result.push({ date: key, count: dateGroupList[key].length });
-                return result;
-            }, [] as HeatPoint[]);
-            
-        return heatList;
-    }, [noteList]);
-
-    const filterNotes = useCallback((filter: (r: Record) => boolean) => {
-        const result = noteList.filter(filter);
-        setShowList(result)
-    }, [noteList]);
-
+    
     const getAllNotes = () => {
         let newRecords: Record[] = [];
         let tags: string[] = [];
@@ -146,7 +170,6 @@ export default () => {
                 tags = tags.concat(...list.map(i => i.tags).flat())
                 newRecords = newRecords.concat(...list)
                 setNoteList(newRecords);
-                setTagList([...new Set(tags)]);
                 if (list.length == PAGE_SIZE) {
                     loopLoad(p + 1);
                 }
@@ -154,24 +177,6 @@ export default () => {
         }
         loopLoad(1);
     }
-
-    const sortNotes = (notes: Record[]) => notes.sort((a, b) => {
-        if (a.tags.includes("置顶") && b.tags.includes("置顶")) {
-            return 0;
-        } else if (a.tags.includes("置顶")) {
-            return -1;
-        } else {
-            return 1;
-        }
-    })
-    
-    const sortTags = (tags: string[]) => tags.sort((a, b) => {
-        if ((a == '无' || a == '密') && (b == '无' || b == '密')) {
-            return 0;
-        } else if (a == '无' || a == '密') {
-            return -1;
-        } return 1;
-    })
 
     const handleTab = (e: React.KeyboardEvent<HTMLTextAreaElement>, ref: HTMLTextAreaElement | null) => {
         if (!ref) return;
@@ -187,27 +192,6 @@ export default () => {
         }
     }
 
-    
-    useEffect(() => {
-        setShowList(noteList);
-        setHeatList(clacHeatList());
-        setTagList([...new Set(noteList.map(r => r.tags).flat())]);
-    }, [noteList]);
-
-    useEffect(() => {
-        const f = (r: Record) => {
-            const { date, tag } = filter;
-            if (date && tag) {
-                return r.createdAt.includes(date) && r.tags.includes(tag);
-            } else {
-                if (date) return r.createdAt.includes(date)
-                else if (tag) return r.tags.includes(tag);
-            }
-            return true;
-        }
-        filterNotes(f);
-    }, [noteList, filter]);
-
     useEffect(() => {
         getAllNotes();
     }, [isEditor]);
@@ -222,7 +206,7 @@ export default () => {
     return (
         <div className="aranya">
             <ul className="tags">
-                {sortTags(tagList).map(tag => {
+                {tagList.map(tag => {
                     return (
                         <li key={tag} className={`tag ${filter.tag == tag ? "selectedTag" : ''}`} onClick={() => onClickTag(tag)}>
                             {tag}
@@ -263,7 +247,7 @@ export default () => {
                 </div>
             }
             <div className="timeline">
-                {sortNotes(showList).map(r => {
+                {showList.map(r => {
                     return (
                         <div className="record" key={r.id}>
                             {
