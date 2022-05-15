@@ -1,5 +1,5 @@
-import React from 'react'
-import './footer.less'
+import React from "react";
+import "./footer.less";
 
 const Footer = () => (
     <footer>
@@ -8,5 +8,5 @@ const Footer = () => (
             <a href="https://beian.miit.gov.cn">浙ICP备2022004381号</a>
         </p>
     </footer>
-)
-export default Footer
+);
+export default Footer;

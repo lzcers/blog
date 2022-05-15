@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import TagList from '@/components/TagList';
-import PostList from '@/components/PostList';
-import { Post, getPosts } from '@/api';
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import TagList from "@/components/TagList";
+import PostList from "@/components/PostList";
+import { Post, getPosts } from "@/api";
 
 function useQuery() {
     const { search } = useLocation();
@@ -17,18 +17,16 @@ const Archive = () => {
 
     const tags = useMemo(() => {
         const tagList = posts.map(p => p.tags).reduce((pre, cur) => pre.concat(cur), []);
-        return [...new Set(tagList)]
+        return [...new Set(tagList)];
     }, [posts]);
 
     useEffect(() => {
-        const p = posts
-            .sort((a, b) => (new Date(a.publish_date) < new Date(b.publish_date) ? 1 : -1))
-            .filter((p) => (params.tag ? !!p.tags.includes(params.tag) : true));
+        const p = posts.sort((a, b) => (new Date(a.publish_date) < new Date(b.publish_date) ? 1 : -1)).filter(p => (params.tag ? !!p.tags.includes(params.tag) : true));
         setShowPosts(p);
     }, [posts, params]);
 
     useEffect(() => {
-        getPosts().then((data) => {
+        getPosts().then(data => {
             data && setPosts(data);
         });
     }, []);
@@ -39,6 +37,6 @@ const Archive = () => {
             <PostList list={showPosts} pageNumber={Number(query.get("pageNumber")) || 0} />
         </div>
     );
-}
+};
 
 export default Archive;

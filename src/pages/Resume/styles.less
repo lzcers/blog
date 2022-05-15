@@ -1,117 +1,114 @@
 .icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-  margin-right: 3px;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    margin-right: 3px;
 }
 
 .resume {
-  font-size: 16px;
-  color: var(--ft-main-color);
-  // box-shadow: 0 0 3px 1px #ccc;
-  // padding: 5px;
+    margin: 0 auto;
+    font-size: 16px;
+    max-width: 800px;
+    color: var(--ft-main-color);
 
-  h1 {
-    font-size: 1.8em;
-    margin: 30px 0;
-  }
-
-  h3 {
-    font-size: 1.5em;
-    margin: 25px 0;
-  }
-
-  h5 {
-    font-size: 1.2em;
-    margin: 20px 0;
-  }
-
-  a,
-  a:visited {
-    color: var(--blue-color);
-  }
-
-  p {
-    line-height: 1.25em;
-  }
-
-  ul {
-    padding-left: 30px;
-
-    li {
-      margin: 10px 0;
+    h1 {
+        font-size: 1.8em;
+        margin: 30px 0;
     }
-  }
 
-  section {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--gray-color);
-  }
+    h3 {
+        font-size: 1.5em;
+        margin: 25px 0;
+    }
 
-  .title {
-    margin: 0;
-  }
-
-
-  .info {
-    .main-info {
-      .name {
-        font-weight: 800;
-        font-size: 2.5em;
-        margin: 10px 0;
-      }
-
-      .job {
-        font-weight: 500;
+    h5 {
         font-size: 1.2em;
-        margin: 15px 0;
-        color: var(--ft-minor-color);
-      }
+        margin: 20px 0;
     }
 
-    .more-info {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      color: var(--ft-minor-color);
-
-      span {
-        margin-right: 15px;
-      }
+    a,
+    a:visited {
+        color: var(--blue-color);
     }
-  }
 
-  .tech-stack {
-
-    .lang,
-    .framework,
-    .other {
-      margin: 5px 0;
+    p {
+        line-height: 1.25em;
+        margin: 10px 0;
     }
-  }
 
-  .career {
-    .header {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: flex-end;
+    ul {
+        padding-left: 20px;
 
-      .years {
-        display: inline-block;
-        color: var(--ft-minor-color);
-        font-size: 1em;
-        margin-left: 10px;
-      }
-
+        li {
+            margin: 10px 0;
+        }
     }
-  }
 
-  .work-experience {
-    .project-type {
-      margin-left: 15px;
-      font-weight: 700;
+    section {
+        padding: 10px 0;
+        border-bottom: 1px solid black;
     }
-  }
+
+    .title {
+        margin: 0;
+    }
+
+    .info {
+        .main-info {
+            .name {
+                font-weight: 800;
+                font-size: 2.5em;
+                margin: 0;
+            }
+
+            .job {
+                font-weight: 500;
+                font-size: 1.2em;
+                margin: 0;
+                color: var(--ft-minor-color);
+            }
+        }
+        .more-info {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            color: var(--ft-minor-color);
+
+            span {
+                margin-right: 15px;
+            }
+        }
+    }
+
+    .tech-stack {
+        .lang,
+        .framework,
+        .other {
+            margin: 5px 0;
+        }
+    }
+
+    .career {
+        .header {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: flex-end;
+
+            .years {
+                display: inline-block;
+                color: var(--ft-minor-color);
+                font-size: 1em;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .work-experience {
+        .project-type {
+            margin-left: 20px;
+            font-weight: 700;
+        }
+    }
 }
