@@ -201,11 +201,14 @@ export default () => {
     };
 
     useEffect(() => {
+        getAllNotes();
+    }, [isEditor]);
+
+    useEffect(() => {
         blogServer.authToken().then(({ result }) => {
             setIsEditor(result);
-            getAllNotes();
         });
-    }, [isEditor]);
+    }, []);
 
     return (
         <div className="aranya">
