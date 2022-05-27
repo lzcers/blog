@@ -222,7 +222,7 @@ export default () => {
                 })}
             </ul>
             <div className="heatmap">
-                <div className="left">
+                <div className="points">
                     {/* <div className="prev">◀</div> */}
                     {heatList.map(p => {
                         return (
