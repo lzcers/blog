@@ -220,6 +220,7 @@ export default () => {
                     </li>
                     <li>阿里巴巴 FAST 天文台寻星公益项目开发者</li>
                     <li>阿里巴巴 CCO 黑客马拉松连续参与者-四等奖</li>
+                    <li>阿里巴巴 CCO 战疫特别贡献奖</li>
                     <li>华为首届黑客马拉松二等奖，华为明日之星奖</li>
                     <li>
                         在校期间 自学 MOOC 课程《数据结构》取得<a href="https://oss.ksana.net/mooc-certificate.pdf">证书</a>
