@@ -57,7 +57,7 @@ export default () => {
                 <div className="header">
                     <h3 className="title">职业历程</h3>
                     <span className="years">
-                        2014.7 - 2023.5 <b>7+年</b>
+                        2014.7 - 2022.6 <b>7+年</b>
                     </span>
                 </div>
                 <ul>
