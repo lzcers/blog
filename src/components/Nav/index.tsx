@@ -10,14 +10,14 @@ const Nav = () => {
     const { isEditor, setIsEditor, darkMode, setDarkMode } = useContext(globalState)!;
 
     const knockDoor = () => {
-        blogServer.authToken().then(({ result }) => {
-            if (result) {
-                localStorage.setItem("token", "");
-                setIsEditor(false);
-            } else {
-                navigate("/door");
-            }
-        });
+        // blogServer.authToken().then(({ result }) => {
+        //     if (result) {
+        //         localStorage.setItem("token", "");
+        //         setIsEditor(false);
+        //     } else {
+        //         navigate("/door");
+        //     }
+        // });
     };
 
     return (
@@ -38,9 +38,9 @@ const Nav = () => {
                 <li className="nav-item" onClick={() => navigate("/")}>
                     博客
                 </li>
-                <li className="nav-item" onClick={() => navigate("/aranya")}>
+                {/* <li className="nav-item" onClick={() => navigate("/aranya")}>
                     兰若
-                </li>
+                </li> */}
                 <li className="nav-item" onClick={() => navigate("/see")}>
                     见闻
                 </li>

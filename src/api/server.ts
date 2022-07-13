@@ -1,7 +1,7 @@
 import request from "umi-request";
 
-const apiUrl = "https://api.ksana.net";
-// const apiUrl = "http://localhost:4443";
+// const apiUrl = "https://api.ksana.net";
+const apiUrl = "http://localhost:4443";
 
 interface Note {
     id: number;
