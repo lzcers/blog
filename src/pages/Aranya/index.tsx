@@ -189,14 +189,15 @@ export default () => {
 
     const handleTab = (e: React.KeyboardEvent<HTMLTextAreaElement>, ref: HTMLTextAreaElement | null) => {
         if (!ref) return;
-        const content = e.target.value;
-        const start = e.target.selectionStart!;
-        const end = e.target.selectionEnd!;
+        const target = e.target as HTMLTextAreaElement;
+        const content = target.value;
+        const start = target.selectionStart;
+        const end = target.selectionEnd;
         if (e.key === "Tab") {
             e.preventDefault();
             let newText = content.substring(0, start) + "\t" + content.substring(end);
             ref.value = newText;
-            e.target.selectionStart = e.target.selectionEnd = start + 1;
+            target.selectionStart = target.selectionEnd = start + 1;
         }
     };
 
