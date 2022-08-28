@@ -1,14 +1,11 @@
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import Textarea, { resize } from "react-expanding-textarea";
-import metaMarked from "@/utils/mdRender";
 import { globalState } from "@/main";
 import blogServer from "@/api/server";
+import Tags from "./tags";
+import HeatMap, { HeatPoint } from "./heatmap";
+import TImeline from "./timeline";
 import "./aranya.less";
-
-interface HeatPoint {
-    date: string;
-    count: number;
-}
 
 interface Record {
     id: number;
@@ -27,9 +24,7 @@ const PAGE_SIZE = 100;
 
 export default () => {
     const [noteList, setNoteList] = useState<Record[]>([]);
-    const [editable, setEditable] = useState<number | null>(null);
     const [filter, setFilter] = useState<Filter>({ date: null, tag: null });
-    const [confirmAction, setConfirmAction] = useState<number | null>(null);
     const editTextareaRef = useRef<HTMLTextAreaElement>(null);
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
     const { isEditor, setIsEditor } = useContext(globalState)!;
@@ -133,17 +128,35 @@ export default () => {
         });
     };
 
-    const onSaveNote = (r: Record) => {
-        if (!editTextareaRef.current) return;
-        const newRecord = { ...r, content: editTextareaRef.current.value, tags: [...editTextareaRef.current.value.matchAll(/#([^#^\s]+)[\s\r\n]/g)].map(i => i[1]) };
+    const getAllNotes = () => {
+        let newRecords: Record[] = [];
+        let tags: string[] = [];
+        const loopLoad = (p: number) => {
+            getNotes(p, PAGE_SIZE).then(({ list }) => {
+                tags = tags.concat(...list.map(i => i.tags).flat());
+                newRecords = newRecords.concat(...list);
+                setNoteList(newRecords);
+                if (list.length == PAGE_SIZE) {
+                    loopLoad(p + 1);
+                }
+            });
+        };
+        loopLoad(1);
+    };
+
+    const onSaveNote = (newRecord: Record) => {
         setNoteList(
             noteList.map(i => {
-                if (i.id == r.id) return newRecord;
+                if (i.id == newRecord.id) return newRecord;
                 return i;
             })
         );
-        blogServer.updateNote(r.id, editTextareaRef.current.value).then(() => {
-            setEditable(null);
+        return blogServer.updateNote(newRecord.id, newRecord.content);
+    };
+
+    const onDeleteNote = (id: number) => {
+        return blogServer.deleteNote(id).then(() => {
+            setNoteList(noteList.filter(note => note.id != id));
         });
     };
 
@@ -161,30 +174,6 @@ export default () => {
                 content: r.content,
             });
         });
-    };
-
-    const onDeleteNote = (id: number) => {
-        return blogServer.deleteNote(id).then(() => {
-            setNoteList(noteList.filter(note => note.id != id));
-            setEditable(null);
-            setConfirmAction(null);
-        });
-    };
-
-    const getAllNotes = () => {
-        let newRecords: Record[] = [];
-        let tags: string[] = [];
-        const loopLoad = (p: number) => {
-            getNotes(p, PAGE_SIZE).then(({ list }) => {
-                tags = tags.concat(...list.map(i => i.tags).flat());
-                newRecords = newRecords.concat(...list);
-                setNoteList(newRecords);
-                if (list.length == PAGE_SIZE) {
-                    loopLoad(p + 1);
-                }
-            });
-        };
-        loopLoad(1);
     };
 
     const handleTab = (e: React.KeyboardEvent<HTMLTextAreaElement>, ref: HTMLTextAreaElement | null) => {
@@ -213,41 +202,8 @@ export default () => {
 
     return (
         <div className="aranya">
-            <ul className="tags">
-                {tagList.map(tag => {
-                    return (
-                        <li key={tag} className={`tag ${filter.tag == tag ? "selectedTag" : ""}`} onClick={() => onClickTag(tag)}>
-                            {tag}
-                        </li>
-                    );
-                })}
-            </ul>
-            <div className="heatmap">
-                <div className="points">
-                    {/* <div className="prev">◀</div> */}
-                    {heatList.map(p => {
-                        return (
-                            <div
-                                key={p.date}
-                                className="heatPoint"
-                                date-title={p.date}
-                                onClick={() => {
-                                    setFilter(f => ({ tag: null, date: p.date }));
-                                }}
-                                style={{ backgroundColor: `rgba(0, 160, 0, ${p.count / 5 < 1 ? p.count / 5 : 1})` }}
-                            ></div>
-                        );
-                    })}
-                    {/* <div className="next">▶</div> */}
-                </div>
-                <div className="right">
-                    <div className="count" onClick={() => setFilter({ date: null, tag: null })}>
-                        <span>共</span>
-                        <span>{heatList.length} 天</span>
-                        <span>{noteList.length} 笔</span>
-                    </div>
-                </div>
-            </div>
+            <Tags tags={tagList} selected={filter.tag} onClick={tag => onClickTag(tag)} />
+            <HeatMap data={heatList} onClick={date => setFilter({ tag: null, date: date })} />
             {isEditor && (
                 <div className="newRecord">
                     <Textarea className="editArea heti heti--classic" autoFocus ref={addRecotdTextareaRef} placeholder="..." onKeyDown={e => handleTab(e, addRecotdTextareaRef.current)} />
@@ -256,65 +212,7 @@ export default () => {
                     </button>
                 </div>
             )}
-            <div className="timeline">
-                {showList.map(r => {
-                    return (
-                        <div className="record" key={r.id}>
-                            {editable != r.id ? (
-                                <div className="content heti heti--classic" dangerouslySetInnerHTML={{ __html: metaMarked(r.content).html }}></div>
-                            ) : (
-                                <Textarea
-                                    className="editArea heti heti--classic"
-                                    autoFocus
-                                    defaultValue={r.content}
-                                    ref={editTextareaRef}
-                                    placeholder="..."
-                                    onKeyDown={e => handleTab(e, editTextareaRef.current)}
-                                />
-                            )}
-                            <div className="props">
-                                {isEditor && !confirmAction && (
-                                    <div className="opt">
-                                        {editable != r.id && (
-                                            <button className="btn" onClick={() => setEditable(r.id)}>
-                                                编辑
-                                            </button>
-                                        )}
-                                        {editable != r.id && (
-                                            <button className="btn" onClick={() => setConfirmAction(r.id)}>
-                                                删除
-                                            </button>
-                                        )}
-                                        {editable == r.id && (
-                                            <button className="btn" onClick={() => onSaveNote(r)}>
-                                                保存
-                                            </button>
-                                        )}
-                                        {editable == r.id && (
-                                            <button className="btn" onClick={() => setEditable(null)}>
-                                                取消
-                                            </button>
-                                        )}
-                                    </div>
-                                )}
-                                {isEditor && confirmAction == r.id && (
-                                    <div className="confirm">
-                                        <button className="btn emphasis" onClick={() => onDeleteNote(r.id)}>
-                                            确定
-                                        </button>
-                                        <button className="btn" onClick={() => setConfirmAction(null)}>
-                                            取消
-                                        </button>
-                                    </div>
-                                )}
-                                <div className="datetime">
-                                    <span>{r.createdAt}</span>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
+            <TImeline list={showList} isEditor={isEditor} onUpdate={onSaveNote} onDelete={onDeleteNote} />
         </div>
     );
 };
