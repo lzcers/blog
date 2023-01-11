@@ -26,7 +26,7 @@ export default (props: { list: string[]; tag: string }) => {
                     onClickLink("/"), setSelected("all");
                 }}
             >
-                ALL
+                全部
             </li>
             {tags.map(i => (
                 <li
