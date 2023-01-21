@@ -38,21 +38,24 @@ const About = () => {
                         </blockquote>
                     </div>
                     <div className="introduction">
-                        <p className="name">
-                            <strong>陌上尘</strong>
+                        <p style={{ marginTop: 16 }}>
+                            我是<strong>陌尘</strong>，一只兴趣使然的程序猿，喜欢折腾各种有趣的东西
                         </p>
-                        <p>一只兴趣使然的程序猿</p>
-                        <p>喜欢折腾各种有趣的东西</p>
                         <p>主业写前端，但从不把自己定为前端工程师</p>
-                        <p>这里是我的自留处亦是修行地，除了写些博文以外，更多时候我将这作为笔记本，记录见闻和想法。</p>
-                        <p>TypeScript、JavaScript、Rust、Go、Lisp...</p>
-                        <p>
-                            <i>lzcers@gmail.com</i>
+                        <p>这是我的修行处，我在这记录想法与见闻</p>
+
+                        <p style={{ marginTop: 16 }}>
+                            <i>技术：TypeScript、JavaScript、Rust、Go、Lisp...</i>
                         </p>
                         <p>
-                            <a style={{ textDecoration: "underline" }} href="https://github.com/lzcers">
-                                My GitHub
-                            </a>
+                            <i>Email：lzcers@gmail.com</i>
+                        </p>
+                        <p>
+                            <i>
+                                <a style={{ textDecoration: "underline" }} href="https://github.com/lzcers">
+                                    My GitHub
+                                </a>
+                            </i>
                         </p>
                     </div>
                 </div>

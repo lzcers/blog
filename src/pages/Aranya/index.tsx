@@ -23,11 +23,10 @@ interface Filter {
 const PAGE_SIZE = 100;
 
 export default () => {
+    const { isEditor, setIsEditor } = useContext(globalState)!;
     const [noteList, setNoteList] = useState<Record[]>([]);
     const [filter, setFilter] = useState<Filter>({ date: null, tag: null });
-    const editTextareaRef = useRef<HTMLTextAreaElement>(null);
     const addRecotdTextareaRef = useRef<HTMLTextAreaElement>(null);
-    const { isEditor, setIsEditor } = useContext(globalState)!;
 
     // 派生状态
     const showList = useMemo(() => {

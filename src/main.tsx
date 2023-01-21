@@ -16,7 +16,7 @@ const RootContainer = () => {
     const [darkMode, setDarkMode] = useState(false);
     return (
         <Router>
-            <globalState.Provider value={{ isEditor, setIsEditor, darkMode, setDarkMode }}>
+            <globalState.Provider value={{ isEditor, darkMode, setIsEditor, setDarkMode }}>
                 <Routes />
             </globalState.Provider>
         </Router>
