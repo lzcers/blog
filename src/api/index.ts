@@ -29,7 +29,7 @@ const getPosts = async () => {
     if (metadata) {
         return Promise.resolve(metadata.map(transformData));
     }
-    return request.get<(Omit<Post, "tags"> & { tags: string })[]>(indexFileUrl).then(data => {
+    return request.get<(Omit<Post, "tags"> & { tags: string })[]>(indexFileUrl + `?t=${Date.now()}`).then(data => {
         metadata = data;
         return data.map(transformData);
     });
@@ -53,6 +53,6 @@ const getPostById = async (id: number) => {
 
 const getFile = (fileName: string) => request.get(fileUrl + fileName);
 
-const getGallery = () => request.get<GalleryItem[]>(galleryFileUrl);
+const getGallery = () => request.get<GalleryItem[]>(galleryFileUrl + `?t=${Date.now()}`);
 
 export { getPosts, getPostById, getGallery };
