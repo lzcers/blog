@@ -1,0 +1,68 @@
+.heatmap {
+    margin: 10px 0px;
+    display: flex;
+    flex-flow: column;
+    min-height: 20px;
+
+    .points {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+        flex: 1 1 auto;
+        // max-height: 65px;
+        // overflow-y: auto;
+    }
+
+    .heatmap-info {
+        flex: 1 1 auto;
+        display: flex;
+        margin-top: 5px;
+        justify-content: space-between;
+        align-items: center;
+        .years {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+        }
+    }
+
+    .count {
+        font-weight: bold;
+        cursor: pointer;
+        margin: 0 5px;
+
+        span {
+            margin-left: 5px;
+        }
+    }
+
+    .heatPoint {
+        width: 12px;
+        height: 12px;
+        margin: 1px;
+        cursor: pointer;
+    }
+
+    .heatPoint:hover::after {
+        content: attr(date-title);
+        position: relative;
+        top: 20px;
+        background: var(--ft-main-color);
+        color: var(--white-color);
+        padding: 3px 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        box-shadow: 1.5px 1.5px 5px 0 var(--gray-color);
+    }
+
+    .prev,
+    .next {
+        font-size: 12px;
+        margin: 0 5px;
+        color: var(--ft-minor-color);
+        font-family: sans-serif;
+        cursor: pointer;
+        padding-top: 1.5px;
+    }
+}

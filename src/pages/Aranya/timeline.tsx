@@ -67,7 +67,7 @@ export default (props: TimelineProps) => {
                                 onKeyDown={e => handleTab(e, editTextareaRef.current)}
                             />
                         )}
-                        <div className="props">
+                        <div className="record-info">
                             {isEditor && !confirmAction && (
                                 <div className="opt">
                                     {editable != r.id && (
