@@ -5,7 +5,6 @@ import About from "@/pages/About";
 import Aranya from "@/pages/Aranya";
 import See from "@/pages/See";
 import Resume from "@/pages/Resume";
-import Stream from "@/pages/Stream";
 import Door from "@/pages/Door";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -43,7 +42,6 @@ const MainRoutes = () => (
     <Routes>
         <Route path="/*" element={<Blog />} />
         <Route path="/resume" element={<Resume />} />
-        <Route path="/stream" element={<Stream />} />
     </Routes>
 );
 
