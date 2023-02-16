@@ -70,7 +70,7 @@ export default (props: HeatMapProps) => {
                 <div className="count" onClick={() => onClick(null)}>
                     <span>共</span>
                     <span>{data.length} 天</span>
-                    <span>{data.length} 笔</span>
+                    <span>{data.reduce((prev, cur) => prev + cur.count, 0)} 笔</span>
                 </div>
             </div>
         </div>

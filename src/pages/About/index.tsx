@@ -11,9 +11,9 @@ const About = () => {
             <giscus-widget
                 id="comments"
                 repo="lzcers/giscus"
-                repoid="R_kgDOHUCV4w"
+                repoid="R_kgDOI-e7WQ"
                 category="留言"
-                categoryid="DIC_kwDOHUCV484CPB94"
+                categoryid="DIC_kwDOI-e7Wc4CUPn7"
                 mapping="specific"
                 term="comments"
                 reactionsenabled="1"
