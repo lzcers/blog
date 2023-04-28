@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import blogServer from "@/api/server";
 import { globalState } from "@/main";
 import "./styles.less";
 
@@ -10,11 +9,6 @@ export default () => {
 
     const openDoor = (token: string) => {
         localStorage.setItem("token", token);
-        blogServer.authToken().then(({ result }) => {
-            if (result) {
-                navigate("/aranya");
-            }
-        });
     };
 
     useEffect(() => {

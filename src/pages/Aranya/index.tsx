@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import Textarea from "react-expanding-textarea";
 import { globalState } from "@/main";
-import blogServer from "@/api/server";
 import Tags from "./tags";
 import HeatMap from "./HeatMap";
 import Timeline from "./timeline";
@@ -19,7 +18,7 @@ export default () => {
     }, [isEditor]);
 
     useEffect(() => {
-        blogServer.authToken().then(({ result }) => setIsEditor(result));
+        // blogServer.authToken().then(({ result }) => setIsEditor(result));
     }, []);
 
     return (

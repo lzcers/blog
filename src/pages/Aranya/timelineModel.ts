@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { resize } from "react-expanding-textarea";
-import blogServer from "@/api/server";
 import { HeatPoint } from "./HeatMap";
 
 interface Record {
@@ -27,7 +26,9 @@ export default () => {
     const showList = useMemo(() => {
         const f = (r: Record) => {
             const { date, tag, year } = filter;
-            return (year ? r.createdAt.includes(year + "") : true) && (date ? r.createdAt.includes(date) : true) && (tag ? r.tags.includes(tag) : true);
+            return (
+                (year ? r.createdAt.includes(year + "") : true) && (date ? r.createdAt.includes(date) : true) && (tag ? r.tags.includes(tag) : true)
+            );
         };
         const sortFn = (a: Record, b: Record) => {
             if (a.tags.includes("置顶") && b.tags.includes("置顶")) return 0;
@@ -90,26 +91,32 @@ export default () => {
         });
     };
 
-    const getNotes = (pageNumber?: number, pageSize?: number) => {
-        return blogServer.getNoteList(pageNumber, pageSize).then(({ list, ...info }) => {
-            let notes = list.map(item => {
-                // 无标签的分配「无」标签
-                const tags = [...item.content.matchAll(/#([^\s^#]+)[\s\r\n]/g)].map(i => i[1]);
-                return {
-                    id: item.id,
-                    tags: tags.length > 0 ? tags : ["无"],
-                    createdAt: new Date(item.created_at).toLocaleString(),
-                    updatedAt: new Date(item.updated_at).toLocaleString(),
-                    content: item.content,
-                };
-            });
-            return {
-                total: info.total,
-                pageSize: info.page_size,
-                pageNumber: info.page_number,
-                list: notes,
-            };
-        });
+    const getNotes = async (pageNumber?: number, pageSize?: number) => {
+        return {
+            total: 0,
+            pageSize: 0,
+            pageNumber: 0,
+            list: [],
+        };
+        // return blogServer.getNoteList(pageNumber, pageSize).then(({ list, ...info }) => {
+        //     let notes = list.map(item => {
+        //         // 无标签的分配「无」标签
+        //         const tags = [...item.content.matchAll(/#([^\s^#]+)[\s\r\n]/g)].map(i => i[1]);
+        //         return {
+        //             id: item.id,
+        //             tags: tags.length > 0 ? tags : ["无"],
+        //             createdAt: new Date(item.created_at).toLocaleString(),
+        //             updatedAt: new Date(item.updated_at).toLocaleString(),
+        //             content: item.content,
+        //         };
+        //     });
+        //     return {
+        //         total: info.total,
+        //         pageSize: info.page_size,
+        //         pageNumber: info.page_number,
+        //         list: notes,
+        //     };
+        // });
     };
 
     const getAllNotes = () => {
@@ -117,7 +124,7 @@ export default () => {
         let tags: string[] = [];
         const loopLoad = (p: number) => {
             getNotes(p, PAGE_SIZE).then(({ list }) => {
-                tags = tags.concat(...list.map(i => i.tags).flat());
+                tags = tags.concat(...list.map((i: Record) => i.tags).flat());
                 newRecords = newRecords.concat(...list);
                 setNoteList(newRecords);
                 if (list.length == PAGE_SIZE) {
@@ -135,29 +142,31 @@ export default () => {
                 return i;
             })
         );
-        return blogServer.updateNote(newRecord.id, newRecord.content);
+        return Promise.resolve();
+        // return blogServer.updateNote(newRecord.id, newRecord.content);
     };
 
     const onDeleteNote = (id: number) => {
-        return blogServer.deleteNote(id).then(() => {
-            setNoteList(noteList.filter(note => note.id != id));
-        });
+        return Promise.resolve();
+        // return blogServer.deleteNote(id).then(() => {
+        //     setNoteList(noteList.filter(note => note.id != id));
+        // });
     };
 
     const onAddNote = () => {
         if (!addRecotdTextareaRef.current || !addRecotdTextareaRef.current.value) return;
-        blogServer.createNote(addRecotdTextareaRef.current.value).then(r => {
-            addRecotdTextareaRef.current!.value = "";
-            resize(0, addRecotdTextareaRef.current);
-            const tags = [...r.content.matchAll(/#([^\s^#]+)[\s\r\n]/g)].map(i => i[1]);
-            insertRecord({
-                id: r.id,
-                createdAt: new Date(r.created_at).toLocaleString(),
-                updatedAt: new Date(r.updated_at).toLocaleString(),
-                tags: tags.length > 0 ? tags : ["无"],
-                content: r.content,
-            });
-        });
+        // blogServer.createNote(addRecotdTextareaRef.current.value).then(r => {
+        //     addRecotdTextareaRef.current!.value = "";
+        //     resize(0, addRecotdTextareaRef.current);
+        //     const tags = [...r.content.matchAll(/#([^\s^#]+)[\s\r\n]/g)].map(i => i[1]);
+        //     insertRecord({
+        //         id: r.id,
+        //         createdAt: new Date(r.created_at).toLocaleString(),
+        //         updatedAt: new Date(r.updated_at).toLocaleString(),
+        //         tags: tags.length > 0 ? tags : ["无"],
+        //         content: r.content,
+        //     });
+        // });
     };
 
     const onKeyDownTab = (e: React.KeyboardEvent<HTMLTextAreaElement>, ref: HTMLTextAreaElement | null) => {
@@ -174,5 +183,18 @@ export default () => {
         }
     };
 
-    return { showList, tagList, heatList, filter, addRecotdTextareaRef, getAllNotes, setFilter, onClickTag, onAddNote, onSaveNote, onDeleteNote, onKeyDownTab };
+    return {
+        showList,
+        tagList,
+        heatList,
+        filter,
+        addRecotdTextareaRef,
+        getAllNotes,
+        setFilter,
+        onClickTag,
+        onAddNote,
+        onSaveNote,
+        onDeleteNote,
+        onKeyDownTab,
+    };
 };

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Post from "@/pages/Post";
 import Archive from "@/pages/Archive";
@@ -8,7 +9,6 @@ import Resume from "@/pages/Resume";
 import Door from "@/pages/Door";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { useContext } from "react";
 import { globalState } from "@/main";
 
 const BlogRoutes = () => (
@@ -17,7 +17,7 @@ const BlogRoutes = () => (
         <Route path="/tag/:tag" element={<Archive />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/aboutme" element={<About />} />
-        <Route path="/aranya" element={<Aranya />} />
+        <Route path="/aranya" element={<Door />} />
         <Route path="/see" element={<See />} />
         <Route path="/door" element={<Door />} />
     </Routes>

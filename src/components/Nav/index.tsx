@@ -1,4 +1,3 @@
-import blogServer from "@/api/server";
 import { globalState } from "@/main";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,17 +6,10 @@ import "./taiji.less";
 
 const Nav = () => {
     const navigate = useNavigate();
-    const { isEditor, setIsEditor, darkMode, setDarkMode } = useContext(globalState)!;
+    const { isEditor, darkMode, setDarkMode } = useContext(globalState)!;
 
     const knockDoor = () => {
-        blogServer.authToken().then(({ result }) => {
-            if (result) {
-                localStorage.setItem("token", "");
-                setIsEditor(false);
-            } else {
-                navigate("/door");
-            }
-        });
+        navigate("/door");
     };
 
     return (
@@ -38,9 +30,9 @@ const Nav = () => {
                 <li className="nav-item" onClick={() => navigate("/")}>
                     博客
                 </li>
-                <li className="nav-item" onClick={() => navigate("/aranya")}>
+                {/* <li className="nav-item" onClick={() => navigate("/aranya")}>
                     兰若
-                </li>
+                </li> */}
                 <li className="nav-item" onClick={() => navigate("/see")}>
                     见闻
                 </li>
