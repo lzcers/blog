@@ -23,7 +23,7 @@ let metadata: RawPost[] | null = null;
 
 const getPosts = async () => {
     const transformData = (post: RawPost) => {
-        const tags = post.tags.split("|").map(e => e.trim());
+        const tags = post.tags.split(" ").map(e => e.trim());
         return { ...post, tags };
     };
     if (metadata) {

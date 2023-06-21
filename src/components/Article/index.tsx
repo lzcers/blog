@@ -27,7 +27,7 @@ const Article = ({ title, tags, publishDate, content, toc }: ArticleProps) => {
             <div className="article-info">
                 <div className="article-tags">
                     <span>标签:</span>
-                    {tags.split("|").map(e => (
+                    {tags.split(" ").map(e => (
                         <Link to={"/tag/" + e} key={e} className="article-tags-link">
                             {e}
                         </Link>
