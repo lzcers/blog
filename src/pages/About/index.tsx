@@ -1,31 +1,8 @@
 import Guide from "@/components/Guide";
 import MyPic from "./my_pic.jpg";
 import "./about.less";
-import { useEffect, useRef } from "react";
 
 const About = () => {
-    const giscusRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        giscusRef.current!.innerHTML = `
-            <giscus-widget
-                id="comments"
-                repo="lzcers/giscus"
-                repoid="R_kgDOI-e7WQ"
-                category="留言"
-                categoryid="DIC_kwDOI-e7Wc4CUPn7"
-                mapping="specific"
-                term="comments"
-                reactionsenabled="1"
-                emitmetadata="0"
-                inputposition="top"
-                theme="light"
-                lang="zh-CN"
-                loading="lazy"
-                ></giscus-widget>
-        `;
-    }, []);
-
     return (
         <div className="about">
             <div className="self">
@@ -63,7 +40,6 @@ const About = () => {
                     <Guide />
                 </div>
             </div>
-            <div className="giscus-frame" ref={giscusRef}></div>
         </div>
     );
 };
