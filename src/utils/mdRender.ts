@@ -1,24 +1,16 @@
-import { marked } from "marked";
+import { Tokens, TokensList, marked } from "marked";
 import fm from "front-matter";
 
-type Token = {
-    type: string;
-    text: string;
-    raw: string;
-    tokens?: Token[];
-    depth?: number;
-};
-
 // 解析 Tokens 生成 TOC Tree
-function parseTokensGenTOC(tokens: Token[]) {
+function parseTokensGenTOC(tokens: TokensList) {
     const tocNodes = tokens
         .filter(t => t.type === "heading")
         .map(e => ({
-            nodeID: e.text
+            nodeID: (e as Tokens.Heading).text
                 .replace(/<(?:.|\n)*?>/gm, "")
                 .toLowerCase()
                 .replace(/[\s\n\t]+/g, "-"),
-            nodeLevel: e.depth,
+            nodeLevel: (e as Tokens.Heading).depth,
             childrenNode: [],
         }));
     const rootNode = { nodeID: "root", nodeLevel: 0, childrenNode: [] };
@@ -36,7 +28,7 @@ function parseTokensGenTOC(tokens: Token[]) {
 
 const renderer = new marked.Renderer();
 
-renderer.heading = (text: string, level: string) => {
+renderer.heading = (text: string, level: number) => {
     const slug = text
         .replace(/<(?:.|\n)*?>/gm, "")
         .toLowerCase()
@@ -59,30 +51,7 @@ renderer.code = (code: string, language: string) => {
     return `<pre><code class="lang-${lang}">${html}</code></pre>`;
 };
 
-const tagItemRender = {
-    name: "tag",
-    level: "inline",
-    start(src: string) {
-        return src[0] == "#";
-    },
-    tokenizer(src: string) {
-        const rule = /^#([^#^\s]+)[\s\n\r]?/;
-        const result = src.match(rule);
-        if (result) {
-            const token = {
-                type: "tag",
-                raw: result[0].slice(-1) == "\n" ? result[0].slice(0, -1) : result[0],
-                text: result[1].trim(),
-            };
-            return token;
-        }
-    },
-    renderer(token: Token) {
-        return `<span class="tagItem">${token.text}</span>`;
-    },
-};
-
-marked.use({ extensions: [tagItemRender] });
+marked.use({ extensions: [] });
 
 marked.setOptions({
     renderer,

@@ -33,7 +33,7 @@ const Nav = () => {
                 {/* <li className="nav-item" onClick={() => navigate("/aranya")}>
                     兰若
                 </li> */}
-                <li className="nav-item" onClick={() => navigate("/see")}>
+                <li className="nav-item" onClick={() => navigate("/akashic")}>
                     见闻
                 </li>
                 <li className="nav-item" onClick={() => navigate("/aboutme")}>
