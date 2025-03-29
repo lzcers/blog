@@ -2,6 +2,7 @@
   "name": "blog-ts",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --base=//ksana.net/",
@@ -9,25 +10,25 @@
   },
   "dependencies": {
     "front-matter": "^4.0.2",
-    "marked": "^7.0.2",
+    "marked": "^15.0.7",
     "normalize.css": "^8.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-expanding-textarea": "^2.3.6",
-    "react-photo-view": "^1.2.3",
-    "react-router-dom": "^6.15.0",
+    "react-photo-view": "^1.2.7",
+    "react-router-dom": "^7.4.1",
     "umi-request": "^1.4.0"
   },
   "devDependencies": {
-    "@types/node": "^20.4.10",
-    "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.2.20",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.4",
-    "less": "^4.2.0",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.9",
-    "vite-plugin-mkcert": "^1.16.0",
-    "vite-plugin-static-copy": "^0.17.0"
+    "@types/node": "^22.13.14",
+    "@types/prismjs": "^1.26.5",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "less": "^4.2.2",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.3",
+    "vite-plugin-mkcert": "^1.17.8",
+    "vite-plugin-static-copy": "^2.3.0"
   }
 }

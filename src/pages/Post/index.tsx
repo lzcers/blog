@@ -31,7 +31,16 @@ const ArtilceBox = () => {
     }, [id]);
 
     if (loadingFlag || !post) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>加载中...</h3>;
-    return <Article id={Number(id)} title={post.meta.title} tags={post.meta.tags} publishDate={post.meta.publishDate} content={post.html} toc={post.tocTree} />;
+    return (
+        <Article
+            id={Number(id)}
+            title={post.meta.title}
+            tags={post.meta.tags}
+            publishDate={post.meta.publishDate}
+            content={post.html}
+            toc={post.tocTree}
+        />
+    );
 };
 
 export default () => {

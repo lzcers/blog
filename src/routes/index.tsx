@@ -14,7 +14,7 @@ import { globalState } from "@/main";
 const BlogRoutes = () => (
     <Routes>
         <Route path="/" element={<Archive />} />
-        <Route path="/tag/:tag" element={<Archive />} />
+        <Route path="/tag/*" element={<Archive />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/aboutme" element={<About />} />
         <Route path="/aranya" element={<Door />} />

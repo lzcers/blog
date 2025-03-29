@@ -21,7 +21,9 @@ const Archive = () => {
     }, [posts]);
 
     useEffect(() => {
-        const p = posts.sort((a, b) => (new Date(a.publish_date) < new Date(b.publish_date) ? 1 : -1)).filter(p => (params.tag ? !!p.tags.includes(params.tag) : true));
+        const p = posts
+            .sort((a, b) => (new Date(a.publish_date) < new Date(b.publish_date) ? 1 : -1))
+            .filter(p => (params["*"] ? !!p.tags.includes(params["*"]) : true));
         setShowPosts(p);
     }, [posts, params]);
 
@@ -33,7 +35,7 @@ const Archive = () => {
 
     return (
         <div className="archive">
-            <TagList list={tags} tag={params.tag || ""} />
+            <TagList list={tags} tag={params["*"] || ""} />
             <PostList list={showPosts} pageNumber={Number(query.get("pageNumber")) || 0} />
         </div>
     );
