@@ -6,13 +6,6 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
     build: {
         outDir: path.resolve(__dirname, "./docs/"),
-        rollupOptions: {
-            output: {
-                entryFileNames: `assets/[name].js`,
-                chunkFileNames: `assets/[name].js`,
-                assetFileNames: `assets/[name].[ext]`,
-            },
-        },
     },
     resolve: {
         alias: {
