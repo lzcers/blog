@@ -28,23 +28,23 @@ function parseTokensGenTOC(tokens: TokensList) {
 
 const renderer = new marked.Renderer();
 
-renderer.heading = (text: string, level: number) => {
+renderer.heading = ({ text, depth }) => {
     const slug = text
         .replace(/<(?:.|\n)*?>/gm, "")
         .toLowerCase()
         .replace(/[\s\n\t]+/g, "-");
-    return `<h${level} id="${slug}">${text}</h${level}>`;
+    return `<h${depth} id="${slug}">${text}</h${depth}>`;
 };
 
-renderer.code = (code: string, language: string) => {
-    let html = code;
-    const lang = language.toLowerCase();
+renderer.code = ({ text, lang }) => {
+    let html = text;
+    lang = lang?.toLowerCase() ?? "";
     const grammar = window.Prism?.languages[lang] || window.Prism?.languages["clike"];
     if (!window.Prism?.languages[lang]) {
         console.warn(`unknown code language ${lang}!`);
     }
     try {
-        html = window.Prism?.highlight(code, grammar, lang);
+        html = window.Prism?.highlight(text, grammar, lang);
     } catch (e) {
         throw e;
     }
