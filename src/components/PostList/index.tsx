@@ -35,7 +35,7 @@ export default (props: { list: Post[]; pageNumber: number }) => {
                     <li key={i.id}>
                         <Link to={"/post/" + i.id}>
                             <span className="post-item-name">{i.title}</span>
-                            <span className="post-item-date">{dateTransform(i.publish_date)}</span>
+                            <span className="post-item-date">{dateTransform(i.publishDate)}</span>
                         </Link>
                     </li>
                 ))}

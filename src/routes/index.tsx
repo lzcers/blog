@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Post from "@/pages/Post";
 import Archive from "@/pages/Archive";
 import About from "@/pages/About";
-import Akashic from "@/pages/Akashic";
+// import Akashic from "@/pages/Akashic";
 // import Aranya from "@/pages/Aranya";
 // import Resume from "@/pages/Resume";
 import Door from "@/pages/Door";
@@ -19,7 +19,7 @@ const BlogRoutes = () => (
         <Route path="/post/:id" element={<Post />} />
         <Route path="/aboutme" element={<About />} />
         <Route path="/aranya" element={<Door />} />
-        <Route path="/akashic" element={<Akashic />} />
+        {/* <Route path="/akashic" element={<Akashic />} /> */}
         <Route path="/door" element={<Door />} />
     </Routes>
 );
