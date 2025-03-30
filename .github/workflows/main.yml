@@ -1,0 +1,19 @@
+name: Run BlogTools upload posts to alioss.
+run-name: ${{ github.actor }} update blog to alioss.🚀
+on:
+  push:
+    branches:
+      - master
+      - main
+jobs:
+  blog-tools-ao:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+      
+      - name: Run BlogTools command  
+        run: |
+          source ~/.nvm/nvm.sh
+          nvm use v23.10.0
+          blog ao ${GITHUB_WORKSPACE}/dist
