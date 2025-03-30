@@ -1,5 +1,5 @@
-name: Run BlogTools upload posts to alioss.
-run-name: ${{ github.actor }} update blog to alioss.🚀
+name: Run BlogTools upload blogApp to alioss.
+run-name: ${{ github.actor }} update blogApp to alioss.🚀
 on:
   push:
     branches:
