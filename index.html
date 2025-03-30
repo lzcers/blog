@@ -4,17 +4,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="//ksana.net" />
-        <link rel="icon" type="image/svg+xml" href="/src/favicon.ico" />
-        <link rel="stylesheet" href="./src/prism.css" />
-        <link rel="stylesheet" href="./src/heti.css" />
+        <link rel="icon" type="image/svg+xml" href="/static/favicon.ico" />
+        <link rel="stylesheet" href="./static/heti.css" />
+        <link rel="stylesheet" href="./static/prism.css" />
 
         <title>刹那·KSANA</title>
     </head>
     <body>
         <div id="app"></div>
-        <script type="module" src="./src/main.tsx"></script>
         <script src="//unpkg.com/heti/umd/heti-addon.min.js"></script>
-        <script type="module" src="./src/prism.js" data-manual></script>
+        <script type="module" src="./static/prism.js" data-manual></script>
+        <script type="module" src="./src/main.tsx"></script>
         <script>
             const heti = new Heti(".heti");
             heti.autoSpacing(); // 自动进行中西文混排美化和标点挤压

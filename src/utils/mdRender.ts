@@ -46,7 +46,7 @@ renderer.code = ({ text, lang }) => {
     try {
         html = window.Prism?.highlight(text, grammar, lang);
     } catch (e) {
-        throw e;
+        console.warn(e);
     }
     return `<pre><code class="lang-${lang}">${html}</code></pre>`;
 };

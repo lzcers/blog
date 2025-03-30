@@ -1,14 +1,13 @@
-import request from "umi-request";
-const indexFileUrl = "//ksana.net/articles/postList.json";
+const indexFileUrl = "//ksana.net/articles/postsMetadata.json";
 const galleryFileUrl = "//ksana.net/gallery.json";
 const fileUrl = "//ksana.net/articles/";
 
 export interface Post {
     id: number;
-    file_name: string;
+    fileName: string;
     title: string;
     tags: string[];
-    publish_date: string;
+    publishDate: string;
 }
 
 export interface GalleryItem {
@@ -18,23 +17,17 @@ export interface GalleryItem {
     description: string;
 }
 
-type RawPost = Omit<Post, "tags"> & { tags: string | string[] };
-let metadata: RawPost[] | null = null;
+let metadata: Post[] | null = null;
 
 const getPosts = async (): Promise<Post[]> => {
-    const transformData = (post: RawPost): Post => {
-        if (Array.isArray(post.tags)) return { ...post } as Post
-        const tags = post.tags.split(" ").map(e => e.trim());
-        return { ...post, tags } as Post;
-    };
     if (metadata) {
-        return Promise.resolve(metadata.map(transformData));
+        return Promise.resolve(metadata);
     }
 
     return fetch(indexFileUrl).then(res => {
         return res.json().then(data => {
             metadata = data;
-            return data.map(transformData);
+            return data;
         });
     });
 };
@@ -49,14 +42,14 @@ const getPostById = async (id: number) => {
     };
     const p = await getFileInfo();
     if (p) {
-        return await getFile(p.file_name);
+        return await getFile(p.fileName);
     } else {
         return "";
     }
 };
 
-const getFile = (fileName: string) => request.get(fileUrl + fileName);
+const getFile = (fileName: string) => fetch(fileUrl + fileName).then(res => res.text());
 
-const getGallery = () => request.get<GalleryItem[]>(galleryFileUrl);
+const getGallery = () => fetch(galleryFileUrl).then(res => res.json());
 
 export { getPosts, getPostById, getGallery };

@@ -14,6 +14,7 @@ import { globalState } from "@/main";
 const BlogRoutes = () => (
     <Routes>
         <Route path="/" element={<Archive />} />
+        {/* 为了匹配`计算机/编程`这样的多级标签,需要用*来匹配 */}
         <Route path="/tag/*" element={<Archive />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/aboutme" element={<About />} />

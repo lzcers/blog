@@ -22,7 +22,7 @@ const Archive = () => {
 
     useEffect(() => {
         const p = posts
-            .sort((a, b) => (new Date(a.publish_date) < new Date(b.publish_date) ? 1 : -1))
+            .sort((a, b) => (new Date(a.publishDate) < new Date(b.publishDate) ? 1 : -1))
             .filter(p => (params["*"] ? !!p.tags.includes(params["*"]) : true));
         setShowPosts(p);
     }, [posts, params]);

@@ -16,8 +16,7 @@
     "react-dom": "^19.1.0",
     "react-expanding-textarea": "^2.3.6",
     "react-photo-view": "^1.2.7",
-    "react-router-dom": "^7.4.1",
-    "umi-request": "^1.4.0"
+    "react-router-dom": "^7.4.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.14",
