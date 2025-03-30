@@ -16,6 +16,6 @@ jobs:
         run: |
           source ~/.nvm/nvm.sh
           nvm use v23.10.0
-          npm install
-          npm run build
+          pnpm install
+          pnpm run build
           blog ao ${GITHUB_WORKSPACE}/dist
