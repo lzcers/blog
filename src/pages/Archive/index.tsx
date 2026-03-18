@@ -22,8 +22,9 @@ const Archive = () => {
 
     useEffect(() => {
         const p = posts
+            .filter(p => p.title && p.publishDate)
             .sort((a, b) => (new Date(a.publishDate) < new Date(b.publishDate) ? 1 : -1))
-            .filter(p => (params["*"] ? !!p.tags.includes(params["*"]) : true));
+            .filter(p => (params["*"] ? !!p.tags?.includes(params["*"]) : true));
         setShowPosts(p);
     }, [posts, params]);
 

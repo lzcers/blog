@@ -10,24 +10,24 @@
   },
   "dependencies": {
     "front-matter": "^4.0.2",
-    "marked": "^15.0.7",
+    "marked": "^15.0.12",
     "normalize.css": "^8.0.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-expanding-textarea": "^2.3.6",
     "react-photo-view": "^1.2.7",
-    "react-router-dom": "^7.4.1"
+    "react-router-dom": "^7.13.1"
   },
   "devDependencies": {
-    "@types/node": "^22.13.14",
-    "@types/prismjs": "^1.26.5",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "less": "^4.2.2",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.3",
-    "vite-plugin-mkcert": "^1.17.8",
-    "vite-plugin-static-copy": "^2.3.0"
+    "@types/node": "^22.19.15",
+    "@types/prismjs": "^1.26.6",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "less": "^4.6.4",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1",
+    "vite-plugin-mkcert": "^1.17.10",
+    "vite-plugin-static-copy": "^2.3.2"
   }
 }

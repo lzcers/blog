@@ -15,7 +15,8 @@ export default (props: { list: string[]; tag: string }) => {
     }, [tag]);
 
     useEffect(() => {
-        list && setTags(list.sort());
+        const tags = new Set(list.sort().filter(i => i));
+        list && setTags([...tags]);
     }, [list]);
 
     return (
