@@ -1,0 +1,95 @@
+{
+  "albums": [
+    {
+      "id": "1",
+      "title": "生活随拍",
+      "description": "记录生活中的美好瞬间",
+      "photos": [
+        {
+          "id": "photo-1",
+          "url": "https://picsum.photos/800/600?random=1",
+          "title": "城市夜景",
+          "description": "繁华都市的夜晚灯火",
+          "date": "2024-03-15",
+          "tags": ["风景", "城市"],
+          "width": 800,
+          "height": 600
+        },
+        {
+          "id": "photo-2",
+          "url": "https://picsum.photos/600/800?random=2",
+          "title": "山间小路",
+          "description": "蜿蜒的山间小道",
+          "date": "2024-03-10",
+          "tags": ["风景", "自然"],
+          "width": 600,
+          "height": 800
+        },
+        {
+          "id": "photo-3",
+          "url": "https://picsum.photos/800/800?random=3",
+          "title": "咖啡馆一角",
+          "description": "午后阳光洒进咖啡馆",
+          "date": "2024-02-28",
+          "tags": ["生活", "美食"],
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "photo-4",
+          "url": "https://picsum.photos/800/600?random=4",
+          "title": "古建筑",
+          "description": "历史悠久的古建筑",
+          "date": "2024-02-20",
+          "tags": ["建筑", "旅行"],
+          "width": 800,
+          "height": 600
+        },
+        {
+          "id": "photo-5",
+          "url": "https://picsum.photos/600/900?random=5",
+          "title": "街头艺人",
+          "description": "街头的艺术表演",
+          "date": "2024-02-15",
+          "tags": ["人像", "街拍"],
+          "width": 600,
+          "height": 900
+        },
+        {
+          "id": "photo-6",
+          "url": "https://picsum.photos/800/600?random=6",
+          "title": "海边日落",
+          "description": "金色的海边日落",
+          "date": "2024-01-30",
+          "tags": ["风景", "旅行"],
+          "width": 800,
+          "height": 600
+        },
+        {
+          "id": "photo-7",
+          "url": "https://picsum.photos/800/800?random=7",
+          "title": "美味早餐",
+          "description": "丰盛的早餐",
+          "date": "2024-01-25",
+          "tags": ["美食"],
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "photo-8",
+          "url": "https://picsum.photos/800/600?random=8",
+          "title": "公园一角",
+          "description": "宁静的公园",
+          "date": "2024-01-20",
+          "tags": ["风景", "自然"],
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "tags": ["风景", "人像", "街拍", "旅行", "美食", "建筑", "自然", "生活"],
+      "date": "2024-03"
+    }
+  ],
+  "allTags": ["风景", "人像", "街拍", "旅行", "美食", "建筑", "自然", "生活"],
+  "totalPhotos": 8
+}

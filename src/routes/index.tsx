@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Post from "@/pages/Post";
 import Archive from "@/pages/Archive";
 import About from "@/pages/About";
+import Photo from "@/pages/Photo";
 // import Akashic from "@/pages/Akashic";
 // import Aranya from "@/pages/Aranya";
 // import Resume from "@/pages/Resume";
@@ -18,6 +19,7 @@ const BlogRoutes = () => (
         <Route path="/tag/*" element={<Archive />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/aboutme" element={<About />} />
+        <Route path="/photo" element={<Photo />} />
         <Route path="/aranya" element={<Door />} />
         {/* <Route path="/akashic" element={<Akashic />} /> */}
         <Route path="/door" element={<Door />} />
