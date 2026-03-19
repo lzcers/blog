@@ -3,6 +3,8 @@ import { useLocation, useParams } from "react-router-dom";
 import TagList from "@/components/TagList";
 import PostList from "@/components/PostList";
 import { Post, getPosts } from "@/api";
+import MyPic from "./my_pic.jpg";
+import "./index.less";
 
 function useQuery() {
     const { search } = useLocation();
@@ -36,6 +38,12 @@ const Archive = () => {
 
     return (
         <div className="archive">
+            <div className="archive-header">
+                <blockquote className="quotoSICP">
+                    <p>「如果说艺术解释了我们的梦想，那么计算机就是以程序的名义执行着它们。」</p>
+                    <p style={{ textAlign: "left", fontStyle: "italic", fontSize: "12px" }}>—— Alan J.Perlis《计算机程序的构造与解释》</p>
+                </blockquote>
+            </div>
             <TagList list={tags} tag={params["*"] || ""} />
             <PostList list={showPosts} pageNumber={Number(query.get("pageNumber")) || 0} />
         </div>

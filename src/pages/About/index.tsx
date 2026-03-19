@@ -9,10 +9,6 @@ const About = () => {
                 <div className="selfLeft">
                     <div className="myPic">
                         <img src={MyPic} alt="" />
-                        <blockquote className="quotoSICP">
-                            <p>「如果说艺术解释了我们的梦想，那么计算机就是以程序的名义执行着它们。」</p>
-                            <p style={{ textAlign: "right", fontStyle: "italic", fontSize: "12px" }}>—— Alan J.Perlis《计算机程序的构造与解释》</p>
-                        </blockquote>
                     </div>
                     <div className="introduction">
                         <p style={{ marginTop: 16 }}>
