@@ -20,7 +20,7 @@ const BlogRoutes = () => (
         <Route path="/aboutme" element={<About />} />
         <Route path="/photo" element={<Akashic />} />
         <Route path="/aranya" element={<Door />} />
-        {/* <Route path="/akashic" element={<Akashic />} /> */}
+        <Route path="/akashic" element={<Akashic />} />
         <Route path="/door" element={<Door />} />
     </Routes>
 );

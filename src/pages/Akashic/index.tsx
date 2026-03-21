@@ -16,7 +16,7 @@ const loadPhotoIndex = async (): Promise<PhotoIndex> => {
   return response.json();
 };
 
-export default function Photo() {
+export default function Akashic() {
   const [photoIndex, setPhotoIndex] = useState<PhotoIndex | null>(null);
   const [photos, setPhotos] = useState<PhotoMetadata[]>([]);
   const [layout, setLayout] = useState<LayoutType>('grid');

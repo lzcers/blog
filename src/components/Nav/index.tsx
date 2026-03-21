@@ -27,17 +27,8 @@ const Nav = () => {
                 <button className="dark-mode-btn" onClick={() => setDarkMode(~darkMode)}>
                     🌓
                 </button>
-                {/* <li className="nav-item" onClick={() => navigate("/")}>
-                    博客
-                </li> */}
-                {/* <li className="nav-item" onClick={() => navigate("/aranya")}>
-                    兰若
-                </li> */}
-                {/* <li className="nav-item" onClick={() => navigate("/akashic")}>
+                <li className="nav-item" onClick={() => navigate("/akashic")}>
                     见闻
-                </li> */}
-                <li className="nav-item" onClick={() => navigate("/photo")}>
-                    相册
                 </li>
                 <li className="nav-item" onClick={() => navigate("/aboutme")}>
                     关于

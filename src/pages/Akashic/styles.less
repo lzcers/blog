@@ -23,7 +23,6 @@
   justify-content: center;
   width: 100%;
   min-height: 100vh;
-  padding: 0 20px;
   position: relative;
 }
 
@@ -32,7 +31,6 @@
   flex: 1;
   max-width: 900px;
   min-width: 0;
-  padding: 20px 30px;
 }
 
 // InfiniteScroll
@@ -203,7 +201,7 @@
   width: 260px;
   flex-shrink: 0;
   position: fixed;
-  left: calc(50% + 450px + 30px); // 50% + 主内容半宽 + 间距
+  left: 65%;
   top: 120px; // 增加顶部间距，避免与头部菜单重叠
   height: calc(100vh - 140px); // 相应调整高度
   overflow-y: auto;
@@ -469,13 +467,6 @@
 
 // 响应式 - 小屏幕时侧边栏隐藏
 @media screen and (max-width: 900px) {
-  .photo-wrapper {
-    padding: 0 16px;
-  }
-
-  .photo-main {
-    padding: 16px;
-  }
 
   .photo-sidebar {
     display: none;
@@ -492,13 +483,6 @@
 }
 
 @media screen and (max-width: 600px) {
-  .photo-wrapper {
-    padding: 0 12px;
-  }
-
-  .photo-main {
-    padding: 12px;
-  }
 
   .photo-masonry {
     column-count: 2;
