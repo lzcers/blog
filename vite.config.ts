@@ -8,12 +8,16 @@ export default defineConfig({
         outDir: path.resolve(__dirname, "./dist/"),
         rollupOptions: {
             output: {
-                // 配置 JS 文件输出格式，不使用 hash
-                entryFileNames: `assets/[name].js`,
-                chunkFileNames: `assets/[name].js`,
-                // 配置 CSS 文件输出格式，不使用 hash
-                assetFileNames: `assets/[name].[ext]`
-            }
+                codeSplitting: {
+                    minSize: 20000,
+                    groups: [
+                        {
+                            name: 'vendor',
+                            test: /node_modules/,
+                        },
+                    ],
+                },
+            },
         }
     },
     resolve: {
