@@ -13,14 +13,13 @@ interface ArticleProps {
 
 const Article = ({ title, tags, publishDate, content, toc }: ArticleProps) => {
     const date = new Date(publishDate);
-    console.log(toc)
     const [month, day, year] = [date.getMonth() + 1, date.getDate(), date.getFullYear()];
     return (
         <article className="article">
             <h1 className="article-title">{title}</h1>
             <div className="article-date">{`${year}年${month < 10 ? "0" + month : month}月${day < 10 ? "0" + day : day}日`}</div>
-            {/* 目录大于三级的才显示 TOC  */}
-            {toc && toc.childrenNode.length >= 3 && <Toc toc={toc} />}
+            {/* 目录大于二级的才显示 TOC  */}
+            {toc && toc.childrenNode.length >= 2 && <Toc toc={toc} />}
             <div className="article-content">
                 <div className="heti heti--serif" dangerouslySetInnerHTML={{ __html: content }} />
             </div>
