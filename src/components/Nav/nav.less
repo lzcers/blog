@@ -1,4 +1,11 @@
 @import "../../base.less";
+@font-face {
+  font-family: "ksana-title";
+  src: url("./title-font.woff2") format("woff2");
+  font-weight: normal;  
+  font-style: normal;    
+  font-display: swap;   
+}
 
 .nav {
     min-height: 60px;
@@ -27,7 +34,7 @@
     flex: 1;
 
     .nav-sitename {
-        font-family: "ksana-title", "Times New Roman", times, "Heti Kai Black", serif;
+        font-family: "ksana-title";
         font-weight: 900;
         font-size: 32px;
         color: var(--ft-main-color);
@@ -35,10 +42,6 @@
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-
-        @media @desktop {
-            font-size: 42px;
-        }
     }
 }
 
@@ -64,7 +67,7 @@
         font-weight: bold;
 
         @media @desktop {
-            font-size: 24px;
+            font-size: 18px;
             margin-left: 10px;
         }
     }
