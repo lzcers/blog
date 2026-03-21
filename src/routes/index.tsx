@@ -9,6 +9,7 @@ import About from "@/pages/About";
 import Door from "@/pages/Door";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Resume from "@/pages/Resume";
 import { globalState } from "@/main";
 
 const BlogRoutes = () => (
@@ -42,7 +43,7 @@ const Blog = () => {
 const MainRoutes = () => (
     <Routes>
         <Route path="/*" element={<Blog />} />
-        {/* <Route path="/resume" element={<Resume />} /> */}
+        <Route path="/resume" element={<Resume />} />
     </Routes>
 );
 

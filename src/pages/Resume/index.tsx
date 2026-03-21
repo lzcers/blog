@@ -12,7 +12,7 @@ export default () => {
         <div className="resume heti heti--classic">
             <section className="info">
                 <div className="main-info">
-                    <h1 className="name">李志成</h1>
+                    <h1 className="name">李陌尘</h1>
                     <h3 className="job">软件开发工程师-前端/全栈</h3>
                 </div>
                 <div className="more-info">
@@ -24,7 +24,7 @@ export default () => {
                     <span>本科</span>
                     <Icon name="shouji" />
                     <span>
-                        <a href="tel:17603050797">17603050797</a>
+                        <a href="tel:*">*</a>
                     </span>
                     <Icon name={"youxiang"} />
                     <span>
@@ -36,32 +36,33 @@ export default () => {
                     </span>
                 </div>
                 <p className="self-desc">
-                    <i>我首先是软件开发工程师，热衷折腾各种有意思的技术，其次是前端工程师，擅长跟浏览器死磕，迎难而上。</i>
+                    <i>一个兴趣使然的程序员，喜欢用代码写些有趣的玩意，喜欢折腾各种有意思的技术，擅长和计算机死磕。</i>
                 </p>
             </section>
             <section className="tech-stack">
                 <h3 className="title">技能</h3>
                 <div className="lang">
                     <strong>语言：</strong>
-                    <b>JavaScript/Typescript</b>/Rust/Go/…
+                    <b>Typescript/JavaScript</b>/Rust/Python/Go/…
                 </div>
                 <div className="framework">
                     <strong>框架：</strong>
-                    <b>React</b>/Webpack/Vue/Vite/…
+                    <b>React</b>/Vue/Vite/…
                 </div>
                 <div className="other">
-                    <strong>其它：</strong>Node.js/Deno/Koa.js/…
+                    <strong>其它：</strong>Node.js/Bun/…
                 </div>
             </section>
             <section className="career">
                 <div className="header">
                     <h3 className="title">职业历程</h3>
                     <span className="years">
-                        2014.7 - 2022.6 <b>7+年</b>
+                        2014.7 - 2026 <b>10+年</b>
                     </span>
                 </div>
                 <ul>
-                    <li>阿里巴巴 - 达摩院、CCO（高级前端工程师） 2018.10 - 至今</li>
+                    <li>字节跳动 - Data-智能创作 2022.7 - 至今</li>
+                    <li>阿里巴巴 - 达摩院、CCO（高级前端工程师） 2018.10 - 2022.6</li>
                     <li>蜂投网（前端技术主管，带 12 人团队）2018.3 - 2018.10</li>
                     <li>华为技术有限公司 - 流程IT、2012实验室 2014.12 - 2017.12</li>
                     <li>Anker 2014.7 - 2014.9（实习）</li>
@@ -70,7 +71,10 @@ export default () => {
             <section className="work-experience">
                 <h3 className="title">工作经历</h3>
                 <div className="p-item">
-                    <h5>阿里巴巴 （高级前端工程师） 2018.10 - 至今</h5>
+                    <h5>字节跳动  2022.7 - 至今</h5>
+                </div>
+                <div className="p-item">
+                    <h5>阿里巴巴 （高级前端工程师） 2018.10 - 2022.6</h5>
                     <p>
                         负责多项业务的前端技术方案设计与开发，带领合作伙伴支撑前端业务需求高效高质量交付。 负责团队技术氛围营造，组织策划团队进行技术分享，其中内部分享 13 次，外部 2
                         次（前端早早聊）。参与社招、校招招聘，作为实习生师兄，帮助其在实习期间取得技术与业务成果并通过转正答辩。
@@ -81,7 +85,7 @@ export default () => {
                     <div className="project-type">平台项目</div>
                     <ul>
                         <li>
-                            <b>热线小蜜 2018.11— 现在</b> <br />
+                            <b>热线小蜜 2018.11</b> <br />
                             <p>
                                 阿里集团用于热线客服呼入与呼出咨询业务的对话机器人，支撑集团日均百万级外呼量与大量客服咨询。 负责整个热线产品相关业务全部前端技术方案设计与开发，从 0 到 1 完成 B 端 SPD
                                 对话流配置平台的前端开发，持续优化迭代平台能力，完成 SPD 1.0、2.0、3.0 呼入呼出一体化升级改造并制定迁移方案。
@@ -209,14 +213,23 @@ export default () => {
                         维护公司内部的售后邮箱管理系统，处理一些简单需求和 BUG 单，学习了基于 <b>Git</b> 版本控制系统的团队协作，以及如何阅读与修改大型开源 PHP 系统代码。
                     </p>
                 </div>
-            </section>
+            </section >
             <section className="other-experience">
                 <ul>
+                    <li>
+                        <a href="https://lcnziv86vkx6.feishu.cn/wiki/JkuHwnMseiiO6fkm3h1cz41Gn8c">Trae Expert</a> Trae Friends 演讲者、VI Coding 布道者
+                    </li>
+                    <li>
+                        <a href="https://d2.alibabatech.com/">WaytoAI</a> 成都 演讲者
+                    </li>
                     <li>
                         <a href="https://d2.alibabatech.com/">第十六届D2前端技术论坛</a> 演讲者
                     </li>
                     <li>
                         <a href="https://github.com/alibaba/GGEditor">GGEditor 图编辑器开源项目开发者</a>
+                    </li>
+                    <li>
+                        前端早早聊 演讲者
                     </li>
                     <li>阿里巴巴 FAST 天文台寻星公益项目开发者</li>
                     <li>阿里巴巴 CCO 黑客马拉松连续参与者-四等奖</li>
@@ -228,6 +241,6 @@ export default () => {
                     …
                 </ul>
             </section>
-        </div>
+        </div >
     );
 };

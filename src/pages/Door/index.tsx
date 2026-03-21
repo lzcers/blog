@@ -8,7 +8,9 @@ export default () => {
     const { setIsEditor } = useContext(globalState)!;
 
     const openDoor = (token: string) => {
-        localStorage.setItem("token", token);
+        if (token === 'ksana') {
+            navigate("/resume");
+        }
     };
 
     useEffect(() => {
@@ -25,7 +27,7 @@ export default () => {
                     className={"key"}
                     autoFocus
                     onKeyUp={e => {
-                        if (e.keyCode == 13) {
+                        if (e.key === "Enter") {
                             openDoor((e.target as HTMLInputElement).value);
                         }
                     }}
