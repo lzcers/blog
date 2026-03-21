@@ -4,7 +4,7 @@ const Footer = () => (
     <footer>
         <p>
             <span>Copyright © KSANA 2017 - 2026  All Rights Reserved.</span> &nbsp;&nbsp;
-            <a href="https://beian.miit.gov.cn">浙ICP备2022004381号</a>
+            {/* <a href="https://beian.miit.gov.cn">浙ICP备2022004381号</a> */}
         </p>
     </footer>
 );

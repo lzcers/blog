@@ -5,7 +5,17 @@
     --gray-color: #f2f2f2;
     --white-color: #fff;
     --blue-color: #4387f4;
+
+    /* 响应式断点变量 */
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
 }
+
+/* 移动端优先断点混入 */
+@mobile: ~"screen and (max-width: 576px)";
+@tablet: ~"screen and (max-width: 768px)";
+@desktop: ~"screen and (min-width: 769px)";
 
 
 
@@ -92,15 +102,13 @@ code:hover::-webkit-scrollbar-thumb {
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    padding: 0 16px;
+    padding: 0 12px;
+
+    @media @desktop {
+        padding: 0 16px;
+    }
 }
 
 .content {
     flex: 1;
-}
-
-@media screen and (max-width: 800px) {
-    .main {
-        padding: 0px 5vw;
-    }
 }

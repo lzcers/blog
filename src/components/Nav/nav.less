@@ -1,11 +1,17 @@
+@import "../../base.less";
+
 .nav {
-    min-height: 80px;
+    min-height: 60px;
     width: 100%;
     max-width: inherit;
     margin: 0 auto;
     display: flex;
     flex-flow: row wrap;
     background: var(--bg-main-color);
+
+    @media @desktop {
+        min-height: 80px;
+    }
 }
 
 .dark-mode-btn {
@@ -23,12 +29,16 @@
     .nav-sitename {
         font-family: "ksana-title", "Times New Roman", times, "Heti Kai Black", serif;
         font-weight: 900;
-        font-size: 42px;
+        font-size: 32px;
         color: var(--ft-main-color);
         text-transform: uppercase;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
+
+        @media @desktop {
+            font-size: 42px;
+        }
     }
 }
 
@@ -45,30 +55,23 @@
 
     .nav-item {
         cursor: pointer;
-        font-size: 24px;
+        font-size: 18px;
         color: var(--ft-main-color);
         text-align: center;
         display: inline-block;
-        margin-left: 10px;
+        margin-left: 6px;
         padding: 0 5px;
         font-weight: bold;
+
+        @media @desktop {
+            font-size: 24px;
+            margin-left: 10px;
+        }
     }
 
     .nav-active,
     .nav-item:hover {
         background: var(--ft-main-color);
         color: var(--white-color);
-    }
-}
-
-@media screen and (max-width: 750px) {
-    .nav {
-        justify-content: space-between;
-    }
-}
-
-@media screen and (min-width: 750px) {
-    .nav {
-        justify-content: space-between;
     }
 }

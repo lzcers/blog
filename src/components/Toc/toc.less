@@ -1,11 +1,19 @@
+@import "../../base.less";
+
+
+
 .toc {
-    top: 100px;
-    color: #797979;
-    border: 1px solid #d0d0d0;
-    min-width: 200px;
-    background: var(--bg-main-color);
-    float: right;
-    margin: 0 10px;
+    display: none;
+
+    @media @desktop {
+        display: block;
+        color: #797979;
+        min-width: 200px;
+        max-width: max-content;
+        background: var(--bg-main-color);
+        right: 25%;
+        position: fixed;
+    }
 
     ol {
         margin: 0;
@@ -21,18 +29,5 @@
     a:hover {
         cursor: pointer;
         color: #2060d0;
-    }
-}
-
-@media screen and (max-width: 750px) {
-    .toc {
-        width: 100%;
-        margin: 10px auto;
-    }
-}
-
-@media screen and (min-width: 750px) {
-    .toc {
-        max-width: max-content;
     }
 }
