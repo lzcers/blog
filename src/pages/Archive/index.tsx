@@ -42,7 +42,7 @@ const Archive = () => {
                 <img src={MyPic} alt="MyPic" style={{ width: 50, borderRadius: "50%" }} />
                 <blockquote className="quotoSICP">
                     <p>「如果说艺术解释了我们的梦想，那么计算机就是以程序的名义执行着它们。」</p>
-                    <p style={{ textAlign: "left", fontStyle: "italic", fontSize: "12px" }}>—— Alan J.Perlis《计算机程序的构造与解释》</p>
+                    <p style={{ textAlign: "right", fontStyle: "italic", fontSize: "12px" }}>—— Alan J.Perlis《计算机程序的构造与解释》</p>
                 </blockquote>
             </div>
             <TagList list={tags} tag={params["*"] || ""} />
