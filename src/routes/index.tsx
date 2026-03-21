@@ -3,10 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Post from "@/pages/Post";
 import Archive from "@/pages/Archive";
 import About from "@/pages/About";
-import Photo from "@/pages/Photo";
-// import Akashic from "@/pages/Akashic";
+import Akashic from "@/pages/Akashic";
 // import Aranya from "@/pages/Aranya";
-// import Resume from "@/pages/Resume";
 import Door from "@/pages/Door";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -20,7 +18,7 @@ const BlogRoutes = () => (
         <Route path="/tag/*" element={<Archive />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/aboutme" element={<About />} />
-        <Route path="/photo" element={<Photo />} />
+        <Route path="/photo" element={<Akashic />} />
         <Route path="/aranya" element={<Door />} />
         {/* <Route path="/akashic" element={<Akashic />} /> */}
         <Route path="/door" element={<Door />} />
