@@ -36,6 +36,9 @@ const Nav = () => {
                 {/* <li className="nav-item" onClick={() => navigate("/akashic")}>
                     见闻
                 </li> */}
+                <li className="nav-item" onClick={() => navigate("/photo")}>
+                    相册
+                </li>
                 <li className="nav-item" onClick={() => navigate("/aboutme")}>
                     关于
                 </li>
