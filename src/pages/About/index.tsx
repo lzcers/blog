@@ -13,10 +13,6 @@ const About = () => {
                         </p>
                         <p>主业写前端，但从不把自己定为前端工程师</p>
                         <p>这是我的修行处，我在这记录想法与见闻</p>
-
-                        <p style={{ marginTop: 16 }}>
-                            <i>技术：TypeScript、JavaScript、Rust、Go、Lisp...</i>
-                        </p>
                         <p>
                             <i>Email：lzcers@gmail.com</i>
                         </p>

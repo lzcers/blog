@@ -13,6 +13,7 @@ interface ArticleProps {
 
 const Article = ({ title, tags, publishDate, content, toc }: ArticleProps) => {
     const date = new Date(publishDate);
+    console.log(toc)
     const [month, day, year] = [date.getMonth() + 1, date.getDate(), date.getFullYear()];
     return (
         <article className="article">
@@ -21,7 +22,7 @@ const Article = ({ title, tags, publishDate, content, toc }: ArticleProps) => {
             {/* 目录大于三级的才显示 TOC  */}
             {toc && toc.childrenNode.length >= 3 && <Toc toc={toc} />}
             <div className="article-content">
-                <div className="heti heti--classic" dangerouslySetInnerHTML={{ __html: content }} />
+                <div className="heti heti--serif" dangerouslySetInnerHTML={{ __html: content }} />
             </div>
             <div className="article-info">
                 <div className="article-tags">

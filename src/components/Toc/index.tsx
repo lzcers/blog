@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./toc.less";
 
 interface TOC {
@@ -29,32 +28,21 @@ function goAnchor(selector: string) {
     }
 }
 
-function li(toc: TOC, index: number, onClose: () => void) {
+function li(toc: TOC, index: number) {
     const child = toc.childrenNode;
     return (
         <li className="toc-li" key={index}>
-            <a
-                className="toc-anchor"
-                onClick={_ => {
-                    goAnchor(toc.nodeID + "");
-                    onClose();
-                }}
-            >
+            <a className="toc-anchor" onClick={_ => goAnchor(toc.nodeID + "")}>
                 {toc.nodeID}
             </a>
-            {child.length ? <ol className="toc-li">{child.map(i => li(i, i.nodeID + index, onClose))}</ol> : null}
+            {child.length ? <ol className="toc-li">{child.map(i => li(i, i.nodeID + index))}</ol> : null}
         </li>
     );
 }
 
-export default ({ toc }: { toc: TOC }) => {
-    const [expanded, setExpanded] = useState(false);
-
-    if (!toc) return null;
-
-    return (
-        <div className={`toc ${expanded ? "toc-expanded" : ""}`.trim()}>
-            <ol>{toc.childrenNode.map((e, i) => li(e, e.nodeID + i, () => setExpanded(false)))}</ol>
+export default ({ toc }: { toc: TOC }) =>
+    toc ? (
+        <div className="toc">
+            <ol>{toc.childrenNode.map((e, i) => li(e, e.nodeID + i))}</ol>
         </div>
-    );
-};
+    ) : null;

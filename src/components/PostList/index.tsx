@@ -26,7 +26,7 @@ export default (props: { list: Post[]; pageNumber: number }) => {
         return `${year}/${month < 10 ? "0" + month : month}/${day < 10 ? "0" + day : day}`;
     };
 
-    if (list.length === 0) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>加载中...</h3>;
+    if (list.length === 0) return <div style={{ textAlign: "center", marginTop: "20%" }}>加载中...</div>;
 
     return (
         <div className="posts">

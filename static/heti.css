@@ -9,12 +9,14 @@
 }
 @font-face {
     font-family: "Heti Hei SC";
-    src: local("PingFang SC Regular"), local("Heiti SC Regular"), local("Microsoft YaHei"), local("Source Han Sans CN Regular"),
+    src:
+        local("PingFang SC Regular"), local("Heiti SC Regular"), local("Microsoft YaHei"), local("Source Han Sans CN Regular"),
         local("Noto Sans CJK SC Regular"), local("WenQuanYi Micro Hei"), local("Droid Sans Fallback");
 }
 @font-face {
     font-family: "Heti Hei TC";
-    src: local("PingFang TC Regular"), local("Heiti TC Regular"), local("Microsoft Jhenghei"), local("Source Han Sans HK Regular"),
+    src:
+        local("PingFang TC Regular"), local("Heiti TC Regular"), local("Microsoft Jhenghei"), local("Source Han Sans HK Regular"),
         local("Source Han Sans TW Regular"), local("Noto Sans CJK TC Regular"), local("WenQuanYi Micro Hei"), local("Droid Sans Fallback");
 }
 @font-face {
@@ -33,13 +35,15 @@
 @font-face {
     font-family: "Heti Hei SC Light";
     font-weight: 200;
-    src: local("PingFang SC Light"), local("Heiti SC Light"), "Heti Hei SC Light Fallback", local("Source Han Sans CN Light"),
+    src:
+        local("PingFang SC Light"), local("Heiti SC Light"), "Heti Hei SC Light Fallback", local("Source Han Sans CN Light"),
         local("Noto Sans CJK SC Light");
 }
 @font-face {
     font-family: "Heti Hei TC Light";
     font-weight: 200;
-    src: local("PingFang TC Light"), local("Heiti TC Light"), local("Microsoft Jhenghei Light"), local("Source Han Sans HK Light"),
+    src:
+        local("PingFang TC Light"), local("Heiti TC Light"), local("Microsoft Jhenghei Light"), local("Source Han Sans HK Light"),
         local("Source Han Sans TW Light"), local("Noto Sans CJK TC Light");
 }
 @font-face {
@@ -65,13 +69,15 @@
 @font-face {
     font-family: "Heti Hei SC Bold";
     font-weight: 600;
-    src: local("PingFang SC Medium"), local("Heiti SC Medium"), "Heti Hei SC Bold Fallback", local("Source Han Sans CN Bold"),
+    src:
+        local("PingFang SC Medium"), local("Heiti SC Medium"), "Heti Hei SC Bold Fallback", local("Source Han Sans CN Bold"),
         local("Noto Sans CJK SC Bold");
 }
 @font-face {
     font-family: "Heti Hei TC Bold";
     font-weight: 600;
-    src: local("PingFang TC Medium"), local("Heiti TC Medium"), local("Microsoft Jhenghei Bold"), local("Source Han Sans HK Bold"),
+    src:
+        local("PingFang TC Medium"), local("Heiti TC Medium"), local("Microsoft Jhenghei Bold"), local("Source Han Sans HK Bold"),
         local("Source Han Sans TW Bold"), local("Noto Sans CJK TC Bold");
 }
 @font-face {
@@ -97,13 +103,15 @@
 @font-face {
     font-family: "Heti Hei SC Black";
     font-weight: 800;
-    src: local("Lantinghei SC Heavy"), local("PingFang SC Semibold"), local("Heiti SC Medium"), "Heti Hei SC Black Fallback",
+    src:
+        local("Lantinghei SC Heavy"), local("PingFang SC Semibold"), local("Heiti SC Medium"), "Heti Hei SC Black Fallback",
         local("Source Han Sans CN Heavy"), local("Noto Sans CJK SC Heavy");
 }
 @font-face {
     font-family: "Heti Hei TC Black";
     font-weight: 800;
-    src: local("Lantinghei TC Heavy"), local("PingFang TC Semibold"), local("Heiti TC Medium"), local("Microsoft Jhenghei Bold"),
+    src:
+        local("Lantinghei TC Heavy"), local("PingFang TC Semibold"), local("Heiti TC Medium"), local("Microsoft Jhenghei Bold"),
         local("Source Han Sans HK Heavy"), local("Source Han Sans TW Heavy"), local("Noto Sans CJK TC Heavy");
 }
 @font-face {
@@ -123,12 +131,12 @@
 }
 @font-face {
     font-family: "Heti Song";
-    src: local("Source Han serif SC"), local("Songti SC Regular"), local("Songti TC Regular"), local("SimSun");
+    src: local("Songti SC Regular"), local("Songti TC Regular"), local("SimSun");
 }
 @font-face {
     font-family: "Heti Song";
     font-weight: 200;
-    src: local("Source Han serif SC"), local("Songti SC Light"), local("Songti TC Light"), "Heti Song Light Fallback";
+    src: local("Songti SC Light"), local("Songti TC Light"), "Heti Song Light Fallback";
 }
 @font-face {
     font-family: "Heti Song Light Fallback";
@@ -138,7 +146,7 @@
 @font-face {
     font-family: "Heti Song";
     font-weight: 600;
-    src: local("Source Han serif SC"), local("Songti SC Bold"), local("Songti TC Bold"), "Heti Song Bold Fallback";
+    src: local("Songti SC Bold"), local("Songti TC Bold"), "Heti Song Bold Fallback";
 }
 @font-face {
     font-family: "Heti Song Bold Fallback";
@@ -162,7 +170,9 @@
 @font-face {
     font-family: "Heti Kai Bold Fallback";
     font-weight: 600;
-    src: local("STKaiti"), local("Kaiti") local("BiauKai");
+    src:
+        local("STKaiti"),
+        local("Kaiti") local("BiauKai");
 }
 @font-face {
     font-family: "Heti Kai Black";
@@ -224,8 +234,8 @@
     margin-inline-end: auto;
 }
 .heti hr {
-    width: 30%;
-    height: 1px;
+    inline-size: 30%;
+    block-size: 1px;
     margin-block-start: 48px;
     margin-block-end: 47px;
     margin-inline-start: auto;
@@ -243,7 +253,7 @@
     margin-block-end: 24px;
     text-align: justify;
 }
-.heti p:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti p:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti p:not(:lang(zh)) {
     text-align: start;
 }
@@ -276,7 +286,7 @@
     background-color: rgba(0, 0, 0, 0);
     color: inherit;
 }
-.heti:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti:not(:lang(zh)) {
     letter-spacing: 0;
 }
@@ -329,11 +339,11 @@
 .heti h3 {
     letter-spacing: 0.05em;
 }
-.heti h1:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti h1:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti h1:not(:lang(zh)),
-.heti h2:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti h2:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti h2:not(:lang(zh)),
-.heti h3:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti h3:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti h3:not(:lang(zh)) {
     letter-spacing: 0;
 }
@@ -448,7 +458,7 @@
 .heti dfn {
     font-weight: 600;
 }
-.heti dfn:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti dfn:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti dfn:not(:lang(zh)) {
     font-weight: 400;
 }
@@ -488,7 +498,7 @@
 .heti q {
     quotes: "「" "」" "『" "』";
 }
-.heti q:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti q:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti q:not(:lang(zh)) {
     quotes: initial;
     quotes: auto;
@@ -557,15 +567,15 @@
 .heti em {
     font-style: normal;
 }
-.heti address:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti address:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti address:not(:lang(zh)),
-.heti cite:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti cite:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti cite:not(:lang(zh)),
-.heti dfn:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti dfn:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti dfn:not(:lang(zh)),
-.heti dt:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti dt:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti dt:not(:lang(zh)),
-.heti em:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti em:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti em:not(:lang(zh)) {
     font-style: italic;
 }
@@ -582,7 +592,7 @@
     font-family: "Helvetica Neue", helvetica, arial, "Heti Hei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 .heti--serif {
-    font-family: "Times New Roman", times, "Heti Song", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Times New Roman", times, "Source Han Serif SC", Georgia, "Noto Serif SC","Heti Song", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 .heti--classic {
     font-family: "Times New Roman", times, "Heti Song", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -787,7 +797,7 @@
     text-emphasis-position: under right;
     font-weight: 400;
 }
-.heti--annotation em:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti--annotation em:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti--annotation em:not(:lang(zh)) {
     -webkit-text-emphasis: none;
     text-emphasis: none;
@@ -875,7 +885,7 @@
     text-emphasis: filled circle;
     text-emphasis-position: under right;
 }
-.heti .heti-em:not(:lang(zh)):not(:lang(ja)):not(:lang(kr)),
+.heti .heti-em:not(:lang(zh)):not(:lang(ja)):not(:lang(ko)),
 .heti .heti-em:not(:lang(zh)) {
     -webkit-text-emphasis: none;
     text-emphasis: none;
@@ -907,6 +917,8 @@
 }
 .heti heti-adjacent {
     display: inline;
+    text-spacing-trim: space-all;
+    unicode-bidi: isolate;
 }
 .heti .heti-adjacent-half {
     margin-inline-end: -0.5em;

@@ -30,7 +30,7 @@ const ArtilceBox = () => {
         });
     }, [id]);
 
-    if (loadingFlag || !post) return <h3 style={{ textAlign: "center", marginTop: "20%" }}>加载中...</h3>;
+    if (loadingFlag || !post) return <div style={{ textAlign: "center", marginTop: "20%" }}>加载中...</div>;
     return (
         <Article
             id={Number(id)}
