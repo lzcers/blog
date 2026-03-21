@@ -7,9 +7,6 @@ const About = () => {
         <div className="about">
             <div className="self">
                 <div className="selfLeft">
-                    <div className="myPic">
-                        <img src={MyPic} alt="" />
-                    </div>
                     <div className="introduction">
                         <p style={{ marginTop: 16 }}>
                             我是<strong>陌尘</strong>，一只兴趣使然的程序猿，喜欢折腾各种有趣的东西
