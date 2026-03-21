@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "front-matter": "^4.0.2",
-    "marked": "^15.0.12",
+    "marked": "^17.0.5",
     "normalize.css": "^8.0.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -19,15 +19,15 @@
     "react-router-dom": "^7.13.1"
   },
   "devDependencies": {
-    "@types/node": "^22.19.15",
+    "@types/node": "^25.5.0",
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-react": "^6.0.1",
     "less": "^4.6.4",
     "typescript": "^5.9.3",
-    "vite": "^6.4.1",
+    "vite": "^8.0.1",
     "vite-plugin-mkcert": "^1.17.10",
-    "vite-plugin-static-copy": "^2.3.2"
+    "vite-plugin-static-copy": "^3.3.0"
   }
 }
