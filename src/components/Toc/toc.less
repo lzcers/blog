@@ -7,27 +7,35 @@
 
     @media @desktop {
         display: block;
-        color: #797979;
-        min-width: 200px;
+        color: #999;
+        min-width: 180px;
         max-width: max-content;
-        background: var(--bg-main-color);
         right: 25%;
         position: fixed;
+        font-size: 13px;
     }
 
     ol {
         margin: 0;
-        padding-left: 10px;
+        padding-left: 0;
+        border-left: 1px solid #e5e5e5;
     }
 
     li {
-        color: var(--blue-color);
-        margin: 10px;
+        color: #666;
+        margin: 8px 0;
+        margin-left: 12px;
         list-style: none;
+        line-height: 1.5;
+    }
+
+    a {
+        color: inherit;
+        transition: color 0.2s ease;
     }
 
     a:hover {
         cursor: pointer;
-        color: #2060d0;
+        color: #333;
     }
 }
