@@ -12,7 +12,7 @@ export default () => {
         <div className="resume heti heti--classic">
             <section className="info">
                 <div className="main-info">
-                    <h1 className="name">李陌尘</h1>
+                    <h1 className="name">李志成</h1>
                     <h3 className="job">软件开发工程师-前端/全栈</h3>
                 </div>
                 <div className="more-info">
@@ -33,6 +33,10 @@ export default () => {
                     <Icon name={"wangzhan"} />
                     <span>
                         <a href="https://ksana.net">https://ksana.net</a>
+                    </span>
+                    <Icon name={"wangzhan"} />
+                    <span>
+                        <a href="https://github.com/lzcers">GitHub</a>
                     </span>
                 </div>
                 <p className="self-desc">
@@ -61,7 +65,7 @@ export default () => {
                     </span>
                 </div>
                 <ul>
-                    <li>字节跳动 - Data-智能创作 2022.7 - 至今</li>
+                    <li>字节跳动 - Data-智能创作 2022.7 - 2026.5</li>
                     <li>阿里巴巴 - 达摩院、CCO（高级前端工程师） 2018.10 - 2022.6</li>
                     <li>蜂投网（前端技术主管，带 12 人团队）2018.3 - 2018.10</li>
                     <li>华为技术有限公司 - 流程IT、2012实验室 2014.12 - 2017.12</li>
@@ -71,7 +75,68 @@ export default () => {
             <section className="work-experience">
                 <h3 className="title">工作经历</h3>
                 <div className="p-item">
-                    <h5>字节跳动  2022.7 - 至今</h5>
+                    <h5>字节跳动  2022.7 - 2026.5</h5>
+                    <div className="project-type" style={{margin: 0}}>ByteArtist Lumi —— AIGC 工作流平台 &amp; Workflow App（核心研发）</div>
+                    <p>
+                        Lumi 是面向抖音、TikTok、剪映、醒图等业务的 AIGC 工作流平台，支持可视化编排与多模态生图/视频体验，完成 ToB MVP
+                        建设并成功上线。
+                    </p>
+                    <ul>
+                        <li>
+                            <b>WF App 多模态开槽</b>：设计实现房间内外开槽方案，支持多种输入输出模态，使工作流可直接发布为 App，用户无需进入房间即可体验生图，降低使用门槛。
+                        </li>
+                        <li>
+                            <b>体验与成功率优化</b>：优化 WF 广场体验链路，工作流恢复时间从 10min 降至 3.5min，运行成功率提升至 95%，环境冷启动 P90 降至 25s。
+                        </li>
+                        <li>
+                            <b>工作流体积优化</b>：通过结构精简与依赖重组，将工作流体积从 900KB 压缩至 100KB，大幅提升传输与解析效率。
+                        </li>
+                        <li>
+                            <b>多能力节点接入</b>：主导接入/开发数字人、TOS 上传、Load Any File、图像编辑、VideoToAudio、MaskEditor、Video Merge 等 10+ 关键能力节点，丰富平台能力矩阵。
+                        </li>
+                        <li>
+                            <b>语义推荐 Agent</b>：基于图数据库分析 7000+ 工作流，开发工作流 Agent，实现节点的语义化推荐与智能检索，提升编排效率。
+                        </li>
+                        <li>
+                            <b>爆款模版落地</b>：搭建 WF 模版体系，在剪映等落地粘土、宠物、乐高、毛毡等 18 个风格模版；打造「回到千禧年-AI 写真」「玩偶世界 i2i」等 S 级爆款特效/模版及超清游戏，累计拉新 9.8W，拉活 572W，使用量破 1400W，单模版拉新拉活超 200W，贡献 GMV 28.9W。
+                        </li>
+                        <li>
+                            <b>性能与成本优化</b>：开发自定义节点简化 workflow 复杂度，通过工作流拆分突破显存瓶颈，配合算法部署优化节省显卡资源。
+                        </li>
+                        <li>
+                            <b>全栈开发与业务支撑</b>：使用 Go 语言开发视频专区后端，接入 T2V/I2V/V2V 自研模型；负责 WF 广场、WebUI 房间前后端开发，参与 ComfyUI 工具链 Python 开发，为多个业务线减负。
+                        </li>
+                        <li>
+                            <b>稳定性与可观测性</b>：优化房间恢复成功率与打开速度，实现 pip 依赖自动搜集与恢复；主导埋点开发与性能看板搭建，赋能 QA 质量监控与收益回收。
+                        </li>
+                        <li>
+                            <b>网关架构升级</b>：输出技术方案，基于 Rust Pingora 实现房间网关服务，统一入口流量、解绑房间与实例耦合，并探索单卡多实例部署，提升资源利用率与稳定性。
+                        </li>
+                    </ul>
+                    <div className="project-type" style={{margin: 0}}>WebAR 编辑器 —— 火山引擎 WebAR 特效营销平台（前端技术负责人）</div>
+                    <p>
+                        从零搭建 WebAR 可视化编辑器与配套 SDK，打通"编辑-发布-分发"全链路，将 WebAR 特效生产从手工定制开发转变为工业化流水线，支撑企业营销场景下 100+ 款道具交付，23 年收益 2240W，24 年 Q1 1000W。
+                    </p>
+                    <ul>
+                        <li>
+                            <b>平台架构与迭代</b>：带领团队完成从 1.0 到 1.6 六大版本迭代，落地人脸/美妆/虚拟试戴/3D 展示/脚本等 10+ 核心特效编辑能力，实现道具生产、管理与分发的平台闭环。
+                        </li>
+                        <li>
+                            <b>交付模式变革</b>：将原有"基于 SDK 刀耕火种式定制开发"转变为平台化生产流水线，大幅减少交付人力，使研发聚焦于平台能力建设，累计交付 100+ 款特效道具。
+                        </li>
+                        <li>
+                            <b>SDK 与脚本引擎</b>：参与 SDK 设计开发，包体从 620KB 按需加载优化至 540KB；基于 ReactFlow 实现图编辑器脚本引擎，支持手势、抬头、张嘴、眨眼等算法交互，让编辑器可产出带复杂交互的 AR 道具。
+                        </li>
+                        <li>
+                            <b>协同编辑架构设计</b>：提出并落地 Immer + Yjs 多端协同方案：① 自动完成 SceneModel 增量推送，消除全量传递开销；② 后端实时存储编辑状态；③ 为未来多人协同打下基础；④ 实现 PC 编辑、真机实时预览联动调试。
+                        </li>
+                        <li>
+                            <b>标杆案例</b>：支撑成都 IFS 熊猫地标特效、2024 春晚西安分会场"山河诗长安"、迪士尼动物城居民（破物种测试与福利发放）等现象级营销项目。
+                        </li>
+                        <li>
+                            <b>工程配套</b>：搭建性能监控、埋点上报、项目管理、发布审核等工程体系，保障交付质量与线上稳定性。
+                        </li>
+                    </ul>
                 </div>
                 <div className="p-item">
                     <h5>阿里巴巴 （高级前端工程师） 2018.10 - 2022.6</h5>
@@ -206,7 +271,7 @@ export default () => {
                     </ul>
                 </div>
                 <div className="p-item">
-                    <h5>Anker 2018.3 - 2018.10（实习）</h5>
+                    <h5>Anker 2014.6（实习）</h5>
                     <p>
                         维护公司内部的售后邮箱管理系统，处理一些简单需求和 BUG 单，学习了基于 <b>Git</b> 版本控制系统的团队协作，以及如何阅读与修改大型开源 PHP 系统代码。
                     </p>
@@ -214,6 +279,9 @@ export default () => {
             </section >
             <section className="other-experience">
                 <ul>
+                  <li>
+                      <a href="https://akasa.fun">阿卡夏记录 - AI 互动体验引擎</a> 创业者
+                  </li>
                     <li>
                         <a href="https://lcnziv86vkx6.feishu.cn/wiki/JkuHwnMseiiO6fkm3h1cz41Gn8c">Trae Expert</a> Trae Friends 演讲者、VI Coding 布道者
                     </li>
